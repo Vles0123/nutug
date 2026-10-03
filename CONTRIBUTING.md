@@ -1,10 +1,10 @@
 # 参与开发
 
-Nutug 使用静态 HTML、CSS 和 JavaScript。所有网站源码在 `public/`，编辑后通过静态服务器预览。页面入口与模块关系见 [架构说明](docs/architecture.md)。
+Nutug 的 React 界面位于 `src/`，共享内容、字体和第三方黄历引擎位于 `public/`。使用 `npm run dev` 构建并预览。页面入口与模块关系见 [架构说明](docs/architecture.md)。
 
 ## 环境与命令
 
-推荐 Node.js 24（有 nvm 时运行 `nvm use`）。最低兼容版本由 `package.json` 的 `engines.node` 指定。预览服务使用 Python 3。
+推荐 Node.js 24（有 nvm 时运行 `nvm use`）。最低兼容版本由 `package.json` 的 `engines.node` 指定。构建和预览服务均使用 Node.js。
 
 ```sh
 npm ci
@@ -50,6 +50,6 @@ npm run check
 
 ## 部署与授权
 
-静态站点的发布目录为 `public/`，完整上传其内容与子目录。原始快照使用 `dist/`；既有托管配置迁移时需要相应更新发布目录。仓库 CI 执行格式与回归检查。
+运行 `npm run build` 后，完整发布 `public/` 及其子目录。`public/assets/` 为生成资源。原始快照使用 `dist/`；既有托管配置迁移时需要相应更新发布目录。仓库 CI 执行格式与回归检查。
 
 项目保持 `UNLICENSED`。第三方许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)，字体规则见 [FONT-NOTES.md](FONT-NOTES.md)。

@@ -1,3 +1,4 @@
+const readLegacy = require('./legacy-assets.cjs');
 const assert = require('node:assert'),
   fs = require('node:fs'),
   vm = require('node:vm'),
@@ -12,13 +13,13 @@ for (const [width, height] of [
   [430, 560],
   [740, 320],
 ]) {
-  const w = new JSDOM(fs.readFileSync('public/tribes-mobile.html', 'utf8'), {
+  const w = new JSDOM(fs.readFileSync('tests/fixtures/legacy/tribes-mobile.html', 'utf8'), {
     runScripts: 'outside-only',
     url: 'https://nutug.cn/tribes-mobile.html',
     pretendToBeVisual: true,
   }).window;
   w.scrollTo = () => {};
-  w.requestAnimationFrame = (fn) => fn();
+  w.requestAnimationFrame = (fn) => w.setTimeout(fn, 0);
   w.SVGElement.prototype.getBoundingClientRect = function () {
     return w.document.body.dataset.screen === 'graph' ? { width, height } : { width: 0, height: 0 };
   };
@@ -36,6 +37,8 @@ for (const [width, height] of [
   };
   w.eval(
     [
+      'vendor/d3-force-3.0.0.js',
+      'network-layout.js',
       'data.js',
       'tribes-data.js',
       'tribes.js',
@@ -43,13 +46,17 @@ for (const [width, height] of [
       'tribal-knowledge.js',
       'tribes-mobile.js',
     ]
-      .map((f) => fs.readFileSync('public/' + f, 'utf8'))
+      .map((f) => readLegacy(f))
       .join('\n'),
   );
   const doc = w.document;
   function assertPair() {
-    assert(doc.querySelectorAll('.tribe-node').length <= 2);
-    assert(doc.querySelectorAll('.tribe-edge').length <= 1);
+    assert.equal(doc.querySelectorAll('.tribe-node').length, Object.keys(D.nodes).length);
+    const period = doc.querySelector('[data-period][aria-pressed="true"]').dataset.period;
+    assert.equal(
+      doc.querySelectorAll('.tribe-edge').length,
+      D.edges.filter((e) => period === 'all' || e.period === period).length,
+    );
     const v = doc.getElementById('tribeGraph').getAttribute('viewBox').split(' ').map(Number);
     assert(v.every(Number.isFinite));
     for (const n of doc.querySelectorAll('.tribe-node')) {
@@ -62,7 +69,7 @@ for (const [width, height] of [
     }
   }
   assertPair();
-  assert.equal(doc.querySelectorAll('.tribe-node').length, 2);
+  assert.equal(doc.querySelectorAll('.tribe-node').length, Object.keys(D.nodes).length);
   assert(doc.getElementById('desktopEdition').href.endsWith('tribes.html?layout=desktop'));
   for (const id of Object.keys(D.nodes)) {
     doc.getElementById('mobileMenu').click();
@@ -76,7 +83,7 @@ for (const [width, height] of [
     const n = D.edges.filter((e) => e.from === id || e.to === id).length,
       seen = new Set();
     for (let i = 0; i < n; i++) {
-      seen.add(doc.querySelector('.edge-hit').dataset.edgeId);
+      seen.add(doc.querySelector('.edge-hit[aria-pressed="true"]').dataset.edgeId);
       doc.getElementById('mobileNextRelation').click();
       assertPair();
     }
@@ -95,7 +102,7 @@ for (const [width, height] of [
   }
   doc.querySelector('[data-tribe-picker="jin"]').click();
   doc.querySelector('[data-period="late"]').click();
-  assert.equal(doc.querySelectorAll('.tribe-node').length, 1);
+  assert.equal(doc.querySelectorAll('.tribe-node').length, Object.keys(D.nodes).length);
   assert(doc.getElementById('mobileNextRelation').disabled);
   doc.querySelector('[data-period="all"]').click();
   for (const a of K.articles) {
@@ -127,12 +134,13 @@ for (const [width, height] of [
     assertPair();
   }
   assert(!/[\u3400-\u9fff\u0400-\u04ff]/.test(doc.body.textContent));
+  w.close();
 }
 console.log(
   JSON.stringify({
     passed: [
       'separate mobile route and desktop opt-out',
-      'all tribal selections show at most two cards',
+      'all tribal selections preserve the network',
       'every dated relation reachable via next',
       'empty period state',
       'three screen navigation',

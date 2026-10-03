@@ -1,9 +1,10 @@
+const readLegacy = require('./legacy-assets.cjs');
 const assert = require('node:assert'),
   fs = require('node:fs'),
   vm = require('node:vm'),
   { JSDOM } = require('jsdom');
 const D = vm.runInNewContext(fs.readFileSync('public/tribes-data.js', 'utf8') + ';TRIBAL_GRAPH');
-const w = new JSDOM(fs.readFileSync('public/tribes-mobile.html', 'utf8'), {
+const w = new JSDOM(fs.readFileSync('tests/fixtures/legacy/tribes-mobile.html', 'utf8'), {
   runScripts: 'outside-only',
   pretendToBeVisual: true,
   url: 'https://nutug.cn/tribes-mobile.html',
@@ -32,6 +33,8 @@ w.HTMLDialogElement.prototype.close = function () {
 };
 w.eval(
   [
+    'vendor/d3-force-3.0.0.js',
+    'network-layout.js',
     'data.js',
     'tribes-data.js',
     'tribes.js',
@@ -39,7 +42,7 @@ w.eval(
     'tribal-knowledge.js',
     'tribes-mobile.js',
   ]
-    .map((f) => fs.readFileSync('public/' + f, 'utf8'))
+    .map((f) => readLegacy(f))
     .join('\n'),
 );
 const d = w.document,
@@ -47,7 +50,7 @@ const d = w.document,
     d.querySelector(s).click();
     flush();
   },
-  edge = () => d.querySelector('.edge-hit')?.dataset.edgeId;
+  edge = () => d.querySelector('.edge-hit[aria-pressed="true"]')?.dataset.edgeId;
 flush();
 click('[data-tribe-picker="temujin_following"]');
 assert.equal(d.body.dataset.screen, 'detail');
@@ -79,7 +82,7 @@ click('[data-period="middle"]');
 assert.equal(edge(), 'temujin_tatar_conflict');
 click('[data-period="all"]');
 assert.equal(edge(), 'temujin_tatar_conflict');
-d.querySelector('.edge-hit').dispatchEvent(new w.MouseEvent('click'));
+d.querySelector('.edge-hit[aria-pressed="true"]').dispatchEvent(new w.MouseEvent('click'));
 flush();
 assert.equal(d.body.dataset.screen, 'detail');
 assert.equal(d.activeElement, d.querySelector('.event-description'));

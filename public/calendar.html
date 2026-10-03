@@ -1,33 +1,28 @@
 <!doctype html>
-<html lang="mn-Mong"
-  ><head
-    ><meta charset="utf-8" /><meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,viewport-fit=cover" /><title>ᠴᠠᠭ ᠲᠣᠭ᠎ᠠ</title
-    ><link rel="stylesheet" href="calendar.css" /><link
+<html lang="mn-Mong">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f2f2f7" />
+    <title>ᠨᠤᠲᠤᠭ</title>
+    <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23152330'/%3E%3Cpath d='M15 48V28H49V48M32 28V12' fill='none' stroke='%23d0ab66' stroke-width='5'/%3E%3C/svg%3E" /></head
-  ><body
-    ><header
-      ><a href="./" id="calendarBack">←</a><h1 id="calendarTitle"></h1
-      ><a href="almanac.html" id="almanacLink"></a></header
-    ><section class="today-panel"
-      ><span id="todayLabel"></span><strong id="todayDate"></strong><small>UTC+08:00</small
-      ><button id="goToday" type="button">◎</button></section
-    ><main
-      ><section class="month-panel"
-        ><div class="month-toolbar"
-          ><button id="previousMonth" type="button">‹</button><h2 id="monthTitle"></h2
-          ><button id="nextMonth" type="button">›</button></div
-        ><div id="regionFilters"></div><div id="weekdays"></div
-        ><div id="monthGrid" role="group"></div></section
-      ><section id="dateEvents" aria-live="polite"
-        ><h2 id="selectedDate"></h2><div id="eventList"></div></section></main
-    ><section class="calendar-section"
-      ><h2 id="upcomingTitle"></h2><div id="upcomingEvents"></div></section
-    ><section class="calendar-section"
-      ><h2 id="pendingTitle"></h2><div id="pendingEvents"></div></section
-    ><footer id="calendarScope"></footer
-    ><script src="calendar-data.js"></script
-    ><script src="calendar.js"></script></body
-></html>
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230088ff'/%3E%3Cpath d='M16 46L32 18L48 46ZM16 46H48' fill='none' stroke='white' stroke-width='4'/%3E%3C/svg%3E"
+    />
+    <link rel="preload" href="fonts/OnonSoninSans.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="assets/nutug.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="data.js"></script>
+    <script src="tribes-data.js"></script>
+    <script src="knowledge-data.js"></script>
+    <script src="tribal-knowledge-data.js"></script>
+    <script src="calendar-data.js"></script>
+    <script src="almanac-data.js"></script>
+    <script src="vendor/lunar-1.7.7.js"></script>
+    <script src="chinese-almanac-core.js"></script>
+    <script src="assets/locale.js"></script>
+    <script src="assets/nutug.js"></script>
+  </body>
+</html>

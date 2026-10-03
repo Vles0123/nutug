@@ -1,3 +1,4 @@
+const readLegacy = require('./legacy-assets.cjs');
 const assert = require('node:assert'),
   fs = require('node:fs'),
   vm = require('node:vm'),
@@ -19,14 +20,17 @@ for (const id of ids) {
 }
 for (const mobile of [false, true]) {
   const w = new JSDOM(
-    fs.readFileSync('public/' + (mobile ? 'tribes-mobile.html' : 'tribes.html'), 'utf8'),
+    fs.readFileSync(
+      'tests/fixtures/legacy/' + (mobile ? 'tribes-mobile.html' : 'tribes.html'),
+      'utf8',
+    ),
     {
       runScripts: 'outside-only',
       url: 'https://nutug.cn/' + (mobile ? 'tribes-mobile.html' : 'tribes.html'),
     },
   ).window;
   w.scrollTo = () => {};
-  w.requestAnimationFrame = (fn) => fn();
+  w.requestAnimationFrame = (fn) => w.setTimeout(fn, 0);
   w.SVGElement.prototype.getBoundingClientRect = () => ({ width: 390, height: 500 });
   w.ResizeObserver = class {
     observe() {}
@@ -42,6 +46,8 @@ for (const mobile of [false, true]) {
   };
   w.eval(
     [
+      'vendor/d3-force-3.0.0.js',
+      'network-layout.js',
       'data.js',
       'tribes-data.js',
       'tribes.js',
@@ -49,7 +55,7 @@ for (const mobile of [false, true]) {
       'tribal-knowledge.js',
       ...(mobile ? ['tribes-mobile.js'] : []),
     ]
-      .map((f) => fs.readFileSync('public/' + f, 'utf8'))
+      .map((f) => readLegacy(f))
       .join('\n'),
   );
   const d = w.document;

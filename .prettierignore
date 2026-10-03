@@ -5,3 +5,5 @@ playwright-report/
 package-lock.json
 public/vendor/
 public/fonts/
+public/assets/
+tests/fixtures/legacy/

@@ -1,5 +1,12 @@
 # Third-party notices
 
+## Onon Sonin Sans
+
+- Project typeface: `public/fonts/OnonSoninSans.ttf`
+- Web format: `public/fonts/OnonSoninSans.woff2`
+- Copyright: Typeface (C) iMit&Onon. 2017-2018. All Rights Reserved
+- Preserved notice: `public/fonts/OnonSoninSans-NOTICE.txt`
+
 ## Noto Sans Mongolian
 
 - Bundled file: `public/fonts/NotoSansMongolian-Regular.ttf`
@@ -30,3 +37,17 @@ Article and graph data retain source URLs and attribution fields for evidence an
 ## Project code and editorial material
 
 Original website code and editorial content carry the `UNLICENSED` package identifier. Permissions for that material are determined by the rights holder. The component licenses above apply to their respective bundled files.
+
+## React web interface
+
+The interface bundles these pinned npm packages and their dependencies during `npm run build`:
+
+- React and React DOM 19.3.0 — MIT.
+- React Aria Components 1.21.1 — Apache-2.0.
+- Motion 14.0.0 — MIT.
+- Lucide React 1.51.0 — ISC.
+- D3 Force 3.0.0 — ISC; the D3 dependency notices are also retained in `tests/fixtures/legacy/vendor/d3-LICENSE.txt`.
+
+The generated `public/assets/THIRD_PARTY_LICENSES.txt` collects the license files for packages included in the browser bundle. esbuild also preserves bundled legal comments in `nutug.js.LEGAL.txt`.
+
+Apple's iOS/iPadOS 27 Figma resource is used as a component and design-token reference. The source component nodes are recorded in `src/apple-reference.json`. Web icons come from Lucide and the Mongolian typeface remains Onon Sonin Sans.

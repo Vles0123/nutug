@@ -1,3 +1,4 @@
+const readLegacy = require('./legacy-assets.cjs');
 const assert = require('node:assert'),
   fs = require('node:fs'),
   vm = require('node:vm'),
@@ -26,7 +27,7 @@ for (const [width, height] of [
   [430, 570],
   [840, 600],
 ]) {
-  const w = new JSDOM(fs.readFileSync('public/tribes.html', 'utf8'), {
+  const w = new JSDOM(fs.readFileSync('tests/fixtures/legacy/tribes.html', 'utf8'), {
     runScripts: 'outside-only',
     url: 'https://nutug.cn/tribes.html',
   }).window;
@@ -35,8 +36,8 @@ for (const [width, height] of [
     observe() {}
   };
   w.eval(
-    ['data.js', 'tribes-data.js', 'tribes.js']
-      .map((f) => fs.readFileSync('public/' + f, 'utf8'))
+    ['vendor/d3-force-3.0.0.js', 'network-layout.js', 'data.js', 'tribes-data.js', 'tribes.js']
+      .map((f) => readLegacy(f))
       .join('\n'),
   );
   const doc = w.document;
@@ -90,7 +91,7 @@ for (const [width, height] of [
   );
   assert(!doc.querySelector('a[download]'));
 }
-const index = fs.readFileSync('public/index.html', 'utf8');
+const index = fs.readFileSync('tests/fixtures/legacy/index.html', 'utf8');
 assert(index.includes('href="tribes.html"'));
 console.log(
   JSON.stringify({

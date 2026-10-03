@@ -1,8 +1,9 @@
+const readLegacy = require('./legacy-assets.cjs');
 const assert = require('node:assert'),
   fs = require('node:fs'),
   vm = require('node:vm');
 const { JSDOM } = require('jsdom');
-const html = fs.readFileSync('public/index.html', 'utf8'),
+const html = fs.readFileSync('tests/fixtures/legacy/index.html', 'utf8'),
   w = new JSDOM(html, { runScripts: 'outside-only', url: 'https://atlas.example/' }).window;
 let size = { width: 390, height: 420 },
   resize;
@@ -23,8 +24,15 @@ w.HTMLDialogElement.prototype.close = function () {
   this.dispatchEvent(new w.Event('close'));
 };
 w.eval(
-  ['data.js', 'app.js', 'knowledge-data.js', 'knowledge.js']
-    .map((f) => fs.readFileSync('public/' + f, 'utf8'))
+  [
+    'vendor/d3-force-3.0.0.js',
+    'network-layout.js',
+    'data.js',
+    'app.js',
+    'knowledge-data.js',
+    'knowledge.js',
+  ]
+    .map((f) => readLegacy(f))
     .join('\n'),
 );
 const d = w.document;

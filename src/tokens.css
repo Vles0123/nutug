@@ -1,0 +1,46 @@
+/* Apple iOS/iPadOS 27: actual variable names and component nodes are recorded in apple-reference.json. */
+:root {
+  color-scheme: light dark;
+  --accent: #0088ff; /* Accents/Blue, light mode */
+  --label: #000; /* Labels/Primary */
+  --secondary: rgba(60, 60, 67, 0.6); /* Labels/Secondary */
+  --control-label: #1a1a1a; /* Labels - Vibrant - Controls/Primary */
+  --secondary-fill: rgba(120, 120, 128, 0.16); /* Fills/Secondary */
+  --tertiary-fill: rgba(118, 118, 128, 0.12); /* Fills/Tertiary */
+  --selected-fill: #fff; /* Segmented Control - Selected Fill */
+  --canvas: #fff;
+  --background: #f2f2f7;
+  --sidebar: #f6f6f8;
+  --separator: rgba(60, 60, 67, 0.14);
+  --selection: rgba(0, 136, 255, 0.1);
+  --line: #bac6d2;
+  --conflict: #b9865e;
+  --graph-dot: rgba(70, 92, 115, 0.1);
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+  --control-size: 44px; /* Apple iPad toolbar controls: 44pt */
+  --sidebar-width: 88px; /* Adapted for vertical Mongolian navigation. */
+  --inspector-width: 320px; /* Apple iPad sidebar reference width. */
+  --reading-scale: 1;
+  --mn: 'Onon Sonin Sans', 'Mongolian Baiti', serif;
+  --system: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent: #0091ff;
+    --label: #fff;
+    --secondary: rgba(235, 235, 245, 0.7);
+    --control-label: #f5f5f5;
+    --secondary-fill: rgba(120, 120, 128, 0.32);
+    --tertiary-fill: rgba(118, 118, 128, 0.24);
+    --selected-fill: rgba(255, 255, 255, 0.27);
+    --canvas: #18181b;
+    --background: #101013;
+    --sidebar: #202024;
+    --separator: rgba(235, 235, 245, 0.15);
+    --selection: rgba(0, 145, 255, 0.16);
+    --line: #515d6c;
+    --conflict: #cd9a70;
+    --graph-dot: rgba(184, 204, 224, 0.09);
+    --shadow: 0 8px 30px #0003;
+  }
+}

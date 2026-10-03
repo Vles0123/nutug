@@ -34,9 +34,11 @@ function activeIds() {
   return all;
 }
 function position(id) {
-  const p = PEOPLE[id],
-    a = mode === 'power' && p.power ? p.power : p.pos;
-  return [a[0] * 1.12, a[1] * 1.65];
+  return NutugNetwork.positions(Object.keys(PEOPLE), EDGES.filter(relevant))[id];
+}
+function gapPosition(gap) {
+  const [x, y] = position(gap.anchor);
+  return [x + 230, y + 200];
 }
 function visibleGaps() {
   return mode === 'family'
@@ -46,9 +48,7 @@ function visibleGaps() {
     : [];
 }
 function viewPoints() {
-  return [...activeIds()]
-    .map(position)
-    .concat(visibleGaps().map((g) => [g.pos[0] * 1.12, g.pos[1] * 1.65]));
+  return [...activeIds()].map(position).concat(visibleGaps().map(gapPosition));
 }
 function maxViewWidth() {
   const ps = viewPoints(),
@@ -66,6 +66,20 @@ function maxViewWidth() {
 }
 function applyView() {
   svg.setAttribute('viewBox', `${view.x} ${view.y} ${view.w} ${view.h}`);
+  const scale = view.w / (svg.getBoundingClientRect().width || 900);
+  svg.dataset.labelDensity = scale > 1.7 ? 'focused' : 'expanded';
+  for (const node of svg.querySelectorAll('.node')) {
+    const label = node.querySelector('foreignObject');
+    label.setAttribute('x', String(83 + 21 * scale));
+    label.setAttribute('y', String(130 - 30 * scale));
+    label.setAttribute('width', String(70 * scale));
+    label.setAttribute('height', String(190 * scale));
+    node.querySelector('.mn-name').style.fontSize = `${25 * scale}px`;
+    node.querySelector('.mn-node').style.height = `${190 * scale}px`;
+    node
+      .querySelector('.network-dot')
+      .setAttribute('r', String((node.dataset.person === selected ? 13 : 8) * scale));
+  }
 }
 function center(id) {
   const [x, y] = position(id);
@@ -88,23 +102,13 @@ function fitBounds(ids, includeGaps = false) {
     .filter((id) => PEOPLE[id])
     .map((id) => {
       const [x, y] = position(id);
-      return [x - 103, y - 150, x + 103, y + 150];
+      return [x - 40, y - 145, x + 200, y + 200];
     });
   if (includeGaps)
     for (const g of visibleGaps()) {
-      const x = g.pos[0] * 1.12,
-        y = g.pos[1] * 1.65;
+      const [x, y] = gapPosition(g);
       boxes.push([x - 140, y - 125, x + 140, y + 125]);
     }
-  for (const e of EDGES.filter((e) => relevant(e) && ids.has(e.from) && ids.has(e.to))) {
-    const [ax, ay] = position(e.from),
-      [bx, by] = position(e.to),
-      lx = (ax + bx) / 2,
-      ly = e.route === 'lower-arc' ? e.routeY * 1.65 - 12 : (ay + by) / 2 - 8;
-    boxes.push([lx - 45, ly - 65, lx + 60, ly + 105]);
-    if (e.route === 'lower-arc')
-      boxes.push([Math.min(ax, bx), Math.min(ay, by), Math.max(ax, bx), e.routeY * 1.65]);
-  }
   if (!boxes.length) {
     center(selected);
     return;
@@ -218,45 +222,18 @@ function render() {
       d,
       lx,
       ly;
-    if (e.route === 'lower-arc') {
-      ay += 130;
-      by += 130;
-      const lane = e.routeY * 1.65;
-      d = `M${ax} ${ay} C${ax} ${lane} ${bx} ${lane} ${bx} ${by}`;
-      lx = (ax + bx) / 2;
-      ly = lane - 12;
-    } else if (e.type === 'spouse') {
-      let left = ax < bx;
-      ax += left ? 83 : -83;
-      bx += left ? -83 : 83;
-      d = `M${ax} ${ay} L${bx} ${by}`;
-      lx = (ax + bx) / 2;
-      ly = (ay + by) / 2 - 8;
-    } else {
-      ay += 130;
-      by -= 130;
-      let mid = (ay + by) / 2;
-      d = `M${ax} ${ay} C${ax} ${mid} ${bx} ${mid} ${bx} ${by}`;
-      lx = (ax + bx) / 2;
-      ly = mid - 8;
-    }
+    d = NutugNetwork.curve([ax, ay], [bx, by], e.type === 'spouse' ? -0.1 : 0.08);
     const path = el('path', {
       d,
       stroke: color,
+      'data-kind': e.type,
       class: 'edge' + (e.from === selected || e.to === selected ? '' : ' dim'),
     });
     if (e.type === 'contact') path.setAttribute('stroke-dasharray', '2 6');
     if (['alliance', 'rival'].includes(e.type)) path.setAttribute('stroke-dasharray', '7 5');
     if (e.type === 'succession') path.setAttribute('marker-end', 'url(#arrow)');
     svg.append(path);
-    if (e.from === selected || e.to === selected) {
-      const label = el('foreignObject', { x: lx - 35, y: ly - 55, width: 85, height: 150 });
-      const span = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
-      span.className = 'mn-edge';
-      span.textContent = e.label;
-      label.append(span);
-      svg.append(label);
-    }
+    path.append(el('title', {}, e.label));
   }
   for (const id of ids) {
     let p = PEOPLE[id];
@@ -271,17 +248,9 @@ function render() {
         'data-person': id,
         'aria-label': p.name + ' · ' + p.alias,
       });
-    g.append(
-      el('rect', {
-        width: 166,
-        height: 260,
-        rx: 3,
-        fill: id === selected ? '#182d36' : '#f7f4e9',
-        stroke: id === selected ? '#ba934f' : '#8b9c91',
-        'stroke-width': id === selected ? 2.5 : 1,
-      }),
-    );
-    const foreign = el('foreignObject', { x: 7, y: 9, width: 152, height: 242 });
+    g.setAttribute('aria-pressed', String(id === selected));
+    g.append(el('circle', { cx: 83, cy: 130, r: id === selected ? 22 : 14, class: 'network-dot' }));
+    const foreign = el('foreignObject', { x: 118, y: 30, width: 100, height: 260 });
     let box = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
     box.className = 'mn-node' + (id === selected ? ' selected' : '');
     let name = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
@@ -300,6 +269,7 @@ function render() {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         choose(id, true);
+        svg.querySelector('[data-person="' + id + '"]')?.focus({ preventScroll: true });
       }
     };
     svg.append(g);
@@ -332,7 +302,7 @@ function render() {
     .forEach((b) => b.setAttribute('aria-selected', b.dataset.mode === mode));
 }
 function choose(id, recenter = true) {
-  if (!PEOPLE[id]) return;
+  if (!Object.hasOwn(PEOPLE, id)) return;
   selected = id;
   selectedGap = null;
   document.body.classList.remove('search-open');
@@ -539,7 +509,7 @@ for (const p of Object.values(SOURCES)) {
 }
 timeline();
 render();
-center('temujin');
+fit();
 
 // Keep world coordinates proportional when a split pane, window or device rotates.
 let lastSize = null;
@@ -555,7 +525,7 @@ function resizeGraph() {
     view.y = cy - view.h / 2;
     applyView();
   } else {
-    center(selected);
+    fit();
   }
   lastSize = { width: r.width, height: r.height };
 }
@@ -581,7 +551,7 @@ document.addEventListener('keydown', (e) => {
 
 document.addEventListener('atlas:focus-person', (e) => {
   const id = e.detail?.id;
-  if (!PEOPLE[id]) return;
+  if (!Object.hasOwn(PEOPLE, id)) return;
   if (['family', 'power'].includes(e.detail.mode)) mode = e.detail.mode;
   choose(id, true);
   svg.scrollIntoView({ behavior: 'auto', block: 'center' });
@@ -591,11 +561,8 @@ document.addEventListener('atlas:focus-person', (e) => {
 function renderGaps() {
   for (const gap of visibleGaps()) {
     const [ax, ay] = position(gap.anchor),
-      x = gap.pos[0] * 1.12,
-      y = gap.pos[1] * 1.65;
-    svg.append(
-      el('path', { d: `M${ax} ${ay + 130} L${x} ${y - 105}`, class: 'research-gap-line' }),
-    );
+      [x, y] = gapPosition(gap);
+    svg.append(el('path', { d: NutugNetwork.curve([ax, ay], [x, y]), class: 'research-gap-line' }));
     const g = el('g', {
       class: 'research-gap',
       transform: `translate(${x - 120} ${y - 105})`,
@@ -604,18 +571,8 @@ function renderGaps() {
       'aria-label': gap.title + ' · ' + gap.shortLabel,
       'data-gap': gap.id,
     });
-    g.append(
-      el('rect', {
-        width: 240,
-        height: 210,
-        rx: 18,
-        fill: selectedGap === gap.id ? '#e9d7ab' : '#f4edda',
-        stroke: '#99713b',
-        'stroke-width': 2,
-        'stroke-dasharray': '7 5',
-      }),
-    );
-    const foreign = el('foreignObject', { x: 18, y: 12, width: 204, height: 186 }),
+    g.append(el('circle', { cx: 120, cy: 105, r: 17, class: 'network-gap-dot' }));
+    const foreign = el('foreignObject', { x: 150, y: 20, width: 110, height: 240 }),
       box = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
     box.className = 'mn-gap';
     const title = document.createElementNS('http://www.w3.org/1999/xhtml', 'strong');
@@ -632,6 +589,7 @@ function renderGaps() {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         showGap(gap.id);
+        svg.querySelector('[data-gap="' + gap.id + '"]')?.focus({ preventScroll: true });
       }
     };
     svg.append(g);
@@ -644,7 +602,7 @@ function showGap(id) {
   selected = g.anchor;
   selectedGap = id;
   render();
-  centerAt(g.pos[0] * 1.12, g.pos[1] * 1.65);
+  centerAt(...gapPosition(g));
 }
 function gapDetail() {
   const gap = RESEARCH_GAPS.find((x) => x.id === selectedGap);
@@ -719,7 +677,7 @@ $('viewPoliticalGraph').onclick = () => {
 
 function loadPersonFragment() {
   const id = new URLSearchParams(location.hash.slice(1)).get('person');
-  if (PEOPLE[id]) {
+  if (Object.hasOwn(PEOPLE, id)) {
     mode = PEOPLE[id].externalContext ? 'power' : 'family';
     focus = false;
     $('focus').checked = false;

@@ -1,7 +1,6 @@
 # Traditional Mongolian typography
 
-Self-hosted Noto Sans Mongolian v3.002 (internal font version verified), SIL Open Font License 1.1. License bundled as public/fonts/OFL.txt.
-Official release: https://github.com/notofonts/mongolian/releases/tag/NotoSansMongolian-v3.002
+Onon Sonin Sans is the project typeface. Web pages load `public/fonts/OnonSoninSans.woff2`, with the bundled TTF as a format fallback. The native application loads `public/fonts/OnonSoninSans.ttf` from its resources. The font copyright notice is preserved in `public/fonts/OnonSoninSans-NOTICE.txt`.
 
 Use `writing-mode: vertical-lr` and `text-orientation: mixed` for native vertical layout. Names are contiguous text in HTML inside SVG foreignObject. The graph edges remain SVG geometry. Bios and controls share the same font.
 Reference: https://www.w3.org/International/articles/vertical-text/#mongolian

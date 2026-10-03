@@ -1,3 +1,4 @@
+const readLegacy = require('./legacy-assets.cjs');
 const assert = require('node:assert'),
   fs = require('node:fs'),
   vm = require('node:vm'),
@@ -21,7 +22,7 @@ for (const a of K.articles) {
     assert(s && /^https:\/\//.test(s.url));
   }
 }
-const w = new JSDOM(fs.readFileSync('public/tribes.html', 'utf8'), {
+const w = new JSDOM(fs.readFileSync('tests/fixtures/legacy/tribes.html', 'utf8'), {
   runScripts: 'outside-only',
   url: 'https://nutug.cn/tribes.html',
 }).window;
@@ -39,8 +40,16 @@ w.HTMLDialogElement.prototype.close = function () {
   this.dispatchEvent(new w.Event('close'));
 };
 w.eval(
-  ['data.js', 'tribes-data.js', 'tribes.js', 'tribal-knowledge-data.js', 'tribal-knowledge.js']
-    .map((f) => fs.readFileSync('public/' + f, 'utf8'))
+  [
+    'vendor/d3-force-3.0.0.js',
+    'network-layout.js',
+    'data.js',
+    'tribes-data.js',
+    'tribes.js',
+    'tribal-knowledge-data.js',
+    'tribal-knowledge.js',
+  ]
+    .map((f) => readLegacy(f))
     .join('\n'),
 );
 const doc = w.document;
@@ -85,7 +94,9 @@ doc.getElementById('tl-clear').click();
 assert.equal(doc.querySelectorAll('.tl-card').length, K.articles.length);
 assert(!/[\u3400-\u9fff\u0400-\u04ff]/.test(doc.body.textContent));
 assert(!doc.querySelector('a[download]'));
-assert(fs.readFileSync('public/index.html', 'utf8').includes('tribes.html#tribalLibrary'));
+assert(
+  fs.readFileSync('tests/fixtures/legacy/index.html', 'utf8').includes('tribes.html#tribalLibrary'),
+);
 console.log(
   JSON.stringify({
     articles: K.articles.length,

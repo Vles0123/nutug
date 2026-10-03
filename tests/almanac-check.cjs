@@ -1,3 +1,4 @@
+const readLegacy = require('./legacy-assets.cjs');
 const assert = require('node:assert'),
   fs = require('node:fs'),
   vm = require('node:vm'),
@@ -17,7 +18,7 @@ assert.notEqual(A.activities['无'], A.activities['诸事不宜']);
 assert.notEqual(A.activities['无'], A.activities['馀事勿取']);
 assert.notEqual(A.activities['诸事不宜'], A.activities['馀事勿取']);
 let now = '2026-10-03T09:00:00Z';
-const w = new JSDOM(fs.readFileSync('public/almanac.html', 'utf8'), {
+const w = new JSDOM(fs.readFileSync('tests/fixtures/legacy/almanac.html', 'utf8'), {
   runScripts: 'outside-only',
   url: 'https://nutug.cn/almanac.html',
 }).window;
@@ -34,7 +35,7 @@ w.eval(
     'almanac-data.js',
     'almanac.js',
   ]
-    .map((f) => fs.readFileSync('public/' + f, 'utf8'))
+    .map((f) => readLegacy(f))
     .join('\n'),
 );
 const d = w.document;

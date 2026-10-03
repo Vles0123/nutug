@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'Noto Mongolian';
-  src: url('fonts/NotoSansMongolian-Regular.ttf') format('truetype');
+  font-family: 'Onon Sonin Sans';
+  src: url('fonts/OnonSoninSans.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -13,7 +13,7 @@
   --line: #d2d6d3;
   --kin: #567366;
   --power: #b55441;
-  --mn: 'Noto Mongolian', 'Mongolian Baiti', serif;
+  --mn: 'Onon Sonin Sans', 'Mongolian Baiti', serif;
 }
 * {
   box-sizing: border-box;

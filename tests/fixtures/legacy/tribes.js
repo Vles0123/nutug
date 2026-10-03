@@ -15,13 +15,7 @@
     moved = false;
   const pointers = new Map();
   const profileSelection = {};
-  const centerId = selected,
-    outer = ids.filter((id) => id !== centerId),
-    positions = { [centerId]: [0, 0] };
-  outer.forEach((id, i) => {
-    const a = -Math.PI / 2 + (i * 2 * Math.PI) / outer.length;
-    positions[id] = [Math.cos(a) * 490, Math.sin(a) * 510];
-  });
+  const positions = NutugNetwork.positions(ids, D.edges);
   function el(tag, attrs = {}, text) {
     const n = document.createElementNS(NS, tag);
     for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
@@ -45,6 +39,20 @@
   }
   function applyView() {
     svg.setAttribute('viewBox', `${view.x} ${view.y} ${view.w} ${view.h}`);
+    const scale = view.w / (svg.getBoundingClientRect().width || 800);
+    svg.dataset.labelDensity = scale > 1.7 ? 'focused' : 'expanded';
+    for (const node of svg.querySelectorAll('.tribe-node')) {
+      const label = node.querySelector('foreignObject');
+      label.setAttribute('x', String(110 + 21 * scale));
+      label.setAttribute('y', String(140 - 30 * scale));
+      label.setAttribute('width', String(70 * scale));
+      label.setAttribute('height', String(190 * scale));
+      node.querySelector('.card strong').style.fontSize = `${25 * scale}px`;
+      node.querySelector('.card').style.height = `${190 * scale}px`;
+      node
+        .querySelector('.network-dot')
+        .setAttribute('r', String((node.dataset.tribe === selected ? 13 : 8) * scale));
+    }
   }
   function frame(items) {
     if (mobile)
@@ -226,13 +234,9 @@
       relatedEdges = allEdges.filter((e) => e.from === selected || e.to === selected);
     if (mobile && !relatedEdges.some((e) => e.id === edgeSelected))
       edgeSelected = relatedEdges[0]?.id || null;
-    const es = mobile ? relatedEdges.filter((e) => e.id === edgeSelected) : allEdges,
-      drawIds = mobile ? [...new Set([selected, ...es.flatMap((e) => [e.from, e.to])])] : ids,
+    const es = allEdges,
+      drawIds = ids,
       adj = neighbors();
-    if (mobile) {
-      positions[selected] = [0, es.length ? -190 : 0];
-      for (const id of drawIds) if (id !== selected) positions[id] = [0, 190];
-    }
     const defs = el('defs'),
       marker = el('marker', {
         id: 'tribe-arrow',
@@ -255,10 +259,10 @@
         len = Math.hypot(dx, dy),
         ux = dx / len,
         uy = dy / len;
-      const ax = a[0] + ux * 150,
-        ay = a[1] + uy * 150,
-        bx = b[0] - ux * 150,
-        by = b[1] - uy * 150;
+      const ax = a[0] + ux * 18,
+        ay = a[1] + uy * 18,
+        bx = b[0] - ux * 18,
+        by = b[1] - uy * 18;
       const siblings = es.filter(
         (x) => [x.from, x.to].slice().sort().join('|') === [e.from, e.to].slice().sort().join('|'),
       );
@@ -271,6 +275,7 @@
       const p = el('path', {
         d: path,
         stroke: colors[e.type],
+        'data-kind': e.type,
         class: 'tribe-edge' + (linked ? ' linked' : '') + (edgeSelected === e.id ? ' chosen' : ''),
       });
       if (e.type === 'alliance') p.setAttribute('stroke-dasharray', '12 6');
@@ -282,6 +287,7 @@
       const hit = el('path', {
         d: path,
         class: 'edge-hit',
+        'aria-pressed': String(edgeSelected === e.id),
         role: 'button',
         tabindex: 0,
         'aria-label':
@@ -323,8 +329,11 @@
           'aria-label': n.name + ' · ' + n.kind,
           'data-tribe': id,
         });
-      g.append(el('rect', { width: 220, height: 280, rx: 16 }));
-      const fo = el('foreignObject', { x: 9, y: 9, width: 202, height: 262 }),
+      g.setAttribute('aria-pressed', String(id === selected));
+      g.append(
+        el('circle', { cx: 110, cy: 140, r: id === selected ? 22 : 14, class: 'network-dot' }),
+      );
+      const fo = el('foreignObject', { x: 145, y: 40, width: 130, height: 260 }),
         card = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
       card.className = 'card';
       const title = html('strong', n.name),
@@ -339,6 +348,8 @@
         if (ev.key === 'Enter' || ev.key === ' ') {
           ev.preventDefault();
           pick(id, true);
+          if (!mobile)
+            svg.querySelector('[data-tribe="' + id + '"]')?.focus({ preventScroll: true });
         }
       };
       svg.append(g);
@@ -456,7 +467,7 @@
   };
   document.addEventListener('tribes:focus', (e) => {
     const id = e.detail?.id;
-    if (!D.nodes[id]) return;
+    if (!Object.hasOwn(D.nodes, id)) return;
     if (!filtered().some((e) => e.from === id || e.to === id)) period = 'all';
     pick(id, true, 'graph');
     svg.scrollIntoView({ behavior: 'auto', block: 'center' });

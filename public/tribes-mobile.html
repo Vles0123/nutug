@@ -1,78 +1,28 @@
 <!doctype html>
-<html lang="mn-Mong"
-  ><head
-    ><meta charset="utf-8" /><meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,viewport-fit=cover" /><title
-      >ᠠᠶᠢᠮᠠᠭ ᠤᠳ ᠤᠨ ᠬᠣᠯᠪᠤᠭ᠎ᠠ</title
-    ><link
+<html lang="mn-Mong">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f2f2f7" />
+    <title>ᠨᠤᠲᠤᠭ</title>
+    <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23152330'/%3E%3Cpath d='M15 48V28H49V48M32 28V12' fill='none' stroke='%23d0ab66' stroke-width='5'/%3E%3C/svg%3E" /><link
-      rel="stylesheet"
-      href="tribes.css" /><link rel="stylesheet" href="tribes-mobile.css" /></head
-  ><body class="mobile-edition" data-screen="graph"
-    ><header
-      ><a href="./" id="backLink"></a><h1 id="title"></h1><p id="subtitle"></p
-      ><button id="mobileMenu" type="button" aria-expanded="false" aria-controls="mobilePicker"
-        >☰</button
-      ><a id="desktopEdition" href="tribes.html?layout=desktop" aria-label="ᠪᠦᠬᠦ ᠵᠢᠷᠤᠭ"
-        >▣</a
-      ></header
-    ><section id="mobilePicker" hidden
-      ><nav id="periods" aria-label="ᠣᠨ ᠴᠠᠭ"></nav><div class="legend" id="tribeLegend"></div
-      ><div id="mobilePickerHost"></div></section
-    ><main
-      ><section class="map" aria-label="ᠠᠶᠢᠮᠠᠭ ᠤᠳ ᠤᠨ ᠬᠣᠯᠪᠤᠭᠠᠨ ᠤ ᠵᠢᠷᠤᠭ"
-        ><div class="mobile-relation-bar"
-          ><button id="mobilePrevRelation" type="button" aria-label="ᠥᠮᠦᠨᠡᠬᠢ">‹</button
-          ><span id="mobileRelationDate"></span><span id="mobileRelationLabel"></span
-          ><button id="mobileNextRelation" type="button" aria-label="ᠳᠠᠷᠠᠭᠠᠬᠢ">›</button></div
-        ><svg id="tribeGraph" role="group"></svg
-        ><div class="map-controls"
-          ><button id="minus">−</button><button id="plus">＋</button
-          ><button id="fitTribes">⤢</button><button id="focusTribe">◎</button
-          ><button id="tribeLibraryJump">▤</button><span id="visibleCount"></span></div
-        ><nav id="tribePicker" aria-label="ᠠᠶᠢᠮᠠᠭ ᠰᠣᠩᠭᠣᠬᠤ"></nav></section
-      ><aside id="tribeDetail" aria-live="polite"></aside></main
-    ><section id="tribalLibrary" aria-labelledby="tl-title"
-      ><div class="tl-heading"
-        ><h2 id="tl-title"></h2><p id="tl-subtitle"></p
-        ><a class="customs-link" href="./#knowledge">ᠵᠠᠩ ᠵᠠᠩᠰᠢᠯ</a
-        ><button
-          id="tl-search-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="tl-search-panel"
-          >⌕</button
-        ></div
-      ><div id="tl-filters"></div
-      ><div id="tl-search-panel" hidden
-        ><label for="tl-query" id="tl-query-label"></label
-        ><textarea id="tl-query" rows="1"></textarea
-        ><button id="tl-clear" type="button">×</button></div
-      ><div id="tl-count"></div><div id="tl-grid"></div><p id="tl-empty" hidden></p></section
-    ><dialog id="tl-reader" aria-labelledby="tl-reader-title"
-      ><div class="tl-reader-bar"><span>▤</span><button id="tl-close" type="button">×</button></div
-      ><div id="tl-reader-scroll"
-        ><h2 id="tl-reader-title"></h2><div id="tl-reader-body"></div
-        ><section id="tl-related"></section><section id="tl-sources"></section></div></dialog
-    ><nav id="mobileNav"
-      ><button type="button" data-screen-target="graph" aria-label="ᠵᠢᠷᠤᠭ" aria-pressed="true"
-        >◎</button
-      ><button type="button" data-screen-target="detail" aria-label="ᠲᠠᠶᠢᠯᠪᠤᠷᠢ" aria-pressed="false"
-        >ⓘ</button
-      ><button
-        type="button"
-        data-screen-target="library"
-        aria-label="ᠮᠡᠳᠡᠯᠭᠡ ᠶᠢᠨ ᠰᠠᠩ"
-        aria-pressed="false"
-        >▤</button
-      ><a href="calendar.html" class="mobile-calendar-link" aria-label="ᠴᠠᠭ ᠲᠣᠭ᠎ᠠ">▦</a></nav
-    ><section id="scope" class="scope"></section
-    ><script src="data.js"></script
-    ><script src="tribes-data.js"></script
-    ><script src="tribes.js"></script
-    ><script src="tribal-knowledge-data.js"></script
-    ><script src="tribal-knowledge.js"></script
-    ><script src="tribes-mobile.js"></script></body
-></html>
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230088ff'/%3E%3Cpath d='M16 46L32 18L48 46ZM16 46H48' fill='none' stroke='white' stroke-width='4'/%3E%3C/svg%3E"
+    />
+    <link rel="preload" href="fonts/OnonSoninSans.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="assets/nutug.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="data.js"></script>
+    <script src="tribes-data.js"></script>
+    <script src="knowledge-data.js"></script>
+    <script src="tribal-knowledge-data.js"></script>
+    <script src="calendar-data.js"></script>
+    <script src="almanac-data.js"></script>
+    <script src="vendor/lunar-1.7.7.js"></script>
+    <script src="chinese-almanac-core.js"></script>
+    <script src="assets/locale.js"></script>
+    <script src="assets/nutug.js"></script>
+  </body>
+</html>

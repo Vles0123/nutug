@@ -1,3 +1,4 @@
+const readLegacy = require('./legacy-assets.cjs');
 const assert = require('node:assert'),
   fs = require('node:fs'),
   vm = require('node:vm'),
@@ -45,8 +46,9 @@ for (const key of ['pos', 'power']) {
       );
     }
 }
-const w = new JSDOM(fs.readFileSync('public/index.html', 'utf8'), { runScripts: 'outside-only' })
-  .window;
+const w = new JSDOM(fs.readFileSync('tests/fixtures/legacy/index.html', 'utf8'), {
+  runScripts: 'outside-only',
+}).window;
 w.SVGElement.prototype.getBoundingClientRect = () => ({ width: 840, height: 210 });
 w.ResizeObserver = class {
   observe() {}
@@ -62,8 +64,15 @@ w.HTMLDialogElement.prototype.close = function () {
   this.dispatchEvent(new w.Event('close'));
 };
 w.eval(
-  ['data.js', 'app.js', 'knowledge-data.js', 'knowledge.js']
-    .map((f) => fs.readFileSync('public/' + f, 'utf8'))
+  [
+    'vendor/d3-force-3.0.0.js',
+    'network-layout.js',
+    'data.js',
+    'app.js',
+    'knowledge-data.js',
+    'knowledge.js',
+  ]
+    .map((f) => readLegacy(f))
     .join('\n'),
 );
 const doc = w.document;
@@ -135,8 +144,17 @@ doc.querySelector('[data-mode="family"]').click();
 assert.equal(doc.querySelectorAll('.research-gap').length, 1);
 doc.getElementById('fit').click();
 const fitted = doc.getElementById('graph').getAttribute('viewBox').split(' ').map(Number);
-assert(fitted[1] <= -670 * 1.65 - 130);
-assert(fitted[1] + fitted[3] >= 2700 * 1.65 + 105);
+for (const node of doc.querySelectorAll('.node,.research-gap')) {
+  const [tx, ty] = node
+    .getAttribute('transform')
+    .match(/-?[\d.]+/g)
+    .map(Number);
+  const circle = node.querySelector('circle');
+  const x = tx + Number(circle.getAttribute('cx')),
+    y = ty + Number(circle.getAttribute('cy'));
+  assert(x >= fitted[0] && x <= fitted[0] + fitted[2]);
+  assert(y >= fitted[1] && y <= fitted[1] + fitted[3]);
+}
 assert(!/[\u3400-\u9fff\u0400-\u04ff]/.test(doc.body.textContent));
 console.log(
   'PASS: three ancestor generations, two descendant generations, research-note node, endpoint navigation, relationship integrity, mode visibility and full-tree framing.',
@@ -148,16 +166,17 @@ function searchPerson(id) {
   doc.querySelector('#searchResults button').click();
 }
 function containsCard(id) {
-  const v = doc.getElementById('graph').getAttribute('viewBox').split(' ').map(Number),
-    p = d.PEOPLE[id].power || d.PEOPLE[id].pos,
-    x = p[0] * 1.12,
-    y = p[1] * 1.65;
-  return (
-    x - 83 >= v[0] - 1 &&
-    x + 83 <= v[0] + v[2] + 1 &&
-    y - 130 >= v[1] - 1 &&
-    y + 130 <= v[1] + v[3] + 1
-  );
+  const v = doc.getElementById('graph').getAttribute('viewBox').split(' ').map(Number);
+  const node = doc.querySelector('#graph [data-person="' + id + '"]');
+  if (!node) return false;
+  const [tx, ty] = node
+    .getAttribute('transform')
+    .match(/-?[\d.]+/g)
+    .map(Number);
+  const circle = node.querySelector('circle');
+  const x = tx + Number(circle.getAttribute('cx')),
+    y = ty + Number(circle.getAttribute('cy'));
+  return x >= v[0] && x <= v[0] + v[2] && y >= v[1] && y <= v[1] + v[3];
 }
 searchPerson('hoelun');
 doc.querySelector('[data-mode="power"]').click();

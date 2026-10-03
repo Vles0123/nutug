@@ -1,3 +1,4 @@
+const readLegacy = require('./legacy-assets.cjs');
 const assert = require('node:assert'),
   fs = require('node:fs'),
   vm = require('node:vm'),
@@ -22,7 +23,7 @@ assert(!D.events.find((e) => e.id === 'mn-tsagaan-sar').dates.some((x) => x.star
 assert(D.events.find((e) => e.id === 'mn-naadam').dates.includes('2026-07-10'));
 assert(!D.events.find((e) => e.id === 'bairin-naadam').dates.some((x) => x.startsWith('2027')));
 let now = '2026-10-03T09:00:00Z';
-const w = new JSDOM(fs.readFileSync('public/calendar.html', 'utf8'), {
+const w = new JSDOM(fs.readFileSync('tests/fixtures/legacy/calendar.html', 'utf8'), {
   runScripts: 'outside-only',
   url: 'https://nutug.cn/calendar.html',
 }).window;
@@ -36,9 +37,7 @@ w.Date = class extends NativeDate {
   }
 };
 w.HTMLElement.prototype.scrollIntoView = () => {};
-w.eval(
-  ['calendar-data.js', 'calendar.js'].map((f) => fs.readFileSync('public/' + f, 'utf8')).join('\n'),
-);
+w.eval(['calendar-data.js', 'calendar.js'].map((f) => readLegacy(f)).join('\n'));
 const d = w.document;
 assert.equal(d.getElementById('todayDate').textContent, '2026-10-03');
 assert.equal(d.querySelectorAll('#monthGrid button').length, 31);

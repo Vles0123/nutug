@@ -1,35 +1,41 @@
 # 网站结构
 
-Nutug 将传统蒙古文历史内容放在可交互的关系图和阅读器中。浏览器直接加载本地 HTML、CSS、JavaScript、字体和黄历引擎，网站按静态文件部署。
+Nutug 使用 React 展示传统蒙古文历史资料，D3 计算人物与部落的网状关系位置。内容文件、字体和黄历引擎均随静态站点发布，原生客户端可以加载同一组资源。
 
-## 页面与模块
+## 页面与组件
 
-| 页面                                | 数据                                                    | 界面与交互                                                                      |
-| ----------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `index.html` 人物图谱与知识库       | `data.js`、`knowledge-data.js`                          | `app.js`、`knowledge.js`、`style.css`、`knowledge.css`                          |
-| `tribes.html` 部落图谱与阅读        | `data.js`、`tribes-data.js`、`tribal-knowledge-data.js` | `tribes.js`、`tribal-knowledge.js`、`tribes.css`                                |
-| `tribes-mobile.html` 移动版部落图谱 | 与桌面版共享数据                                        | 共享部落模块，追加 `tribes-mobile.js` 和 `tribes-mobile.css`                    |
-| `calendar.html` 节庆日历            | `calendar-data.js`                                      | `calendar.js`、`calendar.css`                                                   |
-| `almanac.html` 中国农历黄历         | `calendar-data.js`、`almanac-data.js`                   | `vendor/lunar-1.7.7.js`、`chinese-almanac-core.js`、`almanac.js`、`almanac.css` |
+| 页面入口             | 界面                                   |
+| -------------------- | -------------------------------------- |
+| `index.html`         | 人物关系图；`#knowledge` 打开资料库    |
+| `tribes.html`        | 部落关系图和分期筛选                   |
+| `tribes-mobile.html` | 部落图的兼容地址，与桌面共享响应式组件 |
+| `calendar.html`      | 地区节庆、月份、日期与来源             |
+| `almanac.html`       | 以传统蒙古文显示的农历日期和民俗条目   |
 
-表中路径均相对于 `public/`。HTML 中先加载数据，再加载交互脚本。大部分交互脚本使用立即执行函数隔离局部变量；人物图谱 `app.js` 仍在页面全局作用域中定义状态和函数。
+`src/main.jsx` 管理导航、选择、阅读器和原生桥接。`Network.jsx` 负责 D3 布局、SVG 连线与可操作节点；`Records.jsx` 负责详情和阅读。`Library.jsx`、`Calendar.jsx` 负责资料库及日期相关页面。`ui.jsx` 封装 React Aria 的按钮、分段选择器、搜索、滑块与对话框。
 
-## 数据与页面通信
+`src/tokens.css` 保存 Apple Figma 参考中的语义变量，`styles.css` 负责竖排与响应式布局。`apple-reference.json` 保留实际导入的组件节点和读取到的变量，便于核对来源。
 
-- 人物图谱使用 `PEOPLE`、`EDGES`、`EVENTS`、`SOURCES`、`RESEARCH_GAPS` 和 `RELATION_UI`；人物 ID 与来源键在数据间相互引用。
-- 知识库使用 `KNOWLEDGE`，通过 `atlas:person-selected` 更新相关阅读，通过 `atlas:focus-person` 跳回图谱。
-- 部落图谱使用 `TRIBAL_GRAPH`；部落阅读使用 `TRIBAL_KNOWLEDGE`。两者通过 `tribes:selected`、`tribes:focus` 和 `tribes:reader-open` 通信；移动版追加 `tribes:mobile-screen` 切换屏幕。
-- 首页支持 `#person=<id>` 和 `#article=<id>`。部落桌面页面可以按视口重定向至独立移动页面；`?layout=desktop` 保留桌面版。
-- 节庆日历使用明确列出的日期与地区；“今天”以 `Asia/Shanghai` 时区计算。黄历适配器同时支持浏览器全局对象和 CommonJS，日期范围为 1901–2100。
+## 内容
 
-## 渲染与资源
+`public/data.js` 提供 `PEOPLE`、`EDGES`、`EVENTS`、`SOURCES`、`RESEARCH_GAPS` 和 `RELATION_UI`。部落、阅读、节庆和黄历分别保留原有数据文件。`src/content.js` 将这些全局数据适配为共享组件可用的记录，保留来源键、人物关联、部落关联与编辑元数据。
 
-图谱使用 SVG 绘制关系线，通过 `foreignObject` 放入 HTML 蒙古文卡片。`writing-mode: vertical-lr` 与本地 Noto Sans Mongolian 字体负责竖排显示。详情、相关阅读和筛选结果主要用 DOM API 与 `textContent` 生成。
+页面先加载数据和固定版本的 `lunar-javascript`、`chinese-almanac-core.js`，再加载编译的 React 界面。所有来源链接使用原始 URL。界面只读取传统蒙古文展示字段。
 
-字体和黄历引擎均由网站本地提供，其许可和固定版本说明见 [第三方组件](../THIRD_PARTY_NOTICES.md)。
+人物入口支持 `#person=<id>`，资料入口支持 `#article=<id>`，部落入口支持 `#tribe=<id>`。ID 通过自身属性校验后使用。黄历支持 `?date=YYYY-MM-DD`，计算范围为 1901–2100。节庆采用明确的日期清单，今天按数据指定时区计算。
 
-## 检查入口
+## 构建与运行
 
-`scripts/test.cjs` 按文件名排序运行 `tests/*-check.cjs`，将各脚本的工作目录固定为仓库根目录，并设置单脚本超时。十个回归脚本覆盖图谱数据、来源引用、选择与筛选、阅读器、移动分页、日历和黄历。
+`scripts/build-web.mjs` 使用 esbuild 将 React、React Aria、Motion、Lucide 和 D3 编译为 `public/assets/nutug.js` 与 `nutug.css`。构建同时生成五个 HTML 入口和组件库的蒙古文辅助标签。`public/assets/` 为生成目录。
 
-这些测试主要在 jsdom 中执行，并为布局、视口及部分浏览器 API 提供模拟实现。浏览器原生焦点、字体成形、布局和触摸通过实机检查验证。
+`scripts/dev.mjs` 首次构建后监听源码变化，在 `127.0.0.1:8000` 提供静态文件。部署先运行 `npm run build`，随后发布 `public/`。
+
+旧版 DOM 脚本、样式和 HTML 移至 `tests/fixtures/legacy/`，十组旧测试用于迁移回归对照。发布目录只保留当前界面资源。新的 `interface-check.cjs` 直接加载当前生产构建。
+
+## 原生桥接
+
+网页提供 `window.NutugShell` 的 `setScale`、`command`、`mode`、`person` 和 `tribe` 方法。WebKit 消息处理器 `nutug` 接收 `ready` 与 `record` 事件，记录包含标题、摘要、日期、正文与来源。检测到原生容器时，网页将导航与详情交给原生界面。
+
+## 检查
+
+`scripts/test.cjs` 运行 `tests/*-check.cjs`。测试覆盖来源引用、关系类型、历史数据完整性、日期计算，以及 React 界面的选择、阅读、设置、无效链接与消息桥接。jsdom 的布局值为模拟值；字体成形、文字边界和响应式布局通过真实浏览器检查。
