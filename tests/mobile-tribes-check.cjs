@@ -137,11 +137,11 @@ console.log(
       'empty period state',
       'three screen navigation',
       'mobile section layout',
-      'all article paragraphs paginated without character slicing',
+      'complete-paragraph pagination',
       'reader source and graph panes',
       'reframe after hidden graph',
       '320/390/430/landscape mocked bounds',
     ],
-    visualQA: 'DOM geometry mocks only; real iPhone Safari unverified',
+    environment: 'jsdom with mocked mobile geometry',
   }),
 );

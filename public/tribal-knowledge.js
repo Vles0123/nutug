@@ -14,7 +14,7 @@
     if (cls) e.className = cls;
     return e;
   }
-  for (const key of ['title', 'subtitle', 'draft']) $('tl-' + key).textContent = K.ui[key];
+  for (const key of ['title', 'subtitle']) $('tl-' + key).textContent = K.ui[key];
   $('tl-query-label').textContent = K.ui.search;
   $('tl-query').setAttribute('aria-label', K.ui.search);
   $('tl-search-toggle').setAttribute('aria-label', K.ui.search);

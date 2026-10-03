@@ -15,7 +15,7 @@
   function text(id, value) {
     byId(id).textContent = value;
   }
-  for (const key of ['title', 'subtitle', 'search', 'draft', 'scope']) text('kb-' + key, ui[key]);
+  for (const key of ['title', 'subtitle', 'search', 'scope']) text('kb-' + key, ui[key]);
   text('kb-archive-note', ui.archiveNote);
   text('kb-original-label', ui.original);
   text('kb-source-label', ui.sources);
@@ -53,7 +53,6 @@
     a.target = '_blank';
     a.rel = 'noopener noreferrer';
     a.append(tag('strong', 'mn', r.titleMn), tag('span', 'mn', r.summaryMn));
-    if (r.accessNoteMn) a.append(tag('span', 'mn kb-original-access', r.accessNoteMn));
     byId('kb-originals-list').append(a);
   }
   byId('kb-originals').hidden = !(KNOWLEDGE.readings || []).length;

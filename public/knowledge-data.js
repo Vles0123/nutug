@@ -13,7 +13,6 @@ const KNOWLEDGE = {
     sourceCount: 'ᠰᠤᠷᠪᠤᠯᠵᠢ ᠶᠢᠨ ᠲᠣᠭ᠎ᠠ',
     size: 'ᠬᠡᠮᠵᠢᠶ᠎ᠡ',
     limit: 'ᠬᠢᠵᠠᠭᠠᠷ᠄ ᠑᠐᠐ ᠭᠢᠭᠠᠪᠠᠶᠢᠲ',
-    draft: 'ᠡᠬᠢ ᠬᠡᠯᠡᠲᠡᠨ ᠦ ᠬᠢᠨᠠᠯᠲᠠ ᠳᠤ ᠣᠷᠣᠭᠤᠯᠬᠤ ᠨᠣᠣᠷᠣᠭ',
     scope: 'ᠡᠨᠳᠡ ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠲᠡᠦᠬᠡ᠂ ᠰᠣᠶᠣᠯ ᠤᠨ ᠵᠠᠷᠢᠮ ᠰᠡᠳᠦᠪ ᠢ ᠲᠣᠪᠴᠢ ᠲᠠᠨᠢᠯᠴᠠᠭᠤᠯᠤᠨ᠎ᠠ᠃',
     empty: 'ᠲᠣᠬᠢᠷᠠᠬᠤ ᠰᠡᠳᠦᠪ ᠣᠯᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ',
     clear: 'ᠠᠷᠢᠯᠭᠠᠬᠤ',
@@ -38,7 +37,7 @@ const KNOWLEDGE = {
       summary: 'ᠠᠶᠢᠮᠠᠭ ᠤᠳ ᠤᠨ ᠬᠣᠯᠪᠣᠭ᠎ᠠ ᠨᠢ ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠨᠢᠭᠡᠳᠦᠯ ᠳᠦ ᠴᠢᠬᠤᠯᠠ ᠪᠠᠶᠢᠵᠠᠢ᠃',
       body: [
         'ᠴᠢᠩᠭᠢᠰ ᠬᠠᠭᠠᠨ ᠨᠢᠭᠡᠳᠴᠦ ᠢᠷᠡᠭᠰᠡᠳ ᠢ ᠡᠯ᠎ᠡ ᠨᠢᠭᠡᠴᠢ ᠳᠦ ᠬᠤᠪᠢᠶᠠᠵᠤ᠂ ᠠᠶᠢᠮᠠᠭ ᠤᠳ ᠤᠨ ᠬᠣᠭᠣᠷᠣᠨᠳᠣᠬᠢ ᠬᠣᠯᠪᠣᠭ᠎ᠠ ᠶᠢ ᠪᠡᠬᠢᠵᠢᠭᠦᠯᠵᠡᠢ᠃',
-        'ᠡᠨᠡ ᠨᠢ ᠤᠯᠤᠰ ᠲᠥᠷᠥ ᠶᠢᠨ ᠨᠢᠭᠡᠳᠦᠯ ᠦᠨ ᠲᠤᠬᠠᠢ ᠶᠤᠮ᠃ ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠤᠭ ᠭᠠᠷᠪᠠᠯ ᠢ ᠭᠠᠭᠴᠠ ᠡᠨᠡ ᠦᠢᠯᠡ ᠶᠠᠪᠤᠳᠠᠯ ᠢᠶᠠᠷ ᠲᠠᠶᠢᠯᠪᠤᠷᠢᠯᠠᠵᠤ ᠪᠣᠯᠬᠤ ᠦᠭᠡᠢ᠃',
+        'ᠡᠨᠡ ᠨᠢ ᠤᠯᠤᠰ ᠲᠥᠷᠥ ᠶᠢᠨ ᠨᠢᠭᠡᠳᠦᠯ ᠦᠨ ᠲᠤᠬᠠᠢ ᠶᠤᠮ᠃',
       ],
       sources: [
         {
@@ -178,7 +177,7 @@ const KNOWLEDGE = {
       summary: 'ᠮᠠᠯᠴᠢᠳ ᠮᠠᠯ ᠳᠠᠭᠠᠨ ᠤᠰᠤ ᠪᠠ ᠡᠪᠡᠰᠦ ᠡᠷᠢᠵᠦ ᠨᠤᠲᠤᠭ ᠰᠡᠯᠭᠡᠳᠡᠭ᠃',
       body: [
         'ᠤᠯᠠᠮᠵᠢᠯᠠᠯᠲᠤ ᠮᠠᠯ ᠠᠵᠤ ᠠᠬᠤᠢ ᠳᠤ ᠨᠢᠭᠡ ᠵᠢᠯ ᠳᠦ ᠬᠡᠳᠦᠨ ᠤᠳᠠᠭ᠎ᠠ ᠨᠡᠭᠦᠵᠦ᠂ ᠮᠠᠯ ᠤᠨ ᠪᠡᠯᠴᠢᠭᠡᠷ ᠪᠠ ᠤᠰᠤ ᠶᠢ ᠰᠣᠩᠭᠣᠳᠠᠭ᠃',
-        'ᠴᠠᠰᠤ᠂ ᠮᠥᠰᠦ᠂ ᠭᠠᠩ ᠪᠠ ᠮᠠᠯ ᠤᠨ ᠡᠪᠡᠳᠴᠢᠨ ᠨᠢ ᠮᠠᠯᠴᠢᠳ ᠤᠨ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠳᠤ ᠨᠥᠯᠥᠭᠡᠯᠡᠨ᠎ᠡ᠃ ᠭᠡᠪᠡᠴᠦ ᠣᠳᠣᠭ᠎ᠠ ᠶᠢᠨ ᠮᠣᠩᠭᠣᠯ ᠬᠦᠮᠦᠨ ᠪᠦᠷᠢ ᠨᠡᠭᠦᠳᠡᠯᠴᠢᠨ ᠪᠢᠰᠢ ᠶᠤᠮ᠃',
+        'ᠴᠠᠰᠤ᠂ ᠮᠥᠰᠦ᠂ ᠭᠠᠩ ᠪᠠ ᠮᠠᠯ ᠤᠨ ᠡᠪᠡᠳᠴᠢᠨ ᠨᠢ ᠮᠠᠯᠴᠢᠳ ᠤᠨ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠳᠤ ᠨᠥᠯᠥᠭᠡᠯᠡᠨ᠎ᠡ᠃',
       ],
       sources: [
         {
@@ -346,7 +345,7 @@ const KNOWLEDGE = {
       summary: 'ᠰᠣᠶᠣᠮᠪᠤ ᠦᠰᠦᠭ ᠢ ᠮᠣᠩᠭᠣᠯ᠂ ᠲᠥᠪᠡᠳ ᠪᠠ ᠰᠠᠮᠭᠠᠷᠳᠢ ᠬᠡᠯᠡ ᠪᠢᠴᠢᠬᠦ ᠳᠦ ᠬᠡᠷᠡᠭᠯᠡᠵᠡᠢ᠃',
       body: [
         'ᠵᠠᠨᠠᠪᠠᠵᠠᠷ ᠑᠖᠘᠖ ᠣᠨ ᠳᠤ ᠰᠣᠶᠣᠮᠪᠤ ᠦᠰᠦᠭ ᠢ ᠵᠣᠬᠢᠶᠠᠵᠠᠢ᠃ ᠡᠨᠡ ᠦᠰᠦᠭ ᠪᠤᠷᠬᠠᠨ ᠤ ᠱᠠᠰᠢᠨ ᠤ ᠭᠠᠷ ᠪᠢᠴᠢᠮᠡᠯ ᠪᠠ ᠰᠡᠶᠢᠯᠦᠮᠡᠯ ᠪᠢᠴᠢᠭ ᠲᠦ ᠲᠣᠬᠢᠶᠠᠯᠳᠤᠨ᠎ᠠ᠃',
-        'ᠰᠣᠶᠣᠮᠪᠤ ᠲᠡᠮᠳᠡᠭ ᠨᠢ ᠡᠨᠡ ᠪᠢᠴᠢᠭ ᠦᠨ ᠡᠬᠢᠨ ᠦ ᠲᠡᠮᠳᠡᠭ ᠦᠳ ᠦᠨ ᠨᠢᠭᠡ ᠶᠤᠮ᠃ ᠲᠡᠷᠡ ᠲᠡᠮᠳᠡᠭ ᠨᠢ ᠰᠣᠶᠣᠮᠪᠤ ᠦᠰᠦᠭ ᠦᠨ ᠪᠦᠬᠦᠯᠢ ᠲᠣᠭᠲᠠᠯᠴᠠᠭ᠎ᠠ ᠪᠢᠰᠢ᠃',
+        'ᠰᠣᠶᠣᠮᠪᠤ ᠲᠡᠮᠳᠡᠭ ᠨᠢ ᠡᠨᠡ ᠪᠢᠴᠢᠭ ᠦᠨ ᠡᠬᠢᠨ ᠦ ᠲᠡᠮᠳᠡᠭ ᠦᠳ ᠦᠨ ᠨᠢᠭᠡ ᠶᠤᠮ᠃',
       ],
       sources: [
         {
@@ -414,7 +413,7 @@ const KNOWLEDGE = {
         'ᠳᠡᠪᠡᠯ ᠦᠨ ᠬᠡᠯᠪᠡᠷᠢ ᠪᠠ ᠴᠢᠮᠡᠭᠯᠡᠯ ᠨᠢ ᠤᠯᠠᠷᠢᠯ᠂ ᠬᠡᠷᠡᠭᠴᠡᠭᠡ ᠪᠠ ᠨᠤᠲᠤᠭ ᠠᠴᠠ ᠱᠠᠯᠲᠠᠭᠠᠯᠠᠨ ᠶᠠᠯᠭᠠᠭᠠᠲᠠᠢ᠃',
       body: [
         'ᠳᠡᠪᠡᠯ ᠪᠣᠯ ᠡᠩᠭᠡᠷ ᠢᠶᠡᠨ ᠵᠥᠷᠢᠭᠦᠯᠦᠨ ᠪᠦᠴᠢᠯᠡᠳᠡᠭ ᠤᠷᠲᠤ ᠬᠤᠪᠴᠠᠰᠤ ᠶᠤᠮ᠃ ᠪᠦᠰᠡ ᠪᠡᠷ ᠪᠦᠰᠡᠯᠡᠵᠦ ᠥᠮᠦᠰᠬᠦ ᠳᠦ ᠡᠩᠭᠡᠷ ᠲᠦ ᠠᠶᠠᠭ᠎ᠠ ᠵᠡᠷᠭᠡ ᠵᠦᠶᠢᠯ ᠠᠪᠴᠤ ᠶᠠᠪᠤᠬᠤ ᠵᠠᠢ ᠭᠠᠷᠳᠠᠭ᠃',
-        'ᠵᠤᠨ ᠪᠠ ᠡᠪᠦᠯ ᠦᠨ᠂ ᠡᠩ ᠦᠨ ᠥᠳᠥᠷ ᠪᠠ ᠪᠠᠶᠠᠷ ᠤᠨ ᠳᠡᠪᠡᠯ ᠨᠢ ᠮᠠᠲ᠋ᠧᠷᠢᠶᠠᠯ᠂ ᠡᠰᠭᠡᠯᠲᠡ ᠪᠠ ᠴᠢᠮᠡᠭᠯᠡᠯ ᠢᠶᠡᠷ ᠶᠠᠯᠭᠠᠭᠠᠲᠠᠢ᠃ ᠨᠢᠭᠡ ᠮᠦᠽᠧᠢ ᠶᠢᠨ ᠳᠡᠪᠡᠯ ᠢ ᠪᠦᠬᠦ ᠨᠤᠲᠤᠭ ᠤᠨ ᠬᠤᠪᠴᠠᠰᠤᠨ ᠤ ᠨᠢᠭᠡᠳᠦᠯᠲᠡᠢ ᠵᠠᠭᠪᠤᠷ ᠭᠡᠵᠦ ᠦᠵᠡᠬᠦ ᠦᠭᠡᠢ᠃',
+        'ᠵᠤᠨ ᠪᠠ ᠡᠪᠦᠯ ᠦᠨ᠂ ᠡᠩ ᠦᠨ ᠥᠳᠥᠷ ᠪᠠ ᠪᠠᠶᠠᠷ ᠤᠨ ᠳᠡᠪᠡᠯ ᠨᠢ ᠮᠠᠲ᠋ᠧᠷᠢᠶᠠᠯ᠂ ᠡᠰᠭᠡᠯᠲᠡ ᠪᠠ ᠴᠢᠮᠡᠭᠯᠡᠯ ᠢᠶᠡᠷ ᠶᠠᠯᠭᠠᠭᠠᠲᠠᠢ᠃',
       ],
       sources: [
         {
@@ -569,7 +568,7 @@ const KNOWLEDGE = {
       summary:
         '᠑᠓᠖᠘ ᠣᠨ ᠤ ᠳᠠᠷᠠᠭ᠎ᠠ ᠴᠤ ᠶᠤᠸᠠᠨ ᠤ ᠬᠠᠭᠠᠨ ᠤ ᠤᠭᠰᠠᠭ᠎ᠠ ᠬᠣᠶᠢᠲᠤ ᠨᠤᠲᠤᠭ ᠲᠤ ᠲᠥᠷᠥ ᠪᠡᠨ ᠦᠷᠭᠦᠯᠵᠢᠯᠡᠭᠦᠯᠵᠡᠢ᠃',
       body: [
-        '᠑᠓᠖᠘ ᠣᠨ ᠳᠤ ᠮᠢᠩ ᠤᠯᠤᠰ ᠪᠠᠶᠢᠭᠤᠯᠤᠭᠳᠠᠭᠰᠠᠨ ᠤ ᠳᠠᠷᠠᠭ᠎ᠠ ᠶᠤᠸᠠᠨ ᠤ ᠬᠠᠭᠠᠨ ᠤ ᠭᠡᠷ ᠪᠦᠯᠢ ᠬᠣᠶᠢᠰᠢ ᠤᠬᠤᠷᠢᠵᠠᠢ᠃ ᠡᠨᠡ ᠨᠢ ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠲᠥᠷᠥ ᠶᠢᠨ ᠲᠡᠦᠬᠡ ᠲᠡᠨᠳᠡ ᠲᠡᠭᠦᠰᠦᠭᠰᠡᠨ ᠭᠡᠰᠡᠨ ᠦᠭᠡ ᠪᠢᠰᠢ᠃',
+        '᠑᠓᠖᠘ ᠣᠨ ᠳᠤ ᠮᠢᠩ ᠤᠯᠤᠰ ᠪᠠᠶᠢᠭᠤᠯᠤᠭᠳᠠᠭᠰᠠᠨ ᠤ ᠳᠠᠷᠠᠭ᠎ᠠ ᠶᠤᠸᠠᠨ ᠤ ᠬᠠᠭᠠᠨ ᠤ ᠭᠡᠷ ᠪᠦᠯᠢ ᠬᠣᠶᠢᠰᠢ ᠤᠬᠤᠷᠢᠵᠠᠢ᠃',
         'ᠲᠣᠭᠣᠭᠠᠨᠲᠡᠮᠦᠷ ᠑᠓᠗᠐ ᠣᠨ ᠳᠤ ᠨᠠᠰᠤ ᠪᠠᠷᠠᠵᠤ᠂ ᠠᠶᠤᠰᠢᠷᠢᠳᠠᠷ᠎ᠠ ᠬᠠᠭᠠᠨ ᠤ ᠰᠠᠭᠤᠷᠢ ᠶᠢ ᠵᠠᠯᠭᠠᠵᠠᠢ᠃ ᠲᠡᠷᠡ ᠬᠠᠷ᠎ᠠ ᠬᠣᠷᠤᠮ ᠢ ᠨᠡᠶᠢᠰᠯᠡᠯ ᠪᠣᠯᠭᠠᠵᠤ᠂ ᠶᠤᠸᠠᠨ ᠤ ᠲᠥᠷᠥ ᠶᠢ ᠦᠷᠭᠦᠯᠵᠢᠯᠡᠭᠦᠯᠵᠡᠢ᠃',
       ],
       sources: [
@@ -593,7 +592,7 @@ const KNOWLEDGE = {
       summary: 'ᠬᠠᠯᠢᠮᠠᠭ ᠤᠨ ᠲᠡᠦᠬᠡ ᠨᠢ ᠣᠶᠢᠷᠠᠳ ᠤᠨ ᠭᠠᠷᠤᠯ ᠪᠠ ᠨᠡᠭᠦᠳᠡᠯ ᠲᠡᠢ ᠬᠣᠯᠪᠣᠭᠠᠲᠠᠢ᠃',
       body: [
         'ᠬᠠᠯᠢᠮᠠᠭ ᠠᠷᠠᠳ ᠣᠶᠢᠷᠠᠳ ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠭᠠᠷᠤᠯ ᠲᠠᠢ᠃ ᠲᠡᠳᠡᠨ ᠦ ᠥᠪᠥᠭᠡ ᠳᠡᠭᠡᠳᠦᠰ ᠑᠖᠓᠐ ᠣᠨ ᠤ ᠣᠷᠴᠢᠮ ᠢᠵᠢᠯ ᠮᠥᠷᠡᠨ ᠦ ᠠᠳᠠᠭ ᠤᠨ ᠨᠤᠲᠤᠭ ᠲᠤ ᠬᠦᠷᠴᠦ ᠰᠠᠭᠤᠷᠢᠰᠢᠵᠠᠢ᠃',
-        '᠑᠗᠗᠑ ᠣᠨ ᠳᠤ ᠣᠯᠠᠨ ᠬᠦᠮᠦᠨ ᠵᠡᠭᠦᠨ ᠲᠡᠶᠢᠰᠢ ᠪᠤᠴᠠᠨ ᠨᠡᠭᠦᠵᠦ᠂ ᠴᠢᠩ ᠤᠯᠤᠰ ᠤᠨ ᠵᠠᠬᠢᠷᠭᠠᠨ ᠳᠤ ᠣᠷᠣᠵᠠᠢ᠃ ᠢᠵᠢᠯ ᠳᠦ ᠦᠯᠡᠳᠡᠭᠰᠡᠳ ᠣᠷᠣᠰ ᠤᠨ ᠡᠵᠡᠨᠲᠦ ᠭᠦᠷᠦᠨ ᠦ ᠬᠠᠷᠢᠶᠠᠨ ᠳᠤ ᠦᠯᠡᠳᠡᠵᠡᠢ᠃ ᠣᠶᠢᠷᠠᠳ᠂ ᠬᠠᠯᠢᠮᠠᠭ ᠪᠠ ᠲᠣᠷᠭᠤᠳ ᠭᠡᠰᠡᠨ ᠨᠡᠷ᠎ᠡ ᠶᠢ ᠶᠡᠷᠦᠳᠡᠭᠡᠨ ᠠᠳᠠᠯᠢᠳᠬᠠᠵᠤ ᠪᠣᠯᠬᠤ ᠦᠭᠡᠢ᠃',
+        '᠑᠗᠗᠑ ᠣᠨ ᠳᠤ ᠣᠯᠠᠨ ᠬᠦᠮᠦᠨ ᠵᠡᠭᠦᠨ ᠲᠡᠶᠢᠰᠢ ᠪᠤᠴᠠᠨ ᠨᠡᠭᠦᠵᠦ᠂ ᠴᠢᠩ ᠤᠯᠤᠰ ᠤᠨ ᠵᠠᠬᠢᠷᠭᠠᠨ ᠳᠤ ᠣᠷᠣᠵᠠᠢ᠃ ᠢᠵᠢᠯ ᠳᠦ ᠦᠯᠡᠳᠡᠭᠰᠡᠳ ᠣᠷᠣᠰ ᠤᠨ ᠡᠵᠡᠨᠲᠦ ᠭᠦᠷᠦᠨ ᠦ ᠬᠠᠷᠢᠶᠠᠨ ᠳᠤ ᠦᠯᠡᠳᠡᠵᠡᠢ᠃',
       ],
       sources: [
         {
@@ -616,7 +615,7 @@ const KNOWLEDGE = {
       summary: 'ᠴᠠᠭᠠᠨ ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ ᠠᠶᠢᠯᠴᠢᠯᠠᠯ᠂ ᠢᠳᠡᠭᠡ ᠪᠠ ᠪᠡᠯᠡᠭ ᠨᠢ ᠨᠤᠲᠤᠭ ᠨᠤᠲᠤᠭ ᠲᠤ ᠥᠪᠡᠷ ᠦᠨ ᠣᠨᠴᠠᠯᠢᠭ ᠲᠠᠢ᠃',
       body: [
         'ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ ᠤᠨ ᠰᠣᠶᠣᠯ ᠤᠨ ᠥᠪ ᠦᠨ ᠲᠥᠪ ᠦᠨ ᠲᠠᠨᠢᠯᠴᠠᠭᠤᠯᠭ᠎ᠠ ᠳᠤ ᠴᠠᠭᠠᠨ ᠰᠠᠷ᠎ᠠ ᠪᠠᠷ ᠲᠥᠷᠥᠯ ᠰᠠᠳᠤᠨ ᠳᠠᠭᠠᠨ ᠠᠶᠢᠯᠴᠢᠯᠠᠵᠤ᠂ ᠠᠬᠠᠮᠠᠳ ᠢᠶᠠᠨ ᠬᠦᠨᠳᠦᠳᠬᠡᠨ᠂ ᠪᠢᠶᠡ ᠪᠢᠶᠡ ᠳᠡᠭᠡᠨ ᠪᠡᠯᠭᠡᠲᠡᠢ ᠦᠭᠡ ᠬᠡᠯᠡᠳᠡᠭ ᠭᠡᠵᠡᠢ᠃ ᠪᠠᠶᠠᠷ ᠤᠨ ᠢᠳᠡᠭᠡ ᠳᠦ ᠴᠠᠭᠠᠨ ᠢᠳᠡᠭᠡ ᠪᠠ ᠬᠣᠨᠢᠨ ᠤ ᠮᠢᠬ᠎ᠠ ᠪᠠᠭᠲᠠᠨ᠎ᠠ᠃',
-        'ᠺᠧᠮᠪᠷᠢᠵ ᠦᠨ ᠶᠡᠬᠡ ᠰᠤᠷᠭᠠᠭᠤᠯᠢ ᠶᠢᠨ ᠬᠠᠯᠢᠮᠠᠭ ᠤᠨ ᠰᠣᠶᠣᠯ ᠤᠨ ᠲᠥᠰᠥᠯ ᠳᠦ ᠵᠣᠶᠠ ᠴᠣᠺᠠᠶᠧᠸᠠ ᠴᠠᠭᠠᠨ ᠰᠠᠷ᠎ᠠ ᠪᠠᠷ ᠪᠣᠭᠤᠷᠴᠣᠭ ᠢ ᠤᠲᠠᠰᠤ ᠪᠠᠷ ᠬᠣᠯᠪᠣᠵᠤ ᠪᠡᠯᠡᠭ ᠪᠣᠯᠭᠠᠨ ᠥᠭᠳᠡᠭ ᠢ ᠶᠠᠷᠢᠵᠠᠢ᠃ ᠡᠨᠡ ᠪᠣᠯ ᠬᠠᠯᠢᠮᠠᠭ ᠤᠨ ᠨᠢᠭᠡ ᠠᠮᠠᠨ ᠮᠡᠳᠡᠭᠡᠨ ᠦ ᠵᠢᠱᠢᠶ᠎ᠡ ᠶᠤᠮ᠃ ᠦᠦᠨ ᠢ ᠪᠦᠬᠦ ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠠᠳᠠᠯᠢ ᠶᠣᠰᠣ ᠭᠡᠵᠦ ᠦᠵᠡᠬᠦ ᠦᠭᠡᠢ᠃',
+        'ᠺᠧᠮᠪᠷᠢᠵ ᠦᠨ ᠶᠡᠬᠡ ᠰᠤᠷᠭᠠᠭᠤᠯᠢ ᠶᠢᠨ ᠬᠠᠯᠢᠮᠠᠭ ᠤᠨ ᠰᠣᠶᠣᠯ ᠤᠨ ᠲᠥᠰᠥᠯ ᠳᠦ ᠵᠣᠶᠠ ᠴᠣᠺᠠᠶᠧᠸᠠ ᠴᠠᠭᠠᠨ ᠰᠠᠷ᠎ᠠ ᠪᠠᠷ ᠪᠣᠭᠤᠷᠴᠣᠭ ᠢ ᠤᠲᠠᠰᠤ ᠪᠠᠷ ᠬᠣᠯᠪᠣᠵᠤ ᠪᠡᠯᠡᠭ ᠪᠣᠯᠭᠠᠨ ᠥᠭᠳᠡᠭ ᠢ ᠶᠠᠷᠢᠵᠠᠢ᠃ ᠡᠨᠡ ᠪᠣᠯ ᠬᠠᠯᠢᠮᠠᠭ ᠤᠨ ᠨᠢᠭᠡ ᠠᠮᠠᠨ ᠮᠡᠳᠡᠭᠡᠨ ᠦ ᠵᠢᠱᠢᠶ᠎ᠡ ᠶᠤᠮ᠃',
       ],
       sources: [
         {
@@ -798,30 +797,26 @@ const KNOWLEDGE = {
       script:
         'Traditional Mongolian (Mong); Unicode Mongolian transcription visible in indexed reader; Latin transliteration also provided.',
       format:
-        'Institutional TEI/EVT digital-edition project and reader. Lists Altan Tovch and Asragch Nertiin Tuukh. Native Unicode text and search interface observed for the Altan Tovch reader; separate live full text for Asragch was not verified. External project link only.',
+        'Institutional TEI/EVT digital-edition project for Altan Tovch and Asragch Nertiin Tuukh. The inspected Altan Tovch reader provides Unicode text and search. This entry links to the project landing page.',
       language: ['Mongolian'],
       era: '17th-century historical works: Altan Tovch project metadata gives 1604; Asragch Nertiin Tuukh is dated 1677 in project researchers’ descriptions.',
       subject: 'Digital editions of two Mongolian historical chronicles',
       provider: 'Ritsumeikan University, Digital Library Laboratory',
       rights:
-        'No explicit reuse license found on the inspected project page. Public reading access does not authorize copying or republication; link only.',
+        'Reuse terms require confirmation with the provider. This entry provides a project link.',
       rightsUrl: 'https://www.dl.is.ritsumei.ac.jp/AltanTovch/index.html',
-      accessStatus:
-        'Project landing page verified accessible. Do not imply that two separate full-text editions or work-specific URLs were checked.',
+      accessStatus: 'Access checked for the combined project landing page on 2026-10-03.',
       evidenceUrls: [
         'https://www.dl.is.ritsumei.ac.jp/AltanTovch/index.html',
         'https://www.dl.is.ritsumei.ac.jp/AltanTovch/',
       ],
-      notes:
-        'One combined project record avoids duplicate clickable URLs. The native-script title and summary are drafted descriptive labels. No TEI, text or manuscript files downloaded.',
+      notes: 'One combined project record with descriptive Mongolian display labels.',
       downloaded: false,
       path: null,
       sizeBytes: 0,
       sha256: null,
       verifiedAt: '2026-10-03',
-      labelsStatus:
-        'Draft traditional-Mongolian labels and summaries; native-speaker proofreading required before treating as authoritative translations.',
-      accessNoteMn: 'ᠳᠠᠬᠢᠨ ᠠᠰᠢᠭᠯᠠᠬᠤ ᠡᠷᠬᠡ ᠲᠣᠳᠣᠷᠬᠠᠢ ᠪᠤᠰᠤ ᠲᠤᠯᠠ ᠵᠥᠪᠬᠡᠨ ᠬᠣᠯᠪᠣᠭᠠᠰᠤ ᠶᠢ ᠥᠭᠪᠡ᠃',
+      labelsStatus: 'Mongolian display labels and summaries: editorial review pending.',
     },
     {
       id: 'ddb-mongolian-chinese-preface',
@@ -830,34 +825,31 @@ const KNOWLEDGE = {
       titleOriginal: 'Sine vamagsav vurusil = 新増百千法語序',
       summaryMn: 'ᠮᠣᠩᠭᠣᠯ ᠬᠢᠲᠠᠳ ᠬᠡᠯᠡᠨ ᠦ ᠣᠷᠣᠰᠢᠯ ᠤᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ ᠤ ᠪᠦᠷᠢᠳᠬᠡᠯ ᠢ ᠡᠨᠳᠡ ᠦᠵᠡᠨ᠎ᠡ᠃',
       script:
-        'Not visually verified. Catalogue specifies Mongolian and Chinese languages; no claim of confirmed traditional-Mongolian glyphs or Unicode text.',
+        'Catalogue languages: Mongolian and Chinese. Script identification awaits inspection of the scan.',
       format:
-        'Institutional catalogue record for a digitized historical print section. Neither the scan itself nor a Unicode transcription was verified; catalogue link only.',
+        'Institutional catalogue record for a digitized historical print section. This entry links to the catalogue.',
       language: ['Mongolian', 'Chinese'],
-      era: 'Parent volume catalogued 1800–1899; item-specific date not given.',
+      era: 'Parent volume catalogued 1800–1899; item-specific dating awaits review.',
       subject: 'Preface in Qaqhav u bicigsav davzuur num / Хааны бичсэн данжуур ном / 首函目錄',
       provider:
         'Staatsbibliothek zu Berlin – Preußischer Kulturbesitz via Deutsche Digitale Bibliothek',
-      rights:
-        'Public Domain Mark 1.0 Universell is explicitly displayed on the item record. Access restriction remains: the direct retrieval attempt encountered an anti-bot challenge, so no image or original was obtained.',
+      rights: 'The item record displays Public Domain Mark 1.0 Universell.',
       rightsUrl: 'https://creativecommons.org/publicdomain/mark/1.0/deed.de',
       accessStatus:
-        'Catalogue content and Public Domain Mark label were successfully read by web tool. A direct file-retrieval attempt returned an Anubis challenge and was stopped; no scan view or file obtained.',
+        'Catalogue record inspected on 2026-10-03. Direct file access presented an Anubis challenge.',
       evidenceUrls: [
         'https://www.deutsche-digitale-bibliothek.de/item/MJW5LB6OHXIRCARQUQLTDHQXWHTIMACA',
         'https://www.deutsche-digitale-bibliothek.de/item/3OFCYHUTHT4JTHHXX2PNGF2PMLY6Q5NC',
       ],
       providerUrl: 'https://digital.staatsbibliothek-berlin.de/werkansicht/?PPN=PPN3376910707',
       notes:
-        'Native-script display title is a drafted descriptive label (Mongolian–Chinese preface), not a transcription of the original title. Retain the exact catalogue title. Parent-volume metadata states 207+29 leaves and present holding Biblioteka Jagiellońska Kraków, Pander C 31. Map viewer not accessed.',
+        'The display title describes a Mongolian–Chinese preface; titleOriginal preserves the catalogue title. Parent-volume metadata lists 207+29 leaves and Biblioteka Jagiellońska Kraków, Pander C 31.',
       downloaded: false,
       path: null,
       sizeBytes: 0,
       sha256: null,
       verifiedAt: '2026-10-03',
-      labelsStatus:
-        'Draft traditional-Mongolian labels and summaries; native-speaker proofreading required before treating as authoritative translations.',
-      accessNoteMn: 'ᠡᠬᠡ ᠶᠢ ᠲᠠᠲᠠᠵᠤ ᠠᠪᠬᠤ ᠳᠤ ᠰᠠᠭᠠᠳ ᠤᠴᠠᠷᠠᠭᠰᠠᠨ ᠲᠤᠯᠠ ᠵᠥᠪᠬᠡᠨ ᠬᠣᠯᠪᠣᠭᠠᠰᠤ ᠶᠢ ᠥᠭᠪᠡ᠃',
+      labelsStatus: 'Mongolian display labels and summaries: editorial review pending.',
     },
   ],
   updatedAt: '2026-10-03',

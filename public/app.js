@@ -165,7 +165,7 @@ function renderRelationStatus() {
   box.hidden = !externalFamily && (mode !== 'power' || hasCurrentRelations());
   $('relationStatusText').textContent = externalFamily
     ? PEOPLE[selected].note
-    : RELATION_UI.noRecordedPoliticalRelationship + ' ᠡᠨᠡ ᠨᠢ ᠬᠣᠯᠪᠤᠭ᠎ᠠ ᠦᠭᠡᠢ ᠭᠡᠰᠡᠨ ᠤᠳᠬ᠎ᠠ ᠪᠢᠰᠢ᠃';
+    : RELATION_UI.politicalRelationsHint;
   $('viewFamily').textContent = externalFamily
     ? document.querySelector('[data-mode=power]').textContent
     : RELATION_UI.viewFamilyRelationships;
@@ -314,9 +314,7 @@ function render() {
       ? '<span>ᠡᠴᠢᠭᠡ ᠡᠬᠡ ᠪᠠ ᠦᠷ᠎ᠡ ᠬᠡᠦᠬᠡᠳ</span><span class="spouse">ᠭᠡᠷᠯᠡᠯᠲᠡ</span>'
       : '<span class="succession">ᠬᠠᠭᠠᠨ ᠰᠢᠷᠡᠭᠡ ᠶᠢᠨ ᠵᠠᠯᠭᠠᠮᠵᠢᠯᠠᠯ</span><span class="politics">ᠬᠣᠯᠪᠤᠭ᠎ᠠ ／ ᠲᠡᠮᠡᠴᠡᠯ</span>';
   $('graphTitle').textContent =
-    mode === 'family'
-      ? 'ᠤᠷᠤᠭ ᠲᠥᠷᠥᠯ ᠦᠨ ᠬᠣᠯᠪᠤᠭ᠎ᠠ ᠨᠢ ᠬᠠᠭᠠᠨ ᠰᠠᠭᠤᠭᠰᠠᠨ ᠳᠠᠷᠠᠭᠠᠯᠠᠯ ᠪᠢᠰᠢ'
-      : 'ᠬᠣᠯᠪᠤᠭ᠎ᠠ ᠥᠭᠡᠷᠡᠴᠢᠯᠡᠭᠳᠡᠳᠡᠭ᠃ ᠰᠢᠷᠡᠭᠡ ᠵᠠᠯᠭᠠᠮᠵᠢᠯᠠᠯ ᠨᠢ ᠵᠠᠪᠠᠯ ᠡᠴᠢᠭᠡ ᠡᠴᠡ ᠬᠥᠪᠡᠭᠦᠨ ᠳᠦ ᠰᠢᠯᠵᠢᠳᠡᠭ ᠪᠢᠰᠢ';
+    mode === 'family' ? RELATION_UI.familyTitle : RELATION_UI.powerTitle;
   if (mode === 'power') {
     const contact = document.createElement('span');
     contact.className = 'contact';
@@ -387,9 +385,7 @@ function detail() {
     };
     box.append(button);
   }
-  if (!box.childNodes.length)
-    box.textContent =
-      'ᠡᠨᠡ ᠬᠦᠮᠦᠨ ᠦ ᠪᠦᠬᠦ ᠤᠳᠤᠮ ᠢ ᠦᠵᠡᠭᠦᠯᠦᠭ᠎ᠡ ᠦᠭᠡᠢ᠃ ᠵᠢᠷᠤᠭ ᠲᠤ ᠣᠷᠣᠭ᠎ᠠ ᠦᠭᠡᠢ ᠨᠢ ᠬᠣᠯᠪᠤᠭ᠎ᠠ ᠦᠭᠡᠢ ᠭᠡᠰᠡᠨ ᠤᠳᠬ᠎ᠠ ᠪᠢᠰᠢ᠃';
+  if (!box.childNodes.length) box.textContent = RELATION_UI.sourceHint;
   h('h3', 'ᠬᠣᠯᠪᠣᠭᠳᠠᠬᠤ ᠦᠢᠯᠡ ᠶᠠᠪᠤᠳᠠᠯ');
   let es = EVENTS.filter((e) => e.people.includes(selected));
   if (!es.length) h('p', 'ᠳᠡᠭᠡᠷᠡᠬᠢ ᠬᠣᠯᠪᠤᠭ᠎ᠠ ᠪᠠᠷ ᠲᠤᠬᠠᠶᠢᠨ ᠦᠶ᠎ᠡ ᠶᠢᠨ ᠬᠦᠮᠦᠰ ᠢ ᠴᠠᠭᠠᠰᠢ ᠦᠵᠡᠭᠡᠷᠡᠢ᠃');
@@ -706,8 +702,7 @@ if (typeof RESEARCH_GAPS !== 'undefined' && RESEARCH_GAPS.length) {
   };
 }
 
-$('relationStatusText').textContent =
-  RELATION_UI.noRecordedPoliticalRelationship + ' ᠡᠨᠡ ᠨᠢ ᠬᠣᠯᠪᠤᠭ᠎ᠠ ᠦᠭᠡᠢ ᠭᠡᠰᠡᠨ ᠤᠳᠬ᠎ᠠ ᠪᠢᠰᠢ᠃';
+$('relationStatusText').textContent = RELATION_UI.politicalRelationsHint;
 $('viewFamily').textContent = RELATION_UI.viewFamilyRelationships;
 $('viewFamily').onclick = () => {
   mode = PEOPLE[selected].externalContext ? 'power' : 'family';

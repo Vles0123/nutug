@@ -105,12 +105,12 @@ for (const id of Object.keys(D.nodes)) {
   );
   assert.equal(edge(), es[0].id);
 }
-// A pending Graph frame must not move focus after a newer Details transition.
+// The latest screen transition owns focus.
 d.querySelector('[data-screen-target="graph"]').click();
 d.querySelector('[data-screen-target="detail"]').click();
 flush();
 assert.equal(d.body.dataset.screen, 'detail');
 assert.equal(d.activeElement, d.querySelector('.mobile-overview-heading h2'));
 console.log(
-  'PASS: tribe/menu taps reveal correct information, current/opposite node taps retain relationship, relation taps reveal selected summary, next/previous remain graph, period preservation, chronological sequence for every tribe, and stale-frame focus guard. Real Safari remains unverified.',
+  'PASS: tribe/menu taps reveal correct information, current/opposite node taps retain relationship, relation taps reveal selected summary, next/previous remain graph, period preservation, chronological sequence for every tribe, and stale-frame focus guard.',
 );

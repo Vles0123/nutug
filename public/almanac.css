@@ -424,7 +424,7 @@ header h1 {
   height: 170px;
   padding: 12px;
 }
-.almanac-caution {
+.almanac-description {
   grid-column: 2;
   writing-mode: vertical-lr;
   height: 190px;
@@ -432,8 +432,7 @@ header h1 {
   overflow-x: auto;
   padding: 12px;
   margin: 10px 0;
-  background: #efe1c2;
-  border: 1px solid #c9ad78;
+  color: #575f5a;
   font-size: 19px;
   line-height: 1.65;
 }
@@ -535,7 +534,7 @@ header h1 {
   .deity-direction b {
     font-size: 22px;
   }
-  .almanac-caution {
+  .almanac-description {
     height: 210px;
     font-size: 18px;
   }

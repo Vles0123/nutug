@@ -67,5 +67,5 @@ assert(!/[\u3400-\u9fff\u0400-\u04ff]/.test(d.body.textContent));
 assert(!d.body.textContent.includes('undefined'));
 w.close();
 console.log(
-  'PASS: 9 sourced events, valid explicit dates, region separation, lunar dates not repeated into unverified years, local UTC+08 today/midnight rollover, month lengths and source links.',
+  'PASS: 9 sourced events, valid explicit dates, region separation, year-specific event dates, local UTC+08 today/midnight rollover, month lengths and source links.',
 );

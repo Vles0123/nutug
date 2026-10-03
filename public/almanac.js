@@ -174,11 +174,8 @@
       'almanacRuleVariants',
       ui.favorable + ' / ' + ui.unfavorable + ' · 1 · ' + ui.fortuneDeityDirection + ' · 2',
     ],
-    ['almanacDisclaimer', ui.yiJiNote],
-    ['almanacDraft', ui.draft],
+    ['almanacTraditionNote', ui.traditionNote],
     ['almanacSystemLabel', ui.calendarSystem],
-    ['almanacMedicalCaution', ui.medicalCaution],
-    ['almanacFinancialCaution', ui.financialCaution],
     ['almanacDirectionNote', ui.directionNote],
   ])
     $(id).textContent = text;

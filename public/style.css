@@ -741,7 +741,7 @@ dialog p {
     height: 168px;
   }
 }
-/* Phone layout: keep the graph in the first screen instead of stacking desktop chrome. */
+/* Phone layout: place the graph in the first screen. */
 html,
 body {
   width: 100%;

@@ -9,7 +9,7 @@
 - Complete required notice: `public/fonts/OFL.txt`
 - Upstream release: https://github.com/notofonts/mongolian/releases/tag/NotoSansMongolian-v3.002
 
-Keep the bundled license together with the font. A project-wide code license must not replace the font's existing license.
+Distribute the font together with its bundled OFL notice.
 
 ## lunar-javascript
 
@@ -25,8 +25,8 @@ The included almanac-core regression test verifies the pinned file hash and pres
 
 ## Referenced texts and historical sources
 
-Article and graph data retain their own source URLs and attribution fields. Those links identify evidence and external readings; they do not grant permission to relicense entire linked works. The source-only export excludes the separately collected raw-webpage corpus archive.
+Article and graph data retain source URLs and attribution fields for evidence and further reading. Reuse of external works follows the rights specified by their respective providers.
 
 ## Project code and editorial material
 
-No project-wide license for original website code or editorial content was present in the audited source snapshot. Do not interpret the licenses for the font, lunar engine or separately collected corpus as licenses for the entire website.
+Original website code and editorial content carry the `UNLICENSED` package identifier. Permissions for that material are determined by the rights holder. The component licenses above apply to their respective bundled files.

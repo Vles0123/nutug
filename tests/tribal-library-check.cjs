@@ -97,8 +97,8 @@ console.log(
       'search and empty state',
       'graph-to-guide and guide-to-graph',
       'main library entry',
-      'Mongolian-only rendered text',
+      'Mongolian rendered text',
     ],
-    visualQA: 'DOM only; real mobile rendering unverified',
+    environment: 'jsdom',
   }),
 );

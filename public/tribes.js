@@ -396,7 +396,7 @@
     b.onclick = () => pick(id, true);
     $('tribePicker').append(b);
   }
-  for (const text of [D.ui.scope, D.ui.draft]) $('scope').append(html('p', text));
+  $('scope').append(html('p', D.ui.scope));
   $('plus').setAttribute('aria-label', 'ᠲᠣᠮᠣᠰᠬᠠᠬᠤ');
   $('minus').setAttribute('aria-label', 'ᠪᠠᠭᠠᠰᠬᠠᠬᠤ');
   $('fitTribes').setAttribute('aria-label', D.ui.fit);

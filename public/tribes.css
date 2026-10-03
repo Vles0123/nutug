@@ -632,15 +632,6 @@ aside h3 {
   color: #997c42;
 }
 #tl-empty,
-#tl-draft {
-  writing-mode: vertical-lr;
-  height: 180px;
-  font-size: 19px;
-  margin: 18px 0 0;
-}
-#tl-draft {
-  color: #6b7767;
-}
 .tribal-related-reading {
   display: flex;
   gap: 10px;

@@ -34,7 +34,9 @@ assert.equal(data.readings.length, 2);
 assert.equal(d.querySelectorAll('.kb-original').length, 2);
 for (const r of data.readings) {
   assert.equal(new URL(r.url).protocol, 'https:');
-  assert(r.accessNoteMn);
+  const link = [...d.querySelectorAll('.kb-original')].find((a) => a.href === r.url);
+  assert.equal(link.querySelector('strong').textContent, r.titleMn);
+  assert.equal(link.querySelector('span').textContent, r.summaryMn);
   assert.equal(r.downloaded, false);
 }
 assert.equal(new Set(data.articles.map((x) => x.id)).size, data.articles.length);
@@ -148,11 +150,11 @@ console.log(
       'search and empty result',
       'all readers and citations',
       'close and reopen',
-      'Mongolian-only prose',
-      'external corpus excluded from source export',
+      'Mongolian prose',
+      'external reading metadata and links',
       'existing graph and mobile search regression',
       'four mocked viewport aspect ratios',
     ],
-    visualQA: 'not performed; DOM tests do not certify Safari layout',
+    environment: 'jsdom with mocked viewport geometry',
   }),
 );

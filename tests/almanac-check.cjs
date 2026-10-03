@@ -48,9 +48,9 @@ assert.equal(d.querySelectorAll('#favorableValues p').length, 10);
 assert.equal(d.querySelectorAll('#favorableValues p:not([hidden])').length, 8);
 d.querySelector('#favorableValues .activity-toggle').click();
 assert.equal(d.querySelectorAll('#favorableValues p:not([hidden])').length, 10);
-assert(d.getElementById('almanacMedicalCaution').textContent);
+assert.equal(d.getElementById('almanacTraditionNote').textContent, A.ui.traditionNote);
 assert(
-  d.getElementById('almanacMedicalCaution').compareDocumentPosition(d.querySelector('.favorable')) &
+  d.getElementById('almanacTraditionNote').compareDocumentPosition(d.querySelector('.favorable')) &
     w.Node.DOCUMENT_POSITION_FOLLOWING,
 );
 d.querySelector('[data-example-date="2027-03-07"]').click();
@@ -99,5 +99,5 @@ assert(!d.body.textContent.includes('undefined'));
 assert(d.getElementById('almanacSystemLabel').textContent === A.ui.calendarSystem);
 w.close();
 console.log(
-  'PASS: full date-calculated Chinese almanac with Mongolian UI, 142-term coverage and distinct sentinels, five named deity directions, explicit pending rare term, nearby medical warning, leap month/new year/solar-term/range behavior, future date support, and UTC+08 rollover without stale records.',
+  'PASS: full date-calculated Chinese almanac with Mongolian UI, 142-term coverage and distinct sentinels, five named deity directions, explicit pending rare term, tradition description, leap month/new year/solar-term/range behavior, future date support, and UTC+08 date rollover.',
 );

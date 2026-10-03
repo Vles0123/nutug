@@ -99,11 +99,11 @@ doc.getElementById('fit').click();
 const before = +doc.getElementById('graph').getAttribute('viewBox').split(' ')[2];
 doc.getElementById('zoomOut').click();
 const after = +doc.getElementById('graph').getAttribute('viewBox').split(' ')[2];
-assert(after > before, 'zoom out must not zoom in from fitted tree');
+assert(after > before, 'zoom out increases the fitted view width');
 assert(!/[\u3400-\u9fff\u0400-\u04ff]/.test(doc.body.textContent));
 assert.equal(doc.querySelectorAll('a[download]').length, 0);
 console.log(
-  'PASS:32people53edges18events, genealogy/source integrity, no overlaps at fixed node coordinates, no false succession/alliance, bidirectional knowledge bridge, dated conflict focus, fit zoom, no download button. Visual rendering remains separate.',
+  'PASS: 32 people, 53 edges, 18 events; source integrity, fixed-coordinate spacing, relationship types, knowledge navigation, conflict focus, fit and zoom.',
 );
 
 const gaps = vm.runInNewContext(fs.readFileSync('public/data.js', 'utf8') + ';RESEARCH_GAPS');
@@ -139,9 +139,9 @@ assert(fitted[1] <= -670 * 1.65 - 130);
 assert(fitted[1] + fitted[3] >= 2700 * 1.65 + 105);
 assert(!/[\u3400-\u9fff\u0400-\u04ff]/.test(doc.body.textContent));
 console.log(
-  'PASS: three recorded ancestor generations, two documented descendant generations, non-person third-tier note, no fictional parent links, endpoint jumps, gap details/back, mode visibility and full-tree framing',
+  'PASS: three ancestor generations, two descendant generations, research-note node, endpoint navigation, relationship integrity, mode visibility and full-tree framing.',
 );
-// Regression: switching a person without political records must explain the gap.
+// An isolated political node provides navigation to related records.
 function searchPerson(id) {
   q.value = id;
   q.dispatchEvent(new w.Event('input'));
@@ -193,5 +193,5 @@ assert.equal(doc.querySelector('[data-mode="power"]').getAttribute('aria-selecte
 assert(doc.querySelector('.legend .contact'));
 assert(!/[\u3400-\u9fff\u0400-\u04ff]/.test(doc.body.textContent));
 console.log(
-  'PASS: isolated political node explanation and recovery, full connected-component framing, parent button routes to genealogy, contextual Ming actor separated, no fictitious Maidarbal khanship',
+  'PASS: isolated-node navigation, connected-component framing, genealogy links, contextual Ming actor and documented Maidarbal relationships.',
 );

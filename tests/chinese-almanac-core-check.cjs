@@ -53,5 +53,5 @@ assert.equal(
 );
 assert(fs.readFileSync('public/vendor/lunar-1.7.7-LICENSE.txt', 'utf8').includes('MIT License'));
 console.log(
-  'PASS: pinned unmodified MIT engine, 8 verified reference vectors, leap months, lunar new year/day/term boundaries, explicit YiJi/Fu variants, invalid Gregorian dates rejected, 1901–2100 limits. Exhaustive round-trip evidence is separate from independent HKO checks.',
+  'PASS: pinned unmodified MIT engine, 8 verified reference vectors, leap months, lunar new year/day/term boundaries, explicit YiJi/Fu variants, invalid Gregorian dates rejected, 1901–2100 limits.',
 );

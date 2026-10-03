@@ -815,11 +815,7 @@
   overflow: visible;
   flex-shrink: 0;
 }
-.kb-original .kb-original-access {
-  font-size: 18px;
-  color: #bca986;
-}
-.kb-reader-people {
+.kb-original .kb-reader-people {
   display: block;
   max-height: 100%;
   margin: 0 18px;

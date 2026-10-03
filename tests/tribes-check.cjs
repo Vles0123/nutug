@@ -86,7 +86,7 @@ for (const [width, height] of [
   );
   assert(
     !/[\u3400-\u9fff\u0400-\u04ff]/.test(doc.body.textContent),
-    'Traditional Mongolian-only displayed prose',
+    'Traditional Mongolian displayed prose',
   );
   assert(!doc.querySelector('a[download]'));
 }
@@ -103,9 +103,9 @@ console.log(
       'empty states',
       'all-node fit at three mocked aspect ratios',
       'zoom',
-      'traditional Mongolian-only rendered text',
+      'traditional Mongolian rendered text',
       'existing atlas entry',
     ],
-    visualQA: 'DOM checks only; not real iPhone rendering',
+    environment: 'jsdom with mocked SVG geometry',
   }),
 );

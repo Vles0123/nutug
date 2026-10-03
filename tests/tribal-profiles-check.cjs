@@ -86,7 +86,7 @@ console.log(
       'all section toggles on desktop and mobile',
       'selected profile section survives rerender',
       'six expanded knowledge guides',
-      'traditional Mongolian-only displayed text',
+      'traditional Mongolian displayed text',
     ],
   }),
 );

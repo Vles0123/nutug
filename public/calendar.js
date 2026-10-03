@@ -179,8 +179,7 @@
   $('previousMonth').onclick = () => move(-1);
   $('nextMonth').onclick = () => move(1);
   $('goToday').onclick = () => select(today);
-  for (const t of [D.ui.scope, D.ui.gridNote, D.ui.draft])
-    if (t) $('calendarScope').append(tag('p', t));
+  for (const t of [D.ui.scope, D.ui.gridNote]) if (t) $('calendarScope').append(tag('p', t));
   function refreshToday() {
     const now = todayKey();
     if (now === today) return;
