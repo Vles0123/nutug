@@ -1,2 +1,25 @@
 # nutug
-Traditional Mongolian history atlas, tribal relationships, knowledge library and calendar — nutug.cn
+
+nutug.cn 蒙古历史图谱的完整源码快照（网站第 20 版，2026-10-03）。
+
+## 获取源码
+
+下载并解压本仓库的 `nutug-source-v20.zip`。压缩包保留完整目录结构，包含 48 个文件：网站 HTML/CSS/JavaScript、传统蒙古文字体、中国农历黄历引擎、测试、锁定依赖及第三方许可说明。
+
+解压后进入目录，使用 Python 3 启动静态网站：
+
+```sh
+python3 -m http.server 8000 --directory dist
+```
+
+打开 http://localhost:8000 。运行测试前请阅读压缩包内 README.md 的 Node.js 版本要求，然后运行 `npm ci` 与 `npm test`。
+
+## 内容与边界
+
+- 人物家谱、部落关系图、知识库、节日日历和汉语黄历译蒙文
+- 已通过 10 项回归测试；不代表已完成真实 iPhone Safari 或所有桌面浏览器的视觉验收
+- 蒙文译文仍需母语校对；黄历宜忌与方位是传统民俗，不是科学预测
+- 此源码快照不包含此前下载的第三方史料原文 ZIP、部署账号配置、凭证或内部研究记录
+- 原创部分未另行授予开源许可证；第三方字体和黄历引擎分别保留 OFL 与 MIT 许可证
+
+本仓库目前以完整源码压缩包保存快照，尚未将各文件展开为 Git 目录。
