@@ -1,0 +1,958 @@
+@font-face {
+  font-family: Mn;
+  src: url('fonts/NotoSansMongolian-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #eeeede;
+  color: #1d3339;
+  font:
+    22px/1.5 Mn,
+    'Mongolian Baiti',
+    serif;
+}
+button,
+a {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+  border: 1px solid #a5b7aa;
+  border-radius: 4px;
+  background: #f9f5e9;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px;
+}
+button:hover,
+a:hover {
+  background: #e4d7b4;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #b28c44;
+  outline-offset: 3px;
+}
+header {
+  display: flex;
+  gap: 18px;
+  padding: 16px 22px;
+  background: #172e38;
+  color: #f9edcc;
+  border-bottom: 3px solid #b5914e;
+  height: 162px;
+  overflow-x: auto;
+}
+header h1,
+header p,
+header a {
+  writing-mode: vertical-lr;
+  height: 126px;
+  margin: 0;
+  flex-shrink: 0;
+}
+header h1 {
+  font-size: 28px;
+  font-weight: 400;
+}
+header p {
+  font-size: 19px;
+  color: #b6c6c7;
+}
+header a {
+  font-size: 20px;
+  text-decoration: none;
+  border-right: 1px solid #57717a;
+  padding-right: 14px;
+}
+#periods {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px;
+  overflow-x: auto;
+  background: #e4e7dc;
+  border-bottom: 1px solid #bfc8bb;
+}
+#periods button {
+  writing-mode: vertical-lr;
+  height: 116px;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+#periods button[aria-pressed='true'] {
+  background: #213d42;
+  color: #fff0ce;
+  border-color: #213d42;
+}
+.legend {
+  display: flex;
+  gap: 16px;
+  padding: 8px 20px;
+  background: #f8f5e9;
+  overflow-x: auto;
+}
+.legend span {
+  writing-mode: vertical-lr;
+  height: 104px;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.legend span:before {
+  content: '';
+  display: inline-block;
+  height: 20px;
+  border-left: 3px solid var(--edge);
+  margin-bottom: 6px;
+}
+.legend .alliance:before {
+  border-left-style: dashed;
+}
+.legend .submission:before {
+  border-left-style: dotted;
+}
+#tribePicker {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px;
+  overflow-x: auto;
+  background: #e7e3d3;
+}
+#tribePicker button {
+  writing-mode: vertical-lr;
+  height: 124px;
+  flex-shrink: 0;
+  font-size: 22px;
+}
+#tribePicker button[aria-pressed='true'] {
+  background: #213d42;
+  color: #fff0ce;
+}
+main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  min-height: 640px;
+  height: 76vh;
+  max-height: 940px;
+  border-block: 1px solid #b7c5b7;
+}
+.map {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  background-image: radial-gradient(#667e6529 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+#tribeGraph {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: grab;
+}
+.map-controls {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px;
+  align-items: center;
+  flex-shrink: 0;
+  background: #e7e7d7;
+  border-top: 1px solid #c3c9b7;
+}
+.map-controls button {
+  font-family: system-ui;
+  font-size: 22px;
+}
+.map-controls span {
+  font-family: system-ui;
+  font-size: 13px;
+  color: #49645e;
+  margin-left: auto;
+}
+.tribe-node {
+  cursor: pointer;
+}
+.tribe-node rect {
+  fill: #faf7e8;
+  stroke: #7e9a8c;
+  stroke-width: 2;
+}
+.tribe-node.selected rect {
+  fill: #233e40;
+  stroke: #b89a56;
+  stroke-width: 4;
+}
+.tribe-node:focus {
+  outline: none;
+}
+.tribe-node:focus rect {
+  stroke: #ca9036;
+  stroke-width: 5;
+}
+.tribe-node:hover rect {
+  stroke: #b18d43;
+  stroke-width: 4;
+}
+.tribe-node .card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+.tribe-node strong,
+.tribe-node small {
+  writing-mode: vertical-lr;
+  height: 244px;
+  font-weight: 400;
+}
+.tribe-node strong {
+  font-size: 34px;
+}
+.tribe-node small {
+  font-size: 20px;
+  color: #54726a;
+}
+.tribe-node.selected strong {
+  color: #fff0c8;
+}
+.tribe-node.selected small {
+  color: #bfd4cc;
+}
+.tribe-node.muted {
+  opacity: 0.38;
+}
+.tribe-edge {
+  fill: none;
+  stroke-width: 3;
+  opacity: 0.3;
+}
+.tribe-edge.linked {
+  opacity: 0.85;
+  stroke-width: 4;
+}
+.tribe-edge.chosen {
+  stroke-width: 6;
+  opacity: 1;
+}
+.edge-hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 22;
+  cursor: pointer;
+}
+.edge-label {
+  writing-mode: vertical-lr;
+  font: 19px/1.4 Mn;
+  height: 126px;
+  max-width: 96px;
+  background: #eeeedeed;
+  color: #294f48;
+  padding: 4px;
+}
+.edge-year {
+  font-family: system-ui;
+  font-size: 15px;
+  fill: #38554f;
+  paint-order: stroke;
+  stroke: #eeeede;
+  stroke-width: 5px;
+}
+aside {
+  background: #faf7ed;
+  border-left: 1px solid #bfcab8;
+  padding: 18px;
+  overflow: auto;
+  min-width: 0;
+}
+aside .overview {
+  writing-mode: vertical-lr;
+  height: 260px;
+  overflow-x: auto;
+}
+aside .overview h2 {
+  font-size: 29px;
+  font-weight: 400;
+  margin: 0 10px 0 0;
+}
+aside .overview p {
+  font-size: 21px;
+  margin: 0 10px;
+}
+aside h3 {
+  writing-mode: vertical-lr;
+  height: 110px;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 12px 0;
+}
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.event-card {
+  display: flex;
+  text-align: start;
+  gap: 12px;
+  padding: 12px;
+  min-height: 175px;
+  width: 100%;
+  border-left: 4px solid var(--edge);
+}
+.event-card[aria-pressed='true'] {
+  background: #e1d9bd;
+}
+.event-card .date {
+  writing-mode: vertical-lr;
+  height: 155px;
+  font: 15px/1.4 system-ui;
+}
+.event-card .event-name {
+  writing-mode: vertical-lr;
+  height: 155px;
+  font-size: 22px;
+}
+.event-description {
+  display: flex;
+  writing-mode: vertical-lr;
+  height: 260px;
+  overflow-x: auto;
+  background: #eeead8;
+  padding: 12px;
+  margin: 12px 0;
+  font-size: 21px;
+}
+.source-links {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 8px 0;
+}
+.source-links a,
+.people-links a {
+  writing-mode: vertical-lr;
+  height: 190px;
+  font-size: 19px;
+  flex-shrink: 0;
+}
+.people-links {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+}
+.scope {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  background: #223c42;
+  color: #e4e4ce;
+  padding: 20px;
+}
+.scope p {
+  writing-mode: vertical-lr;
+  height: 240px;
+  flex-shrink: 0;
+  margin: 0;
+  font-size: 20px;
+}
+.empty {
+  writing-mode: vertical-lr;
+  height: 180px;
+}
+.status {
+  writing-mode: vertical-lr;
+  height: 190px;
+  font-size: 20px;
+}
+@media (max-width: 900px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    max-height: none;
+    min-height: 0;
+  }
+  .map {
+    height: 680px;
+  }
+  aside {
+    border-left: 0;
+    border-top: 1px solid #bfcab8;
+  }
+  .event-list {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  .event-card {
+    width: auto;
+    min-width: 125px;
+    flex-shrink: 0;
+  }
+  .event-description {
+    height: 230px;
+  }
+  .overview {
+    max-width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  header {
+    height: 126px;
+    padding: 12px;
+    gap: 12px;
+  }
+  header h1,
+  header p,
+  header a {
+    height: 98px;
+  }
+  header h1 {
+    font-size: 23px;
+  }
+  header p {
+    font-size: 17px;
+  }
+  header a {
+    font-size: 18px;
+    padding-right: 8px;
+  }
+  #periods {
+    padding: 8px;
+    gap: 6px;
+  }
+  #periods button {
+    height: 98px;
+    font-size: 18px;
+    padding: 6px;
+  }
+  .legend {
+    padding: 8px;
+    gap: 14px;
+  }
+  .legend span {
+    height: 86px;
+    font-size: 17px;
+  }
+  #tribePicker {
+    padding: 8px;
+    gap: 6px;
+  }
+  #tribePicker button {
+    height: 112px;
+    font-size: 21px;
+  }
+  .map {
+    height: 650px;
+    height: max(550px, 74svh);
+  }
+  aside {
+    padding: 14px;
+  }
+  .scope {
+    padding: 16px;
+    gap: 14px;
+  }
+  .scope p {
+    height: 220px;
+    font-size: 18px;
+  }
+  .map-controls {
+    padding: 8px;
+  }
+  .map-controls span {
+    max-width: 70px;
+    text-align: right;
+  }
+}
+
+#tribePicker {
+  flex-shrink: 0;
+}
+#tribePicker button {
+  height: 105px;
+}
+@media (max-width: 600px) {
+  header {
+    height: 108px;
+  }
+  header h1,
+  header p,
+  header a {
+    height: 82px;
+  }
+  #periods button {
+    height: 84px;
+  }
+  .legend span {
+    height: 75px;
+  }
+  .map {
+    height: max(650px, 82svh);
+  }
+  #tribePicker button {
+    height: 102px;
+  }
+}
+
+.event-card .date {
+  font-family: Mn, 'Mongolian Baiti', serif;
+  text-orientation: mixed;
+}
+#tribalLibrary {
+  padding: 28px 24px;
+  background: #f4f0e4;
+  border-top: 3px solid #b59a60;
+  scroll-margin-top: 8px;
+}
+.tl-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  overflow-x: auto;
+}
+.tl-heading h2,
+.tl-heading p {
+  writing-mode: vertical-lr;
+  height: 160px;
+  flex-shrink: 0;
+  margin: 0;
+  font-weight: 400;
+}
+.tl-heading h2 {
+  font-size: 30px;
+}
+.tl-heading p {
+  font-size: 21px;
+  color: #58756a;
+}
+#tl-search-toggle {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-family: system-ui;
+  font-size: 24px;
+}
+#tl-filters {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 18px 0 12px;
+}
+#tl-filters button {
+  writing-mode: vertical-lr;
+  height: 134px;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+#tl-filters button[aria-pressed='true'] {
+  background: #233e40;
+  color: #fff0c8;
+}
+#tl-search-panel {
+  display: flex;
+  gap: 10px;
+  margin: 8px 0 16px;
+}
+#tl-search-panel[hidden] {
+  display: none;
+}
+#tl-query-label {
+  writing-mode: vertical-lr;
+  height: 120px;
+  font-size: 19px;
+}
+#tl-query {
+  writing-mode: vertical-lr;
+  height: 120px;
+  min-width: 0;
+  width: 100%;
+  max-width: 380px;
+  resize: none;
+  font: 22px/1.5 Mn;
+  background: #fffcf3;
+  color: #233e40;
+  border: 1px solid #acb9a7;
+  padding: 8px;
+}
+#tl-clear {
+  align-self: flex-start;
+  font-family: system-ui;
+}
+#tl-count {
+  font: 13px/1.5 system-ui;
+  color: #526d65;
+  padding: 2px 0 12px;
+}
+#tl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+.tl-card {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  padding: 18px 16px;
+  height: 290px;
+  overflow: hidden;
+  border: 1px solid #b8bba5;
+  border-top: 4px solid #9f8655;
+  border-radius: 2px;
+  text-align: start;
+  background: #faf6e8;
+  transition: background 0.15s;
+}
+.tl-card strong,
+.tl-card > span:not(.tl-card-mark) {
+  writing-mode: vertical-lr;
+  height: 248px;
+  font-weight: 400;
+}
+.tl-card strong {
+  font-size: 25px;
+}
+.tl-card > span:not(.tl-card-mark) {
+  font-size: 18px;
+  color: #5c776e;
+}
+.tl-card-mark {
+  position: absolute;
+  bottom: 5px;
+  right: 8px;
+  font: 18px system-ui;
+  color: #997c42;
+}
+#tl-empty,
+#tl-draft {
+  writing-mode: vertical-lr;
+  height: 180px;
+  font-size: 19px;
+  margin: 18px 0 0;
+}
+#tl-draft {
+  color: #6b7767;
+}
+.tribal-related-reading {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-top: 16px;
+}
+.tribal-related-reading h3 {
+  flex-shrink: 0;
+}
+.tribal-related-reading button {
+  writing-mode: vertical-lr;
+  height: 185px;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+#tl-reader {
+  width: min(1000px, 94vw);
+  max-width: 94vw;
+  max-height: 92dvh;
+  padding: 0;
+  border: 1px solid #9eaa96;
+  background: #fbf7eb;
+  color: #203b3c;
+  border-radius: 8px;
+  box-shadow: 0 20px 80px #152b3866;
+}
+#tl-reader::backdrop {
+  background: #13282ec9;
+}
+.tl-reader-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  border-bottom: 1px solid #c8c8b3;
+  font: 24px system-ui;
+  background: #e7e3d2;
+}
+#tl-close {
+  font-family: system-ui;
+  font-size: 24px;
+}
+#tl-reader-scroll {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  display: block;
+  height: min(580px, 72dvh);
+  overflow: auto;
+  padding: 20px;
+  font-size: 23px;
+  line-height: 1.8;
+}
+#tl-reader-title {
+  font-size: 29px;
+  font-weight: 400;
+  margin: 0 12px 0 0;
+}
+#tl-reader-body p {
+  margin: 0 15px;
+  max-height: 100%;
+}
+#tl-related,
+#tl-sources {
+  border-left: 1px solid #c7cdbd;
+  margin-left: 20px;
+  padding-left: 14px;
+}
+#tl-related h3,
+#tl-sources h3 {
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0 10px;
+}
+#tl-related button {
+  writing-mode: vertical-lr;
+  height: 230px;
+  margin-left: 10px;
+  font-size: 22px;
+}
+#tl-sources a {
+  display: block;
+  font-size: 20px;
+  margin: 0 12px;
+  color: #436f68;
+}
+@media (max-width: 600px) {
+  #tribalLibrary {
+    padding: 20px 14px;
+  }
+  .tl-heading h2,
+  .tl-heading p {
+    height: 130px;
+  }
+  .tl-heading h2 {
+    font-size: 25px;
+  }
+  .tl-heading p {
+    font-size: 18px;
+  }
+  #tl-filters {
+    gap: 6px;
+    padding: 12px 0;
+  }
+  #tl-filters button {
+    height: 114px;
+    font-size: 19px;
+    padding: 6px;
+  }
+  #tl-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .tl-card {
+    height: 236px;
+    padding: 14px 10px;
+    gap: 8px;
+  }
+  .tl-card strong {
+    height: 198px;
+    font-size: 23px;
+  }
+  .tl-card > span:not(.tl-card-mark) {
+    display: none;
+  }
+  #tl-reader-scroll {
+    padding: 16px;
+    height: 70svh;
+    max-height: calc(100dvh - 110px);
+    font-size: 22px;
+  }
+  #tl-reader-title {
+    font-size: 27px;
+  }
+  #tl-reader {
+    max-height: 94dvh;
+  }
+  #tl-related button {
+    height: 190px;
+  }
+}
+
+.tribe-node.external-context rect {
+  stroke-dasharray: 6 5;
+}
+/* Give whole Mongolian words and suffix clusters enough vertical measure. */
+header {
+  height: 208px;
+}
+header h1,
+header p,
+header a {
+  height: 170px;
+}
+#tribePicker button {
+  height: 128px;
+}
+.tl-heading h2,
+.tl-heading p {
+  height: 190px;
+}
+@media (max-width: 600px) {
+  header {
+    height: 174px;
+  }
+  header h1,
+  header p,
+  header a {
+    height: 148px;
+  }
+  #periods button {
+    height: 116px;
+  }
+  #tribePicker button {
+    height: 124px;
+  }
+  .tl-heading h2,
+  .tl-heading p {
+    height: 178px;
+  }
+}
+
+.tribe-profile {
+  border-block: 1px solid #c5cbb6;
+  padding: 14px 0;
+  margin: 14px 0;
+  min-width: 0;
+}
+.profile-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+.profile-tabs button {
+  writing-mode: vertical-lr;
+  height: 150px;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.profile-tabs button[aria-pressed='true'] {
+  background: #233e40;
+  color: #fff0c8;
+}
+.profile-content {
+  min-width: 0;
+}
+.profile-paragraph {
+  writing-mode: vertical-lr;
+  height: 230px;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 12px;
+  background: #eee9d6;
+  font-size: 21px;
+  line-height: 1.7;
+  margin: 0 0 12px;
+}
+.profile-content .source-links {
+  padding-bottom: 10px;
+}
+
+.customs-link {
+  writing-mode: vertical-lr;
+  height: 145px;
+  flex-shrink: 0;
+  padding: 8px;
+  border: 1px solid #9ea98e;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/* Desktop and split-window details: related columns share one reading band. */
+body:not(.mobile-edition) #tribeDetail {
+  overscroll-behavior: contain;
+}
+body:not(.mobile-edition) .tribe-reference-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 16px 0;
+  border-top: 1px solid #c5cbb6;
+  margin-top: 16px;
+}
+body:not(.mobile-edition) .tribe-reference-group > h3 {
+  flex: 0 0 auto;
+  height: 190px;
+  margin: 0;
+  padding-right: 12px;
+  border-right: 1px solid #c5cbb6;
+}
+body:not(.mobile-edition) .tribe-reference-group .source-links,
+body:not(.mobile-edition) .tribe-reference-group .people-links {
+  flex: 0 0 auto;
+  overflow: visible;
+  padding: 0;
+}
+body:not(.mobile-edition) .tribe-reference-group .people-links {
+  border-left: 1px solid #c5cbb6;
+  padding-left: 16px;
+}
+body:not(.mobile-edition) .tribal-related-reading {
+  align-items: flex-start;
+  border-top: 1px solid #c5cbb6;
+  margin-top: 12px;
+  padding-top: 14px;
+}
+body:not(.mobile-edition) .tribal-related-reading h3 {
+  height: 185px;
+  margin: 0;
+  padding-right: 8px;
+}
+@media (min-width: 701px) and (max-width: 900px) {
+  body:not(.mobile-edition) main {
+    height: auto;
+    max-height: none;
+  }
+  body:not(.mobile-edition) .map {
+    height: clamp(540px, 72dvh, 720px);
+  }
+  body:not(.mobile-edition) #tribeDetail {
+    padding: 20px;
+    min-height: 0;
+  }
+  body:not(.mobile-edition) .tribe-event-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    min-width: 0;
+    border-top: 1px solid #c5cbb6;
+    padding-top: 16px;
+  }
+  body:not(.mobile-edition) .tribe-event-group > h3 {
+    flex: 0 0 auto;
+    height: 175px;
+    margin: 0;
+    padding-right: 12px;
+    border-right: 1px solid #c5cbb6;
+  }
+  body:not(.mobile-edition) .tribe-event-group .event-list {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    align-items: stretch;
+    scroll-snap-type: x proximity;
+  }
+  body:not(.mobile-edition) .event-card {
+    scroll-snap-align: start;
+  }
+  body:not(.mobile-edition) .tribe-reference-group {
+    margin-top: 12px;
+  }
+}

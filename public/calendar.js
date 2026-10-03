@@ -1,0 +1,195 @@
+(() => {
+  'use strict';
+  const D = MONGOL_CALENDAR,
+    $ = (id) => document.getElementById(id),
+    zone = D.editorial?.todayTimeZone || 'Asia/Shanghai';
+  function todayKey() {
+    const p = new Intl.DateTimeFormat('en-CA', {
+      timeZone: zone,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    }).formatToParts(new Date());
+    const get = (t) => p.find((x) => x.type === t).value;
+    return get('year') + '-' + get('month') + '-' + get('day');
+  }
+  let today = todayKey(),
+    selected = today,
+    [year, month] = today.split('-').map(Number),
+    region = 'all';
+  function tag(t, text, cls) {
+    const e = document.createElement(t);
+    if (text !== undefined) e.textContent = text;
+    if (cls) e.className = cls;
+    return e;
+  }
+  function key(y, m, d) {
+    return (
+      String(y).padStart(4, '0') +
+      '-' +
+      String(m).padStart(2, '0') +
+      '-' +
+      String(d).padStart(2, '0')
+    );
+  }
+  function events() {
+    return D.events.filter((e) => region === 'all' || e.region === region);
+  }
+  function onDate(date) {
+    return events().filter((e) => e.dates.includes(date));
+  }
+  function sources(keys) {
+    const box = tag('div', undefined, 'calendar-sources');
+    for (const id of [...new Set(keys)]) {
+      const s = D.sources[id];
+      if (!s) continue;
+      const a = tag('a', s.name);
+      a.href = s.url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      box.append(a);
+    }
+    return box;
+  }
+  function eventCard(e, pending = false) {
+    const card = tag('article', undefined, 'calendar-event');
+    card.dataset.event = e.id;
+    const heading = tag('div', undefined, 'event-heading');
+    heading.append(
+      tag('h3', e.title),
+      tag('span', e.regionLabel + ' · ' + e.dateTypeLabel, 'event-meta'),
+    );
+    const body = tag('div', undefined, 'event-body');
+    if (pending) body.append(tag('p', year + ' · ' + D.ui.unconfirmed));
+    for (const t of [e.summary, e.ruleText, e.note]) if (t) body.append(tag('p', t));
+    card.append(heading, body, sources(e.sources));
+    if (e.relatedArticle) {
+      const link = tag('a', 'ᠤᠩᠰᠢᠬᠤ', 'related-reading');
+      link.href = './#article=' + encodeURIComponent(e.relatedArticle);
+      card.append(link);
+    }
+    return card;
+  }
+  function select(date) {
+    selected = date;
+    [year, month] = date.split('-').map(Number);
+    render();
+  }
+  function render() {
+    $('todayDate').textContent = today;
+    $('monthTitle').textContent = year + ' / ' + String(month).padStart(2, '0');
+    $('selectedDate').textContent = selected;
+    const grid = $('monthGrid');
+    grid.replaceChildren();
+    const offset = (new Date(Date.UTC(year, month - 1, 1)).getUTCDay() + 6) % 7,
+      days = new Date(Date.UTC(year, month, 0)).getUTCDate();
+    for (let i = 0; i < offset; i++) {
+      const s = tag('span', undefined, 'empty-day');
+      s.setAttribute('aria-hidden', 'true');
+      grid.append(s);
+    }
+    for (let day = 1; day <= days; day++) {
+      const date = key(year, month, day),
+        es = onDate(date),
+        b = tag('button', String(day));
+      b.type = 'button';
+      b.dataset.date = date;
+      b.setAttribute(
+        'aria-label',
+        date + (es.length ? ' · ' + es.map((e) => e.title).join(' · ') : ''),
+      );
+      b.setAttribute('aria-pressed', String(date === selected));
+      if (date === today) b.setAttribute('aria-current', 'date');
+      const dots = tag('span', undefined, 'event-dots');
+      dots.setAttribute('aria-hidden', 'true');
+      for (const reg of [...new Set(es.map((e) => e.region))])
+        dots.append(tag('i', undefined, reg));
+      b.append(dots);
+      b.onclick = () => select(date);
+      grid.append(b);
+    }
+    const list = $('eventList');
+    list.replaceChildren();
+    const es = onDate(selected);
+    if (!es.length) list.append(tag('p', D.ui.empty, 'empty-note'));
+    for (const e of es) list.append(eventCard(e));
+    const upcoming = events()
+        .map((e) => ({ e, date: e.dates.filter((d) => d >= today).sort()[0] }))
+        .filter((x) => x.date)
+        .sort((a, b) => a.date.localeCompare(b.date))
+        .slice(0, 6),
+      up = $('upcomingEvents');
+    up.replaceChildren();
+    for (const { e, date } of upcoming) {
+      const b = tag('button');
+      b.type = 'button';
+      b.dataset.upcoming = e.id;
+      b.append(tag('strong', e.title), tag('span', date));
+      b.onclick = () => {
+        select(date);
+        $('monthTitle').scrollIntoView({ behavior: 'auto', block: 'start' });
+      };
+      up.append(b);
+    }
+    if (!upcoming.length) up.append(tag('p', D.ui.empty, 'empty-note'));
+    const pending = events().filter((e) => !e.dates.some((d) => d.startsWith(year + '-'))),
+      pend = $('pendingEvents');
+    pend.replaceChildren();
+    for (const e of pending) pend.append(eventCard(e, true));
+    pend.parentElement.hidden = !pending.length;
+    $('regionFilters')
+      .querySelectorAll('button')
+      .forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.region === region)));
+  }
+  for (const [id, value] of [
+    ['calendarTitle', D.ui.title],
+    ['todayLabel', D.ui.today],
+    ['calendarBack', '← ' + D.ui.back],
+    ['almanacLink', D.ui.almanac],
+    ['upcomingTitle', D.ui.upcoming],
+    ['pendingTitle', D.ui.pending],
+  ])
+    $(id).textContent = value;
+  $('previousMonth').setAttribute('aria-label', D.ui.previous);
+  $('nextMonth').setAttribute('aria-label', D.ui.next);
+  $('goToday').setAttribute('aria-label', D.ui.today);
+  $('monthGrid').setAttribute('aria-label', D.ui.selectDate);
+  for (const label of D.ui.weekdays) $('weekdays').append(tag('span', label));
+  for (const [id, label] of [
+    ['all', D.ui.all],
+    ['inner-mongolia', D.ui.innerMongolia],
+    ['mongolia', D.ui.mongolia],
+  ]) {
+    const b = tag('button', label);
+    b.type = 'button';
+    b.dataset.region = id;
+    b.onclick = () => {
+      region = id;
+      render();
+    };
+    $('regionFilters').append(b);
+  }
+  function move(delta) {
+    const d = new Date(Date.UTC(year, month - 1 + delta, 1));
+    year = d.getUTCFullYear();
+    month = d.getUTCMonth() + 1;
+    selected = today.startsWith(key(year, month, 1).slice(0, 7)) ? today : key(year, month, 1);
+    render();
+  }
+  $('previousMonth').onclick = () => move(-1);
+  $('nextMonth').onclick = () => move(1);
+  $('goToday').onclick = () => select(today);
+  for (const t of [D.ui.scope, D.ui.gridNote, D.ui.draft])
+    if (t) $('calendarScope').append(tag('p', t));
+  function refreshToday() {
+    const now = todayKey();
+    if (now === today) return;
+    const followed = selected === today;
+    today = now;
+    if (followed) select(now);
+    else render();
+  }
+  document.addEventListener('visibilitychange', refreshToday);
+  setInterval(refreshToday, 60000);
+  render();
+})();

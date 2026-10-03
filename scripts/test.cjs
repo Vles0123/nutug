@@ -4,7 +4,7 @@ const { spawnSync } = require('node:child_process');
 
 const root = resolve(__dirname, '..');
 const tests = readdirSync(join(root, 'tests'))
-  .filter(name => name.endsWith('-check.cjs'))
+  .filter((name) => name.endsWith('-check.cjs'))
   .sort();
 let failures = 0;
 for (const test of tests) {

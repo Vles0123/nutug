@@ -8,4 +8,4 @@ node_modules/
 coverage/
 playwright-report/
 test-results/
-dist/downloads/mongol-learning-corpus.zip
+public/downloads/mongol-learning-corpus.zip

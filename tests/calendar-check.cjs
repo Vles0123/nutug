@@ -1,2 +1,71 @@
-const assert=require('node:assert'),fs=require('node:fs'),vm=require('node:vm'),{JSDOM}=require('jsdom');const D=vm.runInNewContext(fs.readFileSync('dist/calendar-data.js','utf8')+';MONGOL_CALENDAR');assert.equal(D.events.length,9);assert.equal(new Set(D.events.map(e=>e.id)).size,D.events.length);for(const e of D.events){assert(e.region&&e.dateType&&e.ruleText);for(const date of e.dates){assert(/^\d{4}-\d{2}-\d{2}$/.test(date));assert.equal(new Date(date+'T00:00:00Z').toISOString().slice(0,10),date)}for(const key of e.sources)assert(/^https:\/\//.test(D.sources[key].url))}assert.deepEqual(Array.from(D.events.find(e=>e.id==='mn-chinggis-day').dates),['2026-11-10']);assert(!D.events.find(e=>e.id==='mn-tsagaan-sar').dates.some(x=>x.startsWith('2027')));assert(D.events.find(e=>e.id==='mn-naadam').dates.includes('2026-07-10'));assert(!D.events.find(e=>e.id==='bairin-naadam').dates.some(x=>x.startsWith('2027')));
-let now='2026-10-03T09:00:00Z';const w=new JSDOM(fs.readFileSync('dist/calendar.html','utf8'),{runScripts:'outside-only',url:'https://nutug.cn/calendar.html'}).window;const NativeDate=Date;w.Date=class extends NativeDate{constructor(...a){super(...(a.length?a:[now]))}static now(){return new NativeDate(now).getTime()}};w.HTMLElement.prototype.scrollIntoView=()=>{};w.eval(['calendar-data.js','calendar.js'].map(f=>fs.readFileSync('dist/'+f,'utf8')).join('\n'));const d=w.document;assert.equal(d.getElementById('todayDate').textContent,'2026-10-03');assert.equal(d.querySelectorAll('#monthGrid button').length,31);assert.equal(d.querySelector('[aria-current=date]').dataset.date,'2026-10-03');d.querySelector('[data-upcoming="mn-chinggis-day"]').click();assert.equal(d.getElementById('selectedDate').textContent,'2026-11-10');assert(d.querySelector('#eventList [data-event="mn-chinggis-day"]'));d.querySelector('[data-region="inner-mongolia"]').click();assert(!d.querySelector('#eventList [data-event="mn-chinggis-day"]'));d.querySelector('[data-region="all"]').click();d.getElementById('nextMonth').click();d.getElementById('nextMonth').click();assert.equal(d.getElementById('monthTitle').textContent,'2027 / 01');assert(d.querySelector('#pendingEvents [data-event="mn-chinggis-day"]'));assert(d.querySelector('#pendingEvents [data-event="mn-tsagaan-sar"]'));d.getElementById('nextMonth').click();assert.equal(d.querySelectorAll('#monthGrid button').length,28);assert.equal(d.querySelectorAll('#monthGrid .event-dots i').length,0);d.getElementById('goToday').click();now='2026-10-03T16:00:01Z';d.dispatchEvent(new w.Event('visibilitychange'));assert.equal(d.getElementById('todayDate').textContent,'2026-10-04');assert.equal(d.getElementById('selectedDate').textContent,'2026-10-04');assert.equal(d.querySelector('[aria-current=date]').dataset.date,'2026-10-04');assert(!/[\u3400-\u9fff\u0400-\u04ff]/.test(d.body.textContent));assert(!d.body.textContent.includes('undefined'));w.close();console.log('PASS: 9 sourced events, valid explicit dates, region separation, lunar dates not repeated into unverified years, local UTC+08 today/midnight rollover, month lengths and source links.');
+const assert = require('node:assert'),
+  fs = require('node:fs'),
+  vm = require('node:vm'),
+  { JSDOM } = require('jsdom');
+const D = vm.runInNewContext(
+  fs.readFileSync('public/calendar-data.js', 'utf8') + ';MONGOL_CALENDAR',
+);
+assert.equal(D.events.length, 9);
+assert.equal(new Set(D.events.map((e) => e.id)).size, D.events.length);
+for (const e of D.events) {
+  assert(e.region && e.dateType && e.ruleText);
+  for (const date of e.dates) {
+    assert(/^\d{4}-\d{2}-\d{2}$/.test(date));
+    assert.equal(new Date(date + 'T00:00:00Z').toISOString().slice(0, 10), date);
+  }
+  for (const key of e.sources) assert(/^https:\/\//.test(D.sources[key].url));
+}
+assert.deepEqual(Array.from(D.events.find((e) => e.id === 'mn-chinggis-day').dates), [
+  '2026-11-10',
+]);
+assert(!D.events.find((e) => e.id === 'mn-tsagaan-sar').dates.some((x) => x.startsWith('2027')));
+assert(D.events.find((e) => e.id === 'mn-naadam').dates.includes('2026-07-10'));
+assert(!D.events.find((e) => e.id === 'bairin-naadam').dates.some((x) => x.startsWith('2027')));
+let now = '2026-10-03T09:00:00Z';
+const w = new JSDOM(fs.readFileSync('public/calendar.html', 'utf8'), {
+  runScripts: 'outside-only',
+  url: 'https://nutug.cn/calendar.html',
+}).window;
+const NativeDate = Date;
+w.Date = class extends NativeDate {
+  constructor(...a) {
+    super(...(a.length ? a : [now]));
+  }
+  static now() {
+    return new NativeDate(now).getTime();
+  }
+};
+w.HTMLElement.prototype.scrollIntoView = () => {};
+w.eval(
+  ['calendar-data.js', 'calendar.js'].map((f) => fs.readFileSync('public/' + f, 'utf8')).join('\n'),
+);
+const d = w.document;
+assert.equal(d.getElementById('todayDate').textContent, '2026-10-03');
+assert.equal(d.querySelectorAll('#monthGrid button').length, 31);
+assert.equal(d.querySelector('[aria-current=date]').dataset.date, '2026-10-03');
+d.querySelector('[data-upcoming="mn-chinggis-day"]').click();
+assert.equal(d.getElementById('selectedDate').textContent, '2026-11-10');
+assert(d.querySelector('#eventList [data-event="mn-chinggis-day"]'));
+d.querySelector('[data-region="inner-mongolia"]').click();
+assert(!d.querySelector('#eventList [data-event="mn-chinggis-day"]'));
+d.querySelector('[data-region="all"]').click();
+d.getElementById('nextMonth').click();
+d.getElementById('nextMonth').click();
+assert.equal(d.getElementById('monthTitle').textContent, '2027 / 01');
+assert(d.querySelector('#pendingEvents [data-event="mn-chinggis-day"]'));
+assert(d.querySelector('#pendingEvents [data-event="mn-tsagaan-sar"]'));
+d.getElementById('nextMonth').click();
+assert.equal(d.querySelectorAll('#monthGrid button').length, 28);
+assert.equal(d.querySelectorAll('#monthGrid .event-dots i').length, 0);
+d.getElementById('goToday').click();
+now = '2026-10-03T16:00:01Z';
+d.dispatchEvent(new w.Event('visibilitychange'));
+assert.equal(d.getElementById('todayDate').textContent, '2026-10-04');
+assert.equal(d.getElementById('selectedDate').textContent, '2026-10-04');
+assert.equal(d.querySelector('[aria-current=date]').dataset.date, '2026-10-04');
+assert(!/[\u3400-\u9fff\u0400-\u04ff]/.test(d.body.textContent));
+assert(!d.body.textContent.includes('undefined'));
+w.close();
+console.log(
+  'PASS: 9 sourced events, valid explicit dates, region separation, lunar dates not repeated into unverified years, local UTC+08 today/midnight rollover, month lengths and source links.',
+);

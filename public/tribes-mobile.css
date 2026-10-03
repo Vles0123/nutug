@@ -1,0 +1,519 @@
+/* Separate narrow-screen experience. Desktop keeps its full network workspace. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+body.mobile-edition {
+  padding-bottom: calc(66px + env(safe-area-inset-bottom));
+  min-height: 100svh;
+}
+header {
+  height: 120px;
+  padding: 10px 12px;
+  gap: 12px;
+  align-items: flex-start;
+  overflow: visible;
+}
+header h1,
+header a {
+  height: 98px;
+  font-size: 23px;
+}
+header h1 {
+  font-size: 25px;
+}
+header p {
+  display: none;
+}
+header #backLink {
+  font-size: 19px;
+}
+#mobileMenu,
+#desktopEdition {
+  margin-left: auto;
+  min-width: 44px;
+  height: 44px;
+  writing-mode: horizontal-tb;
+  font: 24px/1 system-ui;
+  padding: 9px;
+  text-align: center;
+  background: #f9f3df;
+  color: #213e41;
+  border: 1px solid #91a99e;
+  border-radius: 5px;
+}
+#desktopEdition {
+  margin-left: 0;
+  text-decoration: none;
+}
+#mobilePicker {
+  position: fixed;
+  inset: 120px 0 calc(66px + env(safe-area-inset-bottom));
+  z-index: 25;
+  background: #f2efdf;
+  overflow-y: auto;
+  box-shadow: 0 15px 30px #18353055;
+}
+#mobilePicker[hidden] {
+  display: none;
+}
+#periods {
+  padding: 10px;
+  gap: 7px;
+}
+#periods button {
+  height: 116px;
+}
+#tribeLegend {
+  padding: 10px;
+}
+#tribeLegend span {
+  height: 100px;
+}
+#tribePicker {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 12px;
+  gap: 10px;
+  overflow: visible;
+}
+#tribePicker button {
+  height: 146px;
+  min-width: 0;
+  font-size: 21px;
+}
+main {
+  display: block;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  border: 0;
+}
+.map {
+  height: calc(100svh - 120px - 66px - env(safe-area-inset-bottom));
+  min-height: 430px;
+  max-height: none;
+}
+#tribeGraph {
+  flex: 1;
+  min-height: 220px;
+}
+.map-controls {
+  padding: 7px 10px;
+  gap: 7px;
+}
+.map-controls #focusTribe,
+.map-controls #tribeLibraryJump {
+  display: none;
+}
+.mobile-relation-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 6px 12px;
+  background: #e9e5d5;
+  min-height: 60px;
+}
+.mobile-relation-bar button {
+  font: 30px system-ui;
+  padding: 0 10px;
+}
+.mobile-relation-bar #mobileRelationDate {
+  font: 14px/1.3 system-ui;
+  max-width: 110px;
+}
+.mobile-relation-bar #mobileRelationLabel {
+  writing-mode: vertical-lr;
+  height: 92px;
+  font-size: 18px;
+  max-width: 115px;
+  overflow-x: auto;
+  flex: 1;
+}
+.mobile-relation-bar #mobileNextRelation {
+  margin-left: auto;
+}
+#mobileNav {
+  position: fixed;
+  z-index: 30;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 8px 14px calc(8px + env(safe-area-inset-bottom));
+  border-top: 1px solid #b8c5b2;
+  background: #f5f1e4ee;
+  backdrop-filter: blur(12px);
+}
+#mobileNav button {
+  height: 48px;
+  font: 25px system-ui;
+  border: 0;
+  background: transparent;
+}
+#mobileNav button[aria-pressed='true'] {
+  background: #233e40;
+  color: #fff0c8;
+  border-radius: 9px;
+}
+body[data-screen='graph'] #tribeDetail,
+body[data-screen='graph'] #tribalLibrary,
+body[data-screen='detail'] .map,
+body[data-screen='detail'] #tribalLibrary,
+body[data-screen='library'] main {
+  display: none;
+}
+#scope {
+  display: none;
+}
+#tribeDetail {
+  writing-mode: horizontal-tb;
+  padding: 14px;
+  border: 0;
+  overflow: visible;
+  min-width: 0;
+  max-width: 100%;
+}
+#tribeDetail .overview {
+  display: block;
+  writing-mode: horizontal-tb;
+  height: auto;
+  overflow: visible;
+}
+#tribeDetail .mobile-overview-heading {
+  display: flex;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #d2d4bf;
+}
+#tribeDetail .mobile-overview-heading h2,
+#tribeDetail .mobile-overview-heading p {
+  writing-mode: vertical-lr;
+  height: 170px;
+  margin: 0;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+#tribeDetail .mobile-overview-heading p {
+  font-size: 20px;
+  color: #5b766b;
+}
+#tribeDetail .mobile-text-card {
+  writing-mode: vertical-lr;
+  height: 180px;
+  max-width: 100%;
+  width: 100%;
+  overflow-x: auto;
+  padding: 12px;
+  margin: 12px 0;
+  background: #edead9;
+  border-radius: 6px;
+  font-size: 21px;
+  line-height: 1.65;
+}
+#tribeDetail .mobile-detail-group {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  border-top: 1px solid #d0d3c1;
+  padding-top: 14px;
+  margin-top: 16px;
+  min-width: 0;
+}
+#tribeDetail .mobile-detail-group > h3 {
+  writing-mode: vertical-lr;
+  height: 140px;
+  flex: 0 0 26px;
+  margin: 0;
+  font-size: 19px;
+}
+#tribeDetail .mobile-detail-content {
+  flex: 1;
+  min-width: 0;
+}
+#tribeDetail .event-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  overflow: visible;
+  padding: 0;
+}
+#tribeDetail .event-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 25px 166px;
+  gap: 4px 8px;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  height: auto;
+  padding: 10px;
+  border-left-width: 3px;
+  overflow: visible;
+}
+#tribeDetail .event-card .date {
+  grid-column: 1/-1;
+  writing-mode: horizontal-tb;
+  height: auto;
+  font: 12px/1.5 system-ui;
+  white-space: normal;
+}
+#tribeDetail .event-card .event-name {
+  writing-mode: vertical-lr;
+  height: 166px;
+  font-size: 20px;
+  min-width: 0;
+  overflow-x: auto;
+}
+#tribeDetail .event-description {
+  writing-mode: vertical-lr;
+  height: 210px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 0 0 14px;
+  padding: 10px;
+  font-size: 21px;
+}
+#tribeDetail .source-links,
+#tribeDetail .people-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  overflow: visible;
+  padding: 0;
+  margin: 10px 0;
+}
+#tribeDetail .source-links a,
+#tribeDetail .people-links a {
+  display: block;
+  writing-mode: vertical-lr;
+  height: 210px;
+  font-size: 19px;
+  padding: 10px;
+  background: #eeeddc;
+  border-radius: 5px;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+}
+#tribeDetail .tribal-related-reading {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  overflow: visible;
+  gap: 10px;
+  border-top: 1px solid #d0d3c1;
+  margin-top: 16px;
+  padding-top: 14px;
+}
+#tribeDetail .tribal-related-reading h3 {
+  height: 130px;
+  margin: 0;
+  grid-column: 1/-1;
+  font-size: 20px;
+}
+#tribeDetail .tribal-related-reading button {
+  height: 190px;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.mobile-edition #tribalLibrary {
+  border-top: 0;
+  padding: 16px 14px;
+}
+.mobile-edition .tl-heading h2,
+.mobile-edition .tl-heading p {
+  height: 148px;
+  font-size: 22px;
+}
+.mobile-edition .tl-heading p {
+  font-size: 18px;
+}
+.mobile-edition #tl-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.mobile-edition #tl-reader {
+  width: calc(100vw - 20px);
+  max-width: 580px;
+  max-height: calc(100dvh - 24px);
+  margin: auto;
+  padding: 0;
+}
+.mobile-reader-tools {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.mobile-reader-tools button {
+  font: 24px system-ui;
+  min-width: 42px;
+  padding: 5px;
+}
+.mobile-reader-tools button[aria-pressed='true'] {
+  background: #233e40;
+  color: #fff0c8;
+}
+#mobilePageCount {
+  font: 13px system-ui;
+  min-width: 38px;
+}
+.mobile-edition .tl-reader-bar {
+  padding: 8px;
+  gap: 5px;
+}
+.mobile-edition #tl-reader-scroll {
+  writing-mode: horizontal-tb;
+  height: auto;
+  max-height: calc(100dvh - 110px);
+  overflow-y: auto;
+  padding: 14px;
+}
+.mobile-edition #tl-reader-title {
+  writing-mode: vertical-lr;
+  height: 165px;
+  font-size: 24px;
+  margin: 0 0 12px;
+  padding-bottom: 0;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.mobile-edition #tl-reader-body {
+  writing-mode: vertical-lr;
+  width: 100%;
+  height: clamp(250px, 46svh, 420px);
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 10px;
+  background: #f0ecdc;
+  border-radius: 5px;
+}
+.mobile-edition #tl-reader-body p {
+  font-size: 22px;
+  line-height: 1.65;
+  margin: 0 8px;
+  max-height: 100%;
+}
+.mobile-edition #tl-reader-body p[hidden] {
+  display: none;
+}
+.mobile-edition #tl-related,
+.mobile-edition #tl-sources {
+  writing-mode: horizontal-tb;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.mobile-edition #tl-related h3,
+.mobile-edition #tl-sources h3 {
+  writing-mode: vertical-lr;
+  height: 100px;
+  font-size: 20px;
+  margin: 0;
+  grid-column: 1/-1;
+}
+.mobile-edition #tl-related button,
+.mobile-edition #tl-sources a {
+  writing-mode: vertical-lr;
+  height: 210px;
+  display: block;
+  margin: 0;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 10px;
+  background: #f0ecdc;
+  font-size: 20px;
+}
+.mobile-edition #tl-reader[data-reader-mode='body'] #tl-related,
+.mobile-edition #tl-reader[data-reader-mode='body'] #tl-sources,
+.mobile-edition #tl-reader[data-reader-mode='sources'] #tl-reader-body,
+.mobile-edition #tl-reader[data-reader-mode='sources'] #tl-related,
+.mobile-edition #tl-reader[data-reader-mode='related'] #tl-reader-body,
+.mobile-edition #tl-reader[data-reader-mode='related'] #tl-sources {
+  display: none;
+}
+@media (max-width: 350px) {
+  #tribeDetail .event-list {
+    grid-template-columns: 1fr;
+  }
+  #tribePicker {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .mobile-reader-tools button {
+    min-width: 36px;
+    padding: 4px;
+  }
+  .mobile-edition #tl-reader-title {
+    font-size: 22px;
+  }
+}
+@media (orientation: landscape) and (max-height: 600px) {
+  .map {
+    height: calc(100svh - 120px - 66px);
+    min-height: 380px;
+  }
+  .mobile-edition #tl-reader-title {
+    height: 120px;
+  }
+  .mobile-edition #tl-reader-body {
+    height: 220px;
+  }
+}
+
+.mobile-edition .tribe-profile {
+  writing-mode: horizontal-tb;
+  margin: 16px 0;
+  padding: 14px 0;
+}
+.mobile-edition .profile-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: visible;
+  gap: 8px;
+}
+.mobile-edition .profile-tabs button {
+  height: 160px;
+  min-width: 0;
+  max-width: 100%;
+  font-size: 20px;
+  padding: 8px;
+  overflow-x: auto;
+}
+.mobile-edition .profile-paragraph {
+  height: 210px;
+  font-size: 21px;
+  max-width: 100%;
+  width: 100%;
+  overflow-x: auto;
+}
+.mobile-edition .profile-content .source-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 350px) {
+  .mobile-edition .profile-tabs button {
+    font-size: 18px;
+    height: 150px;
+  }
+}
+
+#mobileNav {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.mobile-calendar-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  font: 25px system-ui;
+  text-decoration: none;
+  border-radius: 9px;
+}
