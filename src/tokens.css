@@ -3,6 +3,9 @@
   color-scheme: light dark;
   --accent: #0088ff; /* Accents/Blue, light mode */
   --label: #000; /* Labels/Primary */
+  --prose: #242426;
+  --prose-secondary: #56565c;
+  --link-text: #0067c7;
   --secondary: rgba(60, 60, 67, 0.6); /* Labels/Secondary */
   --control-label: #1a1a1a; /* Labels - Vibrant - Controls/Primary */
   --secondary-fill: rgba(120, 120, 128, 0.16); /* Fills/Secondary */
@@ -28,6 +31,9 @@
   :root {
     --accent: #0091ff;
     --label: #fff;
+    --prose: #ededf0;
+    --prose-secondary: #b8b8c1;
+    --link-text: #62b5ff;
     --secondary: rgba(235, 235, 245, 0.7);
     --control-label: #f5f5f5;
     --secondary-fill: rgba(120, 120, 128, 0.32);

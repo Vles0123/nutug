@@ -13,12 +13,15 @@ export const almanac = CHINESE_ALMANAC_CONFIG;
 
 export const labels = {
   brand: 'ᠨᠤᠲᠤᠭ',
+  previous: 'ᠡᠮᠦᠨᠡᠬᠢ',
+  next: 'ᠳᠠᠷᠠᠭᠠᠬᠢ',
   people: 'ᠬᠦᠮᠦᠰ',
   tribes: 'ᠠᠶᠢᠮᠠᠭ',
   library: 'ᠮᠡᠳᠡᠯᠭᠡ',
   calendar: 'ᠴᠠᠭ ᠲᠣᠭ᠎ᠠ',
   search: 'ᠬᠠᠶᠢᠬᠤ',
   close: 'ᠬᠠᠭᠠᠬᠤ',
+  clear: 'ᠠᠷᠢᠯᠭᠠᠬᠤ',
   read: 'ᠤᠩᠰᠢᠬᠤ',
   settings: 'ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ',
   type: 'ᠦᠰᠦᠭ ᠦᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ',

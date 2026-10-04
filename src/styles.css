@@ -219,6 +219,9 @@ button[data-pressed] {
   flex: none;
 }
 .toolbar-actions .icon-button {
+  background: transparent;
+}
+.toolbar-actions .icon-button[data-hovered] {
   background: var(--tertiary-fill);
 }
 .icon-button {
@@ -944,87 +947,6 @@ button[data-pressed] {
   overflow-x: hidden;
   min-height: 0;
 }
-.library-page {
-  padding: 26px 32px;
-}
-.library-toolbar {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  max-width: 700px;
-}
-.library-toolbar .search-field {
-  flex: 1;
-}
-.library-count {
-  font-size: 13px;
-  color: var(--secondary);
-  white-space: nowrap;
-}
-.filter-scroll {
-  overflow-x: auto;
-  padding: 22px 0;
-  scrollbar-width: thin;
-}
-.filter-scroll .segments {
-  max-width: none;
-}
-.book-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 18px;
-}
-.book {
-  background: var(--canvas);
-  border-radius: 22px;
-  padding: 20px;
-  min-height: 330px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  box-shadow: 0 1px 3px #00000006;
-  transition:
-    box-shadow 0.2s,
-    background 0.2s;
-  text-align: left;
-  min-width: 0;
-}
-.book:hover {
-  background: var(--selection);
-  box-shadow: var(--shadow);
-}
-.book-index {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--secondary);
-  font-size: 11px;
-}
-.book-index svg {
-  color: var(--accent);
-}
-.book-copy {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding-top: 26px;
-  min-width: 0;
-}
-.book h2,
-.book h3 {
-  font-size: 29px;
-  max-height: 240px;
-  flex: none;
-}
-.book .muted {
-  font-size: 22px;
-  max-height: 240px;
-}
-.book-arrow {
-  color: var(--accent);
-  margin-top: auto;
-  align-self: flex-end;
-}
 .empty-state {
   display: flex;
   justify-content: center;
@@ -1311,12 +1233,6 @@ button[data-pressed] {
     gap: 20px;
     padding: 24px;
   }
-  .library-page {
-    padding: 24px;
-  }
-  .book-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  }
 }
 @media (max-width: 900px) {
   .app {
@@ -1332,7 +1248,7 @@ button[data-pressed] {
     justify-content: center;
     border-right: 0;
     border-top: 1px solid var(--separator);
-    padding: 8px max(14px, env(safe-area-inset-right)) max(8px, env(safe-area-inset-bottom));
+    padding: 6px max(14px, env(safe-area-inset-right)) max(6px, env(safe-area-inset-bottom));
     gap: 0;
     overflow: visible;
     background: var(--canvas);
@@ -1348,15 +1264,15 @@ button[data-pressed] {
     gap: 8px;
   }
   .destination {
-    min-height: 64px;
-    padding: 10px 16px;
+    min-height: 60px;
+    padding: 6px 14px;
     gap: 10px;
     flex: 1;
     max-width: 140px;
   }
   .destination .mn {
-    font-size: 21px;
-    max-height: 70px;
+    font-size: 20px;
+    max-height: 56px;
   }
   .atlas.with-inspector {
     grid-template-columns: minmax(0, 1fr);
@@ -1421,8 +1337,8 @@ button[data-pressed] {
     min-height: 88px;
   }
   .toolbar h1 {
-    font-size: 29px;
-    max-height: 86px;
+    font-size: 27px;
+    max-height: 72px;
   }
   .calendar-page {
     grid-template-columns: minmax(0, 1fr);
@@ -1455,8 +1371,8 @@ button[data-pressed] {
     gap: 10px;
   }
   .toolbar h1 {
-    font-size: 28px;
-    max-height: 86px;
+    font-size: 27px;
+    max-height: 72px;
   }
   .graph-toolbar {
     padding: 10px 14px 0;
@@ -1520,13 +1436,13 @@ button[data-pressed] {
     gap: 3px;
   }
   .destination {
-    padding: 8px;
+    padding: 6px;
     gap: 6px;
-    border-radius: 20px;
+    border-radius: 16px;
   }
   .destination .mn {
     font-size: 20px;
-    max-height: 66px;
+    max-height: 56px;
   }
   .destination > svg {
     width: 19px;
@@ -1559,51 +1475,6 @@ button[data-pressed] {
   }
   .reading-text {
     font-size: calc(27px * var(--reading-scale));
-  }
-  .library-page {
-    padding: 18px;
-  }
-  .library-toolbar {
-    gap: 10px;
-  }
-  .library-count {
-    font-size: 11px;
-  }
-  .filter-scroll {
-    padding: 18px 0;
-  }
-  .book-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 12px;
-  }
-  .book {
-    padding: 18px;
-    min-height: 276px;
-    flex-direction: row;
-    gap: 18px;
-  }
-  .book-copy {
-    gap: 18px;
-    padding-top: 0;
-    flex: 1;
-  }
-  .book-index {
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 12px;
-  }
-  .book-arrow {
-    align-self: flex-start;
-    margin-top: 0;
-  }
-  .book h2,
-  .book h3 {
-    font-size: 26px;
-    max-height: 230px;
-  }
-  .book .muted {
-    font-size: 20px;
-    max-height: 230px;
   }
   .calendar-page {
     padding: 18px;
@@ -1735,14 +1606,6 @@ button[data-pressed] {
   outline-offset: 1px;
 }
 
-.original-readings {
-  margin-top: 36px;
-}
-.original-readings > h2 {
-  font-size: 27px;
-  max-height: 145px;
-  margin-bottom: 20px;
-}
 .compact-reader {
   display: none;
 }

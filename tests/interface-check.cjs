@@ -52,6 +52,20 @@ function visibleText(d) {
   );
 }
 (async () => {
+  const { readingPages } = await import('../src/reading-layout.mjs');
+  for (const scale of [1, 1.5]) {
+    const columns = [8, 90, 190, 305, 405, 485, 600].map((left) => ({
+      left: left * scale,
+      right: (left + 35) * scale,
+    }));
+    const starts = readingPages(columns, 342);
+    assert(starts.length > 1);
+    for (const start of starts)
+      assert(
+        !columns.some((column) => column.left < start && column.right > start),
+        'Page starts between shaped text columns',
+      );
+  }
   for (const page of pages) {
     const { w, d, errors } = await load(page);
     assert.equal(d.querySelectorAll('.destination').length, 4);
@@ -124,8 +138,32 @@ function visibleText(d) {
   await pause(65);
   await click(w, d.querySelectorAll('.destination')[2]);
   assert.equal(d.querySelectorAll('[data-article]').length, 38);
+  await click(w, d.querySelector('[data-action="catalog-filter"]'));
+  assert.equal(d.querySelectorAll('.category-options .segment').length, 8);
+  await click(
+    w,
+    [...d.querySelectorAll('.category-options .segment')].find(
+      (e) => e.getAttribute('aria-label') === 'ᠠᠶᠢᠮᠠᠭ',
+    ),
+  );
+  assert.equal(d.querySelectorAll('[data-article]').length, 8);
+  assert.equal(
+    d.querySelector('.category-popover'),
+    null,
+    'A category selection returns to the catalog',
+  );
+  await click(w, d.querySelector('[data-action="catalog-filter"]'));
+  await click(w, d.querySelector('.category-options .segment'));
+  assert.equal(d.querySelectorAll('[data-article]').length, 38);
   await click(w, d.querySelector('[data-article="kereit_guide"]'));
   assert(d.querySelectorAll('.reader-content .reading-text').length >= 5);
+  assert(d.querySelector('.reader-title'), 'Article title belongs to the vertical reading flow');
+  await click(w, d.querySelector('[data-action="reader-smaller"]'));
+  assert.equal(
+    w.localStorage.getItem('nutug.readingScale'),
+    '0.95',
+    'Reading size can be changed while reading',
+  );
   d.querySelector('[role="dialog"]').dispatchEvent(
     new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
   );

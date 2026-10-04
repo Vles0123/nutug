@@ -35,6 +35,7 @@ import {
 } from './content';
 import './tokens.css';
 import './styles.css';
+import './reading.css';
 
 const destinations = [
   ['people', Users, './'],
@@ -66,7 +67,12 @@ function hashValues() {
 }
 function readScale() {
   try {
-    return Math.max(0.85, Math.min(1.5, Number(localStorage.getItem('nutug.readingScale')) || 1));
+    return (
+      Math.round(
+        Math.max(0.85, Math.min(1.5, Number(localStorage.getItem('nutug.readingScale')) || 1)) *
+          100,
+      ) / 100
+    );
   } catch {
     return 1;
   }
@@ -126,7 +132,7 @@ function App() {
     [graphPage, page, selected, edge],
   );
   function setReading(value) {
-    setScale(Math.max(0.85, Math.min(1.5, Number(value) || 1)));
+    setScale(Math.round(Math.max(0.85, Math.min(1.5, Number(value) || 1)) * 100) / 100);
   }
   function navigate(next, hash = '') {
     setPage(next);
@@ -473,6 +479,8 @@ function App() {
             selectPerson(id);
           }}
           onTribe={selectTribe}
+          scale={scale}
+          onScale={setReading}
         />
         <Sheet open={search} onOpenChange={setSearch} label={labels.search}>
           <SearchBox value={query} onChange={setQuery} autoFocus />

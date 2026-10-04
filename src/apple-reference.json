@@ -395,5 +395,12 @@
         }
       }
     }
+  },
+  "listReference": {
+    "nodeId": "5:703",
+    "name": "Apple iOS 27 List reference",
+    "componentKey": "d88be1e31d2050ce5dcd65809e51d19da626a3dd",
+    "url": "https://www.figma.com/design/7yJan1z0YUyrybSRLvlY31?node-id=5-703",
+    "application": "Title, supporting text, row separators and disclosure; adapted to vertical Mongolian."
   }
 }

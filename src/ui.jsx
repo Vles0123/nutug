@@ -133,7 +133,7 @@ export function SearchBox({ value, onChange, autoFocus = false }) {
     >
       <Search size={20} aria-hidden="true" />
       <Input autoFocus={autoFocus} aria-label={labels.search} className="search-input" />
-      {value && <IconButton icon={X} label={labels.close} onPress={() => onChange('')} />}
+      {value && <IconButton icon={X} label={labels.clear} onPress={() => onChange('')} />}
     </SearchField>
   );
 }
@@ -149,10 +149,33 @@ export function SourceLinks({ items = [] }) {
     </div>
   );
 }
-export function ReadingColumns({ children, className = '' }) {
+export function ReadingColumns({
+  children,
+  className = '',
+  scrollRef,
+  onScroll,
+  endPadding,
+  pages = [],
+  clipRight = 0,
+}) {
   return (
-    <div className={`reading-scroll ${className}`} tabIndex={0} aria-label={labels.read}>
-      <div className="reading-columns">{children}</div>
+    <div
+      ref={scrollRef}
+      onScroll={onScroll}
+      className={`reading-scroll ${className}`}
+      tabIndex={0}
+      aria-label={labels.read}
+      style={clipRight > 0 ? { clipPath: `inset(0 ${clipRight}px 0 0)` } : undefined}
+    >
+      <div
+        className="reading-columns"
+        style={endPadding !== undefined ? { paddingRight: endPadding } : undefined}
+      >
+        {children}
+        {pages.map((left) => (
+          <span key={left} className="reading-snap" aria-hidden="true" style={{ left }} />
+        ))}
+      </div>
     </div>
   );
 }
