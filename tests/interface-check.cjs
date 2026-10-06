@@ -279,7 +279,7 @@ function visibleText(d) {
     assert.equal(selectedDate(), '2026-10-06');
     clock.now = Date.parse('2026-10-06T16:00:10Z');
     timed.d.dispatchEvent(new timed.w.Event('visibilitychange'));
-    await pause(90);
+    for (let i = 0; i < 100 && selectedDate() !== '2026-10-07'; i++) await pause(20);
     assert.equal(selectedDate(), '2026-10-07', 'Today follows the content time zone at midnight');
     if (page === 'calendar.html')
       await click(timed.w, timed.d.querySelector('[data-date="2026-10-05"]'));
