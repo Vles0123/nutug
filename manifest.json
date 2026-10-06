@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "273cf7fa2bab7552eb550afc",
+  "revision": "efdca442827fd754db67fb9a",
   "locale": "mn-Mong",
   "writingMode": "vertical-lr",
   "categories": {
@@ -25,9 +25,9 @@
     "bytes": 152956
   },
   "catalog": {
-    "path": "objects/2260fed5b6a8c873712fa6c84f11a632007eec1e0345cbf825b7b241732e6909.json",
-    "sha256": "2260fed5b6a8c873712fa6c84f11a632007eec1e0345cbf825b7b241732e6909",
-    "bytes": 295189
+    "path": "objects/b452ae2efc0854b5bca19a29c94182a599050a7ecc36eb5c813f3616bf1b6ae5.json",
+    "sha256": "b452ae2efc0854b5bca19a29c94182a599050a7ecc36eb5c813f3616bf1b6ae5",
+    "bytes": 313203
   },
   "search": {
     "path": "objects/1c89d79d419bd6ab8f2c7406c36c6e99faa54b0eb843fe4c2d6c7431a9fef79f.json",
@@ -40,7 +40,7 @@
     "bytes": 1408618
   },
   "deviceCatalog": {
-    "path": "revisions/273cf7fa2bab7552eb550afc/catalog/{page}.json",
+    "path": "revisions/efdca442827fd754db67fb9a/catalog/{page}.json",
     "pageSize": 8,
     "pageCount": 61
   },
