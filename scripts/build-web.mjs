@@ -1,29 +1,30 @@
 import { build, context } from 'esbuild';
-import { readFile, writeFile, mkdir, readdir, rm, rename } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir, rm, rename, stat } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { createHash } from 'node:crypto';
 import { format, resolveConfig } from 'prettier';
-import { dictionary, getLocalizationScript } from 'react-aria-components/i18n';
+import { getLocalizationScript } from 'react-aria-components/i18n';
 import { LocalizedStringDictionary } from '@internationalized/string';
 
 await mkdir('public/assets', { recursive: true });
-const strings = {
-  ...dictionary.getStringsForLocale('en-US'),
-  '@react-aria/overlays': { dismiss: 'ᠬᠠᠭᠠᠬᠤ' },
-  '@react-aria/searchfield': { 'Clear search': 'ᠠᠷᠢᠯᠭᠠᠬᠤ' },
-};
-await writeFile(
-  'public/assets/locale.js',
-  getLocalizationScript(
-    'mn-Mong',
-    new LocalizedStringDictionary({ 'mn-Mong': strings }, 'mn-Mong'),
-  ),
-);
 const pages = ['index.html', 'tribes.html', 'tribes-mobile.html', 'calendar.html', 'almanac.html'];
-const template = await readFile('src/document.html', 'utf8'),
-  formatting = await resolveConfig('src/document.html');
 async function finish(result) {
   if (result.errors.length) return;
+  const copy = new URL('../src/ui-copy.mjs', import.meta.url);
+  const { labels, uiLocale } = await import(copy.href + '?mtime=' + (await stat(copy)).mtimeMs);
+  const strings = {
+    '@react-aria/overlays': { dismiss: labels.close },
+    '@react-aria/searchfield': { 'Clear search': labels.clear },
+  };
+  const script = getLocalizationScript(
+    uiLocale,
+    new LocalizedStringDictionary({ [uiLocale]: strings }, uiLocale),
+  );
+  const locale =
+    'assets/locale-' + createHash('sha256').update(script).digest('hex').slice(0, 12) + '.js';
+  await writeFile('public/' + locale, script);
+  const template = await readFile('src/document.html', 'utf8'),
+    formatting = await resolveConfig('src/document.html');
   const [entry, entryInfo] = Object.entries(result.metafile.outputs).find(
     ([path, info]) => path.endsWith('.js') && info.entryPoint,
   );
@@ -36,6 +37,7 @@ async function finish(result) {
         '<script src="vendor/lunar-1.7.7.js"></script>\n<script src="chinese-almanac-core.js"></script>',
       )
       .replace('assets/nutug.js', js)
+      .replace('assets/locale.js', locale)
       .replace('assets/nutug.css', css),
     { ...formatting, parser: 'html' },
   );
@@ -47,7 +49,7 @@ async function finish(result) {
     ...pages,
     js,
     css,
-    'assets/locale.js',
+    locale,
     'fonts/OnonSoninSans.woff2',
     'vendor/lunar-1.7.7.js',
     'chinese-almanac-core.js',

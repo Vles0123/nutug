@@ -8,13 +8,22 @@ import {
   BookOpen,
   CalendarDays,
   Search,
-  Type,
   PanelRight,
   ChevronRight,
   History,
   ArrowLeft,
 } from 'lucide-react';
-import { Mn, IconButton, Segments, Sheet, ReadingSettings, SearchBox } from './ui';
+import {
+  Mn,
+  IconButton,
+  Segments,
+  Sheet,
+  ReadingSettings,
+  SearchBox,
+  ColumnScroller,
+  MongolianTypeIcon as Type,
+} from './ui';
+import { uiLocale } from './ui-copy.mjs';
 import { Network } from './Network';
 import { Inspector, Reader, makeRecord } from './Records';
 import { Library } from './Library';
@@ -42,6 +51,7 @@ import './tokens.css';
 import './styles.css';
 import './reading.css';
 import './discovery.css';
+import './mongolian-interaction.css';
 
 const destinations = [
   ['people', Users, './'],
@@ -529,6 +539,10 @@ function App() {
                   onRead={openReader}
                   query={libraryQuery}
                   onQueryChange={setLibraryQuery}
+                  onSearch={() => {
+                    setQuery(libraryQuery);
+                    setSearch(true);
+                  }}
                 />
               ) : page === 'calendar' ? (
                 <CalendarView
@@ -566,59 +580,67 @@ function App() {
           scale={scale}
           onScale={setReading}
         />
-        <Sheet open={search} onOpenChange={setSearch} label={labels.search}>
-          <SearchBox value={query} onChange={setQuery} autoFocus />
-          <div className="search-results">
-            {!searchPeople.length && !searchTribes.length && !searchArticles.length && (
-              <div className="empty-state">
-                <Mn>{knowledge.ui.empty}</Mn>
-              </div>
-            )}
-            {[
-              [labels.people, searchPeople, selectPerson],
-              [labels.tribes, searchTribes, selectTribe],
-              [
-                labels.library,
-                searchArticles,
-                (a) => {
-                  setSearch(false);
-                  openReader(a);
-                },
-              ],
-            ]
-              .filter(([, items]) => items.length)
-              .map(([title, items, action]) => (
-                <section key={title}>
-                  <Mn as="h3">{title}</Mn>
-                  <div>
-                    {items
-                      .slice(
-                        0,
-                        title === labels.library ? (query ? 8 : 5) : query ? items.length : 5,
-                      )
-                      .map((item) => (
-                        <Button key={item.id} onPress={() => action(item.title ? item : item.id)}>
-                          <Mn>{item.name || item.title}</Mn>
-                          <ChevronRight size={16} />
-                        </Button>
-                      ))}
-                  </div>
-                  {title === labels.library && items.length > (query ? 8 : 5) && (
-                    <Button
-                      className="text-button search-all"
-                      data-action="search-all"
-                      onPress={() => {
-                        setLibraryQuery(query);
-                        setCatalogRequest((value) => value + 1);
-                        navigate('library');
-                      }}
-                    >
-                      <Mn>{labels.more}</Mn>
-                      <span className="numeric">{items.length}</span>
-                    </Button>
-                  )}
-                </section>
-              ))}
+        <Sheet
+          open={search}
+          onOpenChange={setSearch}
+          label={labels.search}
+          wide
+          className="search-sheet"
+        >
+          <div className="search-workspace">
+            <SearchBox value={query} onChange={setQuery} autoFocus />
+            <ColumnScroller className="search-results" aria-label={labels.search} tabIndex={0}>
+              {!searchPeople.length && !searchTribes.length && !searchArticles.length && (
+                <div className="empty-state">
+                  <Mn>{knowledge.ui.empty}</Mn>
+                </div>
+              )}
+              {[
+                [labels.people, searchPeople, selectPerson],
+                [labels.tribes, searchTribes, selectTribe],
+                [
+                  labels.library,
+                  searchArticles,
+                  (a) => {
+                    setSearch(false);
+                    openReader(a);
+                  },
+                ],
+              ]
+                .filter(([, items]) => items.length)
+                .map(([title, items, action]) => (
+                  <section key={title}>
+                    <Mn as="h3">{title}</Mn>
+                    <div>
+                      {items
+                        .slice(
+                          0,
+                          title === labels.library ? (query ? 8 : 5) : query ? items.length : 5,
+                        )
+                        .map((item) => (
+                          <Button key={item.id} onPress={() => action(item.title ? item : item.id)}>
+                            <Mn>{item.name || item.title}</Mn>
+                            <ChevronRight size={16} />
+                          </Button>
+                        ))}
+                    </div>
+                    {title === labels.library && items.length > 0 && (
+                      <Button
+                        className="text-button search-all"
+                        data-action="search-all"
+                        onPress={() => {
+                          setLibraryQuery(query);
+                          setCatalogRequest((value) => value + 1);
+                          navigate('library');
+                        }}
+                      >
+                        <Mn>{labels.catalog}</Mn>
+                        <span className="numeric">{items.length}</span>
+                      </Button>
+                    )}
+                  </section>
+                ))}
+            </ColumnScroller>
           </div>
         </Sheet>
         <Sheet open={timeline} onOpenChange={setTimeline} label={labels.timeline}>
@@ -665,7 +687,7 @@ function App() {
 }
 
 createRoot(document.getElementById('root')).render(
-  <I18nProvider locale="mn-Mong">
+  <I18nProvider locale={uiLocale}>
     <App />
   </I18nProvider>,
 );

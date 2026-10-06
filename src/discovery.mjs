@@ -23,13 +23,16 @@ export function relatedRecords(records, id, limit = 6) {
 }
 
 export function shortTitle(title, limit = 42) {
-  const segments = [...new Intl.Segmenter('mn', { granularity: 'grapheme' }).segment(title)];
-  return segments.length <= limit
-    ? title
-    : segments
-        .slice(0, limit)
-        .map((item) => item.segment)
-        .join('') + '…';
+  // A Mongolian orthographic word includes its NNBSP suffix and MVS/FVS sequences.
+  const words = [...title.matchAll(/[^\u0020\u0009\u000a\u000d]+/gu)];
+  const segmenter = new Intl.Segmenter('mn', { granularity: 'grapheme' });
+  let end = 0;
+  for (const word of words) {
+    const next = word.index + word[0].length;
+    if (end && [...segmenter.segment(title.slice(0, next))].length > limit) break;
+    end = next;
+  }
+  return !end || end === title.trimEnd().length ? title : title.slice(0, end) + '᠁';
 }
 
 export const discoverySeeds = {

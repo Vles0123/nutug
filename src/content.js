@@ -15,41 +15,7 @@ export const calendar = data.calendar;
 export const almanac = data.almanac;
 export const contentClient = window.NutugContentClient;
 
-export const labels = {
-  brand: 'ᠨᠤᠲᠤᠭ',
-  previous: 'ᠡᠮᠦᠨᠡᠬᠢ',
-  next: 'ᠳᠠᠷᠠᠭᠠᠬᠢ',
-  people: 'ᠬᠦᠮᠦᠰ',
-  tribes: 'ᠠᠶᠢᠮᠠᠭ',
-  library: 'ᠮᠡᠳᠡᠯᠭᠡ',
-  calendar: 'ᠴᠠᠭ ᠲᠣᠭ᠎ᠠ',
-  search: 'ᠬᠠᠶᠢᠬᠤ',
-  close: 'ᠬᠠᠭᠠᠬᠤ',
-  clear: 'ᠠᠷᠢᠯᠭᠠᠬᠤ',
-  read: 'ᠤᠩᠰᠢᠬᠤ',
-  settings: 'ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ',
-  type: 'ᠦᠰᠦᠭ ᠦᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ',
-  larger: 'ᠲᠣᠮᠣᠰᠬᠠᠬᠤ',
-  smaller: 'ᠪᠠᠭᠠᠰᠬᠠᠬᠤ',
-  fit: 'ᠪᠦᠬᠦᠨ ᠢ ᠦᠵᠡᠭᠦᠯᠬᠦ',
-  focus: 'ᠲᠥᠪᠯᠡᠷᠡᠭᠦᠯᠬᠦ',
-  details: 'ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ',
-  sources: 'ᠰᠤᠷᠪᠤᠯᠵᠢ',
-  relations: 'ᠬᠠᠷᠢᠯᠴᠠᠭ᠎ᠠ',
-  all: 'ᠪᠦᠬᠦ',
-  family: 'ᠤᠷᠤᠭ ᠲᠥᠷᠥᠯ',
-  power: 'ᠤᠯᠤᠰ ᠲᠥᠷᠥ',
-  timeline: 'ᠣᠨ ᠴᠠᠭ',
-  back: 'ᠪᠤᠴᠠᠬᠤ',
-  more: 'ᠨᠡᠮᠡᠵᠦ ᠦᠵᠡᠬᠦ',
-  retry: 'ᠳᠠᠬᠢᠨ ᠣᠷᠣᠯᠳᠣᠬᠤ',
-  update: 'ᠰᠢᠨᠡᠴᠢᠯᠡᠬᠦ',
-  download: 'ᠲᠠᠲᠠᠵᠤ ᠠᠪᠬᠤ',
-  saved: 'ᠬᠠᠳᠠᠭᠠᠯᠠᠪᠠ',
-  connection: 'ᠰᠦᠯᠵᠢᠶ᠎ᠡ',
-  directions: 'ᠵᠦᠭ',
-  explore: 'ᠰᠤᠳᠤᠯᠬᠤ',
-};
+export { labels } from './ui-copy.mjs';
 
 export const own = (table, id) => typeof id === 'string' && Object.hasOwn(table, id);
 export const edgeKey = (edge) => (edge ? edge.id || `${edge.type}:${edge.from}:${edge.to}` : null);

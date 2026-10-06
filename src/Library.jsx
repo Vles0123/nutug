@@ -1,7 +1,8 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Button, Dialog, DialogTrigger, Popover } from 'react-aria-components';
 import { ChevronDown, ChevronRight, ListFilter, Search } from 'lucide-react';
-import { Mn, Segments, SearchBox } from './ui';
+import { Mn, Segments, SearchTrigger } from './ui';
+import { useColumnScroll } from './useColumnScroll';
 import { catalogIndex, knowledge, labels } from './content';
 import { CATALOG_BATCH_SIZE, searchCatalog } from './catalog.mjs';
 import { Discovery } from './Discovery';
@@ -61,7 +62,7 @@ function CatalogEntry({ title, summary, onRead, articleId, readingId }) {
   );
 }
 
-export function Library({ onRead, query, onQueryChange, tribalOnly = false }) {
+export function Library({ onRead, query, onQueryChange, onSearch, tribalOnly = false }) {
   const [view, setView] = useState(query ? 'catalog' : 'explore');
   useEffect(() => {
     if (query) setView('catalog');
@@ -71,10 +72,12 @@ export function Library({ onRead, query, onQueryChange, tribalOnly = false }) {
   const [expanded, setExpanded] = useState({ key: '', limit: CATALOG_BATCH_SIZE });
   const pendingFocus = useRef(null),
     listRef = useRef(null);
+  useColumnScroll(listRef, tribalOnly || !!query || view === 'catalog');
   const filterKey = JSON.stringify([query, category, tribalOnly]);
   const limit = expanded.key === filterKey ? expanded.limit : CATALOG_BATCH_SIZE;
   useLayoutEffect(() => {
     pendingFocus.current = null;
+    if (listRef.current) listRef.current.scrollLeft = 0;
     setExpanded({ key: filterKey, limit: CATALOG_BATCH_SIZE });
   }, [filterKey]);
   const categories = [
@@ -99,7 +102,7 @@ export function Library({ onRead, query, onQueryChange, tribalOnly = false }) {
     const entry = listRef.current?.children[pendingFocus.current];
     pendingFocus.current = null;
     entry?.focus({ preventScroll: true });
-    entry?.scrollIntoView({ block: 'start', behavior: 'instant' });
+    entry?.scrollIntoView({ block: 'nearest', inline: 'start', behavior: 'instant' });
   }, [limit]);
   const exploring = !tribalOnly && !query && view === 'explore';
   return (
@@ -116,11 +119,11 @@ export function Library({ onRead, query, onQueryChange, tribalOnly = false }) {
             }}
             items={[
               { id: 'explore', label: labels.explore },
-              { id: 'catalog', label: labels.all },
+              { id: 'catalog', label: labels.catalog },
             ]}
           />
         )}
-        <SearchBox value={query} onChange={onQueryChange} />
+        <SearchTrigger value={query} onPress={onSearch} onClear={() => onQueryChange('')} />
         {!exploring && !tribalOnly && (
           <DialogTrigger isOpen={filtersOpen} onOpenChange={setFiltersOpen}>
             <Button

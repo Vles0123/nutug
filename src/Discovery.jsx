@@ -164,7 +164,7 @@ export function Discovery({ onRead, onCatalog }) {
               <ChevronRight size={17} />
             </Button>
             <Button className="text-button" data-action="discovery-catalog" onPress={onCatalog}>
-              <Mn>{labels.all}</Mn>
+              <Mn>{labels.catalog}</Mn>
               <ChevronRight size={17} />
             </Button>
           </div>

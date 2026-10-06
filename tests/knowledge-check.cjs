@@ -40,6 +40,12 @@ const data = vm.runInNewContext(
   fs.readFileSync('content-source/knowledge-data.js', 'utf8') + ';KNOWLEDGE',
 );
 assert.equal(data.articles.length, 474);
+const writing = data.articles.find((article) => article.id === 'vertical-script');
+assert(
+  !JSON.stringify(data).includes('ᠳᠣᠣᠭᠰᠢ'),
+  'The reported direction-word error is absent from active content',
+);
+assert(writing.summary.includes('ᠳᠣᠷᠤᠭᠰᠢ') && writing.body[0].includes('ᠳᠣᠷᠤᠭᠰᠢ'));
 assert.equal(data.readings.length, 2);
 assert.equal(d.querySelectorAll('.kb-original').length, 2);
 for (const r of data.readings) {

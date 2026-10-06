@@ -18,7 +18,8 @@
     "build": "node scripts/build-web.mjs",
     "build:content": "node scripts/build-content.mjs",
     "content:dev": "node scripts/build-content.mjs && node scripts/content-server.mjs",
-    "content:publish": "node scripts/publish-content.mjs"
+    "content:publish": "node scripts/publish-content.mjs",
+    "audit:ui-copy": "node scripts/audit-ui-copy.mjs"
   },
   "devDependencies": {
     "@internationalized/string": "3.2.10",

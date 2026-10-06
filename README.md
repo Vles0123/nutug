@@ -74,7 +74,7 @@ docs/                   架构说明
 
 `NUTUG_CONTENT_MANIFEST=https://example.com/manifest.json npm run build` 可以指定自有内容源。内容编辑后运行 `npm run content:publish` 独立发布，已有客户端会在启动或联网时检查版本。网页、原生客户端和电子墨水屏的对接方式见 [内容接口](docs/content-api.md)。
 
-知识库默认从六个主题进入局部关系图，选择条目后更新摘要和相邻资料，支持沿浏览路径返回；搜索和完整目录可随时切换。设计参考与具体取用方式见 [探索设计](docs/discovery-design.md)。
+知识库默认从六个主题进入局部关系图，选择条目后更新摘要和相邻资料，支持沿浏览路径返回；搜索和完整目录可随时切换。设计参考与具体取用方式见 [探索设计](docs/discovery-design.md)。蒙古文输入与文案核查规则见 [蒙古文交互说明](docs/mongolian-interaction.md)。
 
 界面参考 Apple 官方 iOS/iPadOS 27 组件库的侧栏、工具栏和分段选择器。真实组件实例与来源保存在 [Figma 参考文件](https://www.figma.com/design/7yJan1z0YUyrybSRLvlY31)，网页实现与竖排适配规则见 [界面说明](docs/interface.md)。
 

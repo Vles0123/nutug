@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Button,
   Dialog,
@@ -12,16 +12,18 @@ import {
   SliderThumb,
   SliderOutput,
   Label,
-  SearchField,
-  Input,
+  TextField,
+  TextArea,
 } from 'react-aria-components';
 import { motion, useReducedMotion } from 'motion/react';
 import { X, Search, Minus, Plus, ArrowUpRight } from 'lucide-react';
 import { labels } from './content';
+import { uiLocale } from './ui-copy.mjs';
+import { useColumnScroll } from './useColumnScroll';
 
 export function Mn({ as: Tag = 'span', className = '', children, ...props }) {
   return (
-    <Tag lang="mn-Mong" className={`mn ${className}`} {...props}>
+    <Tag lang={uiLocale} className={`mn ${className}`} {...props}>
       {children}
     </Tag>
   );
@@ -54,11 +56,11 @@ export function Segments({ label, items, value, onChange, className = '' }) {
     </ToggleButtonGroup>
   );
 }
-export function Sheet({ open, onOpenChange, label, children, wide = false }) {
+export function Sheet({ open, onOpenChange, label, children, wide = false, className = '' }) {
   const reduced = useReducedMotion();
   return (
     <ModalOverlay isOpen={open} onOpenChange={onOpenChange} isDismissable className="sheet-overlay">
-      <Modal className={`sheet ${wide ? 'sheet-wide' : ''}`}>
+      <Modal className={`sheet ${wide ? 'sheet-wide' : ''} ${className}`}>
         <motion.div
           initial={{ y: reduced ? 0 : 22, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -124,17 +126,107 @@ export function ReadingSettings({ open, onOpenChange, scale, onScale }) {
   );
 }
 export function SearchBox({ value, onChange, autoFocus = false }) {
+  const [draft, setDraft] = useState(value);
+  const composing = useRef(false),
+    input = useRef(null);
+  useColumnScroll(input);
+  useEffect(() => {
+    if (!composing.current) setDraft(value);
+  }, [value]);
+  const update = (next) => {
+    setDraft(next);
+    if (!composing.current) onChange(next);
+  };
   return (
-    <SearchField
-      aria-label={labels.search}
-      value={value}
-      onChange={onChange}
-      className="search-field"
-    >
+    <TextField aria-label={labels.search} value={draft} onChange={update} className="search-field">
       <Search size={20} aria-hidden="true" />
-      <Input autoFocus={autoFocus} aria-label={labels.search} className="search-input" />
-      {value && <IconButton icon={X} label={labels.clear} onPress={() => onChange('')} />}
-    </SearchField>
+      <TextArea
+        ref={input}
+        autoFocus={autoFocus}
+        aria-label={labels.search}
+        className="search-input"
+        lang={uiLocale}
+        dir="ltr"
+        role="searchbox"
+        enterKeyHint="search"
+        spellCheck={false}
+        onCompositionStart={() => {
+          composing.current = true;
+        }}
+        onCompositionEnd={(event) => {
+          composing.current = false;
+          update(event.currentTarget.value);
+        }}
+        onKeyDown={(event) => {
+          if (composing.current || event.nativeEvent.isComposing) {
+            event.stopPropagation();
+            return;
+          }
+          if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            onChange(draft);
+          }
+        }}
+      />
+      {draft && (
+        <IconButton
+          icon={X}
+          label={labels.clear}
+          data-action="clear-search"
+          onPress={() => {
+            update('');
+            input.current?.focus();
+          }}
+        />
+      )}
+    </TextField>
+  );
+}
+
+export function SearchTrigger({ value = '', onPress, onClear }) {
+  const trigger = useRef(null);
+  return (
+    <div className="search-control">
+      <Button
+        ref={trigger}
+        className="search-trigger"
+        data-action="catalog-search"
+        onPress={onPress}
+        aria-label={labels.search}
+      >
+        <Search size={20} aria-hidden="true" />
+        <Mn>{value || labels.search}</Mn>
+      </Button>
+      {value && (
+        <IconButton
+          icon={X}
+          label={labels.clear}
+          data-action="clear-search"
+          onPress={() => {
+            onClear();
+            trigger.current?.focus();
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+export function MongolianTypeIcon({ size = 20 }) {
+  return (
+    <span aria-hidden="true" className="mongolian-type-icon" style={{ width: size, height: size }}>
+      ᠠ
+    </span>
+  );
+}
+
+export function ColumnScroller({ children, className = '', ...props }) {
+  const ref = useRef(null);
+  useColumnScroll(ref);
+  return (
+    <div ref={ref} className={className} data-column-scroll {...props}>
+      {children}
+    </div>
   );
 }
 export function SourceLinks({ items = [] }) {
@@ -158,13 +250,28 @@ export function ReadingColumns({
   pages = [],
   clipRight = 0,
 }) {
+  const localRef = useRef(null);
+  const activeRef = scrollRef || localRef;
+  useColumnScroll(activeRef);
   return (
     <div
-      ref={scrollRef}
+      ref={activeRef}
       onScroll={onScroll}
       className={`reading-scroll ${className}`}
       tabIndex={0}
       aria-label={labels.read}
+      onKeyDown={(event) => {
+        if (event.target !== event.currentTarget || !['PageDown', 'PageUp'].includes(event.key))
+          return;
+        event.preventDefault();
+        const element = event.currentTarget;
+        const targets = pages.length ? pages : [0, element.scrollWidth - element.clientWidth];
+        const next =
+          event.key === 'PageDown'
+            ? targets.find((x) => x > element.scrollLeft + 1)
+            : [...targets].reverse().find((x) => x < element.scrollLeft - 1);
+        if (next !== undefined) element.scrollTo({ left: next, behavior: 'instant' });
+      }}
       style={clipRight > 0 ? { clipPath: `inset(0 ${clipRight}px 0 0)` } : undefined}
     >
       <div

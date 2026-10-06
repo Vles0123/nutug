@@ -1,4 +1,5 @@
 import React from 'react';
+import { labels } from './ui-copy.mjs';
 import { createRoot } from 'react-dom/client';
 import { ContentClient, browserStore } from './content-client.mjs';
 
@@ -18,8 +19,8 @@ const manifestUrl = window.NutugContentManifest || __NUTUG_CONTENT_MANIFEST__;
 async function start() {
   bootstrapRoot.render(
     <div className="bootstrap-screen">
-      <span className="mn">ᠨᠤᠲᠤᠭ</span>
-      <span className="bootstrap-spinner" role="status" aria-label="ᠨᠤᠲᠤᠭ" />
+      <span className="mn">{labels.brand}</span>
+      <span className="bootstrap-spinner" role="status" aria-label={labels.brand} />
     </div>,
   );
   try {
@@ -37,9 +38,9 @@ async function start() {
     bootstrapRoot ||= createRoot(root);
     bootstrapRoot.render(
       <div className="bootstrap-screen">
-        <span className="mn">ᠨᠤᠲᠤᠭ</span>
+        <span className="mn">{labels.brand}</span>
         <button className="text-button" onClick={retry}>
-          <span className="mn">ᠳᠠᠬᠢᠨ ᠣᠷᠣᠯᠳᠣᠬᠤ</span>
+          <span className="mn">{labels.retry}</span>
         </button>
       </div>,
     );

@@ -1,0 +1,1046 @@
+{
+  "locale": "mn-Mong-CN",
+  "convention": "中国境内规范传统蒙古文，内蒙古通行用法",
+  "reviewMeaning": "词表是待核查清单；用例、字形覆盖与运行测试分别记录，语言审校需逐条确认。",
+  "references": [
+    { "url": "https://www.w3.org/TR/mlreq/", "use": "输入、选区、字列推进、整词与后缀的排版要求" },
+    {
+      "url": "https://www.mongolfont.com/mn/grammer/jirvlga.html",
+      "use": "ᠳᠣᠷᠤᠭᠰᠢ 的书写方向用例"
+    },
+    {
+      "url": "https://tohoku.repo.nii.ac.jp/record/51255/files/Toh-Asi-Ken-2006-20.pdf",
+      "use": "ᠳᠣᠷᠤᠭᠰᠢ (dorugsi) 的文献词形"
+    },
+    {
+      "url": "https://ci.nii.ac.jp/ncid/BA5897934X",
+      "use": "ᠭᠠᠷᠴᠠᠭ 的书目用例；界面用途仍需母语审阅"
+    }
+  ],
+  "corrections": [
+    {
+      "id": "vertical-script",
+      "fields": ["summary", "body[0]"],
+      "before": "ᠳᠣᠣᠭᠰᠢ",
+      "after": "ᠳᠣᠷᠤᠭᠰᠢ",
+      "basis": "用户指出原词错误，替换形式有书写方向用例；完整句子仍列入语言审校。"
+    },
+    {
+      "id": "app.explore",
+      "before": "ᠰᠤᠳᠤᠯᠬᠤ",
+      "after": "ᠰᠡᠳᠦᠪ",
+      "basis": "入口实际作用为主题选择；复用现有主题名词并单独记录用途。"
+    },
+    {
+      "id": "catalog-view",
+      "before": "ᠪᠦᠬᠦ",
+      "after": "ᠭᠠᠷᠴᠠᠭ",
+      "basis": "区分文章目录入口与筛选范围，补充可追溯词形用例。"
+    }
+  ],
+  "totals": { "entries": 159, "nativeReviewed": 0, "differingConcepts": 6 },
+  "differingForms": [
+    {
+      "concept": "today",
+      "entries": [
+        { "id": "calendar.today", "text": "ᠥᠨᠥᠳᠥᠷ" },
+        { "id": "almanac.today", "text": "ᠥᠨᠥᠳᠦᠷ" }
+      ]
+    },
+    {
+      "concept": "all",
+      "entries": [
+        { "id": "app.all", "text": "ᠪᠦᠬᠦ" },
+        { "id": "knowledge.all", "text": "ᠪᠦᠭᠦᠳᠡ" },
+        { "id": "tribes.all", "text": "ᠪᠦᠬᠦ" },
+        { "id": "tribal-knowledge.all", "text": "ᠪᠦᠬᠦ" },
+        { "id": "calendar.all", "text": "ᠪᠦᠭᠦᠳᠡ" }
+      ]
+    },
+    {
+      "concept": "source",
+      "entries": [
+        { "id": "calendar.source", "text": "ᠡᠬᠢ ᠰᠤᠷᠪᠤᠯᠵᠢ" },
+        { "id": "almanac.source", "text": "ᠡᠬᠡ ᠰᠤᠷᠪᠤᠯᠵᠢ" }
+      ]
+    },
+    {
+      "concept": "sources",
+      "entries": [
+        { "id": "app.sources", "text": "ᠰᠤᠷᠪᠤᠯᠵᠢ" },
+        { "id": "knowledge.sources", "text": "ᠰᠤᠷᠪᠤᠯᠵᠢ" },
+        { "id": "knowledge.categories.sources", "text": "ᠰᠤᠷᠪᠤᠯᠵᠢ" },
+        { "id": "tribes.sources", "text": "ᠰᠤᠷᠪᠤᠯᠵᠢ" },
+        { "id": "tribal-knowledge.sources", "text": "ᠰᠤᠷᠪᠤᠯᠵᠢ" },
+        { "id": "calendar.sources", "text": "ᠡᠬᠢ ᠰᠤᠷᠪᠤᠯᠵᠢ" }
+      ]
+    },
+    {
+      "concept": "previous",
+      "entries": [
+        { "id": "app.previous", "text": "ᠡᠮᠦᠨᠡᠬᠢ" },
+        { "id": "calendar.previous", "text": "ᠡᠮᠦᠨᠡᠬᠢ" },
+        { "id": "almanac.previous", "text": "ᠡᠮᠦᠨᠡᠬᠢ ᠡᠳᠦᠷ" }
+      ]
+    },
+    {
+      "concept": "next",
+      "entries": [
+        { "id": "app.next", "text": "ᠳᠠᠷᠠᠭᠠᠬᠢ" },
+        { "id": "calendar.next", "text": "ᠳᠠᠷᠠᠭᠠᠬᠢ" },
+        { "id": "almanac.next", "text": "ᠳᠠᠷᠠᠭ᠎ᠠ ᠶᠢᠨ ᠡᠳᠦᠷ" }
+      ]
+    }
+  ],
+  "entries": [
+    { "id": "app.brand", "text": "ᠨᠤᠲᠤᠭ", "context": "产品名", "review": "needs-native-review" },
+    {
+      "id": "app.previous",
+      "text": "ᠡᠮᠦᠨᠡᠬᠢ",
+      "context": "浏览路径中的上一项",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.next",
+      "text": "ᠳᠠᠷᠠᠭᠠᠬᠢ",
+      "context": "浏览路径中的下一项",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.people",
+      "text": "ᠬᠦᠮᠦᠰ",
+      "context": "历史人物导航",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.tribes",
+      "text": "ᠠᠶᠢᠮᠠᠭ",
+      "context": "历史部落导航",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.library",
+      "text": "ᠮᠡᠳᠡᠯᠭᠡ",
+      "context": "历史文化资料导航",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.calendar",
+      "text": "ᠴᠠᠭ ᠲᠣᠭ᠎ᠠ",
+      "context": "日历导航",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.search",
+      "text": "ᠬᠠᠶᠢᠬᠤ",
+      "context": "打开搜索或查找资料",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.close",
+      "text": "ᠬᠠᠭᠠᠬᠤ",
+      "context": "关闭当前浮层",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.clear",
+      "text": "ᠠᠷᠢᠯᠭᠠᠬᠤ",
+      "context": "清除已输入的检索文本",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.read",
+      "text": "ᠤᠩᠰᠢᠬᠤ",
+      "context": "打开条目正文",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.settings",
+      "text": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ",
+      "context": "应用设置",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.type",
+      "text": "ᠦᠰᠦᠭ ᠦᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ",
+      "context": "阅读文字大小",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.larger",
+      "text": "ᠲᠣᠮᠣᠰᠬᠠᠬᠤ",
+      "context": "增大字号或放大图谱",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.smaller",
+      "text": "ᠪᠠᠭᠠᠰᠬᠠᠬᠤ",
+      "context": "减小字号或缩小图谱",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.fit",
+      "text": "ᠪᠦᠬᠦᠨ ᠢ ᠦᠵᠡᠭᠦᠯᠬᠦ",
+      "context": "显示整张关系图",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.focus",
+      "text": "ᠲᠥᠪᠯᠡᠷᠡᠭᠦᠯᠬᠦ",
+      "context": "将当前节点移到画布中心",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.details",
+      "text": "ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ",
+      "context": "打开完整条目",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.sources",
+      "text": "ᠰᠤᠷᠪᠤᠯᠵᠢ",
+      "context": "引用来源",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.relations",
+      "text": "ᠬᠠᠷᠢᠯᠴᠠᠭ᠎ᠠ",
+      "context": "条目之间的联系",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.all",
+      "text": "ᠪᠦᠬᠦ",
+      "context": "筛选范围中的全部条目",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.family",
+      "text": "ᠤᠷᠤᠭ ᠲᠥᠷᠥᠯ",
+      "context": "亲属关系类型",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.power",
+      "text": "ᠤᠯᠤᠰ ᠲᠥᠷᠥ",
+      "context": "政治关系类型",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.timeline",
+      "text": "ᠣᠨ ᠴᠠᠭ",
+      "context": "按时间浏览事件",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.back",
+      "text": "ᠪᠤᠴᠠᠬᠤ",
+      "context": "回到前一个阅读位置",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.more",
+      "text": "ᠨᠡᠮᠡᠵᠦ ᠦᠵᠡᠬᠦ",
+      "context": "追加下一组目录结果",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.retry",
+      "text": "ᠳᠠᠬᠢᠨ ᠣᠷᠣᠯᠳᠣᠬᠤ",
+      "context": "重试失败的操作",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.update",
+      "text": "ᠰᠢᠨᠡᠴᠢᠯᠡᠬᠦ",
+      "context": "检查或启用内容更新",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.download",
+      "text": "ᠲᠠᠲᠠᠵᠤ ᠠᠪᠬᠤ",
+      "context": "保存可离线读取的资料",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.saved",
+      "text": "ᠬᠠᠳᠠᠭᠠᠯᠠᠪᠠ",
+      "context": "资料已保存的状态",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.connection",
+      "text": "ᠰᠦᠯᠵᠢᠶ᠎ᠡ",
+      "context": "网络连接",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.directions",
+      "text": "ᠵᠦᠭ",
+      "context": "黄历中的方位",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.explore",
+      "text": "ᠰᠡᠳᠦᠪ",
+      "context": "按主题选择资料",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.catalog",
+      "text": "ᠭᠠᠷᠴᠠᠭ",
+      "context": "文章目录",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.title",
+      "text": "ᠮᠡᠳᠡᠯᠭᠡ ᠶᠢᠨ ᠰᠠᠩ",
+      "context": "knowledge / title",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.subtitle",
+      "text": "ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠲᠡᠦᠬᠡ ᠪᠠ ᠰᠣᠶᠣᠯ",
+      "context": "knowledge / subtitle",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.search",
+      "text": "ᠬᠠᠶᠢᠬᠤ",
+      "context": "knowledge / search",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.all",
+      "text": "ᠪᠦᠭᠦᠳᠡ",
+      "context": "knowledge / all",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.read",
+      "text": "ᠤᠩᠰᠢᠬᠤ",
+      "context": "knowledge / read",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.sources",
+      "text": "ᠰᠤᠷᠪᠤᠯᠵᠢ",
+      "context": "knowledge / sources",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.original",
+      "text": "ᠡᠬᠡ ᠮᠠᠲ᠋ᠧᠷᠢᠶᠠᠯ",
+      "context": "knowledge / original",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.close",
+      "text": "ᠬᠠᠭᠠᠬᠤ",
+      "context": "knowledge / close",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.archive",
+      "text": "ᠬᠠᠳᠠᠭᠠᠯᠠᠭᠰᠠᠨ ᠬᠤᠪᠢ",
+      "context": "knowledge / archive",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.collected",
+      "text": "ᠴᠤᠭᠯᠠᠭᠤᠯᠤᠭᠰᠠᠨ ᠡᠳᠦᠷ",
+      "context": "knowledge / collected",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.sourceCount",
+      "text": "ᠰᠤᠷᠪᠤᠯᠵᠢ ᠶᠢᠨ ᠲᠣᠭ᠎ᠠ",
+      "context": "knowledge / sourceCount",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.size",
+      "text": "ᠬᠡᠮᠵᠢᠶ᠎ᠡ",
+      "context": "knowledge / size",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.limit",
+      "text": "ᠬᠢᠵᠠᠭᠠᠷ᠄ ᠑᠐᠐ ᠭᠢᠭᠠᠪᠠᠶᠢᠲ",
+      "context": "knowledge / limit",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.scope",
+      "text": "ᠡᠨᠳᠡ ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠲᠡᠦᠬᠡ᠂ ᠰᠣᠶᠣᠯ ᠤᠨ ᠵᠠᠷᠢᠮ ᠰᠡᠳᠦᠪ ᠢ ᠲᠣᠪᠴᠢ ᠲᠠᠨᠢᠯᠴᠠᠭᠤᠯᠤᠨ᠎ᠠ᠃",
+      "context": "knowledge / scope",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.empty",
+      "text": "ᠲᠣᠬᠢᠷᠠᠬᠤ ᠰᠡᠳᠦᠪ ᠣᠯᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ",
+      "context": "knowledge / empty",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.clear",
+      "text": "ᠠᠷᠢᠯᠭᠠᠬᠤ",
+      "context": "knowledge / clear",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.topics",
+      "text": "ᠰᠡᠳᠦᠪ",
+      "context": "knowledge / topics",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.categories.history",
+      "text": "ᠲᠡᠦᠬᠡ",
+      "context": "knowledge / categories.history",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.categories.people",
+      "text": "ᠠᠶᠢᠮᠠᠭ ᠪᠠ ᠠᠷᠠᠳ",
+      "context": "knowledge / categories.people",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.categories.language",
+      "text": "ᠬᠡᠯᠡ ᠪᠠ ᠪᠢᠴᠢᠭ",
+      "context": "knowledge / categories.language",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.categories.life",
+      "text": "ᠠᠮᠢᠳᠤᠷᠠᠯ",
+      "context": "knowledge / categories.life",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.categories.arts",
+      "text": "ᠤᠷᠠᠯᠢᠭ ᠪᠠ ᠨᠠᠭᠠᠳᠤᠮ",
+      "context": "knowledge / categories.arts",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.categories.sources",
+      "text": "ᠰᠤᠷᠪᠤᠯᠵᠢ",
+      "context": "knowledge / categories.sources",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.archiveNote",
+      "text": "ᠲᠠᠲᠠᠵᠤ ᠠᠪᠤᠭᠰᠠᠨ ᠡᠬᠡ ᠮᠠᠲ᠋ᠧᠷᠢᠶᠠᠯ ᠨᠢ ᠠᠩᠬᠠᠨ ᠤ ᠬᠡᠯᠡ ᠪᠡᠨ ᠬᠠᠳᠠᠭᠠᠯᠠᠨ᠎ᠠ᠃ ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠦᠨ ᠰᠤᠷᠤᠯᠴᠠᠬᠤ ᠡᠬᠡ ᠶᠢ ᠲᠤᠰᠠᠭᠠᠷ ᠲᠣᠪᠴᠢᠯᠠᠨ ᠪᠢᠴᠢᠵᠡᠢ᠃",
+      "context": "knowledge / archiveNote",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "knowledge.graph",
+      "text": "ᠬᠣᠯᠪᠤᠭᠠᠨ ᠤ ᠵᠢᠷᠤᠭ",
+      "context": "knowledge / graph",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.title",
+      "text": "ᠠᠶᠢᠮᠠᠭ ᠤᠳ ᠤᠨ ᠬᠠᠷᠢᠯᠴᠠᠭ᠎ᠠ",
+      "context": "tribes / title",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.subtitle",
+      "text": "ᠲᠡᠮᠦᠵᠢᠨ ᠦ ᠥᠨᠳᠦᠶᠢᠨ ᠮᠠᠨᠳᠤᠭᠰᠠᠨ ᠦᠶ᠎ᠡ",
+      "context": "tribes / subtitle",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.all",
+      "text": "ᠪᠦᠬᠦ",
+      "context": "tribes / all",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.early",
+      "text": "ᠡᠬᠢᠨ ᠦᠶ᠎ᠡ · 12 ᠵᠠᠭᠤᠨ ᠤ ᠰᠡᠭᠦᠯ–1199",
+      "context": "tribes / early",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.middle",
+      "text": "ᠳᠤᠮᠳᠠ ᠦᠶ᠎ᠡ · 1200–1202",
+      "context": "tribes / middle",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.late",
+      "text": "ᠰᠡᠭᠦᠯ ᠦᠶ᠎ᠡ · 1203–1206",
+      "context": "tribes / late",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.alliance",
+      "text": "ᠬᠣᠯᠪᠣᠭ᠎ᠠ",
+      "context": "tribes / alliance",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.conflict",
+      "text": "ᠲᠡᠮᠡᠴᠡᠯ",
+      "context": "tribes / conflict",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.submission",
+      "text": "ᠳᠠᠭᠠᠭᠠᠨ ᠣᠷᠣᠬᠤ",
+      "context": "tribes / submission",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.relations",
+      "text": "ᠬᠠᠷᠢᠯᠴᠠᠭ᠎ᠠ",
+      "context": "tribes / relations",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.sources",
+      "text": "ᠰᠤᠷᠪᠤᠯᠵᠢ",
+      "context": "tribes / sources",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.scope",
+      "text": "ᠡᠨᠡ ᠵᠢᠷᠤᠭ ᠨᠢ ᠠᠳᠠᠯᠢ ᠪᠤᠰᠤ ᠴᠠᠭ ᠤᠨ ᠶᠠᠪᠤᠳᠠᠯ ᠢ ᠦᠵᠡᠭᠦᠯᠦᠨ᠎ᠡ᠃",
+      "context": "tribes / scope",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.back",
+      "text": "ᠪᠤᠴᠠᠬᠤ",
+      "context": "tribes / back",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.focus",
+      "text": "ᠲᠥᠪᠯᠡᠷᠡᠭᠦᠯᠬᠦ",
+      "context": "tribes / focus",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.fit",
+      "text": "ᠪᠦᠬᠦᠨ ᠢ ᠦᠵᠡᠭᠦᠯᠬᠦ",
+      "context": "tribes / fit",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribes.empty",
+      "text": "ᠲᠣᠬᠢᠷᠠᠬᠤ ᠬᠠᠷᠢᠯᠴᠠᠭ᠎ᠠ ᠪᠠᠶᠢᠬᠤ ᠦᠭᠡᠢ",
+      "context": "tribes / empty",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribal-knowledge.title",
+      "text": "ᠮᠡᠳᠡᠯᠭᠡ ᠶᠢᠨ ᠰᠠᠩ",
+      "context": "tribal-knowledge / title",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribal-knowledge.subtitle",
+      "text": "ᠠᠶᠢᠮᠠᠭ᠂ ᠪᠦᠯᠦᠭ᠂ ᠬᠠᠷᠢᠯᠴᠠᠭ᠎ᠠ ᠶᠢ ᠣᠶᠢᠯᠠᠭᠠᠬᠤ",
+      "context": "tribal-knowledge / subtitle",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribal-knowledge.all",
+      "text": "ᠪᠦᠬᠦ",
+      "context": "tribal-knowledge / all",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribal-knowledge.read",
+      "text": "ᠤᠩᠰᠢᠬᠤ",
+      "context": "tribal-knowledge / read",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribal-knowledge.close",
+      "text": "ᠬᠠᠭᠠᠬᠤ",
+      "context": "tribal-knowledge / close",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribal-knowledge.related",
+      "text": "ᠬᠣᠯᠪᠣᠭ᠎ᠠ ᠪᠦᠬᠦᠢ",
+      "context": "tribal-knowledge / related",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribal-knowledge.graph",
+      "text": "ᠬᠠᠷᠢᠯᠴᠠᠭᠠᠨ ᠤ ᠵᠢᠷᠤᠭ",
+      "context": "tribal-knowledge / graph",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribal-knowledge.search",
+      "text": "ᠬᠠᠶᠢᠬᠤ",
+      "context": "tribal-knowledge / search",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribal-knowledge.empty",
+      "text": "ᠲᠣᠬᠢᠷᠠᠬᠤ ᠵᠦᠢᠯ ᠣᠯᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ",
+      "context": "tribal-knowledge / empty",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribal-knowledge.scope",
+      "text": "12 ᠳᠤᠭᠠᠷ ᠵᠠᠭᠤᠨ ᠤ ᠰᠡᠭᠦᠯ ᠡᠴᠡ 1206 ᠣᠨ ᠬᠦᠷᠲᠡᠯᠡᠬᠢ ᠠᠶᠢᠮᠠᠭ᠂ ᠪᠦᠯᠦᠭ ᠪᠠ ᠲᠡᠳᠡᠨ ᠦ ᠬᠠᠷᠢᠯᠴᠠᠭ᠎ᠠ᠃",
+      "context": "tribal-knowledge / scope",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "tribal-knowledge.sources",
+      "text": "ᠰᠤᠷᠪᠤᠯᠵᠢ",
+      "context": "tribal-knowledge / sources",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.title",
+      "text": "ᠰᠣᠶᠣᠯ ᠤᠨ ᠴᠠᠭ ᠲᠣᠭ᠎ᠠ",
+      "context": "calendar / title",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.today",
+      "text": "ᠥᠨᠥᠳᠥᠷ",
+      "context": "calendar / today",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.month",
+      "text": "ᠰᠠᠷ᠎ᠠ",
+      "context": "calendar / month",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.previous",
+      "text": "ᠡᠮᠦᠨᠡᠬᠢ",
+      "context": "calendar / previous",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.next",
+      "text": "ᠳᠠᠷᠠᠭᠠᠬᠢ",
+      "context": "calendar / next",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.events",
+      "text": "ᠪᠠᠶᠠᠷ ᠳᠤᠷᠠᠰᠬᠠᠯ",
+      "context": "calendar / events",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.all",
+      "text": "ᠪᠦᠭᠦᠳᠡ",
+      "context": "calendar / all",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.empty",
+      "text": "ᠪᠦᠷᠢᠳᠬᠡᠭᠰᠡᠨ ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭᠠᠨ ᠪᠠᠶᠢᠬᠤ ᠦᠭᠡᠢ",
+      "context": "calendar / empty",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.unconfirmed",
+      "text": "ᠡᠳᠦᠷ ᠢ ᠬᠢᠨᠠᠭ᠎ᠠ ᠦᠭᠡᠢ",
+      "context": "calendar / unconfirmed",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.scope",
+      "text": "ᠥᠪᠥᠷ ᠮᠣᠩᠭᠣᠯ · ᠣᠷᠳᠣᠰ · ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ",
+      "context": "calendar / scope",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.source",
+      "text": "ᠡᠬᠢ ᠰᠤᠷᠪᠤᠯᠵᠢ",
+      "context": "calendar / source",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.innerMongolia",
+      "text": "ᠥᠪᠥᠷ ᠮᠣᠩᠭᠣᠯ",
+      "context": "calendar / innerMongolia",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.mongolia",
+      "text": "ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ",
+      "context": "calendar / mongolia",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.date",
+      "text": "ᠣᠨ ᠰᠠᠷ᠎ᠠ ᠡᠳᠦᠷ",
+      "context": "calendar / date",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.year",
+      "text": "ᠣᠨ",
+      "context": "calendar / year",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.upcoming",
+      "text": "ᠢᠷᠡᠬᠦ ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭᠠᠨ",
+      "context": "calendar / upcoming",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.pending",
+      "text": "ᠡᠳᠦᠷ ᠢ ᠬᠢᠨᠠᠭ᠎ᠠ ᠦᠭᠡᠢ",
+      "context": "calendar / pending",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.sources",
+      "text": "ᠡᠬᠢ ᠰᠤᠷᠪᠤᠯᠵᠢ",
+      "context": "calendar / sources",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.back",
+      "text": "ᠪᠤᠴᠠᠬᠤ",
+      "context": "calendar / back",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.selectDate",
+      "text": "ᠡᠳᠦᠷ ᠰᠣᠩᠭᠣᠬᠤ",
+      "context": "calendar / selectDate",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.almanac",
+      "text": "ᠬᠢᠲᠠᠳ ᠵᠢᠷᠤᠬᠠᠢ",
+      "context": "calendar / almanac",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.weekdays.0",
+      "text": "ᠳᠠᠪᠠᠭ᠎ᠠ",
+      "context": "calendar / weekdays.0",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.weekdays.1",
+      "text": "ᠮᠢᠭᠮᠠᠷ",
+      "context": "calendar / weekdays.1",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.weekdays.2",
+      "text": "ᠯᠬᠠᠭᠪᠠ",
+      "context": "calendar / weekdays.2",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.weekdays.3",
+      "text": "ᠫᠦᠷᠪᠦ",
+      "context": "calendar / weekdays.3",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.weekdays.4",
+      "text": "ᠪᠠᠰᠠᠩ",
+      "context": "calendar / weekdays.4",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.weekdays.5",
+      "text": "ᠪᠢᠮᠪᠠ",
+      "context": "calendar / weekdays.5",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.weekdays.6",
+      "text": "ᠨᠶᠠᠮ",
+      "context": "calendar / weekdays.6",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar.gridNote",
+      "text": "ᠡᠨᠡ ᠰᠠᠷᠠᠨ ᠤ ᠬᠦᠰᠦᠨᠦᠭᠲᠦ ᠠᠷᠭ᠎ᠠ ᠶᠢᠨ ᠲᠣᠭᠠᠯᠠᠯ ᠲᠠᠢ᠃ ᠵᠠᠷᠯᠠᠭᠰᠠᠨ ᠬᠤᠭᠤᠴᠠᠭ᠎ᠠ ᠶᠢ ᠡᠬᠢ ᠰᠤᠷᠪᠤᠯᠵᠢ ᠠᠴᠠ ᠬᠢᠨᠠᠭᠠᠷᠠᠢ᠃",
+      "context": "calendar / gridNote",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.today",
+      "text": "ᠥᠨᠥᠳᠦᠷ",
+      "context": "almanac / today",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.previous",
+      "text": "ᠡᠮᠦᠨᠡᠬᠢ ᠡᠳᠦᠷ",
+      "context": "almanac / previous",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.next",
+      "text": "ᠳᠠᠷᠠᠭ᠎ᠠ ᠶᠢᠨ ᠡᠳᠦᠷ",
+      "context": "almanac / next",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.selectDate",
+      "text": "ᠡᠳᠦᠷ ᠰᠣᠩᠭᠣᠬᠤ",
+      "context": "almanac / selectDate",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.favorable",
+      "text": "ᠵᠢᠷᠤᠬᠠᠢ ᠳᠤ ᠰᠠᠶᠢᠨ ᠭᠡᠭᠰᠡᠨ ᠦᠢᠯᠡ",
+      "context": "almanac / favorable",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.unfavorable",
+      "text": "ᠵᠢᠷᠤᠬᠠᠢ ᠳᠤ ᠮᠠᠭᠤ ᠭᠡᠭᠰᠡᠨ ᠦᠢᠯᠡ",
+      "context": "almanac / unfavorable",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.title",
+      "text": "ᠬᠢᠲᠠᠳ ᠵᠢᠷᠤᠬᠠᠢ",
+      "context": "almanac / title",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.calendarSystem",
+      "text": "ᠬᠢᠲᠠᠳ ᠤᠨ ᠪᠢᠯᠢᠭ ᠦᠨ ᠲᠣᠭᠠᠯᠠᠯ",
+      "context": "almanac / calendarSystem",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.gregorian",
+      "text": "ᠠᠷᠭ᠎ᠠ ᠶᠢᠨ ᠲᠣᠭᠠᠯᠠᠯ",
+      "context": "almanac / gregorian",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.lunarDate",
+      "text": "ᠬᠢᠲᠠᠳ ᠤᠨ ᠪᠢᠯᠢᠭ ᠦᠨ ᠰᠠᠷ᠎ᠠ ᠡᠳᠦᠷ",
+      "context": "almanac / lunarDate",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.leapMonth",
+      "text": "ᠢᠯᠡᠭᠦᠦ ᠰᠠᠷ᠎ᠠ",
+      "context": "almanac / leapMonth",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.yearGanZhi",
+      "text": "ᠵᠢᠯ ᠦᠨ ᠡᠰᠢ ᠡᠷᠬᠡᠲᠡᠨ",
+      "context": "almanac / yearGanZhi",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.monthGanZhi",
+      "text": "ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ ᠡᠰᠢ ᠡᠷᠬᠡᠲᠡᠨ",
+      "context": "almanac / monthGanZhi",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.dayGanZhi",
+      "text": "ᠡᠳᠦᠷ ᠦᠨ ᠡᠰᠢ ᠡᠷᠬᠡᠲᠡᠨ",
+      "context": "almanac / dayGanZhi",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.zodiac",
+      "text": "ᠬᠢᠲᠠᠳ ᠤᠨ ᠪᠢᠯᠢᠭ ᠦᠨ ᠲᠣᠭᠠᠯᠠᠯ ᠤᠨ ᠵᠢᠯ ᠦᠨ ᠠᠮᠢᠲᠠᠨ",
+      "context": "almanac / zodiac",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.solarTerm",
+      "text": "ᠬᠢᠲᠠᠳ ᠤᠨ 24 ᠤᠯᠠᠷᠢᠯ",
+      "context": "almanac / solarTerm",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.noSolarTerm",
+      "text": "ᠡᠨᠡ ᠡᠳᠦᠷ ᠤᠯᠠᠷᠢᠯ ᠰᠣᠯᠢᠭᠳᠠᠬᠤ ᠦᠭᠡᠢ",
+      "context": "almanac / noSolarTerm",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.joyDeityDirection",
+      "text": "ᠪᠠᠶᠠᠷ ᠤᠨ ᠰᠠᠬᠢᠭᠤᠯᠰᠤᠨ ᠤ ᠵᠦᠭ",
+      "context": "almanac / joyDeityDirection",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.wealthDeityDirection",
+      "text": "ᠡᠳ ᠪᠠᠶᠠᠯᠢᠭ ᠤᠨ ᠰᠠᠬᠢᠭᠤᠯᠰᠤᠨ ᠤ ᠵᠦᠭ",
+      "context": "almanac / wealthDeityDirection",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.fortuneDeityDirection",
+      "text": "ᠬᠢᠰᠢᠭ ᠦᠨ ᠰᠠᠬᠢᠭᠤᠯᠰᠤᠨ ᠤ ᠵᠦᠭ",
+      "context": "almanac / fortuneDeityDirection",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.yangNobleDirection",
+      "text": "ᠠᠷᠭ᠎ᠠ ᠶᠢᠨ ᠡᠷᠬᠢᠮ ᠬᠦᠮᠦᠨ ᠦ ᠵᠦᠭ",
+      "context": "almanac / yangNobleDirection",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.yinNobleDirection",
+      "text": "ᠪᠢᠯᠢᠭ ᠦᠨ ᠡᠷᠬᠢᠮ ᠬᠦᠮᠦᠨ ᠦ ᠵᠦᠭ",
+      "context": "almanac / yinNobleDirection",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.folkDirections",
+      "text": "ᠬᠢᠲᠠᠳ ᠤᠨ ᠵᠠᠩ ᠵᠠᠩᠰᠢᠯ ᠤᠨ ᠰᠠᠬᠢᠭᠤᠯᠰᠤᠨ ᠤ ᠵᠦᠭ",
+      "context": "almanac / folkDirections",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.algorithmNote",
+      "text": "ᠵᠢᠯ ᠦᠨ ᠡᠰᠢ ᠡᠷᠬᠡᠲᠡᠨ ᠢ ᠬᠢᠲᠠᠳ ᠤᠨ ᠪᠢᠯᠢᠭ ᠦᠨ ᠲᠣᠭᠠᠯᠠᠯ ᠤᠨ ᠲᠡᠷᠢᠭᠦᠨ ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ ᠰᠢᠨ᠎ᠡ ᠶᠢᠨ 1 ᠳᠦ ᠰᠣᠯᠢᠨ᠎ᠠ᠃ ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ ᠡᠰᠢ ᠡᠷᠬᠡᠲᠡᠨ ᠢ ᠰᠠᠷ᠎ᠠ ᠵᠠᠠᠭᠯᠠᠬᠤ 12 ᠤᠯᠠᠷᠢᠯ ᠰᠣᠯᠢᠭᠳᠠᠬᠤ ᠡᠳᠦᠷ ᠦᠨ 00:00 ᠳᠦ ᠰᠣᠯᠢᠨ᠎ᠠ᠃ ᠡᠳᠦᠷ ᠦᠨ ᠡᠰᠢ ᠡᠷᠬᠡᠲᠡᠨ ᠢ ᠢᠷᠭᠡᠨ ᠦ ᠴᠠᠭ ᠤᠨ 00:00 ᠳᠦ ᠰᠣᠯᠢᠨ᠎ᠠ᠃",
+      "context": "almanac / algorithmNote",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.traditionNote",
+      "text": "ᠲᠣᠬᠢᠷᠠᠬᠤ ᠪᠠ ᠴᠡᠭᠡᠷᠯᠡᠬᠦ ᠵᠦᠢᠯ ᠦᠳ ᠢ ᠠᠷᠠᠳ ᠤᠨ ᠵᠠᠩ ᠵᠠᠩᠰᠢᠯ ᠤᠨ ᠬᠦᠰᠦᠨᠦᠭᠲᠦ ᠡᠴᠡ ᠠᠪᠤᠪᠠ᠃",
+      "context": "almanac / traditionNote",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.source",
+      "text": "ᠡᠬᠡ ᠰᠤᠷᠪᠤᠯᠵᠢ",
+      "context": "almanac / source",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.rangeNote",
+      "text": "1901–2100 ᠣᠨ ᠤ ᠡᠳᠦᠷ ᠦᠳ ᠢ ᠲᠣᠭᠠᠴᠠᠭᠠᠯᠠᠨ᠎ᠠ",
+      "context": "almanac / rangeNote",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.engineError",
+      "text": "ᠲᠣᠭᠠᠴᠠᠭᠠᠯᠠᠯ ᠢ ᠲᠦᠷ ᠭᠦᠢᠴᠡᠳᠬᠡᠬᠦ ᠪᠣᠯᠤᠮᠵᠢ ᠦᠭᠡᠢ",
+      "context": "almanac / engineError",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.translationPending",
+      "text": "ᠡᠨᠡ ᠡᠷᠲᠡᠨ ᠦ ᠦᠭᠡ ᠶᠢᠨ ᠤᠳᠬ᠎ᠠ ᠪᠠ ᠣᠷᠴᠢᠭᠤᠯᠭ᠎ᠠ ᠶᠢ ᠨᠢᠭᠲᠠᠯᠠᠬᠤ ᠱᠠᠭᠠᠷᠳᠠᠯᠭ᠎ᠠ ᠲᠠᠢ",
+      "context": "almanac / translationPending",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.showAll",
+      "text": "ᠪᠦᠭᠦᠳᠡ ᠶᠢ ᠦᠵᠡᠭᠦᠯᠬᠦ",
+      "context": "almanac / showAll",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.showLess",
+      "text": "ᠲᠣᠪᠴᠢᠯᠠᠬᠤ",
+      "context": "almanac / showLess",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.calculated",
+      "text": "ᠲᠣᠭᠠᠴᠠᠭᠠᠯᠠᠯ ᠤᠨ ᠦᠷ᠎ᠡ ᠳᠦᠩ",
+      "context": "almanac / calculated",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.directionNote",
+      "text": "ᠡᠳᠡᠭᠡᠷ ᠨᠢ ᠬᠢᠲᠠᠳ ᠤᠨ ᠵᠢᠷᠤᠬᠠᠢ ᠶᠢᠨ ᠴᠠᠭ ᠲᠣᠭᠠᠨ ᠤ ᠪᠢᠴᠢᠭ ᠳᠡᠬᠢ ᠲᠠᠪᠤᠨ ᠰᠠᠬᠢᠭᠤᠯᠰᠤᠨ ᠤ ᠵᠦᠭ ᠪᠣᠯᠣᠨ᠎ᠠ᠃",
+      "context": "almanac / directionNote",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.ganZhiNote",
+      "text": "ᠡᠰᠢ ᠡᠷᠬᠡᠲᠡᠨ ᠦ ᠨᠡᠷ᠎ᠡ ᠶᠢ ᠮᠣᠩᠭᠣᠯᠴᠢᠯᠠᠨ ᠦᠵᠡᠭᠦᠯᠪᠡ᠃ ᠲᠣᠭᠠᠴᠠᠭᠠᠯᠠᠯ ᠨᠢ ᠬᠢᠲᠠᠳ ᠤᠨ ᠡᠰᠢ ᠡᠷᠬᠡᠲᠡᠨ ᠦ ᠲᠣᠭᠲᠠᠯᠴᠠᠭ᠎ᠠ ᠶᠢ ᠳᠠᠭᠠᠨ᠎ᠠ᠃",
+      "context": "almanac / ganZhiNote",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.solarTermNote",
+      "text": "24 ᠤᠯᠠᠷᠢᠯ ᠤᠨ ᠨᠡᠷ᠎ᠡ ᠶᠢ ᠤᠳᠬ᠎ᠠ ᠪᠠᠷ ᠨᠢ ᠣᠷᠴᠢᠭᠤᠯᠪᠠ᠃",
+      "context": "almanac / solarTermNote",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.yi",
+      "text": "ᠲᠣᠬᠢᠷᠠᠬᠤ",
+      "context": "almanac / yi",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.ji",
+      "text": "ᠴᠡᠭᠡᠷᠯᠡᠬᠦ",
+      "context": "almanac / ji",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.year",
+      "text": "ᠣᠨ",
+      "context": "almanac / year",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.month",
+      "text": "ᠰᠠᠷ᠎ᠠ",
+      "context": "almanac / month",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.day",
+      "text": "ᠡᠳᠦᠷ",
+      "context": "almanac / day",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.previousDay",
+      "text": "ᠡᠮᠦᠨᠡᠬᠢ ᠡᠳᠦᠷ",
+      "context": "almanac / previousDay",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.nextDay",
+      "text": "ᠳᠠᠷᠠᠭ᠎ᠠ ᠶᠢᠨ ᠡᠳᠦᠷ",
+      "context": "almanac / nextDay",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.chooseDate",
+      "text": "ᠡᠳᠦᠷ ᠰᠣᠩᠭᠣᠬᠤ",
+      "context": "almanac / chooseDate",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "almanac.fullTitle",
+      "text": "ᠬᠢᠲᠠᠳ ᠤᠨ ᠪᠢᠯᠢᠭ ᠦᠨ ᠲᠣᠭᠠᠯᠠᠯ ᠪᠠ ᠵᠢᠷᠤᠬᠠᠢ ᠶᠢᠨ ᠴᠠᠭ ᠲᠣᠭᠠᠨ ᠤ ᠪᠢᠴᠢᠭ",
+      "context": "almanac / fullTitle",
+      "review": "needs-native-review"
+    }
+  ]
+}

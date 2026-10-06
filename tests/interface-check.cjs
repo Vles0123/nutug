@@ -70,7 +70,8 @@ async function click(w, element) {
 }
 async function fill(w, element, value) {
   assert(element, 'Expected text input');
-  Object.getOwnPropertyDescriptor(w.HTMLInputElement.prototype, 'value').set.call(element, value);
+  const Type = element.tagName === 'TEXTAREA' ? w.HTMLTextAreaElement : w.HTMLInputElement;
+  Object.getOwnPropertyDescriptor(Type.prototype, 'value').set.call(element, value);
   element.dispatchEvent(new w.Event('input', { bubbles: true }));
   await pause(65);
 }
@@ -196,9 +197,38 @@ function visibleText(d) {
   await click(w, d.querySelector('[data-action="catalog-more"]'));
   assert.equal(d.querySelectorAll('[data-article]').length, 48);
   assert.equal(d.activeElement, d.querySelectorAll('[data-article]')[24]);
-  await fill(w, d.querySelector('.catalog input'), 'archive-lindgren-community-identification');
+  await click(w, d.querySelector('[data-action="catalog-search"]'));
+  const edit = d.querySelector('.search-input');
+  assert.equal(edit.tagName, 'TEXTAREA', 'Search uses the multiline control for Mongolian columns');
+  const beforeComposition = d.querySelector('.search-results').textContent;
+  edit.dispatchEvent(new w.CompositionEvent('compositionstart', { bubbles: true }));
+  await fill(w, edit, 'ᠮᠣ');
+  assert.equal(
+    d.querySelector('.search-results').textContent,
+    beforeComposition,
+    'IME composition does not filter provisional text',
+  );
+  edit.dispatchEvent(
+    new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true, isComposing: true }),
+  );
+  await pause(35);
+  assert(d.querySelector('.search-input'), 'Candidate dismissal preserves the editor');
+  await fill(w, edit, 'ᠮᠣᠩᠭᠣᠯ ᠤᠨ');
+  edit.dispatchEvent(
+    new w.CompositionEvent('compositionend', { bubbles: true, data: 'ᠮᠣᠩᠭᠣᠯ ᠤᠨ' }),
+  );
+  await pause(65);
+  assert.equal(edit.value, 'ᠮᠣᠩᠭᠣᠯ ᠤᠨ', 'The editor preserves Mongolian suffix spacing');
+  assert.notEqual(d.querySelector('.search-results').textContent, beforeComposition);
+  await fill(w, edit, 'archive-lindgren-community-identification');
+  await click(w, d.querySelector('[data-action="search-all"]'));
   assert.equal(d.querySelectorAll('[data-article]').length, 1);
-  await click(w, d.querySelector('.catalog .search-field button'));
+  await click(w, d.querySelector('.catalog [data-action="clear-search"]'));
+  assert.equal(
+    d.activeElement.dataset.action,
+    'catalog-search',
+    'Clearing a query returns focus to the search control',
+  );
   assert.equal(
     d.querySelectorAll('[data-article]').length,
     24,
@@ -223,11 +253,11 @@ function visibleText(d) {
   const completeCount = Number(d.querySelector('[data-action="search-all"] .numeric').textContent);
   assert(completeCount > 24);
   await click(w, d.querySelector('[data-action="search-all"]'));
-  assert.equal(d.querySelector('.catalog input').value, 'ᠮᠣᠩᠭᠣᠯ');
+  assert.equal(d.querySelector('.catalog .search-trigger .mn').textContent, 'ᠮᠣᠩᠭᠣᠯ');
   assert.equal(Number(d.querySelector('.catalog-count').textContent), completeCount);
   assert.equal(d.querySelectorAll('.catalog-entry').length, 24, 'Complete search resets category');
   assert.equal(new URLSearchParams(w.location.search).get('q'), 'ᠮᠣᠩᠭᠣᠯ');
-  await click(w, d.querySelector('.catalog .search-field button'));
+  await click(w, d.querySelector('.catalog [data-action="clear-search"]'));
   await click(w, d.querySelector('[data-action="catalog-filter"]'));
   await click(w, d.querySelector('.category-options .segment'));
   assert.equal(d.querySelectorAll('[data-article]').length, 24);
@@ -282,7 +312,7 @@ function visibleText(d) {
   );
   await click(direct.w, direct.d.querySelector('[data-action="reader-back"]'));
   assert.equal(direct.w.location.hash, '#knowledge');
-  assert.equal(direct.d.querySelector('.catalog input').value, 'archive');
+  assert.equal(direct.d.querySelector('.catalog .search-trigger .mn').textContent, 'archive');
   const linkedId = direct.d.querySelector('[data-article]').dataset.article;
   await click(direct.w, direct.d.querySelector('[data-article]'));
   assert.equal(direct.w.location.hash, '#article=' + linkedId);

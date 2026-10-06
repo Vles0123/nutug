@@ -63,9 +63,15 @@ const fs = require('node:fs');
   assert.equal(visited.size, 20, 'Following same-topic neighbors reaches the whole collection');
   assert.equal(
     shortTitle('ᠠ᠋ᠠ᠋', 1),
-    'ᠠ᠋…',
-    'Node titles preserve grapheme and variation-selector boundaries',
+    'ᠠ᠋ᠠ᠋',
+    'A long Mongolian word remains intact even beyond the label budget',
   );
+  assert.equal(
+    shortTitle('ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠪᠢᠴᠢᠭ', 7),
+    'ᠮᠣᠩᠭᠣᠯ ᠤᠨ᠁',
+    'A suffix remains attached to its word',
+  );
+  assert.equal(shortTitle('ᠠ᠋ ᠠ᠋', 1), 'ᠠ᠋᠁', 'Abbreviation ends at an inter-word space');
   console.log(
     'PASS: 484 searchable entries, category integrity, multi-term full text, exact-ID ranking and Mongolian query normalization.',
   );
