@@ -18,7 +18,7 @@
 
 每个资源描述符包含 `path`、`sha256`、`bytes`。路径相对于版本清单所在目录解析。下载后核对响应正文的字节数和 SHA-256，再使用或保存。对象文件保留原始 UTF-8 字节，摘要包括文件末尾的换行。
 
-文章包含 `id`、`title`、`summary`、`paragraphs`、`sources` 等字段；显示文字使用传统蒙古文。`sources` 同时保留蒙古文显示名称、引用 URL 和原始书目信息。目录条目中的 `document` 描述符指向完整文章。
+文章包含 `id`、`title`、`summary`、`paragraphs`、`sources` 等字段；显示文字使用传统蒙古文。`sources` 同时保留蒙古文显示名称、引用 URL 和原始书目信息。目录条目中的 `document` 描述符指向完整文章，`sourceKeys` 是规范化引用 URL 的 SHA-256 前 16 位，用于查找引用同一来源的资料。小型设备目录只包含导航和下载所需的字段。
 
 清单中的 `locale` 为 `mn-Mong`，`writingMode` 为 `vertical-lr`。客户端显示时保留变体选择符、蒙古文元音分隔符和窄不换行空格。
 

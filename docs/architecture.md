@@ -12,7 +12,7 @@ Nutug 使用 React 展示传统蒙古文历史资料，D3 计算人物与部落�
 | `calendar.html`      | 地区节庆、月份、日期与来源             |
 | `almanac.html`       | 以传统蒙古文显示的农历日期和民俗条目   |
 
-`src/bootstrap.jsx` 先读取缓存或远端内容，再启动界面。`main.jsx` 管理导航、选择、阅读器和原生桥接；`Network.jsx` 负责 D3 布局、SVG 连线与可操作节点；`Records.jsx` 负责详情和阅读。`Library.jsx`、`Calendar.jsx` 负责目录与日期页面。`ui.jsx` 封装 React Aria 的操作组件，`ContentControls.jsx` 提供内容检查和离线下载。
+`src/bootstrap.jsx` 先读取缓存或远端内容，再启动界面。`main.jsx` 管理导航、选择、阅读器和原生桥接；`Network.jsx` 负责 D3 布局、SVG 连线与可操作节点；`Records.jsx` 负责详情和阅读。`Library.jsx`、`Calendar.jsx` 负责目录与日期页面；`Discovery.jsx` 展示主题、局部关系、摘要和浏览路径，`discovery.mjs` 按目录元数据计算相关资料。`ui.jsx` 封装 React Aria 的操作组件，`ContentControls.jsx` 提供内容检查和离线下载。
 
 `src/tokens.css` 保存 Apple Figma 参考中的语义变量，`styles.css` 与 `reading.css` 负责竖排和响应式布局。`apple-reference.json` 保留实际导入的组件节点和读取到的变量。
 

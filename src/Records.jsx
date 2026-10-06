@@ -1,9 +1,10 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Button, Dialog, Heading, Modal, ModalOverlay } from 'react-aria-components';
 import { ArrowLeft, ArrowRight, BookOpen, X, ChevronRight, Minus, Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Mn, IconButton, ReadingColumns, SourceLinks } from './ui';
 import { readingPages } from './reading-layout.mjs';
+import { relatedRecords } from './discovery.mjs';
 import {
   people,
   peopleEdges,
@@ -11,6 +12,7 @@ import {
   sources,
   tribes,
   articles,
+  catalogRecords,
   sourceItems,
   labels,
 } from './content';
@@ -146,7 +148,17 @@ export function Reader({ record, ...props }) {
   ) : null;
 }
 
-function RecordReader({ record, onClose, onPerson, onTribe, scale = 1, onScale, onRetry }) {
+function RecordReader({
+  record,
+  onClose,
+  onPerson,
+  onTribe,
+  onRelatedArticle,
+  scale = 1,
+  onScale,
+  onRetry,
+}) {
+  const related = useMemo(() => relatedRecords(catalogRecords, record.id, 3), [record.id]);
   const sourceTable = record.origin === 'tribes' ? tribes.sources : sources;
   const scrollRef = useRef(null);
   const [position, setPosition] = useState({ left: 0, width: 1, total: 1, pages: [0], tail: 8 });
@@ -337,6 +349,23 @@ function RecordReader({ record, onClose, onPerson, onTribe, scale = 1, onScale, 
                       <ChevronRight size={16} />
                     </Button>
                   ))}
+                  {!!related.length && (
+                    <>
+                      <Mn as="h3">{labels.explore}</Mn>
+                      <div className="reader-discovery">
+                        {related.map(({ record: next }) => (
+                          <Button
+                            key={next.id}
+                            data-related-article={next.id}
+                            onPress={() => onRelatedArticle?.(next)}
+                          >
+                            <Mn>{next.title}</Mn>
+                            <ChevronRight size={16} />
+                          </Button>
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </>
               )}
             </ReadingColumns>

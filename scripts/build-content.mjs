@@ -1,7 +1,7 @@
 import { readFile, writeFile, mkdir, rename } from 'node:fs/promises';
 import vm from 'node:vm';
 import { createHash } from 'node:crypto';
-import { createCatalogIndex } from '../src/catalog.mjs';
+import { createCatalogIndex, canonicalSourceUrl } from '../src/catalog.mjs';
 
 const context = vm.createContext({});
 for (const file of [
@@ -88,6 +88,9 @@ for (const record of records) {
     graphMode,
     relatedModes,
     sourceCount: record.sources.length,
+    sourceKeys: [
+      ...new Set(record.sources.map((source) => hash(canonicalSourceUrl(source.url)).slice(0, 16))),
+    ],
     document: descriptor,
   });
 }

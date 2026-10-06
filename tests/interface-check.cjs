@@ -167,6 +167,30 @@ function visibleText(d) {
   );
   await pause(65);
   await click(w, d.querySelectorAll('.destination')[2]);
+  assert.equal(d.querySelector('.discovery-map').dataset.discovery, 'vertical-script');
+  assert.equal(d.querySelectorAll('[data-topic]').length, 6);
+  const nextDiscovery = d.querySelector('[data-discovery-node]:not([data-current])').dataset
+    .discoveryNode;
+  await click(w, d.querySelector(`[data-discovery-node="${nextDiscovery}"]`));
+  assert.equal(d.querySelector('.discovery-map').dataset.discovery, nextDiscovery);
+  assert.equal(d.querySelector('.discovery-preview').dataset.preview, nextDiscovery);
+  await click(w, d.querySelector('[data-action="discovery-back"]'));
+  assert.equal(d.querySelector('.discovery-map').dataset.discovery, 'vertical-script');
+  await click(w, d.querySelector('[data-topic="arts"]'));
+  assert.equal(d.querySelector('.discovery-map').dataset.discovery, 'morin-khuur');
+  await click(w, d.querySelector('[data-action="discovery-read"]'));
+  for (let i = 0; i < 100 && !d.querySelector('.reader-content .reading-text'); i++)
+    await pause(20);
+  assert(d.querySelector('.reader-content .reading-text'));
+  assert(d.querySelector('[data-related-article]'), 'Reading provides a further content path');
+  const further = d.querySelector('[data-related-article]').dataset.relatedArticle;
+  await click(w, d.querySelector('[data-related-article]'));
+  assert.equal(w.location.hash, '#article=' + further);
+  w.history.back();
+  await pause(90);
+  assert.equal(w.location.hash, '#article=morin-khuur');
+  await click(w, d.querySelector('[data-action="reader-back"]'));
+  await click(w, d.querySelector('[data-action="discovery-catalog"]'));
   assert.equal(d.querySelectorAll('[data-article]').length, 24);
   assert.equal(d.querySelector('.catalog-count').textContent, '484');
   await click(w, d.querySelector('[data-action="catalog-more"]'));
@@ -321,7 +345,7 @@ function visibleText(d) {
   assert(messages.some((m) => m.event === 'record' && m.record?.id === 'batu' && m.interactive));
   native.w.close();
   console.log(
-    'PASS: React production bundle on five routes; graph filters and profiles, 484-entry paged search, lazy reading and history, midnight refresh, almanac tabs, React Aria controls, persistent type scaling and native bridge.',
+    'PASS: React production bundle on five routes; graph filters and profiles, topic discovery and browsing path, 484-entry paged search, related reading and history, midnight refresh, almanac tabs, React Aria controls, persistent type scaling and native bridge.',
   );
 })().catch((error) => {
   for (const w of liveWindows) w.close();

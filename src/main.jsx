@@ -41,6 +41,7 @@ import {
 import './tokens.css';
 import './styles.css';
 import './reading.css';
+import './discovery.css';
 
 const destinations = [
   ['people', Users, './'],
@@ -552,6 +553,7 @@ function App() {
         />
         <Reader
           record={reader}
+          onRelatedArticle={openReader}
           onClose={closeReader}
           onRetry={() => {
             if (reader) openReader(reader, { push: false });

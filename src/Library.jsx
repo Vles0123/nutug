@@ -4,6 +4,7 @@ import { ChevronDown, ChevronRight, ListFilter, Search } from 'lucide-react';
 import { Mn, Segments, SearchBox } from './ui';
 import { catalogIndex, knowledge, labels } from './content';
 import { CATALOG_BATCH_SIZE, searchCatalog } from './catalog.mjs';
+import { Discovery } from './Discovery';
 
 function CatalogEntry({ title, summary, onRead, articleId, readingId }) {
   const ref = useRef(null),
@@ -61,6 +62,10 @@ function CatalogEntry({ title, summary, onRead, articleId, readingId }) {
 }
 
 export function Library({ onRead, query, onQueryChange, tribalOnly = false }) {
+  const [view, setView] = useState(query ? 'catalog' : 'explore');
+  useEffect(() => {
+    if (query) setView('catalog');
+  }, [query]);
   const [category, setCategory] = useState('all');
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [expanded, setExpanded] = useState({ key: '', limit: CATALOG_BATCH_SIZE });
@@ -96,11 +101,27 @@ export function Library({ onRead, query, onQueryChange, tribalOnly = false }) {
     entry?.focus({ preventScroll: true });
     entry?.scrollIntoView({ block: 'start', behavior: 'instant' });
   }, [limit]);
+  const exploring = !tribalOnly && !query && view === 'explore';
   return (
     <section className="catalog" aria-label={knowledge.ui.title}>
-      <div className="catalog-tools">
-        <SearchBox value={query} onChange={onQueryChange} />
+      <div className="catalog-tools library-toolbar">
         {!tribalOnly && (
+          <Segments
+            label={labels.library}
+            className="library-views"
+            value={exploring ? 'explore' : 'catalog'}
+            onChange={(value) => {
+              setView(value);
+              if (value === 'explore') onQueryChange('');
+            }}
+            items={[
+              { id: 'explore', label: labels.explore },
+              { id: 'catalog', label: labels.all },
+            ]}
+          />
+        )}
+        <SearchBox value={query} onChange={onQueryChange} />
+        {!exploring && !tribalOnly && (
           <DialogTrigger isOpen={filtersOpen} onOpenChange={setFiltersOpen}>
             <Button
               className="catalog-filter"
@@ -127,54 +148,62 @@ export function Library({ onRead, query, onQueryChange, tribalOnly = false }) {
             </Popover>
           </DialogTrigger>
         )}
-        <output
-          className="catalog-count numeric"
-          aria-label={knowledge.ui.topics}
-          aria-live="polite"
-        >
-          {list.length}
-        </output>
-      </div>
-      <div ref={listRef} className="catalog-list" id="catalog-results">
-        {visible.map((a) => (
-          <CatalogEntry
-            key={a.id}
-            title={a.title}
-            summary={a.summary}
-            articleId={a.collection !== 'originals' ? a.id : undefined}
-            readingId={a.collection === 'originals' ? a.id : undefined}
-            onRead={() => onRead({ ...a, subtitle: a.summary })}
-          />
-        ))}
-      </div>
-      {list.length > 0 && (
-        <div className="catalog-pagination">
-          <output className="numeric" aria-live="polite">
-            {visible.length} / {list.length}
+        {!exploring && (
+          <output
+            className="catalog-count numeric"
+            aria-label={knowledge.ui.topics}
+            aria-live="polite"
+          >
+            {list.length}
           </output>
-          {visible.length < list.length && (
-            <Button
-              className="text-button"
-              data-action="catalog-more"
-              aria-controls="catalog-results"
-              onPress={() => {
-                pendingFocus.current = visible.length;
-                setExpanded({ key: filterKey, limit: limit + CATALOG_BATCH_SIZE });
-              }}
-            >
-              <Mn>{labels.more}</Mn>
-              <span className="numeric">
-                {Math.min(CATALOG_BATCH_SIZE, list.length - visible.length)}
-              </span>
-            </Button>
+        )}
+      </div>
+      {exploring ? (
+        <Discovery onRead={onRead} onCatalog={() => setView('catalog')} />
+      ) : (
+        <>
+          <div ref={listRef} className="catalog-list" id="catalog-results">
+            {visible.map((a) => (
+              <CatalogEntry
+                key={a.id}
+                title={a.title}
+                summary={a.summary}
+                articleId={a.collection !== 'originals' ? a.id : undefined}
+                readingId={a.collection === 'originals' ? a.id : undefined}
+                onRead={() => onRead({ ...a, subtitle: a.summary })}
+              />
+            ))}
+          </div>
+          {list.length > 0 && (
+            <div className="catalog-pagination">
+              <output className="numeric" aria-live="polite">
+                {visible.length} / {list.length}
+              </output>
+              {visible.length < list.length && (
+                <Button
+                  className="text-button"
+                  data-action="catalog-more"
+                  aria-controls="catalog-results"
+                  onPress={() => {
+                    pendingFocus.current = visible.length;
+                    setExpanded({ key: filterKey, limit: limit + CATALOG_BATCH_SIZE });
+                  }}
+                >
+                  <Mn>{labels.more}</Mn>
+                  <span className="numeric">
+                    {Math.min(CATALOG_BATCH_SIZE, list.length - visible.length)}
+                  </span>
+                </Button>
+              )}
+            </div>
           )}
-        </div>
-      )}
-      {!list.length && (
-        <div className="empty-state">
-          <Search size={24} aria-hidden="true" />
-          <Mn>{knowledge.ui.empty}</Mn>
-        </div>
+          {!list.length && (
+            <div className="empty-state">
+              <Search size={24} aria-hidden="true" />
+              <Mn>{knowledge.ui.empty}</Mn>
+            </div>
+          )}
+        </>
       )}
     </section>
   );

@@ -48,6 +48,7 @@ export const labels = {
   saved: 'ᠬᠠᠳᠠᠭᠠᠯᠠᠪᠠ',
   connection: 'ᠰᠦᠯᠵᠢᠶ᠎ᠡ',
   directions: 'ᠵᠦᠭ',
+  explore: 'ᠰᠤᠳᠤᠯᠬᠤ',
 };
 
 export const own = (table, id) => typeof id === 'string' && Object.hasOwn(table, id);
