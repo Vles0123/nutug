@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 1,
-  "revision": "9628a7e4e0fb0843d2f36f87",
+  "schemaVersion": 2,
+  "version": "20261006192738564",
   "locale": "mn-Mong",
   "writingMode": "vertical-lr",
   "categories": {
@@ -19,34 +19,16 @@
     "originalReadings": 2,
     "entries": 484
   },
-  "core": {
-    "path": "objects/7dce14a63884126094c784c305477d387162444e451d25adedc10be404e24590.json",
-    "sha256": "7dce14a63884126094c784c305477d387162444e451d25adedc10be404e24590",
-    "bytes": 152956
-  },
-  "catalog": {
-    "path": "objects/e339c96a25ec186be4f737ddb5ac92b38efec9de99d2d5a1db4e3a850e8fc179.json",
-    "sha256": "e339c96a25ec186be4f737ddb5ac92b38efec9de99d2d5a1db4e3a850e8fc179",
-    "bytes": 313206
-  },
-  "search": {
-    "path": "objects/bea3deb39fc501d5a5602be5c82b5e5d10dc91b41b43fd3a260a8525883baec4.json",
-    "sha256": "bea3deb39fc501d5a5602be5c82b5e5d10dc91b41b43fd3a260a8525883baec4",
-    "bytes": 1034870
-  },
-  "offline": {
-    "path": "objects/964efe92b242b8c6a41cf61818e9839be4f99e8b1601c43c0e2e1551f918d267.json",
-    "sha256": "964efe92b242b8c6a41cf61818e9839be4f99e8b1601c43c0e2e1551f918d267",
-    "bytes": 1408624
-  },
+  "core": "releases/20261006192738564/core.json",
+  "catalog": "releases/20261006192738564/catalog.json",
+  "search": "releases/20261006192738564/search.json",
+  "offline": "releases/20261006192738564/offline.json",
   "deviceCatalog": {
-    "path": "revisions/9628a7e4e0fb0843d2f36f87/catalog/{page}.json",
+    "path": "releases/20261006192738564/catalog/{page}.json",
     "pageSize": 8,
     "pageCount": 61
   },
   "updatePolicy": {
-    "checkOnConnect": true,
-    "immutableObjects": true,
-    "hash": "sha256"
+    "checkOnConnect": true
   }
 }
