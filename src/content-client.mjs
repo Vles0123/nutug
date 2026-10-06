@@ -1,3 +1,5 @@
+import { assertManifest, assertSnapshot, assertDocument } from '../shared/content-contract.mjs';
+
 export function memoryStore() {
   const values = new Map();
   return {
@@ -16,7 +18,7 @@ export async function browserStore() {
   if (typeof indexedDB === 'undefined') return memoryStore();
   try {
     const db = await new Promise((resolve, reject) => {
-      const request = indexedDB.open('nutug-content-v1', 1);
+      const request = indexedDB.open('nutug-content-v2', 1);
       request.onupgradeneeded = () => request.result.createObjectStore('content');
       request.onsuccess = () => resolve(request.result);
       request.onerror = () => reject(request.error);
@@ -50,11 +52,6 @@ export async function browserStore() {
   } catch {
     return memoryStore();
   }
-}
-
-export async function sha256(bytes) {
-  const digest = await crypto.subtle.digest('SHA-256', bytes);
-  return [...new Uint8Array(digest)].map((value) => value.toString(16).padStart(2, '0')).join('');
 }
 
 export class ContentClient {
@@ -105,45 +102,35 @@ export class ContentClient {
         signal: controller.signal,
       });
       if (!response.ok) throw new Error(`Content HTTP ${response.status}`);
-      const bytes = await response.arrayBuffer();
-      return {
-        arrayBuffer: async () => bytes,
-        json: async () => JSON.parse(new TextDecoder().decode(bytes)),
-      };
+      return await response.json();
     } finally {
       clearTimeout(timer);
     }
   }
-  descriptor(value) {
-    if (
-      !value ||
-      !/^[a-f0-9]{64}$/.test(value.sha256) ||
-      !Number.isSafeInteger(value.bytes) ||
-      value.bytes <= 0 ||
-      value.bytes > 32 * 1024 * 1024
-    )
-      throw new Error('Invalid content descriptor');
-    this.url(value.path);
-    return value;
+  resourceKey(path) {
+    return 'resource:' + this.url(path);
   }
-  async object(descriptor, offline = false) {
-    this.descriptor(descriptor);
-    const key = 'object:' + descriptor.sha256;
+  async resource(path, offline = false, validate = () => {}) {
+    const key = this.resourceKey(path);
     const cached = await this.store.get(key);
-    if (
-      cached &&
-      cached.byteLength === descriptor.bytes &&
-      (await sha256(cached)) === descriptor.sha256
-    )
-      return JSON.parse(new TextDecoder().decode(cached));
+    if (cached !== undefined) {
+      try {
+        validate(cached);
+        return cached;
+      } catch (error) {
+        if (offline) throw error;
+      }
+    }
     if (offline) throw new Error('Content is not cached');
-    if (this.pending.has(key)) return this.pending.get(key);
+    if (this.pending.has(key)) {
+      const value = await this.pending.get(key);
+      validate(value);
+      return value;
+    }
     const operation = (async () => {
-      const bytes = await (await this.request(this.url(descriptor.path))).arrayBuffer();
-      if (bytes.byteLength !== descriptor.bytes || (await sha256(bytes)) !== descriptor.sha256)
-        throw new Error('Content integrity mismatch');
-      const value = JSON.parse(new TextDecoder().decode(bytes));
-      await this.store.put(key, bytes);
+      const value = await this.request(this.url(path));
+      validate(value);
+      await this.store.put(key, value);
       return value;
     })();
     this.pending.set(key, operation);
@@ -154,53 +141,54 @@ export class ContentClient {
     }
   }
   validateManifest(manifest) {
-    if (manifest?.schemaVersion !== 1 || !/^[a-f0-9]{24}$/.test(manifest.revision))
-      throw new Error('Unsupported content manifest');
-    for (const key of ['core', 'catalog', 'search', 'offline']) this.descriptor(manifest[key]);
-    return manifest;
+    return assertManifest(manifest);
   }
   async snapshot(manifest, offline = false) {
     this.validateManifest(manifest);
     const [core, catalog, search] = await Promise.all([
-      this.object(manifest.core, offline),
-      this.object(manifest.catalog, offline),
-      this.object(manifest.search, offline),
+      this.resource(manifest.core, offline),
+      this.resource(manifest.catalog, offline),
+      this.resource(manifest.search, offline),
     ]);
-    if (
-      !core.people ||
-      !core.knowledge?.ui ||
-      !Array.isArray(catalog) ||
-      catalog.length !== manifest.counts.entries ||
-      new Set(catalog.map((a) => a.id)).size !== catalog.length
-    )
-      throw new Error('Invalid content snapshot');
-    for (const record of catalog) {
-      if (!record.id || !record.title) throw new Error('Invalid catalog entry');
-      this.descriptor(record.document);
+    const snapshot = { manifest, core, catalog, search };
+    try {
+      assertSnapshot(snapshot);
+    } catch (error) {
+      await this.store.putMany(
+        [manifest.core, manifest.catalog, manifest.search].map((path) => [
+          this.resourceKey(path),
+          undefined,
+        ]),
+      );
+      throw error;
     }
-    return { manifest, core, catalog, search };
+    return snapshot;
   }
   async load() {
     const saved = await this.store.get(this.key('head'));
     if (saved) {
       try {
         this.active = await this.snapshot(saved, true);
-        this.setStatus({ offlineReady: !!(await this.store.get('offline:' + saved.revision)) });
+        this.setStatus({
+          offlineReady: !!(await this.store.get(this.key('offline:' + saved.version))),
+        });
         return this.active;
       } catch {}
     }
-    const manifest = this.validateManifest(await (await this.request(this.manifestUrl)).json());
+    const manifest = this.validateManifest(await this.request(this.manifestUrl));
     this.active = await this.snapshot(manifest);
     await this.store.put(this.key('head'), manifest);
-    this.setStatus({ offlineReady: !!(await this.store.get('offline:' + manifest.revision)) });
+    this.setStatus({
+      offlineReady: !!(await this.store.get(this.key('offline:' + manifest.version))),
+    });
     return this.active;
   }
   async checkForUpdates() {
     if (this.status.checking || this.status.downloading) return;
     this.setStatus({ checking: true, error: false });
     try {
-      const manifest = this.validateManifest(await (await this.request(this.manifestUrl)).json());
-      if (manifest.revision === this.active?.manifest.revision) {
+      const manifest = this.validateManifest(await this.request(this.manifestUrl));
+      if (manifest.version === this.active?.manifest.version) {
         if (this.update) {
           this.update = null;
           await this.store.put(this.key('head'), manifest);
@@ -208,17 +196,14 @@ export class ContentClient {
         }
         return false;
       }
+      if (manifest.version === this.update?.manifest.version) return true;
       const snapshot = await this.snapshot(manifest);
       if (await this.store.get(this.key('keepOffline'))) await this.cacheSnapshot(snapshot);
       else {
         const previous = new Map((this.active?.catalog || []).map((record) => [record.id, record]));
         for (const record of snapshot.catalog) {
           const old = previous.get(record.id);
-          if (
-            old &&
-            old.document.sha256 !== record.document.sha256 &&
-            (await this.store.get('object:' + old.document.sha256))
-          )
+          if (old && (await this.store.get(this.resourceKey(old.document))) !== undefined)
             await this.document(record);
         }
       }
@@ -234,37 +219,27 @@ export class ContentClient {
     }
   }
   async document(record) {
-    const value = await this.object(record.document);
-    if (value.id !== record.id || !Array.isArray(value.paragraphs) || !Array.isArray(value.sources))
-      throw new Error('Invalid article document');
-    return value;
+    return this.resource(record.document, false, (value) => assertDocument(value, record.id));
   }
   async cacheSnapshot(snapshot) {
-    const pack = await this.object(snapshot.manifest.offline),
-      writes = [];
     this.setStatus({
       downloading: true,
       progress: 0,
       total: snapshot.catalog.length,
       error: false,
     });
+    const pack = await this.resource(snapshot.manifest.offline, false, (value) => {
+      for (const record of snapshot.catalog) assertDocument(value?.[record.id], record.id);
+    });
+    const writes = [];
     for (const [index, record] of snapshot.catalog.entries()) {
-      const item = pack[record.id];
-      if (
-        !item ||
-        item.descriptor.sha256 !== record.document.sha256 ||
-        item.document.id !== record.id
-      )
-        throw new Error('Offline content mismatch');
-      const bytes = new TextEncoder().encode(JSON.stringify(item.document) + '\n');
-      if ((await sha256(bytes)) !== record.document.sha256)
-        throw new Error('Offline content integrity mismatch');
-      writes.push(['object:' + record.document.sha256, bytes.buffer]);
+      writes.push([this.resourceKey(record.document), pack[record.id]]);
       if (index % 16 === 0) this.setStatus({ progress: index + 1 });
     }
-    writes.push(['offline:' + snapshot.manifest.revision, true]);
+    writes.push([this.key('offline:' + snapshot.manifest.version), true]);
     await this.store.putMany(writes);
-    this.setStatus({ progress: snapshot.catalog.length, offlineReady: true });
+    this.setStatus({ progress: snapshot.catalog.length });
+    if (snapshot === this.active) this.setStatus({ offlineReady: true });
   }
   async downloadOffline() {
     if (this.status.downloading || this.status.checking) return;

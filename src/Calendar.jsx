@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { chineseLunisolarProvider } from '../shared/calendar.mjs';
 import { Button, Tabs, TabList, Tab, TabPanel } from 'react-aria-components';
 import { useToday } from './useToday';
 import { ChevronLeft, ChevronRight, CalendarDays } from 'lucide-react';
@@ -149,7 +150,7 @@ export function CalendarView({ onRead, onAlmanac }) {
   );
 }
 export function AlmanacView({ initialDate, onRead }) {
-  const core = window.ChineseAlmanac,
+  const core = useMemo(() => chineseLunisolarProvider(window.ChineseAlmanac, A), []),
     ui = A.ui;
   const today = useToday(A.timeZone),
     previousToday = useRef(today);

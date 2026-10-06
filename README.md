@@ -1,6 +1,8 @@
-# Nutug · 蒙古历史与文化图谱
+# Nutug · 日历与编年历史
 
-传统蒙古文历史与文化阅读应用，包含人物与部落关系图、历史文化资料、节庆日历和蒙古文黄历。界面可以静态部署，资料通过独立的版本化 JSON 接口更新，并缓存在设备中供离线阅读。
+Nutug 面向传统蒙古文使用者，按“共用底座 → 公历与传统历法日历 → 编年历史与人物关系”的顺序开发。网页、macOS、iPhone、iPad 与后续电子墨水屏共用内容接口，资料按版本更新并保存到设备供离线阅读。
+
+当前工作集中于内容发布、缓存、文字和日期计算基础。已有图谱、资料库和节庆页面作为开发中的界面保留；两条产品主线及交付顺序见 [开发范围](docs/product-scope.md)。
 
 [网站](https://nutug.cn/) · [开发约定](CONTRIBUTING.md) · [架构说明](docs/architecture.md) · [字体说明](FONT-NOTES.md) · [第三方许可](THIRD_PARTY_NOTICES.md)
 
@@ -35,19 +37,20 @@ npm run check
 | `npm run content:publish`   | 将内容更新发布到 `chore/content-feed`           |
 | `npm run format`            | 格式化第一方源码、测试和文档                    |
 | `npm run format:check`      | 报告格式检查结果                                |
-| `npm test`                  | 构建内容和界面，运行全部 14 个回归脚本          |
+| `npm test`                  | 构建内容和界面，运行全部 15 个回归脚本          |
 | `npm run test:core`         | 使用 Node.js 检查黄历核心与固定第三方引擎       |
 | `npm run check`             | 执行格式检查和完整回归测试，与 CI 一致          |
 
 Prettier 与 jsdom 使用锁定版本。GitHub Actions 在 Node.js 22、24、26 上检查每次 push 和 PR。格式化范围为项目源码、测试和文档。
 
-`interface-check.cjs` 加载生产 React bundle，检查五个入口、图谱筛选、完整部落资料、484 条目录记录、搜索分页、阅读链接、日期跨天、弹层、字号持久化和原生桥接。内容客户端另有按需加载、离线缓存、更新校验和设备目录检查。原有十组数据和交互回归保留迁移前的 HTML 夹具，用于对照历史行为。真实字体、文字边界、触摸和焦点通过浏览器检查验证。
+`interface-check.cjs` 加载生产 React bundle，检查五个入口、图谱筛选、完整部落资料、484 条目录记录、搜索分页、阅读链接、日期跨天、弹层、字号持久化和原生桥接。内容客户端另有按需加载、离线缓存、版本切换、失败重试和设备目录检查。原有十组数据和交互回归保留迁移前的 HTML 夹具，用于对照历史行为。真实字体、文字边界、触摸和焦点通过浏览器检查验证。
 
 ## 仓库目录
 
 ```text
 src/                     React 组件、竖排布局、Apple 设计变量
   apple-reference.json   Apple Figma 组件节点与读取到的变量
+shared/                  内容数据定义、公历日期与历法适配
 content-source/          资料、关系、词表和引用的编辑源文件
 content-dist/            生成的独立 JSON 内容源（不纳入 Git）
 public/                  界面静态发布目录

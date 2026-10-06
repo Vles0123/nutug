@@ -3,8 +3,8 @@ const fs = require('node:fs');
 (async () => {
   const { createCatalogIndex, searchCatalog, normalizeSearch } = await import('../src/catalog.mjs');
   const manifest = JSON.parse(fs.readFileSync('content-dist/manifest.json', 'utf8'));
-  const records = JSON.parse(fs.readFileSync('content-dist/' + manifest.catalog.path, 'utf8'));
-  const search = JSON.parse(fs.readFileSync('content-dist/' + manifest.search.path, 'utf8'));
+  const records = JSON.parse(fs.readFileSync('content-dist/' + manifest.catalog, 'utf8'));
+  const search = JSON.parse(fs.readFileSync('content-dist/' + manifest.search, 'utf8'));
   const index = createCatalogIndex(records.map((r) => ({ ...r, searchText: search[r.id] })));
   assert.equal(searchCatalog(index).length, 484);
   assert.equal(searchCatalog(index, { category: 'tribes' }).length, 8);

@@ -1,6 +1,5 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
-const { webcrypto } = require('node:crypto');
 const liveWindows = new Set();
 const { JSDOM, VirtualConsole } = require('jsdom');
 const { setTimeout: pause } = require('node:timers/promises');
@@ -28,12 +27,9 @@ async function load(page, options = {}) {
       }
     };
   }
-  w.TextEncoder = TextEncoder;
-  w.TextDecoder = TextDecoder;
-  Object.defineProperty(w.crypto, 'subtle', { value: webcrypto.subtle });
   w.fetch = async (value) => {
     const url = new URL(value);
-    const marker = url.pathname.indexOf('/objects/');
+    const marker = url.pathname.indexOf('/releases/');
     const path = marker >= 0 ? url.pathname.slice(marker + 1) : 'manifest.json';
     return new Response(fs.readFileSync('content-dist/' + path), { status: 200 });
   };

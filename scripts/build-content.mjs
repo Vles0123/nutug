@@ -1,7 +1,7 @@
 import { readFile, writeFile, mkdir, rename } from 'node:fs/promises';
 import vm from 'node:vm';
-import { createHash } from 'node:crypto';
 import { createCatalogIndex, canonicalSourceUrl } from '../src/catalog.mjs';
+import { assertCore, assertDocument, assertSnapshot } from '../shared/content-contract.mjs';
 
 const context = vm.createContext({});
 for (const file of [
@@ -19,31 +19,30 @@ const data = JSON.parse(
     context,
   ),
 );
-const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const root = 'content-dist';
-await mkdir(`${root}/objects`, { recursive: true });
+const version = process.env.CONTENT_VERSION || new Date().toISOString().replace(/\D/g, '');
+if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/.test(version)) throw new Error('Invalid content version');
+const release = `releases/${version}`;
+await mkdir(`${root}/releases`, { recursive: true });
+await mkdir(`${root}/${release}`);
+await mkdir(`${root}/${release}/articles`, { recursive: true });
+await mkdir(`${root}/${release}/catalog`, { recursive: true });
 async function writeAtomically(path, value) {
-  const bytes = Buffer.from(value);
-  try {
-    if ((await readFile(path)).equals(bytes)) return;
-  } catch (error) {
-    if (error.code !== 'ENOENT') throw error;
-  }
   const temporary = `${path}.${process.pid}.tmp`;
-  await writeFile(temporary, bytes);
+  await writeFile(temporary, value);
   await rename(temporary, path);
 }
-async function object(value) {
-  const bytes = Buffer.from(JSON.stringify(value) + '\n');
-  const sha256 = hash(bytes),
-    path = `objects/${sha256}.json`;
-  await writeAtomically(`${root}/${path}`, bytes);
-  return { path, sha256, bytes: bytes.length };
+async function resource(name, value) {
+  const path = `${release}/${name}.json`;
+  await writeAtomically(`${root}/${path}`, JSON.stringify(value) + '\n');
+  return path;
 }
 const resolveSources = (ids, table) =>
   [...new Set(ids)]
-    .map((id) => table[id])
-    .filter(Boolean)
+    .map((id) => {
+      if (!Object.hasOwn(table, id)) throw new Error(`Unknown source: ${id}`);
+      return table[id];
+    })
     .map((s) => ({ ...s, title: s.title || s.name || s.label }));
 const records = [
   ...data.knowledge.articles.map((a) => ({
@@ -55,6 +54,7 @@ const records = [
   ...data.tribalKnowledge.articles.map((a) => ({
     ...a,
     sources: resolveSources(a.sources, data.tribalKnowledge.sources),
+    category: 'tribes',
     collection: 'tribes',
   })),
   ...data.knowledge.readings.map((a) => ({
@@ -68,13 +68,14 @@ const records = [
   })),
 ];
 const catalog = [],
-  documents = {};
+  documents = Object.create(null);
 if (new Set(records.map((record) => record.id)).size !== records.length)
   throw new Error('Content IDs must be unique across collections');
 for (const record of records) {
   const { body, relatedPeople, ...document } = record;
-  const descriptor = await object(document);
-  documents[record.id] = { descriptor, document };
+  assertDocument(document, record.id);
+  const path = await resource('articles/' + encodeURIComponent(record.id), document);
+  documents[record.id] = document;
   const { id, title, summary, category, collection, people, tribes, graphMode, relatedModes } =
     record;
   catalog.push({
@@ -88,27 +89,23 @@ for (const record of records) {
     graphMode,
     relatedModes,
     sourceCount: record.sources.length,
-    sourceKeys: [
-      ...new Set(record.sources.map((source) => hash(canonicalSourceUrl(source.url)).slice(0, 16))),
-    ],
-    document: descriptor,
+    sourceKeys: [...new Set(record.sources.map((source) => canonicalSourceUrl(source.url)))],
+    document: path,
   });
 }
 const { articles: knowledgeArticles, readings, ...knowledge } = data.knowledge;
 const { articles: tribalArticles, ...tribalKnowledge } = data.tribalKnowledge;
-const core = await object({ ...data, knowledge, tribalKnowledge });
-const catalogDescriptor = await object(catalog);
-const search = await object(
-  Object.fromEntries(createCatalogIndex(records).map((item) => [item.record.id, item.document])),
+const coreData = { ...data, knowledge, tribalKnowledge };
+assertCore(coreData);
+const core = await resource('core', coreData);
+const catalogPath = await resource('catalog', catalog);
+const searchData = Object.fromEntries(
+  createCatalogIndex(records).map((item) => [item.record.id, item.document]),
 );
-const offline = await object(documents);
-const revision = hash(JSON.stringify({ core, catalog: catalogDescriptor, search, offline })).slice(
-  0,
-  24,
-);
+const search = await resource('search', searchData);
+const offline = await resource('offline', documents);
 const pageSize = 8,
   pageCount = Math.ceil(catalog.length / pageSize);
-await mkdir(`${root}/revisions/${revision}/catalog`, { recursive: true });
 for (let page = 0; page < pageCount; page++) {
   const entries = catalog
     .slice(page * pageSize, (page + 1) * pageSize)
@@ -120,10 +117,10 @@ for (let page = 0; page < pageCount; page++) {
       document,
     }));
   await writeAtomically(
-    `${root}/revisions/${revision}/catalog/${page}.json`,
+    `${root}/${release}/catalog/${page}.json`,
     JSON.stringify({
-      schemaVersion: 1,
-      revision,
+      schemaVersion: 2,
+      version,
       page,
       totalPages: pageCount,
       totalEntries: catalog.length,
@@ -132,8 +129,8 @@ for (let page = 0; page < pageCount; page++) {
   );
 }
 const manifest = {
-  schemaVersion: 1,
-  revision,
+  schemaVersion: 2,
+  version,
   locale: 'mn-Mong',
   writingMode: 'vertical-lr',
   categories: {
@@ -148,26 +145,27 @@ const manifest = {
     entries: catalog.length,
   },
   core,
-  catalog: catalogDescriptor,
+  catalog: catalogPath,
   search,
   offline,
-  deviceCatalog: { path: `revisions/${revision}/catalog/{page}.json`, pageSize, pageCount },
-  updatePolicy: { checkOnConnect: true, immutableObjects: true, hash: 'sha256' },
+  deviceCatalog: { path: `${release}/catalog/{page}.json`, pageSize, pageCount },
+  updatePolicy: { checkOnConnect: true },
 };
+assertSnapshot({ manifest, core: coreData, catalog, search: searchData });
 await writeAtomically(`${root}/manifest.json`, JSON.stringify(manifest, null, 2) + '\n');
 await writeAtomically(
   `${root}/_headers`,
-  '/manifest.json\n  Cache-Control: no-cache\n  Access-Control-Allow-Origin: *\n/objects/*\n  Cache-Control: public, max-age=31536000, immutable\n  Access-Control-Allow-Origin: *\n/revisions/*\n  Cache-Control: public, max-age=31536000, immutable\n  Access-Control-Allow-Origin: *\n',
+  '/manifest.json\n  Cache-Control: no-cache\n  Access-Control-Allow-Origin: *\n/releases/*\n  Cache-Control: public, max-age=31536000, immutable\n  Access-Control-Allow-Origin: *\n',
 );
 console.log(
   JSON.stringify({
-    revision,
+    version,
     entries: catalog.length,
     manifestBytes: (await readFile(`${root}/manifest.json`)).length,
-    coreBytes: core.bytes,
-    catalogBytes: catalogDescriptor.bytes,
-    searchBytes: search.bytes,
-    offlineBytes: offline.bytes,
+    coreBytes: (await readFile(`${root}/${core}`)).length,
+    catalogBytes: (await readFile(`${root}/${catalogPath}`)).length,
+    searchBytes: (await readFile(`${root}/${search}`)).length,
+    offlineBytes: (await readFile(`${root}/${offline}`)).length,
     devicePages: pageCount,
   }),
 );
