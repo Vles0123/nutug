@@ -1,15 +1,19 @@
-/* Historical datasets stay in public/ so the web and native clients share them. */
-export const people = PEOPLE;
-export const peopleEdges = EDGES;
-export const events = EVENTS;
-export const sources = SOURCES;
-export const gaps = RESEARCH_GAPS;
-export const relationUI = RELATION_UI;
-export const tribes = TRIBAL_GRAPH;
-export const knowledge = KNOWLEDGE;
-export const tribalKnowledge = TRIBAL_KNOWLEDGE;
-export const calendar = MONGOL_CALENDAR;
-export const almanac = CHINESE_ALMANAC_CONFIG;
+/* UI adapters for the verified content snapshot loaded by bootstrap. */
+import { createCatalogIndex, normalizeSearch } from './catalog.mjs';
+const snapshot = window.NutugData;
+const data = snapshot.core;
+export const people = data.people;
+export const peopleEdges = data.peopleEdges;
+export const events = data.events;
+export const sources = data.sources;
+export const gaps = data.gaps;
+export const relationUI = data.relationUI;
+export const tribes = data.tribes;
+export const knowledge = data.knowledge;
+export const tribalKnowledge = data.tribalKnowledge;
+export const calendar = data.calendar;
+export const almanac = data.almanac;
+export const contentClient = window.NutugContentClient;
 
 export const labels = {
   brand: 'ᠨᠤᠲᠤᠭ',
@@ -37,6 +41,13 @@ export const labels = {
   power: 'ᠤᠯᠤᠰ ᠲᠥᠷᠥ',
   timeline: 'ᠣᠨ ᠴᠠᠭ',
   back: 'ᠪᠤᠴᠠᠬᠤ',
+  more: 'ᠨᠡᠮᠡᠵᠦ ᠦᠵᠡᠬᠦ',
+  retry: 'ᠳᠠᠬᠢᠨ ᠣᠷᠣᠯᠳᠣᠬᠤ',
+  update: 'ᠰᠢᠨᠡᠴᠢᠯᠡᠬᠦ',
+  download: 'ᠲᠠᠲᠠᠵᠤ ᠠᠪᠬᠤ',
+  saved: 'ᠬᠠᠳᠠᠭᠠᠯᠠᠪᠠ',
+  connection: 'ᠰᠦᠯᠵᠢᠶ᠎ᠡ',
+  directions: 'ᠵᠦᠭ',
 };
 
 export const own = (table, id) => typeof id === 'string' && Object.hasOwn(table, id);
@@ -46,26 +57,14 @@ export const sourceItems = (ids = [], table = sources) =>
     .map((id) => table[id])
     .filter(Boolean)
     .map((s) => ({ ...s, title: s.title || s.name || s.label }));
-export const articles = [
-  ...knowledge.articles.map((a) => ({
-    ...a,
-    paragraphs: a.body,
-    people: a.relatedPeople || [],
-    collection: 'culture',
-  })),
-  ...tribalKnowledge.articles.map((a) => ({
-    ...a,
-    sources: sourceItems(a.sources, tribalKnowledge.sources),
-    collection: 'tribes',
-  })),
-];
-export const normalizeQuery = (value) =>
-  String(value)
-    .normalize('NFC')
-    .toLowerCase()
-    .replace(/[\u180b-\u180f\u200b-\u200d]/g, '')
-    .replace(/\u202f/g, ' ')
-    .trim();
+export const catalogRecords = snapshot.catalog.map((record) => ({
+  ...record,
+  searchText: snapshot.search[record.id] || '',
+}));
+export const articles = catalogRecords.filter((record) => record.collection !== 'originals');
+export const catalogIndex = createCatalogIndex(catalogRecords);
+export const catalogById = new Map(catalogRecords.map((record) => [record.id, record]));
+export const normalizeQuery = normalizeSearch;
 export const matches = (query, ...values) =>
   values.some((v) => normalizeQuery(v || '').includes(normalizeQuery(query)));
 export function currentDate(zone = calendar.editorial?.todayTimeZone || 'Asia/Shanghai') {

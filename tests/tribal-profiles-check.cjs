@@ -3,9 +3,11 @@ const assert = require('node:assert'),
   fs = require('node:fs'),
   vm = require('node:vm'),
   { JSDOM } = require('jsdom');
-const G = vm.runInNewContext(fs.readFileSync('public/tribes-data.js', 'utf8') + ';TRIBAL_GRAPH'),
+const G = vm.runInNewContext(
+    fs.readFileSync('content-source/tribes-data.js', 'utf8') + ';TRIBAL_GRAPH',
+  ),
   K = vm.runInNewContext(
-    fs.readFileSync('public/tribal-knowledge-data.js', 'utf8') + ';TRIBAL_KNOWLEDGE',
+    fs.readFileSync('content-source/tribal-knowledge-data.js', 'utf8') + ';TRIBAL_KNOWLEDGE',
   );
 const ids = ['tatar', 'merkit', 'naiman', 'kereit', 'tayichiud', 'onggirat'];
 for (const id of ids) {

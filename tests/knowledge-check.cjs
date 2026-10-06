@@ -36,8 +36,10 @@ w.eval(
     .join('\n'),
 );
 const d = w.document;
-const data = vm.runInNewContext(fs.readFileSync('public/knowledge-data.js', 'utf8') + ';KNOWLEDGE');
-assert.equal(data.articles.length, 30);
+const data = vm.runInNewContext(
+  fs.readFileSync('content-source/knowledge-data.js', 'utf8') + ';KNOWLEDGE',
+);
+assert.equal(data.articles.length, 474);
 assert.equal(data.readings.length, 2);
 assert.equal(d.querySelectorAll('.kb-original').length, 2);
 for (const r of data.readings) {

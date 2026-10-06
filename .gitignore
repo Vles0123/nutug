@@ -10,3 +10,6 @@ playwright-report/
 test-results/
 public/downloads/mongol-learning-corpus.zip
 public/assets/
+content-dist/
+public/sw.js
+public/*.html

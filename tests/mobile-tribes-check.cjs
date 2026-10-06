@@ -3,9 +3,11 @@ const assert = require('node:assert'),
   fs = require('node:fs'),
   vm = require('node:vm'),
   { JSDOM } = require('jsdom');
-const D = vm.runInNewContext(fs.readFileSync('public/tribes-data.js', 'utf8') + ';TRIBAL_GRAPH'),
+const D = vm.runInNewContext(
+    fs.readFileSync('content-source/tribes-data.js', 'utf8') + ';TRIBAL_GRAPH',
+  ),
   K = vm.runInNewContext(
-    fs.readFileSync('public/tribal-knowledge-data.js', 'utf8') + ';TRIBAL_KNOWLEDGE',
+    fs.readFileSync('content-source/tribal-knowledge-data.js', 'utf8') + ';TRIBAL_KNOWLEDGE',
   );
 for (const [width, height] of [
   [320, 400],

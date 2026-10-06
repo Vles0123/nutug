@@ -5,7 +5,7 @@ const assert = require('node:assert'),
   { JSDOM } = require('jsdom'),
   core = require('../public/chinese-almanac-core');
 const A = vm.runInNewContext(
-    fs.readFileSync('public/almanac-data.js', 'utf8') + ';CHINESE_ALMANAC_CONFIG',
+    fs.readFileSync('content-source/almanac-data.js', 'utf8') + ';CHINESE_ALMANAC_CONFIG',
   ),
   verified = require('./fixtures/chinese-almanac-verification.json');
 assert.equal(A.calendarSystem, 'chinese-lunisolar');

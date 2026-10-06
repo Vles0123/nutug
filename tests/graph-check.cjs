@@ -4,7 +4,7 @@ const assert = require('node:assert'),
   vm = require('node:vm'),
   { JSDOM } = require('jsdom');
 const d = vm.runInNewContext(
-  fs.readFileSync('public/data.js', 'utf8') + ';({PEOPLE,EDGES,EVENTS,SOURCES})',
+  fs.readFileSync('content-source/data.js', 'utf8') + ';({PEOPLE,EDGES,EVENTS,SOURCES})',
 );
 assert.equal(Object.keys(d.PEOPLE).length, 32);
 assert.equal(d.EDGES.length, 53);
@@ -115,7 +115,9 @@ console.log(
   'PASS: 32 people, 53 edges, 18 events; source integrity, fixed-coordinate spacing, relationship types, knowledge navigation, conflict focus, fit and zoom.',
 );
 
-const gaps = vm.runInNewContext(fs.readFileSync('public/data.js', 'utf8') + ';RESEARCH_GAPS');
+const gaps = vm.runInNewContext(
+  fs.readFileSync('content-source/data.js', 'utf8') + ';RESEARCH_GAPS',
+);
 assert.equal(gaps.length, 1);
 assert.equal(gaps[0].isPerson, false);
 assert(!d.PEOPLE[gaps[0].id]);

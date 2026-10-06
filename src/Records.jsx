@@ -146,7 +146,7 @@ export function Reader({ record, ...props }) {
   ) : null;
 }
 
-function RecordReader({ record, onClose, onPerson, onTribe, scale = 1, onScale }) {
+function RecordReader({ record, onClose, onPerson, onTribe, scale = 1, onScale, onRetry }) {
   const sourceTable = record.origin === 'tribes' ? tribes.sources : sources;
   const scrollRef = useRef(null);
   const [position, setPosition] = useState({ left: 0, width: 1, total: 1, pages: [0], tail: 8 });
@@ -277,56 +277,68 @@ function RecordReader({ record, onClose, onPerson, onTribe, scale = 1, onScale }
               <Heading slot="title" className="mn reader-title" lang="mn-Mong">
                 {record.title}
               </Heading>
-              {record.subtitle && (
-                <Mn as="p" className="reading-text muted">
-                  {record.subtitle}
-                </Mn>
-              )}
-              {(record.paragraphs || []).map((p, i) => (
-                <Mn as="p" className="reading-text" key={i}>
-                  {p}
-                </Mn>
-              ))}
-              {(record.sections || []).map((section) => (
-                <React.Fragment key={section.id}>
-                  <Mn as="h3">{section.title}</Mn>
-                  {section.paragraphs.map((p, i) => (
+              {record.pending ? (
+                <div className="reader-loading" role="status" aria-label={labels.download}>
+                  <span className="bootstrap-spinner" />
+                </div>
+              ) : record.error ? (
+                <Button className="reader-related" onPress={onRetry} data-action="reader-retry">
+                  <Mn>{labels.retry}</Mn>
+                </Button>
+              ) : (
+                <>
+                  {record.subtitle && (
+                    <Mn as="p" className="reading-text muted">
+                      {record.subtitle}
+                    </Mn>
+                  )}
+                  {(record.paragraphs || []).map((p, i) => (
                     <Mn as="p" className="reading-text" key={i}>
                       {p}
                     </Mn>
                   ))}
-                  <SourceLinks items={sourceItems(section.sources, sourceTable)} />
-                </React.Fragment>
-              ))}
-              {!!record.events?.length && (
-                <>
-                  <Mn as="h3">{labels.timeline}</Mn>
-                  {record.events.map((e, i) => (
-                    <React.Fragment key={i}>
-                      <Mn as="h4">
-                        {e.date} · {e.title}
-                      </Mn>
-                      <Mn as="p" className="reading-text">
-                        {e.text}
-                      </Mn>
+                  {(record.sections || []).map((section) => (
+                    <React.Fragment key={section.id}>
+                      <Mn as="h3">{section.title}</Mn>
+                      {section.paragraphs.map((p, i) => (
+                        <Mn as="p" className="reading-text" key={i}>
+                          {p}
+                        </Mn>
+                      ))}
+                      <SourceLinks items={sourceItems(section.sources, sourceTable)} />
                     </React.Fragment>
+                  ))}
+                  {!!record.events?.length && (
+                    <>
+                      <Mn as="h3">{labels.timeline}</Mn>
+                      {record.events.map((e, i) => (
+                        <React.Fragment key={i}>
+                          <Mn as="h4">
+                            {e.date} · {e.title}
+                          </Mn>
+                          <Mn as="p" className="reading-text">
+                            {e.text}
+                          </Mn>
+                        </React.Fragment>
+                      ))}
+                    </>
+                  )}
+                  <Mn as="h3">{labels.sources}</Mn>
+                  <SourceLinks items={record.sources} />
+                  {record.people?.map((id) => (
+                    <Button key={id} className="reader-related" onPress={() => onPerson(id)}>
+                      <Mn>{people[id]?.name}</Mn>
+                      <ChevronRight size={16} />
+                    </Button>
+                  ))}
+                  {record.tribes?.map((id) => (
+                    <Button key={id} className="reader-related" onPress={() => onTribe(id)}>
+                      <Mn>{tribes.nodes[id]?.name}</Mn>
+                      <ChevronRight size={16} />
+                    </Button>
                   ))}
                 </>
               )}
-              <Mn as="h3">{labels.sources}</Mn>
-              <SourceLinks items={record.sources} />
-              {record.people?.map((id) => (
-                <Button key={id} className="reader-related" onPress={() => onPerson(id)}>
-                  <Mn>{people[id]?.name}</Mn>
-                  <ChevronRight size={16} />
-                </Button>
-              ))}
-              {record.tribes?.map((id) => (
-                <Button key={id} className="reader-related" onPress={() => onTribe(id)}>
-                  <Mn>{tribes.nodes[id]?.name}</Mn>
-                  <ChevronRight size={16} />
-                </Button>
-              ))}
             </ReadingColumns>
           </div>
           <div

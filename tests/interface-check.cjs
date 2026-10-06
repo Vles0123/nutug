@@ -1,5 +1,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const { webcrypto } = require('node:crypto');
+const liveWindows = new Set();
 const { JSDOM, VirtualConsole } = require('jsdom');
 const { setTimeout: pause } = require('node:timers/promises');
 const pages = ['index.html', 'tribes.html', 'tribes-mobile.html', 'calendar.html', 'almanac.html'];
@@ -14,6 +16,27 @@ async function load(page, options = {}) {
     pretendToBeVisual: true,
     virtualConsole,
   }).window;
+  liveWindows.add(w);
+  if (options.clock) {
+    const NativeDate = w.Date;
+    w.Date = class extends NativeDate {
+      constructor(...args) {
+        super(...(args.length ? args : [options.clock.now]));
+      }
+      static now() {
+        return options.clock.now;
+      }
+    };
+  }
+  w.TextEncoder = TextEncoder;
+  w.TextDecoder = TextDecoder;
+  Object.defineProperty(w.crypto, 'subtle', { value: webcrypto.subtle });
+  w.fetch = async (value) => {
+    const url = new URL(value);
+    const marker = url.pathname.indexOf('/objects/');
+    const path = marker >= 0 ? url.pathname.slice(marker + 1) : 'manifest.json';
+    return new Response(fs.readFileSync('content-dist/' + path), { status: 200 });
+  };
   w.matchMedia = () => ({
     matches: true,
     addListener() {},
@@ -35,13 +58,20 @@ async function load(page, options = {}) {
     };
   const scripts = [...w.document.querySelectorAll('script[src]')].map((n) => n.getAttribute('src'));
   w.eval(scripts.map((file) => fs.readFileSync('public/' + file, 'utf8')).join('\n'));
-  await pause(100);
+  for (let i = 0; i < 100 && !w.document.querySelector('.app'); i++) await pause(20);
+  assert(w.document.querySelector('.app'), 'Remote content bootstraps the interface');
   assert.equal(errors.length, 0, errors.join('\n'));
   return { w, d: w.document, errors };
 }
 async function click(w, element) {
   assert(element, 'Expected interactive element');
   element.click();
+  await pause(65);
+}
+async function fill(w, element, value) {
+  assert(element, 'Expected text input');
+  Object.getOwnPropertyDescriptor(w.HTMLInputElement.prototype, 'value').set.call(element, value);
+  element.dispatchEvent(new w.Event('input', { bubbles: true }));
   await pause(65);
 }
 function visibleText(d) {
@@ -137,9 +167,21 @@ function visibleText(d) {
   );
   await pause(65);
   await click(w, d.querySelectorAll('.destination')[2]);
-  assert.equal(d.querySelectorAll('[data-article]').length, 38);
+  assert.equal(d.querySelectorAll('[data-article]').length, 24);
+  assert.equal(d.querySelector('.catalog-count').textContent, '484');
+  await click(w, d.querySelector('[data-action="catalog-more"]'));
+  assert.equal(d.querySelectorAll('[data-article]').length, 48);
+  assert.equal(d.activeElement, d.querySelectorAll('[data-article]')[24]);
+  await fill(w, d.querySelector('.catalog input'), 'archive-lindgren-community-identification');
+  assert.equal(d.querySelectorAll('[data-article]').length, 1);
+  await click(w, d.querySelector('.catalog .search-field button'));
+  assert.equal(
+    d.querySelectorAll('[data-article]').length,
+    24,
+    'Clearing search starts a new batch',
+  );
   await click(w, d.querySelector('[data-action="catalog-filter"]'));
-  assert.equal(d.querySelectorAll('.category-options .segment').length, 8);
+  assert.equal(d.querySelectorAll('.category-options .segment').length, 9);
   await click(
     w,
     [...d.querySelectorAll('.category-options .segment')].find(
@@ -152,10 +194,29 @@ function visibleText(d) {
     null,
     'A category selection returns to the catalog',
   );
+  await click(w, d.querySelector('[data-action="search"]'));
+  await fill(w, d.querySelector('[role="dialog"] .search-input'), 'ᠮᠣᠩᠭᠣᠯ');
+  const completeCount = Number(d.querySelector('[data-action="search-all"] .numeric').textContent);
+  assert(completeCount > 24);
+  await click(w, d.querySelector('[data-action="search-all"]'));
+  assert.equal(d.querySelector('.catalog input').value, 'ᠮᠣᠩᠭᠣᠯ');
+  assert.equal(Number(d.querySelector('.catalog-count').textContent), completeCount);
+  assert.equal(d.querySelectorAll('.catalog-entry').length, 24, 'Complete search resets category');
+  assert.equal(new URLSearchParams(w.location.search).get('q'), 'ᠮᠣᠩᠭᠣᠯ');
+  await click(w, d.querySelector('.catalog .search-field button'));
   await click(w, d.querySelector('[data-action="catalog-filter"]'));
   await click(w, d.querySelector('.category-options .segment'));
-  assert.equal(d.querySelectorAll('[data-article]').length, 38);
+  assert.equal(d.querySelectorAll('[data-article]').length, 24);
+  assert.equal(d.querySelector('.catalog-count').textContent, '484');
+  await click(w, d.querySelector('[data-action="catalog-filter"]'));
+  await click(
+    w,
+    [...d.querySelectorAll('.category-options .segment')].find(
+      (e) => e.getAttribute('aria-label') === 'ᠠᠶᠢᠮᠠᠭ',
+    ),
+  );
   await click(w, d.querySelector('[data-article="kereit_guide"]'));
+  for (let i = 0; i < 60 && !d.querySelector('.reader-content .reading-text'); i++) await pause(20);
   assert(d.querySelectorAll('.reader-content .reading-text').length >= 5);
   assert(d.querySelector('.reader-title'), 'Article title belongs to the vertical reading flow');
   await click(w, d.querySelector('[data-action="reader-smaller"]'));
@@ -168,7 +229,10 @@ function visibleText(d) {
     new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
   );
   await pause(65);
+  await click(w, d.querySelector('[data-action="catalog-filter"]'));
+  await click(w, d.querySelector('.category-options .segment'));
   await click(w, d.querySelector('[data-article="sorghaghtani-beki"]'));
+  for (let i = 0; i < 60 && !d.querySelector('.reader-related'); i++) await pause(20);
   assert.equal(d.querySelectorAll('.reader-related').length, 3, 'Article keeps related people');
   await click(
     w,
@@ -182,6 +246,65 @@ function visibleText(d) {
   );
   assert.equal(errors.length, 0, errors.join('\n'));
   w.close();
+  const direct = await load('index.html', {
+    fragment: '?q=archive#article=archive-lindgren-community-identification',
+  });
+  for (let i = 0; i < 60 && !direct.d.querySelector('.reader-content .reading-text'); i++)
+    await pause(20);
+  assert.equal(
+    direct.d.querySelectorAll('.reader-content p').length,
+    3,
+    'Deep link hydrates the full body',
+  );
+  await click(direct.w, direct.d.querySelector('[data-action="reader-back"]'));
+  assert.equal(direct.w.location.hash, '#knowledge');
+  assert.equal(direct.d.querySelector('.catalog input').value, 'archive');
+  const linkedId = direct.d.querySelector('[data-article]').dataset.article;
+  await click(direct.w, direct.d.querySelector('[data-article]'));
+  assert.equal(direct.w.location.hash, '#article=' + linkedId);
+  direct.w.history.back();
+  await pause(90);
+  assert.equal(direct.d.querySelector('.reader-dialog'), null);
+  direct.w.history.forward();
+  await pause(90);
+  assert(direct.d.querySelector('.reader-content .reading-text'), 'Forward restores article body');
+  direct.w.close();
+  for (const page of ['calendar.html', 'almanac.html']) {
+    const clock = { now: Date.parse('2026-10-06T15:59:50Z') };
+    const timed = await load(page, { clock });
+    const selectedDate = () =>
+      page === 'calendar.html'
+        ? timed.d.querySelector('.selected-date .numeric').textContent
+        : timed.d.querySelector('.date-controls input').value;
+    assert.equal(selectedDate(), '2026-10-06');
+    clock.now = Date.parse('2026-10-06T16:00:10Z');
+    timed.d.dispatchEvent(new timed.w.Event('visibilitychange'));
+    await pause(90);
+    assert.equal(selectedDate(), '2026-10-07', 'Today follows the content time zone at midnight');
+    if (page === 'calendar.html')
+      await click(timed.w, timed.d.querySelector('[data-date="2026-10-05"]'));
+    else {
+      await fill(timed.w, timed.d.querySelector('.date-controls input'), '2026-10-05');
+      timed.d
+        .querySelector('.date-controls input')
+        .dispatchEvent(new timed.w.KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+      await pause(65);
+      const tabs = timed.d.querySelectorAll('.almanac-tabs [role="tab"]');
+      assert.equal(tabs.length, 3);
+      await click(timed.w, tabs[1]);
+      assert(timed.d.querySelector('[role="tabpanel"] .directions'));
+      await click(timed.w, tabs[2]);
+      assert(timed.d.querySelector('[role="tabpanel"] .source-links a'));
+      await click(timed.w, tabs[0]);
+      assert(timed.d.querySelector('[role="tabpanel"] .almanac-activities'));
+      assert(!han.test(visibleText(timed.d)));
+    }
+    clock.now = Date.parse('2026-10-07T16:00:10Z');
+    timed.d.dispatchEvent(new timed.w.Event('visibilitychange'));
+    await pause(90);
+    assert.equal(selectedDate(), '2026-10-05', 'A chosen historical date stays selected');
+    timed.w.close();
+  }
   for (const id of ['constructor', '__proto__']) {
     const { w, d } = await load('index.html', { fragment: '#person=' + id });
     assert.equal(d.querySelector('.inspector').dataset.record, 'temujin');
@@ -191,15 +314,17 @@ function visibleText(d) {
     native = await load('index.html', { native: messages });
   assert(native.d.querySelector('.native-app'));
   assert(messages.some((m) => m.event === 'ready'));
+  assert.equal(messages.find((m) => m.event === 'people')?.records.length, 32);
   native.w.NutugShell.person('batu');
   await pause(75);
   assert.equal(native.d.querySelector('.inspector').dataset.record, 'batu');
   assert(messages.some((m) => m.event === 'record' && m.record?.id === 'batu' && m.interactive));
   native.w.close();
   console.log(
-    'PASS: React production bundle on five routes; 9 nodes, 16 edges, period filters, six complete profiles, 38 articles, React Aria dialogs and slider, persistent type scaling, URL validation and native bridge.',
+    'PASS: React production bundle on five routes; graph filters and profiles, 484-entry paged search, lazy reading and history, midnight refresh, almanac tabs, React Aria controls, persistent type scaling and native bridge.',
   );
 })().catch((error) => {
+  for (const w of liveWindows) w.close();
   console.error(error);
   process.exitCode = 1;
 });

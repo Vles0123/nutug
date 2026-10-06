@@ -18,6 +18,8 @@ import { Mn, IconButton, Segments, Sheet, ReadingSettings, SearchBox } from './u
 import { Network } from './Network';
 import { Inspector, Reader, makeRecord } from './Records';
 import { Library } from './Library';
+import { ContentControls } from './ContentControls';
+import { searchCatalog } from './catalog.mjs';
 import { CalendarView, AlmanacView } from './Calendar';
 import {
   people,
@@ -32,6 +34,9 @@ import {
   sourceItems,
   edgeKey,
   knowledge,
+  catalogIndex,
+  catalogById,
+  contentClient,
 } from './content';
 import './tokens.css';
 import './styles.css';
@@ -93,8 +98,10 @@ function App() {
     [edge, setEdge] = useState(null),
     [eventFocus, setEventFocus] = useState(null);
   const [inspector, setInspector] = useState(true),
-    [reader, setReader] = useState(
-      () => articles.find((a) => a.id === hashValues().get('article')) || null,
+    [reader, setReader] = useState(null),
+    [catalogRequest, setCatalogRequest] = useState(0),
+    [libraryQuery, setLibraryQuery] = useState(
+      () => new URLSearchParams(location.search).get('q') || '',
     ),
     [search, setSearch] = useState(false),
     [query, setQuery] = useState(''),
@@ -102,6 +109,7 @@ function App() {
     [timeline, setTimeline] = useState(false),
     [scale, setScale] = useState(readScale),
     [almanacDate, setAlmanacDate] = useState(new URLSearchParams(location.search).get('date'));
+  const readingRequest = useRef(0);
   const networkRef = useRef(null),
     native = !!window.webkit?.messageHandlers?.nutug;
   const isTribes = page === 'tribes',
@@ -134,7 +142,42 @@ function App() {
   function setReading(value) {
     setScale(Math.round(Math.max(0.85, Math.min(1.5, Number(value) || 1)) * 100) / 100);
   }
+  async function openReader(value, { push = true } = {}) {
+    const request = ++readingRequest.current;
+    const meta = catalogById.get(value.id);
+    if (!meta) {
+      setReader(value);
+      return;
+    }
+    if (push && hashValues().get('article') !== meta.id) {
+      const url = new URL('index.html', location.href);
+      if (libraryQuery) url.searchParams.set('q', libraryQuery);
+      url.hash = 'article=' + encodeURIComponent(meta.id);
+      history.pushState({ nutugReader: true }, '', url.pathname + url.search + url.hash);
+    }
+    setReader({ id: meta.id, title: meta.title, pending: true, paragraphs: [], sources: [] });
+    try {
+      const document = await contentClient.document(meta);
+      if (request === readingRequest.current)
+        setReader({ ...document, subtitle: document.summary });
+    } catch {
+      if (request === readingRequest.current)
+        setReader({ id: meta.id, title: meta.title, error: true, paragraphs: [], sources: [] });
+    }
+  }
+  function closeReader() {
+    readingRequest.current++;
+    setReader(null);
+    if (hashValues().get('article')) {
+      if (history.state?.nutugReader) history.back();
+      else {
+        history.replaceState(null, '', location.pathname + location.search + '#knowledge');
+        setPage('library');
+      }
+    }
+  }
   function navigate(next, hash = '') {
+    readingRequest.current++;
     setPage(next);
     setEdge(null);
     setEventFocus(null);
@@ -190,17 +233,24 @@ function App() {
     } catch {}
   }, [scale]);
   useEffect(() => {
-    document.title = labels[page] || labels.calendar;
-  }, [page]);
+    document.title = reader?.title || labels[page] || labels.calendar;
+  }, [page, reader]);
   useEffect(() => {
     const change = () => {
       setPage(route());
       const h = hashValues();
       if (own(people, h.get('person'))) setPerson(h.get('person'));
       if (own(tribes.nodes, h.get('tribe'))) setTribe(h.get('tribe'));
-      setReader(articles.find((a) => a.id === h.get('article')) || null);
+      setLibraryQuery(new URLSearchParams(location.search).get('q') || '');
+      const article = catalogById.get(h.get('article'));
+      if (article) openReader(article, { push: false });
+      else {
+        readingRequest.current++;
+        setReader(null);
+      }
       setEdge(null);
     };
+    change();
     window.addEventListener('popstate', change);
     window.addEventListener('hashchange', change);
     return () => {
@@ -208,6 +258,13 @@ function App() {
       window.removeEventListener('hashchange', change);
     };
   }, []);
+  useEffect(() => {
+    if (page !== 'library' || reader) return;
+    const url = new URL(location.href);
+    if (libraryQuery) url.searchParams.set('q', libraryQuery);
+    else url.searchParams.delete('q');
+    history.replaceState(history.state, '', url.pathname + url.search + url.hash);
+  }, [page, libraryQuery, reader]);
   useEffect(() => {
     const key = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -232,6 +289,11 @@ function App() {
           zoomOut: () => n?.zoom(1 / 1.2),
           focusTribe: () => n?.center(),
           search: () => setSearch(true),
+          'content-download': () => contentClient.downloadOffline().catch(() => {}),
+          'content-update': () =>
+            contentClient.checkForUpdates().then((updated) => {
+              if (updated) location.reload();
+            }),
         };
         actions[id]?.();
       },
@@ -239,6 +301,17 @@ function App() {
       person: selectPerson,
       tribe: selectTribe,
     };
+    window.webkit?.messageHandlers?.nutug?.postMessage({
+      event: 'people',
+      records: Object.entries(people).map(([id, p]) => ({
+        id,
+        title: p.name,
+        subtitle: p.alias || '',
+        dates: p.years || '',
+        paragraphs: [p.summary, p.note].filter(Boolean),
+        sources: sourceItems(p.sources),
+      })),
+    });
     window.webkit?.messageHandlers?.nutug?.postMessage({ event: 'ready' });
     return () => {
       delete window.NutugShell;
@@ -262,7 +335,7 @@ function App() {
   }, [record, graphPage]);
   const searchPeople = nodeLists.people.filter((n) => matches(query, n.id, n.name, n.alias));
   const searchTribes = nodeLists.tribes.filter((n) => matches(query, n.id, n.name));
-  const searchArticles = articles.filter((a) => matches(query, a.id, a.title, a.summary));
+  const searchArticles = useMemo(() => searchCatalog(catalogIndex, { query }), [query]);
   return (
     <MotionConfig reducedMotion="user">
       <div className={`app ${native ? 'native-app' : ''}`} data-page={page}>
@@ -322,6 +395,7 @@ function App() {
               {isTribes && <span className="toolbar-meta numeric">1180 — 1206</span>}
             </div>
             <div className="toolbar-actions">
+              <ContentControls />
               {graphPage && (
                 <IconButton
                   className="compact-reader"
@@ -442,14 +516,19 @@ function App() {
                   onClose={() => setInspector(false)}
                   onEdge={selectEdge}
                   onSelect={select}
-                  onArticle={setReader}
+                  onArticle={openReader}
                 />
               )}
             </div>
           ) : (
             <div className="page-scroll">
               {page === 'library' ? (
-                <Library onRead={setReader} />
+                <Library
+                  key={catalogRequest}
+                  onRead={openReader}
+                  query={libraryQuery}
+                  onQueryChange={setLibraryQuery}
+                />
               ) : page === 'calendar' ? (
                 <CalendarView
                   onRead={setReader}
@@ -473,7 +552,10 @@ function App() {
         />
         <Reader
           record={reader}
-          onClose={() => setReader(null)}
+          onClose={closeReader}
+          onRetry={() => {
+            if (reader) openReader(reader, { push: false });
+          }}
           onPerson={(id) => {
             setMode('power');
             selectPerson(id);
@@ -498,7 +580,7 @@ function App() {
                 searchArticles,
                 (a) => {
                   setSearch(false);
-                  setReader(a);
+                  openReader(a);
                 },
               ],
             ]
@@ -507,13 +589,32 @@ function App() {
                 <section key={title}>
                   <Mn as="h3">{title}</Mn>
                   <div>
-                    {items.slice(0, query ? 20 : 5).map((item) => (
-                      <Button key={item.id} onPress={() => action(item.title ? item : item.id)}>
-                        <Mn>{item.name || item.title}</Mn>
-                        <ChevronRight size={16} />
-                      </Button>
-                    ))}
+                    {items
+                      .slice(
+                        0,
+                        title === labels.library ? (query ? 8 : 5) : query ? items.length : 5,
+                      )
+                      .map((item) => (
+                        <Button key={item.id} onPress={() => action(item.title ? item : item.id)}>
+                          <Mn>{item.name || item.title}</Mn>
+                          <ChevronRight size={16} />
+                        </Button>
+                      ))}
                   </div>
+                  {title === labels.library && items.length > (query ? 8 : 5) && (
+                    <Button
+                      className="text-button search-all"
+                      data-action="search-all"
+                      onPress={() => {
+                        setLibraryQuery(query);
+                        setCatalogRequest((value) => value + 1);
+                        navigate('library');
+                      }}
+                    >
+                      <Mn>{labels.more}</Mn>
+                      <span className="numeric">{items.length}</span>
+                    </Button>
+                  )}
                 </section>
               ))}
           </div>

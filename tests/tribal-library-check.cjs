@@ -4,9 +4,9 @@ const assert = require('node:assert'),
   vm = require('node:vm'),
   { JSDOM } = require('jsdom');
 const data = vm.runInNewContext(
-  fs.readFileSync('public/tribal-knowledge-data.js', 'utf8') +
+  fs.readFileSync('content-source/tribal-knowledge-data.js', 'utf8') +
     '\n' +
-    fs.readFileSync('public/tribes-data.js', 'utf8') +
+    fs.readFileSync('content-source/tribes-data.js', 'utf8') +
     ';({K:TRIBAL_KNOWLEDGE,G:TRIBAL_GRAPH})',
 );
 const { K, G } = data;

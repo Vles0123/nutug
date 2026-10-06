@@ -12,10 +12,13 @@
     "start": "npm run dev",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "npm run build && node scripts/test.cjs",
+    "test": "npm run build:content && npm run build && node scripts/test.cjs",
     "test:core": "node tests/chinese-almanac-core-check.cjs",
     "check": "npm run format:check && npm test",
-    "build": "node scripts/build-web.mjs"
+    "build": "node scripts/build-web.mjs",
+    "build:content": "node scripts/build-content.mjs",
+    "content:dev": "node scripts/build-content.mjs && node scripts/content-server.mjs",
+    "content:publish": "node scripts/publish-content.mjs"
   },
   "devDependencies": {
     "@internationalized/string": "3.2.10",

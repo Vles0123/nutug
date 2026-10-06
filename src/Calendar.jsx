@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
-import { Button } from 'react-aria-components';
+import React, { useState, useEffect, useRef } from 'react';
+import { Button, Tabs, TabList, Tab, TabPanel } from 'react-aria-components';
+import { useToday } from './useToday';
 import { ChevronLeft, ChevronRight, CalendarDays } from 'lucide-react';
 import { Mn, IconButton, Segments, ReadingColumns, SourceLinks } from './ui';
 import { calendar as D, almanac as A, currentDate, sourceItems, labels } from './content';
 
 export function CalendarView({ onRead, onAlmanac }) {
-  const today = currentDate(),
+  const today = useToday(),
     [date, setDate] = useState(today),
     [month, setMonth] = useState(today.slice(0, 7)),
     [region, setRegion] = useState('all');
+  const previousToday = useRef(today);
+  useEffect(() => {
+    if (date === previousToday.current) {
+      setDate(today);
+      setMonth(today.slice(0, 7));
+    }
+    previousToday.current = today;
+  }, [today]);
   const [y, m] = month.split('-').map(Number);
   const filtered = D.events.filter((e) => region === 'all' || e.region === region),
     selected = filtered.filter((e) => e.dates.includes(date));
@@ -142,11 +151,18 @@ export function CalendarView({ onRead, onAlmanac }) {
 export function AlmanacView({ initialDate, onRead }) {
   const core = window.ChineseAlmanac,
     ui = A.ui;
-  const [date, setDate] = useState(
-      core.validDate(initialDate) ? initialDate : currentDate(A.timeZone),
-    ),
+  const today = useToday(A.timeZone),
+    previousToday = useRef(today);
+  const [date, setDate] = useState(core.validDate(initialDate) ? initialDate : today),
     [input, setInput] = useState(date),
     [invalid, setInvalid] = useState(false);
+  useEffect(() => {
+    if (date === previousToday.current && core.validDate(today)) {
+      setDate(today);
+      setInput(today);
+    }
+    previousToday.current = today;
+  }, [today]);
   const r = core.compute(date),
     translate = (table, key) => table[key] || ui.translationPending;
   const ganZhi = (value) => A.stems[value[0]] + ' ' + A.branches[value[1]];
@@ -202,11 +218,7 @@ export function AlmanacView({ initialDate, onRead }) {
           isDisabled={date >= A.maxDate}
           onPress={() => move(1)}
         />
-        <IconButton
-          icon={CalendarDays}
-          label={ui.today}
-          onPress={() => choose(currentDate(A.timeZone))}
-        />
+        <IconButton icon={CalendarDays} label={ui.today} onPress={() => choose(today)} />
       </div>
       {invalid && (
         <Mn className="input-error" role="alert">
@@ -221,59 +233,80 @@ export function AlmanacView({ initialDate, onRead }) {
           </div>
         ))}
       </div>
-      <div className="almanac-activities">
-        {[
-          [ui.favorable, r.yi],
-          [ui.unfavorable, r.ji],
-        ].map(([title, terms]) => (
-          <section key={title}>
-            <Mn as="h2">{title}</Mn>
-            <ReadingColumns>
-              {terms.map((term, i) => (
-                <Mn as="p" className="reading-text" key={i}>
-                  {translate(A.activities, term)}
-                </Mn>
-              ))}
-            </ReadingColumns>
-          </section>
-        ))}
-      </div>
-      <div className="almanac-fields directions">
-        {r.directions.map((item) => (
-          <div className="almanac-field" key={item.key}>
-            <Mn className="muted">{ui[item.key]}</Mn>
-            <Mn>{translate(A.directions, item.value)}</Mn>
+      <Tabs className="almanac-tabs" defaultSelectedKey="activities">
+        <TabList aria-label={ui.calendarSystem} className="almanac-tab-list">
+          <Tab id="activities">
+            <Mn>
+              {ui.yi} · {ui.ji}
+            </Mn>
+          </Tab>
+          <Tab id="directions">
+            <Mn>{labels.directions}</Mn>
+          </Tab>
+          <Tab id="notes">
+            <Mn>{ui.source}</Mn>
+          </Tab>
+        </TabList>
+        <TabPanel id="activities">
+          <div className="almanac-activities">
+            {[
+              [ui.favorable, r.yi],
+              [ui.unfavorable, r.ji],
+            ].map(([title, terms]) => (
+              <section key={title}>
+                <Mn as="h2">{title}</Mn>
+                <ReadingColumns>
+                  {terms.map((term, i) => (
+                    <Mn as="p" className="reading-text" key={i}>
+                      {translate(A.activities, term)}
+                    </Mn>
+                  ))}
+                </ReadingColumns>
+              </section>
+            ))}
           </div>
-        ))}
-      </div>
-      <div className="date-examples">
-        {A.quickDates.map((value) => (
-          <Button key={value} className="numeric text-button" onPress={() => choose(value)}>
-            {value}
-          </Button>
-        ))}
-      </div>
-      <div className="almanac-footer">
-        <SourceLinks items={A.sources} />
-        <Button
-          className="text-button"
-          onPress={() =>
-            onRead({
-              title: ui.calendarSystem,
-              paragraphs: [
-                ui.algorithmNote,
-                ui.traditionNote,
-                ui.directionNote,
-                ui.ganZhiNote,
-                ui.solarTermNote,
-              ],
-              sources: A.sources,
-            })
-          }
-        >
-          <Mn>{labels.details}</Mn>
-        </Button>
-      </div>
+          <div className="date-examples">
+            {A.quickDates.map((value) => (
+              <Button key={value} className="numeric text-button" onPress={() => choose(value)}>
+                {value}
+              </Button>
+            ))}
+          </div>
+        </TabPanel>
+        <TabPanel id="directions">
+          <div className="almanac-fields directions">
+            {r.directions.map((item) => (
+              <div className="almanac-field" key={item.key}>
+                <Mn className="muted">{ui[item.key]}</Mn>
+                <Mn>{translate(A.directions, item.value)}</Mn>
+              </div>
+            ))}
+          </div>
+        </TabPanel>
+        <TabPanel id="notes">
+          <div className="almanac-footer">
+            <SourceLinks items={A.sources} />
+            <Button
+              className="text-button"
+              onPress={() =>
+                onRead({
+                  title: ui.calendarSystem,
+                  paragraphs: [
+                    ui.algorithmNote,
+                    ui.traditionNote,
+                    ui.directionNote,
+                    ui.ganZhiNote,
+                    ui.solarTermNote,
+                  ],
+                  sources: A.sources,
+                })
+              }
+            >
+              <Mn>{labels.details}</Mn>
+            </Button>
+          </div>{' '}
+        </TabPanel>
+      </Tabs>
     </div>
   );
 }

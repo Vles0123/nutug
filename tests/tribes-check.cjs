@@ -3,7 +3,9 @@ const assert = require('node:assert'),
   fs = require('node:fs'),
   vm = require('node:vm'),
   { JSDOM } = require('jsdom');
-const d = vm.runInNewContext(fs.readFileSync('public/tribes-data.js', 'utf8') + ';TRIBAL_GRAPH');
+const d = vm.runInNewContext(
+  fs.readFileSync('content-source/tribes-data.js', 'utf8') + ';TRIBAL_GRAPH',
+);
 const ids = Object.keys(d.nodes);
 assert(ids.length >= 6);
 assert(d.edges.length >= 6);

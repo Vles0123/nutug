@@ -1,12 +1,51 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Button, Dialog, DialogTrigger, Popover } from 'react-aria-components';
 import { ChevronDown, ChevronRight, ListFilter, Search } from 'lucide-react';
 import { Mn, Segments, SearchBox } from './ui';
-import { articles, knowledge, labels, matches } from './content';
+import { catalogIndex, knowledge, labels } from './content';
+import { CATALOG_BATCH_SIZE, searchCatalog } from './catalog.mjs';
 
 function CatalogEntry({ title, summary, onRead, articleId, readingId }) {
+  const ref = useRef(null),
+    width = useRef(0);
+  const [height, setHeight] = useState(null),
+    [fontVersion, setFontVersion] = useState(0);
+  useLayoutEffect(() => {
+    const element = ref.current,
+      copy = element?.querySelector('.catalog-entry-copy');
+    if (!copy?.clientWidth) return;
+    width.current = element.clientWidth;
+    if (copy.scrollWidth > copy.clientWidth + 1 && (height || 0) < 768) {
+      const base = parseFloat(getComputedStyle(copy.firstElementChild).maxHeight) || 236;
+      setHeight((height || base) + 32);
+    }
+  }, [height, fontVersion, title, summary]);
+  useEffect(() => {
+    let active = true;
+    const observer = new ResizeObserver(() => {
+      const next = ref.current?.clientWidth;
+      if (next && Math.abs(next - width.current) > 1) {
+        width.current = next;
+        setHeight(null);
+        setFontVersion((v) => v + 1);
+      }
+    });
+    observer.observe(ref.current);
+    document.fonts?.ready.then(() => {
+      if (active) {
+        setHeight(null);
+        setFontVersion((v) => v + 1);
+      }
+    });
+    return () => {
+      active = false;
+      observer.disconnect();
+    };
+  }, []);
   return (
     <Button
+      ref={ref}
+      style={height ? { '--entry-height': height + 'px' } : undefined}
       className="catalog-entry"
       onPress={onRead}
       data-article={articleId}
@@ -21,36 +60,46 @@ function CatalogEntry({ title, summary, onRead, articleId, readingId }) {
   );
 }
 
-export function Library({ onRead, tribalOnly = false }) {
+export function Library({ onRead, query, onQueryChange, tribalOnly = false }) {
   const [category, setCategory] = useState('all');
-  const [query, setQuery] = useState('');
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [expanded, setExpanded] = useState({ key: '', limit: CATALOG_BATCH_SIZE });
+  const pendingFocus = useRef(null),
+    listRef = useRef(null);
+  const filterKey = JSON.stringify([query, category, tribalOnly]);
+  const limit = expanded.key === filterKey ? expanded.limit : CATALOG_BATCH_SIZE;
+  useLayoutEffect(() => {
+    pendingFocus.current = null;
+    setExpanded({ key: filterKey, limit: CATALOG_BATCH_SIZE });
+  }, [filterKey]);
   const categories = [
     { id: 'all', label: labels.all },
     { id: 'tribes', label: labels.tribes },
     ...Object.entries(knowledge.ui.categories).map(([id, label]) => ({ id, label })),
+    { id: 'originals', label: knowledge.ui.original },
   ];
   const list = useMemo(
     () =>
-      articles.filter(
-        (a) =>
-          (!tribalOnly || a.collection === 'tribes') &&
-          (category === 'all' ||
-            (category === 'tribes' ? a.collection === 'tribes' : a.category === category)) &&
-          matches(query, a.title, a.summary, a.id, ...(a.paragraphs || [])),
-      ),
-    [category, query, tribalOnly],
+      searchCatalog(catalogIndex, {
+        query,
+        category,
+        collection: tribalOnly ? 'tribes' : undefined,
+      }),
+    [query, category, tribalOnly],
   );
-  const readings =
-    !tribalOnly && ['all', 'sources'].includes(category)
-      ? knowledge.readings.filter((r) => matches(query, r.titleMn, r.summaryMn, r.id))
-      : [];
-  const selectedCategory = categories.find((c) => c.id === category);
-
+  const visible = list.slice(0, limit),
+    selectedCategory = categories.find((c) => c.id === category);
+  useLayoutEffect(() => {
+    if (pendingFocus.current === null) return;
+    const entry = listRef.current?.children[pendingFocus.current];
+    pendingFocus.current = null;
+    entry?.focus({ preventScroll: true });
+    entry?.scrollIntoView({ block: 'start', behavior: 'instant' });
+  }, [limit]);
   return (
     <section className="catalog" aria-label={knowledge.ui.title}>
       <div className="catalog-tools">
-        <SearchBox value={query} onChange={setQuery} />
+        <SearchBox value={query} onChange={onQueryChange} />
         {!tribalOnly && (
           <DialogTrigger isOpen={filtersOpen} onOpenChange={setFiltersOpen}>
             <Button
@@ -83,44 +132,45 @@ export function Library({ onRead, tribalOnly = false }) {
           aria-label={knowledge.ui.topics}
           aria-live="polite"
         >
-          {list.length + readings.length}
+          {list.length}
         </output>
       </div>
-      <div className="catalog-list">
-        {list.map((a) => (
+      <div ref={listRef} className="catalog-list" id="catalog-results">
+        {visible.map((a) => (
           <CatalogEntry
             key={a.id}
             title={a.title}
             summary={a.summary}
-            articleId={a.id}
+            articleId={a.collection !== 'originals' ? a.id : undefined}
+            readingId={a.collection === 'originals' ? a.id : undefined}
             onRead={() => onRead({ ...a, subtitle: a.summary })}
           />
         ))}
       </div>
-      {readings.length > 0 && (
-        <section className="catalog-originals">
-          <Mn as="h2">{knowledge.ui.original}</Mn>
-          <div className="catalog-list">
-            {readings.map((r) => (
-              <CatalogEntry
-                key={r.id}
-                title={r.titleMn}
-                summary={r.summaryMn}
-                readingId={r.id}
-                onRead={() =>
-                  onRead({
-                    id: r.id,
-                    title: r.titleMn,
-                    paragraphs: [r.summaryMn],
-                    sources: [{ title: r.titleMn, url: r.url }],
-                  })
-                }
-              />
-            ))}
-          </div>
-        </section>
+      {list.length > 0 && (
+        <div className="catalog-pagination">
+          <output className="numeric" aria-live="polite">
+            {visible.length} / {list.length}
+          </output>
+          {visible.length < list.length && (
+            <Button
+              className="text-button"
+              data-action="catalog-more"
+              aria-controls="catalog-results"
+              onPress={() => {
+                pendingFocus.current = visible.length;
+                setExpanded({ key: filterKey, limit: limit + CATALOG_BATCH_SIZE });
+              }}
+            >
+              <Mn>{labels.more}</Mn>
+              <span className="numeric">
+                {Math.min(CATALOG_BATCH_SIZE, list.length - visible.length)}
+              </span>
+            </Button>
+          )}
+        </div>
       )}
-      {!list.length && !readings.length && (
+      {!list.length && (
         <div className="empty-state">
           <Search size={24} aria-hidden="true" />
           <Mn>{knowledge.ui.empty}</Mn>

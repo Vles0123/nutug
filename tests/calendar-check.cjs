@@ -4,7 +4,7 @@ const assert = require('node:assert'),
   vm = require('node:vm'),
   { JSDOM } = require('jsdom');
 const D = vm.runInNewContext(
-  fs.readFileSync('public/calendar-data.js', 'utf8') + ';MONGOL_CALENDAR',
+  fs.readFileSync('content-source/calendar-data.js', 'utf8') + ';MONGOL_CALENDAR',
 );
 assert.equal(D.events.length, 9);
 assert.equal(new Set(D.events.map((e) => e.id)).size, D.events.length);

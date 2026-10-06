@@ -7,3 +7,6 @@ public/vendor/
 public/fonts/
 public/assets/
 tests/fixtures/legacy/
+content-dist/
+public/sw.js
+public/*.html

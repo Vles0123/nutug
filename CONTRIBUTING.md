@@ -1,6 +1,6 @@
 # 参与开发
 
-Nutug 的 React 界面位于 `src/`，共享内容、字体和第三方黄历引擎位于 `public/`。使用 `npm run dev` 构建并预览。页面入口与模块关系见 [架构说明](docs/architecture.md)。
+Nutug 的 React 界面位于 `src/`，资料源文件位于 `content-source/`，字体和第三方日期引擎位于 `public/`。使用 `npm run dev` 同时预览网页和独立内容服务。页面入口与模块关系见 [架构说明](docs/architecture.md)。
 
 ## 环境与命令
 
@@ -31,7 +31,7 @@ npm run check
 
 - 使用 UTF-8、LF 换行、两个空格缩进。由 EditorConfig 和 Prettier 统一格式。
 - 逐字保留蒙古文的变体选择符、蒙古文元音分隔符和窄不换行空格。
-- 浏览器脚本依赖 HTML 中的加载顺序。改为模块、调整全局变量或拆分文件时，需要同步检查全部页面及测试。
+- 资料经 `build:content` 编译为 JSON。修改内容结构时同步更新接口版本、客户端校验和测试，保留已发布的哈希对象。
 - 保留历史条目的来源、地区、日期和不确定性说明；区分人物、研究空白提示和外部背景人物。
 - 日历事件按年份与地区核验，并明确标注所属历法。
 - `public/vendor/` 和 `public/fonts/` 按上游原始字节和许可保存。升级黄历引擎时同步更新哈希、测试与第三方说明。
@@ -50,6 +50,6 @@ npm run check
 
 ## 部署与授权
 
-运行 `npm run build` 后，完整发布 `public/` 及其子目录。`public/assets/` 为生成资源。原始快照使用 `dist/`；既有托管配置迁移时需要相应更新发布目录。仓库 CI 执行格式与回归检查。
+运行 `npm run build` 后，完整发布 `public/`。HTML、`assets/` 和 `sw.js` 为生成资源。运行 `npm run content:publish` 将新资料发布到独立内容分支；脚本保留旧对象，使用普通 Git push 检查远端并发变化。内容接口和缓存约定见 [content-api.md](docs/content-api.md)。原始快照使用 `dist/`，既有托管配置迁移时需要更新发布目录。
 
 项目保持 `UNLICENSED`。第三方许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)，字体规则见 [FONT-NOTES.md](FONT-NOTES.md)。

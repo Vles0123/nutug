@@ -3,7 +3,9 @@ const assert = require('node:assert'),
   fs = require('node:fs'),
   vm = require('node:vm'),
   { JSDOM } = require('jsdom');
-const D = vm.runInNewContext(fs.readFileSync('public/tribes-data.js', 'utf8') + ';TRIBAL_GRAPH');
+const D = vm.runInNewContext(
+  fs.readFileSync('content-source/tribes-data.js', 'utf8') + ';TRIBAL_GRAPH',
+);
 const w = new JSDOM(fs.readFileSync('tests/fixtures/legacy/tribes-mobile.html', 'utf8'), {
   runScripts: 'outside-only',
   pretendToBeVisual: true,
