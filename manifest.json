@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "revision": "273cf7fa2bab7552eb550afc",
+  "locale": "mn-Mong",
+  "writingMode": "vertical-lr",
+  "categories": {
+    "history": "ᠲᠡᠦᠬᠡ",
+    "people": "ᠠᠶᠢᠮᠠᠭ ᠪᠠ ᠠᠷᠠᠳ",
+    "language": "ᠬᠡᠯᠡ ᠪᠠ ᠪᠢᠴᠢᠭ",
+    "life": "ᠠᠮᠢᠳᠤᠷᠠᠯ",
+    "arts": "ᠤᠷᠠᠯᠢᠭ ᠪᠠ ᠨᠠᠭᠠᠳᠤᠮ",
+    "sources": "ᠰᠤᠷᠪᠤᠯᠵᠢ",
+    "tribes": "ᠠᠶᠢᠮᠠᠭ",
+    "originals": "ᠡᠬᠡ ᠮᠠᠲ᠋ᠧᠷᠢᠶᠠᠯ"
+  },
+  "counts": {
+    "articles": 474,
+    "tribalArticles": 8,
+    "originalReadings": 2,
+    "entries": 484
+  },
+  "core": {
+    "path": "objects/7dce14a63884126094c784c305477d387162444e451d25adedc10be404e24590.json",
+    "sha256": "7dce14a63884126094c784c305477d387162444e451d25adedc10be404e24590",
+    "bytes": 152956
+  },
+  "catalog": {
+    "path": "objects/2260fed5b6a8c873712fa6c84f11a632007eec1e0345cbf825b7b241732e6909.json",
+    "sha256": "2260fed5b6a8c873712fa6c84f11a632007eec1e0345cbf825b7b241732e6909",
+    "bytes": 295189
+  },
+  "search": {
+    "path": "objects/1c89d79d419bd6ab8f2c7406c36c6e99faa54b0eb843fe4c2d6c7431a9fef79f.json",
+    "sha256": "1c89d79d419bd6ab8f2c7406c36c6e99faa54b0eb843fe4c2d6c7431a9fef79f",
+    "bytes": 1034864
+  },
+  "offline": {
+    "path": "objects/5801a84bda8691bd1eb1fccb404ed86c42e8a1b780e016b94d773d66c0ceb988.json",
+    "sha256": "5801a84bda8691bd1eb1fccb404ed86c42e8a1b780e016b94d773d66c0ceb988",
+    "bytes": 1408618
+  },
+  "deviceCatalog": {
+    "path": "revisions/273cf7fa2bab7552eb550afc/catalog/{page}.json",
+    "pageSize": 8,
+    "pageCount": 61
+  },
+  "updatePolicy": {
+    "checkOnConnect": true,
+    "immutableObjects": true,
+    "hash": "sha256"
+  }
+}

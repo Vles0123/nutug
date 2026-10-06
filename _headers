@@ -1,0 +1,9 @@
+/manifest.json
+  Cache-Control: no-cache
+  Access-Control-Allow-Origin: *
+/objects/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+/revisions/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
