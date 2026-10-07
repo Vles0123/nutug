@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "version": "20261007114822593",
+  "version": "20261007124717047",
   "locale": "mn-Mong",
   "writingMode": "vertical-lr",
   "categories": {
@@ -19,17 +19,17 @@
     "originalReadings": 2,
     "entries": 484
   },
-  "core": "releases/20261007114822593/core.json",
-  "catalog": "releases/20261007114822593/catalog.json",
-  "search": "releases/20261007114822593/search.json",
-  "offline": "releases/20261007114822593/offline.json",
+  "core": "releases/20261007124717047/core.json",
+  "catalog": "releases/20261007124717047/catalog.json",
+  "search": "releases/20261007124717047/search.json",
+  "offline": "releases/20261007124717047/offline.json",
   "deviceCatalog": {
-    "path": "releases/20261007114822593/catalog/{page}.json",
+    "path": "releases/20261007124717047/catalog/{page}.json",
     "pageSize": 8,
     "pageCount": 61
   },
   "calendar": {
-    "path": "releases/20261007114822593/calendar/{month}.json",
+    "path": "releases/20261007124717047/calendar/{month}.json",
     "years": [
       2025,
       2026,
