@@ -141,6 +141,8 @@ private struct NativePerson: View {
   let scale: Double
   @State private var selected: String
   @State private var family = true
+  @State private var showRelations = false
+  @State private var trail: [String] = []
   @Environment(\.dismiss) private var dismiss
   init(id: String, core: HistoryCore, scale: Double) {
     self.core = core
@@ -154,59 +156,88 @@ private struct NativePerson: View {
           ? ["parent", "spouse"].contains($0.type) : !["parent", "spouse"].contains($0.type))
     }
   }
+  private func follow(_ id: String) {
+    guard id != selected else { return }
+    trail.append(selected)
+    selected = id
+  }
   var body: some View {
-    NavigationStack {
-      Group {
-        if let person = core.people[selected] {
-          ScrollView {
-            VStack(spacing: 24) {
-              ScrollView(.horizontal) {
-                HStack(alignment: .top, spacing: 24) {
-                  MongolianText(text: person.name, height: 220, size: 32, scale: scale)
-                  MongolianText(text: person.summary, height: 240, size: 26, scale: scale)
-                  NativeSources(ids: person.sources, sources: core.sources, scale: scale)
-                }.padding()
-              }
-              Picker(Copy.label("relations"), selection: $family) {
-                Image(systemName: "person.2").accessibilityLabel(Copy.label("family")).tag(true)
-                Image(systemName: "point.3.connected.trianglepath.dotted").accessibilityLabel(
-                  Copy.label("power")
-                ).tag(false)
-              }.pickerStyle(.segmented).padding(.horizontal)
-              NativeGraphView(core: core, selected: $selected, edges: edges).frame(height: 400)
-              ScrollView(.horizontal) {
-                HStack(alignment: .top, spacing: 20) {
-                  ForEach(edges) { edge in
-                    let id = edge.from == selected ? edge.to : edge.from
-                    if let other = core.people[id] {
-                      Button {
-                        selected = id
-                      } label: {
-                        HStack(alignment: .top) {
-                          MongolianText(text: edge.label, height: 140, size: 20)
-                          MongolianText(text: other.name, height: 140, size: 25)
-                        }
-                      }.buttonStyle(.bordered)
-                    }
-                  }
-                }.padding()
-              }
+    GeometryReader { geometry in
+      if let person = core.people[selected] {
+        VStack(spacing: 16) {
+          HStack(alignment: .top, spacing: 8) {
+            MongolianText(text: person.name, height: 110, size: 30)
+            Spacer(minLength: 0)
+            if !trail.isEmpty {
+              Button {
+                selected = trail.removeLast()
+              } label: {
+                Image(systemName: "arrow.left").frame(width: 28, height: 28)
+              }.accessibilityLabel(Copy.label("back"))
             }
+            HistoryChoice(label: Copy.label("details"), selected: !showRelations) {
+              showRelations = false
+            }
+            HistoryChoice(label: Copy.label("relations"), selected: showRelations) {
+              showRelations = true
+            }
+            Button {
+              dismiss()
+            } label: {
+              Image(systemName: "xmark").frame(width: 28, height: 28)
+            }.accessibilityLabel(Copy.label("close"))
+          }.buttonStyle(.bordered)
+          if showRelations {
+            HStack(spacing: 12) {
+              HistoryChoice(label: Copy.label("family"), selected: family, height: 70) {
+                family = true
+              }
+              HistoryChoice(label: Copy.label("power"), selected: !family, height: 70) {
+                family = false
+              }
+              Spacer()
+            }
+            NativeGraphView(
+              core: core, selected: Binding(get: { selected }, set: follow), edges: edges
+            )
+            .frame(
+              width: max(1, geometry.size.width - 32), height: max(180, geometry.size.height - 264))
+          } else {
+            ScrollView(.horizontal) {
+              HStack(alignment: .top, spacing: 24) {
+                if let years = person.years {
+                  MongolianText(
+                    text: years, height: max(240, geometry.size.height - 170), size: 23,
+                    scale: scale)
+                }
+                MongolianText(
+                  text: person.summary, height: max(240, geometry.size.height - 170), size: 29,
+                  scale: scale)
+                NativeSources(ids: person.sources, sources: core.sources, scale: scale)
+              }.padding(8)
+            }.id(selected)
           }
-        }
-      }
-      .toolbar {
-        ToolbarItem(placement: .cancellationAction) {
-          Button {
-            dismiss()
-          } label: {
-            Image(systemName: "xmark")
-          }.accessibilityLabel(Copy.label("close"))
-        }
+        }.padding(16)
       }
     }
     #if os(macOS)
       .frame(width: 840, height: 740)
     #endif
+  }
+}
+
+private struct HistoryChoice: View {
+  let label: String
+  let selected: Bool
+  var height: CGFloat = 90
+  let action: () -> Void
+  var body: some View {
+    Button(action: action) {
+      MongolianText(text: label, height: height, size: 22)
+    }
+    .buttonStyle(.bordered)
+    .tint(selected ? .accentColor : .secondary)
+    .accessibilityLabel(label)
+    .accessibilityAddTraits(selected ? .isSelected : [])
   }
 }

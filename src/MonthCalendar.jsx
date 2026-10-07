@@ -206,14 +206,22 @@ export function MonthCalendar() {
           </div>
           <div className="date-pair">
             <Mn>{copy.gregorian}</Mn>
-            <span className="numeric">{date.replaceAll('-', ' / ')}</span>
+            <time className="date-value numeric" dateTime={date}>
+              <span>{civilDate(date).year}</span>
+              <strong>
+                {civilDate(date).month} / {civilDate(date).day}
+              </strong>
+            </time>
           </div>
           <div className="date-pair">
             <Mn>{copy.lunar}</Mn>
-            <span className="numeric">
-              {lunar.lunarYear} / {lunar.lunarMonth} / {lunar.lunarDay}
+            <span className="date-value numeric">
+              <span>{lunar.lunarYear}</span>
+              <strong>
+                {lunar.lunarMonth} / {lunar.lunarDay}
+              </strong>
+              {lunar.leapMonth && <Mn className="leap-month-note">{copy.leapMonth}</Mn>}
             </span>
-            {lunar.leapMonth && <Mn>{copy.leapMonth}</Mn>}
           </div>
         </aside>
       </div>

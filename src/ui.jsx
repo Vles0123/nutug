@@ -58,7 +58,15 @@ export function Segments({ label, items, value, onChange, className = '' }) {
     </ToggleButtonGroup>
   );
 }
-export function Sheet({ open, onOpenChange, label, children, wide = false, className = '' }) {
+export function Sheet({
+  open,
+  onOpenChange,
+  label,
+  children,
+  wide = false,
+  className = '',
+  headerActions,
+}) {
   const reduced = useReducedMotion();
   return (
     <ModalOverlay isOpen={open} onOpenChange={onOpenChange} isDismissable className="sheet-overlay">
@@ -73,6 +81,7 @@ export function Sheet({ open, onOpenChange, label, children, wide = false, class
               <Heading slot="title">
                 <Mn>{label}</Mn>
               </Heading>
+              {headerActions}
               <IconButton icon={X} label={labels.close} onPress={() => onOpenChange(false)} />
             </div>
             {children}
@@ -275,7 +284,11 @@ export function ReadingColumns({
           return;
         event.preventDefault();
         const element = event.currentTarget;
-        const targets = pages.length ? pages : [0, element.scrollWidth - element.clientWidth];
+        const step = Math.max(1, element.clientWidth * 0.85);
+        const maximum = element.scrollWidth - element.clientWidth;
+        const targets = pages.length
+          ? pages
+          : [Math.max(0, element.scrollLeft - step), Math.min(maximum, element.scrollLeft + step)];
         const next =
           event.key === 'PageDown'
             ? targets.find((x) => x > element.scrollLeft + 1)

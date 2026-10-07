@@ -123,7 +123,7 @@ export function ProductApp({ manifestUrl }) {
                 </Link>
               ))}
             </nav>
-            <div className="product-actions">
+            <div className="product-actions" data-update={status.updateReady || undefined}>
               <IconButton
                 icon={Settings2}
                 label={labels.settings}
@@ -148,20 +148,6 @@ export function ProductApp({ manifestUrl }) {
                 ) : null}
               </div>
             )}
-            {page === 'chronicle' &&
-              (status.error || status.offlineReady || status.updateReady || status.downloading) && (
-                <div className="product-content-status" role="status">
-                  <Mn>
-                    {status.error
-                      ? labels.retry
-                      : status.updateReady
-                        ? labels.update
-                        : status.offlineReady
-                          ? labels.saved
-                          : labels.download}
-                  </Mn>
-                </div>
-              )}
           </main>
           <ReadingSettings
             open={settings}
@@ -195,6 +181,20 @@ export function ProductApp({ manifestUrl }) {
                 </>
               )}
             </div>
+            {page === 'chronicle' &&
+              (status.error || status.offlineReady || status.updateReady || status.downloading) && (
+                <div className="product-content-status" role="status">
+                  <Mn>
+                    {status.error
+                      ? labels.retry
+                      : status.updateReady
+                        ? labels.update
+                        : status.offlineReady
+                          ? labels.saved
+                          : labels.download}
+                  </Mn>
+                </div>
+              )}
           </ReadingSettings>
         </div>
       </MotionConfig>

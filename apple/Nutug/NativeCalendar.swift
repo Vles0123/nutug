@@ -71,12 +71,12 @@ struct NativeCalendar: View {
             HStack(alignment: .top, spacing: 36) {
               monthGrid
               Divider()
-              dayDetail.frame(width: 220)
+              dayDetail(compact: false).frame(width: 240)
             }
           } else {
             monthGrid
             Divider()
-            dayDetail
+            dayDetail(compact: true)
           }
         }.padding().frame(maxWidth: 1200)
       }.frame(maxWidth: .infinity)
@@ -135,8 +135,11 @@ struct NativeCalendar: View {
             VStack(spacing: 7) {
               Text(String(Int(value.suffix(2)) ?? 0)).font(.title3.monospacedDigit())
               if let lunar {
-                Text(lunar.day == 1 ? "\(lunar.month) / 1" : String(lunar.day)).font(
-                  .caption2.monospacedDigit()
+                Text(
+                  (lunar.leap ? "* " : "")
+                    + (lunar.day == 1 ? "\(lunar.month) / 1" : String(lunar.day))
+                ).font(
+                  .system(size: 13).monospacedDigit()
                 ).opacity(selected ? 1 : 0.65)
               }
             }
@@ -148,7 +151,7 @@ struct NativeCalendar: View {
               selected ? Color.accentColor : Color.clear, in: RoundedRectangle(cornerRadius: 16))
           }
           .buttonStyle(.plain)
-          .opacity(value.hasPrefix(model.month) ? 1 : 0.3)
+          .opacity(value.hasPrefix(model.month) ? 1 : 0.55)
           .disabled(value < "1901-01-01" || value > "2100-12-31")
           .accessibilityLabel(value)
           .accessibilityAddTraits(selected ? .isSelected : [])
@@ -156,27 +159,43 @@ struct NativeCalendar: View {
       }
     }
   }
-  private var dayDetail: some View {
-    HStack(alignment: .top, spacing: 20) {
-      Text(String(Int(model.date.suffix(2)) ?? 0)).font(
-        .system(size: 62, weight: .light, design: .rounded)
-      ).monospacedDigit()
-      VStack(alignment: .leading, spacing: 18) {
-        HStack(alignment: .top) {
-          MongolianText(text: Copy.calendar("gregorian"), height: 170, size: 23)
-          Text(model.date.replacingOccurrences(of: "-", with: " / ")).font(
-            .callout.monospacedDigit())
-        }
-        if let lunar = model.engine?.lunar(model.date) {
-          HStack(alignment: .top) {
-            MongolianText(
-              text: Copy.calendar("lunar") + (lunar.leap ? " · " + Copy.calendar("leapMonth") : ""),
-              height: 170, size: 23)
-            Text("\(String(lunar.year)) / \(lunar.month) / \(lunar.day)").font(
-              .callout.monospacedDigit())
-          }
-        }
-      }
-    }.frame(maxWidth: .infinity, alignment: .leading)
+  @ViewBuilder
+  private func dayDetail(compact: Bool) -> some View {
+    if compact {
+      HStack(alignment: .top, spacing: 24) {
+        civilPair.frame(maxWidth: .infinity, alignment: .leading)
+        lunarPair.frame(maxWidth: .infinity, alignment: .leading)
+      }.frame(maxWidth: .infinity, alignment: .leading)
+    } else {
+      VStack(alignment: .leading, spacing: 28) {
+        Text(String(Int(model.date.suffix(2)) ?? 0)).font(.system(size: 64, weight: .light))
+          .monospacedDigit()
+        civilPair
+        lunarPair
+      }.frame(maxWidth: .infinity, alignment: .leading)
+    }
+  }
+  private var civilPair: some View {
+    let parts = model.date.split(separator: "-").compactMap { Int($0) }
+    return datePair(Copy.calendar("gregorian"), year: parts[0], month: parts[1], day: parts[2])
+  }
+  @ViewBuilder private var lunarPair: some View {
+    if let lunar = model.engine?.lunar(model.date) {
+      datePair(
+        Copy.calendar("lunar"),
+        year: lunar.year, month: lunar.month, day: lunar.day, leap: lunar.leap)
+    }
+  }
+  private func datePair(_ label: String, year: Int, month: Int, day: Int, leap: Bool = false)
+    -> some View
+  {
+    HStack(alignment: .top, spacing: 10) {
+      MongolianText(text: label, height: 155, size: 23)
+      VStack(alignment: .leading, spacing: 10) {
+        Text(String(year)).font(.callout.monospacedDigit()).foregroundStyle(.secondary)
+        Text("\(month) / \(day)").font(.title2.monospacedDigit())
+        if leap { MongolianText(text: Copy.calendar("leapMonth"), height: 90, size: 22) }
+      }.fixedSize(horizontal: true, vertical: false).padding(.top, 5)
+    }
   }
 }

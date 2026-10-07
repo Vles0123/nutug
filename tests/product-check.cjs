@@ -139,6 +139,10 @@ async function key(w, element, value) {
   await click(d.querySelector('.product-tabs a[href="chronicle.html"]'));
   for (let i = 0; i < 100 && !d.querySelector('.chronicle-entry'); i++) await pause(20);
   assert.equal(d.querySelectorAll('.year-rail button').length, 16);
+  await click(d.querySelector('[data-action="chronicle-contents"]'));
+  assert.equal(d.querySelectorAll('[data-contents-event]').length, 18);
+  await click(d.querySelectorAll('[data-contents-event]')[1]);
+  assert(!d.querySelector('[role=dialog]'), 'Choosing a period returns to the reading surface');
   assert(app.calls.length >= 2, 'History reads the independent content interface');
   assert(
     app.calls.every((url) => url.endsWith('manifest.json') || url.endsWith('core.json')),
@@ -147,10 +151,28 @@ async function key(w, element, value) {
   await click(d.querySelectorAll('.year-rail button')[1]);
   const first = d.querySelector('.chronicle-entry').dataset.eventId;
   assert(w.location.hash.includes(first));
+  await click(d.querySelector('[data-action="event-people"]'));
   await click(d.querySelector('[data-person="temujin"]'));
   assert.equal(d.querySelector('[data-person-record]').dataset.personRecord, 'temujin');
+  assert(d.querySelector('.person-reading'), 'Person opens as a readable biography');
+  assert(!d.querySelector('[data-network]'), 'Biography keeps the full reading area');
+  const radios = d.querySelectorAll('.person-controls [role="radio"]');
+  await click(radios[1]);
   assert(d.querySelectorAll('[data-network] [data-node]').length > 1);
+  const related = [...d.querySelectorAll('[data-network] [data-node]')].find(
+    (node) => node.dataset.node !== 'temujin',
+  );
+  const relatedId = related.dataset.node;
+  await click(related);
+  assert.equal(d.querySelector('[data-person-record]').dataset.personRecord, relatedId);
+  await click(d.querySelector('[data-action="person-back"]'));
+  assert.equal(d.querySelector('[data-person-record]').dataset.personRecord, 'temujin');
   await key(w, d.querySelector('[role=dialog]'), 'Escape');
+  assert.equal(
+    d.activeElement.dataset.action,
+    'event-people',
+    'Closing a person restores the event context control',
+  );
   await click(d.querySelector('[data-action="chronicle-next"]'));
   assert.notEqual(d.querySelector('.chronicle-entry').dataset.eventId, first);
   w.history.back();
