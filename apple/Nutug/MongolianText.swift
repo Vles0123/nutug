@@ -23,7 +23,7 @@ private enum MongolianTypesetting {
       graphicsFont.map { CTFontCreateWithGraphicsFont($0, size, nil, nil) }
       ?? CTFontCreateWithName(name as CFString, size, nil)
     return NSAttributedString(
-      string: text,
+      string: Copy.display(text),
       attributes: [
         NSAttributedString.Key(kCTFontAttributeName as String): font,
         NSAttributedString.Key(kCTForegroundColorAttributeName as String): color,

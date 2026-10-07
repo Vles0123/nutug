@@ -10,6 +10,9 @@ enum NutugPage: String, CaseIterable, Identifiable {
   var symbol: String { self == .calendar ? "calendar" : "book" }
 }
 enum Copy {
+  static func display(_ text: String) -> String {
+    MongolianOrthography.display(text, registry: values["orthography"] as? [[String: String]] ?? [])
+  }
   private static let values: [String: Any] = {
     guard
       let data = try? Data(

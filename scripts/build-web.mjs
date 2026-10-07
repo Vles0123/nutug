@@ -1,4 +1,5 @@
 import { build, context } from 'esbuild';
+import { spellingRegistry } from '../shared/mongolian-orthography.mjs';
 import { readFile, writeFile, mkdir, readdir, rm, rename, stat } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { createHash } from 'node:crypto';
@@ -25,7 +26,7 @@ async function finish(result) {
   );
   await writeFile(
     'public/interface-copy.json',
-    JSON.stringify({ labels, calendarCopy, calendarConfig }) + '\n',
+    JSON.stringify({ labels, calendarCopy, calendarConfig, orthography: spellingRegistry }) + '\n',
   );
   const strings = {
     '@react-aria/overlays': { dismiss: labels.close },

@@ -37,7 +37,7 @@ DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcodebuild \
 ```sh
 mkdir -p build
 DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer xcrun swiftc \
-  apple/Nutug/CalendarEngine.swift tests/native/CalendarChecks.swift \
+  apple/Nutug/CalendarEngine.swift apple/Nutug/Orthography.swift tests/native/CalendarChecks.swift \
   -o build/calendar-check
 build/calendar-check "$PWD"
 ```
@@ -46,6 +46,6 @@ build/calendar-check "$PWD"
 
 - 历史页从清单取得版本号和核心资料，下载成功后整体保存到应用自己的数据目录。
 - 切换前保留已读取的版本。下载失败时可继续使用缓存。
-- CoreText 对完整蒙古文进行连写和分行，再将行转为从左向右的竖排文本列。字体为 Onon Sonin Sans。
+- CoreText 对完整蒙古文进行连写和分行，再将行转为从左向右的竖排文本列。字体为 Onon Sonin Sans，整词显示变体来自网页与原生共用的登记表。
 - 原生字号设置保存在应用偏好中，长段落与来源链接可横向阅读。
 - iPhone 与 iPad 的模拟器测试使用独立设备，保留已有模拟器的应用数据。

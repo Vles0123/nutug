@@ -1,10 +1,10 @@
+import { normalizeMongolian } from '../shared/mongolian-orthography.mjs';
 export const CATALOG_BATCH_SIZE = 24;
 
 export function normalizeSearch(value) {
-  return String(value ?? '')
+  return normalizeMongolian(value ?? '')
     .normalize('NFC')
     .toLowerCase()
-    .replace(/[\u180b-\u180f\u200b-\u200d]/gu, '')
     .replace(/\s+/gu, ' ')
     .trim();
 }

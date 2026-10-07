@@ -39,7 +39,7 @@ jobs:
       - run: npm run build:native
       - name: Native calendar reference dates
         run: |
-          xcrun swiftc apple/Nutug/CalendarEngine.swift tests/native/CalendarChecks.swift -o "$RUNNER_TEMP/calendar-check"
+          xcrun swiftc apple/Nutug/CalendarEngine.swift apple/Nutug/Orthography.swift tests/native/CalendarChecks.swift -o "$RUNNER_TEMP/calendar-check"
           "$RUNNER_TEMP/calendar-check" "$PWD"
       - name: macOS build
         run: xcodebuild -project apple/Nutug.xcodeproj -scheme Nutug -destination 'generic/platform=macOS' -derivedDataPath "$RUNNER_TEMP/nutug-mac" CODE_SIGNING_ALLOWED=NO build

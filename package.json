@@ -2,7 +2,7 @@
   "name": "nutug",
   "version": "1.0.0",
   "private": true,
-  "description": "Traditional Mongolian history and culture atlas",
+  "description": "Traditional Mongolian calendar and chronological history",
   "license": "UNLICENSED",
   "engines": {
     "node": "^22.22.2 || ^24.15.0 || >=26.0.0"

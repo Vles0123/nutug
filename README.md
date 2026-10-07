@@ -37,7 +37,7 @@ npm run check
 | `npm run content:publish`   | 将内容更新发布到 `chore/content-feed`           |
 | `npm run format`            | 格式化第一方源码、测试和文档                    |
 | `npm run format:check`      | 报告格式检查结果                                |
-| `npm test`                  | 构建内容和界面，运行全部 16 个回归脚本          |
+| `npm test`                  | 构建内容和界面，运行全部 17 个回归脚本          |
 | `npm run test:core`         | 使用 Node.js 检查黄历核心与固定第三方引擎       |
 | `npm run check`             | 执行格式检查和完整回归测试，与 CI 一致          |
 

@@ -18,12 +18,15 @@ import {
 import { motion, useReducedMotion } from 'motion/react';
 import { X, Search, Minus, Plus, ArrowUpRight } from 'lucide-react';
 import { labels, uiLocale } from './ui-copy.mjs';
+import { displayMongolian } from '../shared/mongolian-orthography.mjs';
 import { useColumnScroll } from './useColumnScroll';
 
 export function Mn({ as: Tag = 'span', className = '', children, ...props }) {
   return (
     <Tag lang={uiLocale} className={`mn ${className}`} {...props}>
-      {children}
+      {React.Children.map(children, (child) =>
+        typeof child === 'string' ? displayMongolian(child) : child,
+      )}
     </Tag>
   );
 }

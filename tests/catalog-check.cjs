@@ -24,7 +24,12 @@ const fs = require('node:fs');
     'Shared full-text index is used',
   );
   assert.equal(normalizeSearch('  ᠬᠡᠷᠡᠢᠳ\u202fᠤᠨ  '), normalizeSearch('ᠬᠡᠷᠡᠢᠳ ᠤᠨ'));
-  assert.equal(normalizeSearch('ᠬᠡ\u180bᠷᠡᠢᠳ'), normalizeSearch('ᠬᠡᠷᠡᠢᠳ'));
+  assert.notEqual(
+    normalizeSearch('ᠬᠡ\u180bᠷᠡᠢᠳ'),
+    normalizeSearch('ᠬᠡᠷᠡᠢᠳ'),
+    'Unreviewed selectors are preserved',
+  );
+  assert.equal(normalizeSearch('ᠠᠶ᠋ᠢᠮᠠᠭ'), normalizeSearch('ᠠᠶᠢᠮᠠᠭ'));
   const { relatedRecords, shortTitle } = await import('../src/discovery.mjs');
   for (const record of records) {
     const related = relatedRecords(records, record.id);

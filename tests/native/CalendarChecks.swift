@@ -10,6 +10,19 @@ struct CalendarChecks {
   }
   static func main() throws {
     let root = URL(fileURLWithPath: CommandLine.arguments[1], isDirectory: true)
+    let copyData = try Data(contentsOf: root.appendingPathComponent("public/interface-copy.json"))
+    let copy = try JSONSerialization.jsonObject(with: copyData) as! [String: Any]
+    let words = copy["orthography"] as! [[String: String]]
+    precondition(words.count == 11)
+    for word in words {
+      let canonical = word["canonical"]!
+      let display = word["display"]!
+      precondition(MongolianOrthography.display(canonical, registry: words) == display)
+      precondition(MongolianOrthography.display(display, registry: words) == display)
+      precondition(
+        MongolianOrthography.display("\u{200D}" + canonical, registry: words) == "\u{200D}"
+          + canonical)
+    }
     let engine = try CalendarEngine(root: root.appendingPathComponent("public"))
     let examples = try JSONDecoder().decode(
       [Example].self,
