@@ -116,20 +116,24 @@ export function Chronicle({ snapshot }) {
       </div>
       <div className="chronicle-body">
         <nav className="year-rail" aria-label={labels.timeline}>
-          {events.map((item) => (
-            <Button
-              key={item.id}
-              data-event={item.id}
-              aria-current={item.id === event.id ? 'true' : undefined}
-              onPress={() => choose(item.id)}
-            >
-              {item.precision === 'period' ? (
-                <Mn>{item.date}</Mn>
-              ) : (
-                <span className="numeric">{item.date}</span>
-              )}
-            </Button>
-          ))}
+          {events
+            .filter(
+              (item, index) => events.findIndex((other) => other.date === item.date) === index,
+            )
+            .map((item) => (
+              <Button
+                key={item.id}
+                data-event={item.id}
+                aria-current={item.date === event.date ? 'true' : undefined}
+                onPress={() => choose(item.id)}
+              >
+                {item.precision === 'period' ? (
+                  <Mn>{item.date}</Mn>
+                ) : (
+                  <span className="numeric">{item.date}</span>
+                )}
+              </Button>
+            ))}
         </nav>
         <ReadingColumns className="chronicle-reading" scrollRef={scroll}>
           <article className="chronicle-entry" data-event-id={event.id}>

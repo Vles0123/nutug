@@ -138,7 +138,7 @@ async function key(w, element, value) {
   app.online();
   await click(d.querySelector('.product-tabs a[href="chronicle.html"]'));
   for (let i = 0; i < 100 && !d.querySelector('.chronicle-entry'); i++) await pause(20);
-  assert.equal(d.querySelectorAll('.year-rail button').length, 18);
+  assert.equal(d.querySelectorAll('.year-rail button').length, 16);
   assert(app.calls.length >= 2, 'History reads the independent content interface');
   assert(
     app.calls.every((url) => url.endsWith('manifest.json') || url.endsWith('core.json')),
