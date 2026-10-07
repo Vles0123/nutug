@@ -3,9 +3,6 @@ import SwiftUI
 struct RootView: View {
   @StateObject private var model = AppModel()
   @State private var visibility: NavigationSplitViewVisibility = .all
-  #if os(iOS)
-    @Environment(\.horizontalSizeClass) private var sizeClass
-  #endif
   var body: some View {
     navigation
       .environment(\.locale, Locale(identifier: "mn_Mong_CN"))
@@ -13,16 +10,12 @@ struct RootView: View {
   }
   @ViewBuilder private var navigation: some View {
     #if os(iOS)
-      if sizeClass == .compact {
-        TabView(selection: $model.page) {
-          ForEach(NutugPage.allCases) { page in
-            NavigationStack { content(page).toolbar { settingsButton } }
-              .tabItem { Image(systemName: page.symbol).accessibilityLabel(page.title) }
-              .tag(page)
-          }
+      TabView(selection: $model.page) {
+        ForEach(NutugPage.allCases) { page in
+          NavigationStack { content(page).toolbar { settingsButton } }
+            .tabItem { Image(systemName: page.symbol).accessibilityLabel(page.title) }
+            .tag(page)
         }
-      } else {
-        splitNavigation
       }
     #else
       splitNavigation
