@@ -1,6 +1,450 @@
 [
-  { "id": "wiki-mongol-empire", "page": "Mongol Empire", "title": "ᠶᠡᠬᠡ ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ" },
-  { "id": "wiki-genghis-khan", "page": "Genghis Khan", "title": "ᠴᠢᠩᠭᠢᠰ ᠬᠠᠭᠠᠨ" },
-  { "id": "wiki-yuan", "page": "Yuan dynasty", "title": "ᠶᠤᠸᠠᠨ ᠤᠯᠤᠰ" },
-  { "id": "wiki-toregene", "page": "Töregene Khatun", "title": "ᠳᠥᠷᠡᠭᠡᠨᠡ ᠬᠠᠲᠤᠨ" }
+  {
+    "id": "wiki-mongol-empire",
+    "language": "en",
+    "page": "Mongol Empire",
+    "title": "ᠶᠡᠬᠡ ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ",
+    "revisionId": 1378170057
+  },
+  {
+    "id": "wiki-genghis-khan",
+    "language": "en",
+    "page": "Genghis Khan",
+    "title": "ᠲᠡᠮᠦᠵᠢᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1379007070
+  },
+  {
+    "id": "wiki-yuan",
+    "language": "en",
+    "page": "Yuan dynasty",
+    "title": "ᠶᠤᠸᠠᠨ ᠤᠯᠤᠰ",
+    "revisionId": 1377782070
+  },
+  {
+    "id": "wiki-toregene",
+    "language": "en",
+    "page": "Töregene Khatun",
+    "title": "ᠳᠥᠷᠡᠭᠡᠨᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1377001136
+  },
+  {
+    "id": "wiki-jochi-en",
+    "language": "en",
+    "page": "Jochi",
+    "title": "ᠵᠦᠴᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1372163395
+  },
+  {
+    "id": "wiki-yesugei-en",
+    "language": "en",
+    "page": "Yesugei",
+    "title": "ᠶᠢᠰᠦᠭᠡᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1373053559
+  },
+  {
+    "id": "wiki-yesugei-mn",
+    "language": "mn",
+    "page": "Есүхэй баатар",
+    "title": "ᠶᠢᠰᠦᠭᠡᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 840713
+  },
+  {
+    "id": "wiki-hoelun-en",
+    "language": "en",
+    "page": "Hö'elün",
+    "title": "ᠥᠭᠡᠯᠦᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1369928359
+  },
+  {
+    "id": "wiki-hoelun-mn",
+    "language": "mn",
+    "page": "Өэлүн",
+    "title": "ᠥᠭᠡᠯᠦᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 850086
+  },
+  {
+    "id": "wiki-temujin-mn",
+    "language": "mn",
+    "page": "Чингис хаан",
+    "title": "ᠲᠡᠮᠦᠵᠢᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 872728
+  },
+  {
+    "id": "wiki-borte-en",
+    "language": "en",
+    "page": "Börte",
+    "title": "ᠪᠥᠷᠲᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1371041540
+  },
+  {
+    "id": "wiki-borte-mn",
+    "language": "mn",
+    "page": "Бөртэ үжин",
+    "title": "ᠪᠥᠷᠲᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 848319
+  },
+  {
+    "id": "wiki-jochi-mn",
+    "language": "mn",
+    "page": "Зүчи",
+    "title": "ᠵᠦᠴᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 857321
+  },
+  {
+    "id": "wiki-chagatai-en",
+    "language": "en",
+    "page": "Chagatai Khan",
+    "title": "ᠴᠠᠭᠠᠳᠠᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1369183605
+  },
+  {
+    "id": "wiki-chagatai-mn",
+    "language": "mn",
+    "page": "Цагадай",
+    "title": "ᠴᠠᠭᠠᠳᠠᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 841483
+  },
+  {
+    "id": "wiki-ogedei-en",
+    "language": "en",
+    "page": "Ögedei Khan",
+    "title": "ᠥᠭᠡᠳᠡᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1377651581
+  },
+  {
+    "id": "wiki-ogedei-mn",
+    "language": "mn",
+    "page": "Өгэдэй хаан",
+    "title": "ᠥᠭᠡᠳᠡᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 870229
+  },
+  {
+    "id": "wiki-toregene-mn",
+    "language": "mn",
+    "page": "Дөргөнэ",
+    "title": "ᠳᠥᠷᠡᠭᠡᠨᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 865641
+  },
+  {
+    "id": "wiki-tolui-en",
+    "language": "en",
+    "page": "Tolui",
+    "title": "ᠲᠣᠯᠤᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1378112943
+  },
+  {
+    "id": "wiki-tolui-mn",
+    "language": "mn",
+    "page": "Тулуй",
+    "title": "ᠲᠣᠯᠤᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 841755
+  },
+  {
+    "id": "wiki-sorghaghtani-en",
+    "language": "en",
+    "page": "Sorghaghtani Beki",
+    "title": "ᠰᠣᠷᠬᠤᠭᠲᠠᠨᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1368287362
+  },
+  {
+    "id": "wiki-sorghaghtani-mn",
+    "language": "mn",
+    "page": "Сорхагтани Бэхи",
+    "title": "ᠰᠣᠷᠬᠤᠭᠲᠠᠨᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 869703
+  },
+  {
+    "id": "wiki-guyuk-en",
+    "language": "en",
+    "page": "Güyük Khan",
+    "title": "ᠭᠦᠶᠦᠭ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1376532753
+  },
+  {
+    "id": "wiki-guyuk-mn",
+    "language": "mn",
+    "page": "Гүюг хаан",
+    "title": "ᠭᠦᠶᠦᠭ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 859035
+  },
+  {
+    "id": "wiki-mongke-en",
+    "language": "en",
+    "page": "Möngke Khan",
+    "title": "ᠮᠥᠩᠬᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1375554835
+  },
+  {
+    "id": "wiki-mongke-mn",
+    "language": "mn",
+    "page": "Мөнх хаан",
+    "title": "ᠮᠥᠩᠬᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 840324
+  },
+  {
+    "id": "wiki-kublai-en",
+    "language": "en",
+    "page": "Kublai Khan",
+    "title": "ᠬᠤᠪᠢᠯᠠᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1376691119
+  },
+  {
+    "id": "wiki-kublai-mn",
+    "language": "mn",
+    "page": "Хубилай хаан",
+    "title": "ᠬᠤᠪᠢᠯᠠᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 871885
+  },
+  {
+    "id": "wiki-chabi-en",
+    "language": "en",
+    "page": "Chabi",
+    "title": "ᠴᠠᠪᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1367465775
+  },
+  {
+    "id": "wiki-chabi-mn",
+    "language": "mn",
+    "page": "Чаби хатан",
+    "title": "ᠴᠠᠪᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 855753
+  },
+  {
+    "id": "wiki-ariq-en",
+    "language": "en",
+    "page": "Ariq Böke",
+    "title": "ᠠᠷᠢᠭᠪᠥᠬᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1367480551
+  },
+  {
+    "id": "wiki-ariq-mn",
+    "language": "mn",
+    "page": "Аригбуха хаан",
+    "title": "ᠠᠷᠢᠭᠪᠥᠬᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 858714
+  },
+  {
+    "id": "wiki-zhenjin-en",
+    "language": "en",
+    "page": "Zhenjin",
+    "title": "ᠴᠢᠩᠭᠢᠮ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1365294840
+  },
+  {
+    "id": "wiki-zhenjin-mn",
+    "language": "mn",
+    "page": "Чингим",
+    "title": "ᠴᠢᠩᠭᠢᠮ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 859178
+  },
+  {
+    "id": "wiki-temur-en",
+    "language": "en",
+    "page": "Temür Khan",
+    "title": "ᠲᠡᠮᠦᠷ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1367748674
+  },
+  {
+    "id": "wiki-temur-mn",
+    "language": "mn",
+    "page": "Төмөр Өлзийт хаан",
+    "title": "ᠲᠡᠮᠦᠷ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 840363
+  },
+  {
+    "id": "wiki-darmabala-en",
+    "language": "en",
+    "page": "Darmabala",
+    "title": "ᠳᠠᠷᠮᠠᠪᠠᠯᠠ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1365294850
+  },
+  {
+    "id": "wiki-darmabala-mn",
+    "language": "mn",
+    "page": "Дармабала",
+    "title": "ᠳᠠᠷᠮᠠᠪᠠᠯᠠ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 849295
+  },
+  {
+    "id": "wiki-qaishan-en",
+    "language": "en",
+    "page": "Külüg Khan",
+    "title": "ᠬᠠᠢᠰᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1367863120
+  },
+  {
+    "id": "wiki-qaishan-mn",
+    "language": "mn",
+    "page": "Хайсан хүлэг хаан",
+    "title": "ᠬᠠᠢᠰᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 840483
+  },
+  {
+    "id": "wiki-kusala-en",
+    "language": "en",
+    "page": "Khutughtu Khan Kusala",
+    "title": "ᠬᠦᠰᠡᠯᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1366202242
+  },
+  {
+    "id": "wiki-kusala-mn",
+    "language": "mn",
+    "page": "Хүслэн хаан",
+    "title": "ᠬᠦᠰᠡᠯᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 869835
+  },
+  {
+    "id": "wiki-toghon-en",
+    "language": "en",
+    "page": "Toghon Temür",
+    "title": "ᠲᠣᠭᠣᠨᠲᠡᠮᠦᠷ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1373355982
+  },
+  {
+    "id": "wiki-toghon-mn",
+    "language": "mn",
+    "page": "Тогоонтөмөр хаан",
+    "title": "ᠲᠣᠭᠣᠨᠲᠡᠮᠦᠷ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 869849
+  },
+  {
+    "id": "wiki-toghrul-en",
+    "language": "en",
+    "page": "Toghrul",
+    "title": "ᠲᠣᠭᠣᠷᠢᠯ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1376378630
+  },
+  {
+    "id": "wiki-toghrul-mn",
+    "language": "mn",
+    "page": "Тоорил хан",
+    "title": "ᠲᠣᠭᠣᠷᠢᠯ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 840681
+  },
+  {
+    "id": "wiki-jamukha-en",
+    "language": "en",
+    "page": "Jamukha",
+    "title": "ᠵᠠᠮᠤᠬ᠎ᠠ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1368294424
+  },
+  {
+    "id": "wiki-jamukha-mn",
+    "language": "mn",
+    "page": "Жамуха",
+    "title": "ᠵᠠᠮᠤᠬ᠎ᠠ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 832521
+  },
+  {
+    "id": "wiki-batu-en",
+    "language": "en",
+    "page": "Batu Khan",
+    "title": "ᠪᠠᠲᠤ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1370297553
+  },
+  {
+    "id": "wiki-batu-mn",
+    "language": "mn",
+    "page": "Бат хаан",
+    "title": "ᠪᠠᠲᠤ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 865006
+  },
+  {
+    "id": "wiki-hulegu-en",
+    "language": "en",
+    "page": "Hulegu Khan",
+    "title": "ᠬᠦᠯᠡᠭᠦ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1368839446
+  },
+  {
+    "id": "wiki-hulegu-mn",
+    "language": "mn",
+    "page": "Хүлэгү",
+    "title": "ᠬᠦᠯᠡᠭᠦ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 860168
+  },
+  {
+    "id": "wiki-berke-en",
+    "language": "en",
+    "page": "Berke",
+    "title": "ᠪᠡᠷᠬᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1369785575
+  },
+  {
+    "id": "wiki-berke-mn",
+    "language": "mn",
+    "page": "Бэрх",
+    "title": "ᠪᠡᠷᠬᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 834566
+  },
+  {
+    "id": "wiki-tumbinai-en",
+    "language": "en",
+    "page": "Tumbinai Khan",
+    "title": "ᠲᠤᠮᠪᠢᠨᠠᠢ ᠰᠡᠴᠡᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1358737261
+  },
+  {
+    "id": "wiki-tumbinai-mn",
+    "language": "mn",
+    "page": "Тумбинай сэцэн",
+    "title": "ᠲᠤᠮᠪᠢᠨᠠᠢ ᠰᠡᠴᠡᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 811879
+  },
+  {
+    "id": "wiki-khabul-en",
+    "language": "en",
+    "page": "Khabul Khan",
+    "title": "ᠬᠠᠪᠤᠯ ᠬᠠᠭᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1375704495
+  },
+  {
+    "id": "wiki-khabul-mn",
+    "language": "mn",
+    "page": "Хабул хан",
+    "title": "ᠬᠠᠪᠤᠯ ᠬᠠᠭᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 830680
+  },
+  {
+    "id": "wiki-bartan-mn",
+    "language": "mn",
+    "page": "Бартан баатар",
+    "title": "ᠪᠠᠷᠲᠠᠨ ᠪᠠᠭᠠᠲᠤᠷ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 872171
+  },
+  {
+    "id": "wiki-ayushiridara-en",
+    "language": "en",
+    "page": "Biligtü Khan Ayushiridara",
+    "title": "ᠠᠶᠤᠱᠢᠷᠢᠳᠠᠷ᠎ᠠ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1365692672
+  },
+  {
+    "id": "wiki-ayushiridara-mn",
+    "language": "mn",
+    "page": "Аюушридар хаан",
+    "title": "ᠠᠶᠤᠱᠢᠷᠢᠳᠠᠷ᠎ᠠ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 840604
+  },
+  {
+    "id": "wiki-maidarbal-en",
+    "language": "en",
+    "page": "Maidilibala",
+    "title": "ᠮᠠᠶᠢᠳᠠᠷᠪᠠᠯ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1358812690
+  },
+  {
+    "id": "wiki-hongwu-en",
+    "language": "en",
+    "page": "Hongwu Emperor",
+    "title": "ᠮᠢᠩ ᠦᠨ ᠲᠠᠢᠵᠦ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1377364608
+  },
+  {
+    "id": "wiki-hongwu-mn",
+    "language": "mn",
+    "page": "Хунъү",
+    "title": "ᠮᠢᠩ ᠦᠨ ᠲᠠᠢᠵᠦ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 854823
+  }
 ]

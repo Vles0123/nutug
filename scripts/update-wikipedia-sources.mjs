@@ -2,42 +2,74 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { format, resolveConfig } from 'prettier';
 import { assertSource } from '../shared/content-contract.mjs';
 const entries = JSON.parse(await readFile('content-source/wikipedia-pages.json', 'utf8'));
-const url = new URL('https://en.wikipedia.org/w/api.php');
-url.search = new URLSearchParams({
-  action: 'query',
-  prop: 'info|revisions',
-  inprop: 'url',
-  titles: entries.map((item) => item.page).join('|'),
-  rvprop: 'ids|timestamp',
-  format: 'json',
-  formatversion: '2',
-});
-const response = await fetch(url, {
-  headers: { 'User-Agent': 'Nutug/1.0 (https://github.com/Vles0123/nutug)' },
-  signal: AbortSignal.timeout(20000),
-});
-if (!response.ok) throw new Error(`Wikipedia HTTP ${response.status}`);
-const result = await response.json();
-if (result.error) throw new Error(result.error.info);
 const sources = {};
-for (const entry of entries) {
-  const page = result.query.pages.find((page) => page.title === entry.page);
-  if (!page?.revisions?.[0]) throw new Error('Wikipedia page unavailable: ' + entry.page);
-  const revisionId = page.revisions[0].revid;
-  sources[entry.id] = assertSource({
-    kind: 'wikipedia',
-    title: entry.title,
-    name: entry.title,
-    url: `https://en.wikipedia.org/w/index.php?oldid=${revisionId}`,
-    canonicalUrl: page.canonicalurl,
-    pageId: page.pageid,
-    revisionId,
-    originalTitle: page.title,
-    language: page.pagelanguage,
-    retrievedAt: new Date().toISOString(),
-    license: { name: 'CC BY-SA 4.0', url: 'https://creativecommons.org/licenses/by-sa/4.0/' },
-    attributionUrl: page.canonicalurl + '?action=history',
-  });
+for (const language of new Set(entries.map((entry) => entry.language || 'en'))) {
+  if (!['en', 'mn'].includes(language)) throw new Error('Unsupported Wikipedia language');
+  for (const pinned of [true, false]) {
+    const group = entries.filter(
+      (entry) => (entry.language || 'en') === language && Boolean(entry.revisionId) === pinned,
+    );
+    for (let offset = 0; offset < group.length; offset += 50) {
+      const batch = group.slice(offset, offset + 50);
+      const url = new URL(`https://${language}.wikipedia.org/w/api.php`);
+      url.search = new URLSearchParams({
+        action: 'query',
+        prop: 'info|revisions',
+        inprop: 'url',
+        ...(pinned
+          ? { revids: batch.map((entry) => entry.revisionId).join('|') }
+          : { titles: batch.map((entry) => entry.page).join('|'), redirects: '1' }),
+        rvprop: 'ids|timestamp',
+        format: 'json',
+        formatversion: '2',
+      });
+      const response = await fetch(url, {
+        headers: { 'User-Agent': 'Nutug/1.0 (https://github.com/Vles0123/nutug)' },
+        signal: AbortSignal.timeout(20000),
+      });
+      if (!response.ok) throw new Error(`Wikipedia HTTP ${response.status}`);
+      const result = await response.json();
+      if (result.error) throw new Error(result.error.info);
+      const redirects = new Map(
+        [...(result.query.normalized || []), ...(result.query.redirects || [])].map((entry) => [
+          entry.from,
+          entry.to,
+        ]),
+      );
+      for (const entry of batch) {
+        let title = entry.page;
+        const visited = new Set();
+        while (redirects.has(title) && !visited.has(title)) {
+          visited.add(title);
+          title = redirects.get(title);
+        }
+        const page = result.query.pages.find((page) =>
+          pinned
+            ? page.revisions?.some((revision) => revision.revid === entry.revisionId)
+            : page.title === title,
+        );
+        const revision = pinned
+          ? page?.revisions?.find((revision) => revision.revid === entry.revisionId)
+          : page?.revisions?.[0];
+        if (!revision) throw new Error('Wikipedia page unavailable: ' + entry.page);
+        if (sources[entry.id]) throw new Error('Duplicate Wikipedia source ID: ' + entry.id);
+        sources[entry.id] = assertSource({
+          kind: 'wikipedia',
+          title: entry.title,
+          name: entry.title,
+          url: `https://${language}.wikipedia.org/w/index.php?oldid=${revision.revid}`,
+          canonicalUrl: page.canonicalurl,
+          pageId: page.pageid,
+          revisionId: revision.revid,
+          originalTitle: page.title,
+          language,
+          retrievedAt: new Date().toISOString(),
+          license: { name: 'CC BY-SA 4.0', url: 'https://creativecommons.org/licenses/by-sa/4.0/' },
+          attributionUrl: page.canonicalurl + '?action=history',
+        });
+      }
+    }
+  }
 }
 const begin = '// Wikipedia source revisions.',
   end = '// End Wikipedia source revisions.';

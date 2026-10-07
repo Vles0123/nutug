@@ -1,0 +1,1366 @@
+{
+  "reviewedOn": "2026-10-07",
+  "scope": "The 32 people, 53 relationships and 18 chronicle events currently used by the product. Legacy cultural/tribal articles and calendar rules are outside this review.",
+  "method": "Read English and Cyrillic-Mongolian Wikipedia biographies/sections; compare only the facts named in each row. Interlanguage agreement is not independent historical proof. Preserve stronger existing sources when coverage differs.",
+  "languageReview": "Traditional Mongolian text edits are limited to dates and short wording built from existing phrases. Native-speaker proofreading is pending; Wikipedia Cyrillic text is not mechanically transliterated.",
+  "sources": {
+    "wiki-mongol-empire": {
+      "title": "Mongol Empire",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378170057",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Mongol_Empire",
+      "revisionId": 1378170057
+    },
+    "wiki-genghis-khan": {
+      "title": "Genghis Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1379007070",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Genghis_Khan",
+      "revisionId": 1379007070
+    },
+    "wiki-yuan": {
+      "title": "Yuan dynasty",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1377782070",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Yuan_dynasty",
+      "revisionId": 1377782070
+    },
+    "wiki-toregene": {
+      "title": "Töregene Khatun",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1377001136",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/T%C3%B6regene_Khatun",
+      "revisionId": 1377001136
+    },
+    "wiki-jochi-en": {
+      "title": "Jochi",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1372163395",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Jochi",
+      "revisionId": 1372163395
+    },
+    "wiki-yesugei-en": {
+      "title": "Yesugei",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1373053559",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Yesugei",
+      "revisionId": 1373053559
+    },
+    "wiki-yesugei-mn": {
+      "title": "Есүхэй баатар",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=840713",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%95%D1%81%D2%AF%D1%85%D1%8D%D0%B9_%D0%B1%D0%B0%D0%B0%D1%82%D0%B0%D1%80",
+      "revisionId": 840713
+    },
+    "wiki-hoelun-en": {
+      "title": "Hö'elün",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1369928359",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/H%C3%B6%27el%C3%BCn",
+      "revisionId": 1369928359
+    },
+    "wiki-hoelun-mn": {
+      "title": "Өэлүн",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=850086",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D3%A8%D1%8D%D0%BB%D2%AF%D0%BD",
+      "revisionId": 850086
+    },
+    "wiki-temujin-mn": {
+      "title": "Чингис хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=872728",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A7%D0%B8%D0%BD%D0%B3%D0%B8%D1%81_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 872728
+    },
+    "wiki-borte-en": {
+      "title": "Börte",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1371041540",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/B%C3%B6rte",
+      "revisionId": 1371041540
+    },
+    "wiki-borte-mn": {
+      "title": "Бөртэ үжин",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=848319",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%91%D3%A9%D1%80%D1%82%D1%8D_%D2%AF%D0%B6%D0%B8%D0%BD",
+      "revisionId": 848319
+    },
+    "wiki-jochi-mn": {
+      "title": "Зүчи",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=857321",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%97%D2%AF%D1%87%D0%B8",
+      "revisionId": 857321
+    },
+    "wiki-chagatai-en": {
+      "title": "Chagatai Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1369183605",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Chagatai_Khan",
+      "revisionId": 1369183605
+    },
+    "wiki-chagatai-mn": {
+      "title": "Цагадай",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=841483",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A6%D0%B0%D0%B3%D0%B0%D0%B4%D0%B0%D0%B9",
+      "revisionId": 841483
+    },
+    "wiki-ogedei-en": {
+      "title": "Ögedei Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1377651581",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/%C3%96gedei_Khan",
+      "revisionId": 1377651581
+    },
+    "wiki-ogedei-mn": {
+      "title": "Өгэдэй хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=870229",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D3%A8%D0%B3%D1%8D%D0%B4%D1%8D%D0%B9_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 870229
+    },
+    "wiki-toregene-mn": {
+      "title": "Дөргөнэ",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=865641",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%94%D3%A9%D1%80%D0%B3%D3%A9%D0%BD%D1%8D",
+      "revisionId": 865641
+    },
+    "wiki-tolui-en": {
+      "title": "Tolui",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378112943",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Tolui",
+      "revisionId": 1378112943
+    },
+    "wiki-tolui-mn": {
+      "title": "Тулуй",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=841755",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A2%D1%83%D0%BB%D1%83%D0%B9",
+      "revisionId": 841755
+    },
+    "wiki-sorghaghtani-en": {
+      "title": "Sorghaghtani Beki",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1368287362",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Sorghaghtani_Beki",
+      "revisionId": 1368287362
+    },
+    "wiki-sorghaghtani-mn": {
+      "title": "Сорхагтани Бэхи",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=869703",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A1%D0%BE%D1%80%D1%85%D0%B0%D0%B3%D1%82%D0%B0%D0%BD%D0%B8_%D0%91%D1%8D%D1%85%D0%B8",
+      "revisionId": 869703
+    },
+    "wiki-guyuk-en": {
+      "title": "Güyük Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1376532753",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/G%C3%BCy%C3%BCk_Khan",
+      "revisionId": 1376532753
+    },
+    "wiki-guyuk-mn": {
+      "title": "Гүюг хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=859035",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%93%D2%AF%D1%8E%D0%B3_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 859035
+    },
+    "wiki-mongke-en": {
+      "title": "Möngke Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375554835",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/M%C3%B6ngke_Khan",
+      "revisionId": 1375554835
+    },
+    "wiki-mongke-mn": {
+      "title": "Мөнх хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=840324",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D3%A9%D0%BD%D1%85_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 840324
+    },
+    "wiki-kublai-en": {
+      "title": "Kublai Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1376691119",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Kublai_Khan",
+      "revisionId": 1376691119
+    },
+    "wiki-kublai-mn": {
+      "title": "Хубилай хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=871885",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D1%83%D0%B1%D0%B8%D0%BB%D0%B0%D0%B9_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 871885
+    },
+    "wiki-chabi-en": {
+      "title": "Chabi",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1367465775",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Chabi",
+      "revisionId": 1367465775
+    },
+    "wiki-chabi-mn": {
+      "title": "Чаби хатан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=855753",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A7%D0%B0%D0%B1%D0%B8_%D1%85%D0%B0%D1%82%D0%B0%D0%BD",
+      "revisionId": 855753
+    },
+    "wiki-ariq-en": {
+      "title": "Ariq Böke",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1367480551",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Ariq_B%C3%B6ke",
+      "revisionId": 1367480551
+    },
+    "wiki-ariq-mn": {
+      "title": "Аригбуха хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=858714",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%90%D1%80%D0%B8%D0%B3%D0%B1%D1%83%D1%85%D0%B0_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 858714
+    },
+    "wiki-zhenjin-en": {
+      "title": "Zhenjin",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1365294840",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Zhenjin",
+      "revisionId": 1365294840
+    },
+    "wiki-zhenjin-mn": {
+      "title": "Чингим",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=859178",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A7%D0%B8%D0%BD%D0%B3%D0%B8%D0%BC",
+      "revisionId": 859178
+    },
+    "wiki-temur-en": {
+      "title": "Temür Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1367748674",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Tem%C3%BCr_Khan",
+      "revisionId": 1367748674
+    },
+    "wiki-temur-mn": {
+      "title": "Төмөр Өлзийт хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=840363",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A2%D3%A9%D0%BC%D3%A9%D1%80_%D3%A8%D0%BB%D0%B7%D0%B8%D0%B9%D1%82_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 840363
+    },
+    "wiki-darmabala-en": {
+      "title": "Darmabala",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1365294850",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Darmabala",
+      "revisionId": 1365294850
+    },
+    "wiki-darmabala-mn": {
+      "title": "Дармабала",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=849295",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%94%D0%B0%D1%80%D0%BC%D0%B0%D0%B1%D0%B0%D0%BB%D0%B0",
+      "revisionId": 849295
+    },
+    "wiki-qaishan-en": {
+      "title": "Külüg Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1367863120",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/K%C3%BCl%C3%BCg_Khan",
+      "revisionId": 1367863120
+    },
+    "wiki-qaishan-mn": {
+      "title": "Хайсан хүлэг хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=840483",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D0%B0%D0%B9%D1%81%D0%B0%D0%BD_%D1%85%D2%AF%D0%BB%D1%8D%D0%B3_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 840483
+    },
+    "wiki-kusala-en": {
+      "title": "Khutughtu Khan Kusala",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1366202242",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Khutughtu_Khan_Kusala",
+      "revisionId": 1366202242
+    },
+    "wiki-kusala-mn": {
+      "title": "Хүслэн хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=869835",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D2%AF%D1%81%D0%BB%D1%8D%D0%BD_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 869835
+    },
+    "wiki-toghon-en": {
+      "title": "Toghon Temür",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1373355982",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Toghon_Tem%C3%BCr",
+      "revisionId": 1373355982
+    },
+    "wiki-toghon-mn": {
+      "title": "Тогоонтөмөр хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=869849",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A2%D0%BE%D0%B3%D0%BE%D0%BE%D0%BD%D1%82%D3%A9%D0%BC%D3%A9%D1%80_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 869849
+    },
+    "wiki-toghrul-en": {
+      "title": "Toghrul",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1376378630",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Toghrul",
+      "revisionId": 1376378630
+    },
+    "wiki-toghrul-mn": {
+      "title": "Тоорил хан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=840681",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A2%D0%BE%D0%BE%D1%80%D0%B8%D0%BB_%D1%85%D0%B0%D0%BD",
+      "revisionId": 840681
+    },
+    "wiki-jamukha-en": {
+      "title": "Jamukha",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1368294424",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Jamukha",
+      "revisionId": 1368294424
+    },
+    "wiki-jamukha-mn": {
+      "title": "Жамуха",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=832521",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%96%D0%B0%D0%BC%D1%83%D1%85%D0%B0",
+      "revisionId": 832521
+    },
+    "wiki-batu-en": {
+      "title": "Batu Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1370297553",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Batu_Khan",
+      "revisionId": 1370297553
+    },
+    "wiki-batu-mn": {
+      "title": "Бат хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=865006",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%91%D0%B0%D1%82_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 865006
+    },
+    "wiki-hulegu-en": {
+      "title": "Hulegu Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1368839446",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Hulegu_Khan",
+      "revisionId": 1368839446
+    },
+    "wiki-hulegu-mn": {
+      "title": "Хүлэгү",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=860168",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D2%AF%D0%BB%D1%8D%D0%B3%D2%AF",
+      "revisionId": 860168
+    },
+    "wiki-berke-en": {
+      "title": "Berke",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1369785575",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Berke",
+      "revisionId": 1369785575
+    },
+    "wiki-berke-mn": {
+      "title": "Бэрх",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=834566",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%91%D1%8D%D1%80%D1%85",
+      "revisionId": 834566
+    },
+    "wiki-tumbinai-en": {
+      "title": "Tumbinai Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1358737261",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Tumbinai_Khan",
+      "revisionId": 1358737261
+    },
+    "wiki-tumbinai-mn": {
+      "title": "Тумбинай сэцэн",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=811879",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A2%D1%83%D0%BC%D0%B1%D0%B8%D0%BD%D0%B0%D0%B9_%D1%81%D1%8D%D1%86%D1%8D%D0%BD",
+      "revisionId": 811879
+    },
+    "wiki-khabul-en": {
+      "title": "Khabul Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375704495",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Khabul_Khan",
+      "revisionId": 1375704495
+    },
+    "wiki-khabul-mn": {
+      "title": "Хабул хан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=830680",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D0%B0%D0%B1%D1%83%D0%BB_%D1%85%D0%B0%D0%BD",
+      "revisionId": 830680
+    },
+    "wiki-bartan-mn": {
+      "title": "Бартан баатар",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=872171",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%91%D0%B0%D1%80%D1%82%D0%B0%D0%BD_%D0%B1%D0%B0%D0%B0%D1%82%D0%B0%D1%80",
+      "revisionId": 872171
+    },
+    "wiki-ayushiridara-en": {
+      "title": "Biligtü Khan Ayushiridara",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1365692672",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Biligt%C3%BC_Khan_Ayushiridara",
+      "revisionId": 1365692672
+    },
+    "wiki-ayushiridara-mn": {
+      "title": "Аюушридар хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=840604",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%90%D1%8E%D1%83%D1%88%D1%80%D0%B8%D0%B4%D0%B0%D1%80_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 840604
+    },
+    "wiki-maidarbal-en": {
+      "title": "Maidilibala",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1358812690",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Maidilibala",
+      "revisionId": 1358812690
+    },
+    "wiki-hongwu-en": {
+      "title": "Hongwu Emperor",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1377364608",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Hongwu_Emperor",
+      "revisionId": 1377364608
+    },
+    "wiki-hongwu-mn": {
+      "title": "Хунъү",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=854823",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D1%83%D0%BD%D1%8A%D2%AF",
+      "revisionId": 854823
+    }
+  },
+  "people": [
+    {
+      "id": "yesugei",
+      "status": "paired-with-differences",
+      "facts": "Temujin’s father; Hoelun’s husband; death in the late twelfth century. Exact year differs between the Mongolian lead and infobox.",
+      "sources": ["wiki-yesugei-en", "wiki-yesugei-mn"],
+      "issues": ["yesugei-year"]
+    },
+    {
+      "id": "hoelun",
+      "status": "paired-with-differences",
+      "facts": "Temujin’s mother and Yesugei’s wife; she raised the children after his death. Exact lifespan is not agreed across the two biographies.",
+      "sources": ["wiki-hoelun-en", "wiki-hoelun-mn"],
+      "issues": ["hoelun-lifespan"]
+    },
+    {
+      "id": "temujin",
+      "status": "paired-with-differences",
+      "facts": "Temujin/Genghis Khan; parents Yesugei and Hoelun; title and imperial foundation in 1206; died in 1227. Retain approximate birth year and no exact death day.",
+      "sources": ["wiki-genghis-khan", "wiki-temujin-mn"],
+      "issues": ["temujin-death-day"]
+    },
+    {
+      "id": "borte",
+      "status": "paired-core-facts",
+      "facts": "Genghis Khan’s principal wife; mother of Jochi, Chagatai, Ogedei and Tolui. Family and political role supported.",
+      "sources": ["wiki-borte-en", "wiki-borte-mn"],
+      "issues": []
+    },
+    {
+      "id": "jochi",
+      "status": "paired-with-differences",
+      "facts": "Borte’s eldest son, accepted by Genghis Khan; father of Batu and Berke. English death discussion gives 1225 or 1227, while Mongolian uses circa 1225 and 1225–1226 elsewhere.",
+      "sources": ["wiki-jochi-en", "wiki-jochi-mn"],
+      "issues": ["jochi-death"]
+    },
+    {
+      "id": "chagatai",
+      "status": "paired-core-facts",
+      "facts": "Second son of Genghis Khan and Borte; Central Asian appanage; death in 1242.",
+      "sources": ["wiki-chagatai-en", "wiki-chagatai-mn"],
+      "issues": []
+    },
+    {
+      "id": "ogedei",
+      "status": "paired-with-differences",
+      "facts": "Third son of Genghis Khan and Borte; elected in 1229 after Tolui’s regency; ruled until 1241. Use the Mongolian revision preceding the anomalous October edit.",
+      "sources": ["wiki-ogedei-en", "wiki-ogedei-mn"],
+      "issues": ["ogedei-anomalous-revision"]
+    },
+    {
+      "id": "toregene",
+      "status": "paired-with-differences",
+      "facts": "Ogedei’s wife and Guyuk’s mother; administration between Ogedei’s death and Guyuk’s election. Leads use 1241–1246; infoboxes distinguish formal regency from 1242.",
+      "sources": ["wiki-toregene", "wiki-toregene-mn"],
+      "issues": ["toregene-regency"]
+    },
+    {
+      "id": "tolui",
+      "status": "paired-core-facts",
+      "facts": "Fourth son of Genghis Khan and Borte; husband of Sorghaghtani; father of Mongke, Kublai, Hulegu and Ariq; regent during 1227–1229, later honored posthumously.",
+      "sources": ["wiki-tolui-en", "wiki-tolui-mn"],
+      "issues": []
+    },
+    {
+      "id": "sorghaghtani",
+      "status": "paired-with-differences",
+      "facts": "Tolui’s wife and mother of Mongke, Kublai, Hulegu and Ariq. Birth is placed in the late twelfth century; death in 1252.",
+      "sources": ["wiki-sorghaghtani-en", "wiki-sorghaghtani-mn"],
+      "issues": ["sorghaghtani-century"]
+    },
+    {
+      "id": "guyuk",
+      "status": "paired-core-facts",
+      "facts": "Son of Ogedei and Toregene; reign 1246–1248, followed by Oghul Qaimish’s regency.",
+      "sources": ["wiki-guyuk-en", "wiki-guyuk-mn"],
+      "issues": []
+    },
+    {
+      "id": "mongke",
+      "status": "paired-with-differences",
+      "facts": "Son of Tolui and Sorghaghtani; reign 1251–1259; accession transferred the supreme title to Tolui’s line. Birth and exact coronation dates conflict inside the Mongolian page.",
+      "sources": ["wiki-mongke-en", "wiki-mongke-mn"],
+      "issues": ["mongke-dates"]
+    },
+    {
+      "id": "kublai",
+      "status": "paired-with-differences",
+      "facts": "Son of Tolui and Sorghaghtani; born 1215, died 1294; rival elections in 1260; Great Yuan name in 1271; Southern Song defeated in 1279.",
+      "sources": ["wiki-kublai-en", "wiki-kublai-mn"],
+      "issues": ["kublai-authority"]
+    },
+    {
+      "id": "chabi",
+      "status": "paired-core-facts",
+      "facts": "Kublai’s wife, Zhenjin’s mother; died in 1281. Political and religious influence supported; birth precision not increased.",
+      "sources": ["wiki-chabi-en", "wiki-chabi-mn"],
+      "issues": []
+    },
+    {
+      "id": "ariq",
+      "status": "paired-core-facts",
+      "facts": "Son of Tolui and Sorghaghtani; separately elected in 1260; war with Kublai ended with submission in 1264. Do not import judgments of exclusive legitimacy.",
+      "sources": ["wiki-ariq-en", "wiki-ariq-mn"],
+      "issues": []
+    },
+    {
+      "id": "zhenjin",
+      "status": "paired-with-differences",
+      "facts": "Son of Kublai and Chabi; father of Temur and Darmabala; died before Kublai. Crown-prince year is 1273 in English/Yuan shi versus 1274 in Mongolian.",
+      "sources": ["wiki-zhenjin-en", "wiki-zhenjin-mn"],
+      "issues": ["zhenjin-crown-prince"]
+    },
+    {
+      "id": "temur",
+      "status": "paired-core-facts",
+      "facts": "Zhenjin’s third son and Kublai’s grandson; reign 1294–1307; brother of Darmabala.",
+      "sources": ["wiki-temur-en", "wiki-temur-mn"],
+      "issues": []
+    },
+    {
+      "id": "darmabala",
+      "status": "partial",
+      "facts": "Zhenjin’s second son; Temur’s elder brother; father of Qaishan. The posthumous imperial honor remains supported by English/Yuan shi, not established by the inspected Mongolian biography.",
+      "sources": ["wiki-darmabala-en", "wiki-darmabala-mn"],
+      "issues": [],
+      "supportingSources": [
+        {
+          "id": "yuan115",
+          "url": "https://zh.wikisource.org/wiki/元史/卷115"
+        },
+        {
+          "id": "yuan22",
+          "url": "https://zh.wikisource.org/wiki/元史/卷022"
+        }
+      ]
+    },
+    {
+      "id": "qaishan",
+      "status": "paired-core-facts",
+      "facts": "Darmabala’s son and Temur’s nephew; reign 1307–1311; father of Kusala.",
+      "sources": ["wiki-qaishan-en", "wiki-qaishan-mn"],
+      "issues": []
+    },
+    {
+      "id": "kusala",
+      "status": "paired-with-differences",
+      "facts": "Qaishan’s eldest son and Toghon Temur’s father; brief reign in 1329. Exact days vary within the Mongolian text; retain year precision.",
+      "sources": ["wiki-kusala-en", "wiki-kusala-mn"],
+      "issues": ["kusala-days"]
+    },
+    {
+      "id": "toghon",
+      "status": "paired-with-differences",
+      "facts": "Kusala’s son; reign began 1333; withdrew from Dadu in 1368; died 1370 and was succeeded by Ayushiridara. Describe the capital’s loss without asserting one uniform territorial endpoint.",
+      "sources": ["wiki-toghon-en", "wiki-toghon-mn"],
+      "issues": ["yuan-1368"]
+    },
+    {
+      "id": "toghrul",
+      "status": "paired-core-facts",
+      "facts": "Keraite ruler; Yesugei’s anda and Temujin’s early patron, later adversary.",
+      "sources": ["wiki-toghrul-en", "wiki-toghrul-mn"],
+      "issues": []
+    },
+    {
+      "id": "jamukha",
+      "status": "paired-core-facts",
+      "facts": "Temujin’s anda, ally in the Merkit episode and later political/military rival.",
+      "sources": ["wiki-jamukha-en", "wiki-jamukha-mn"],
+      "issues": []
+    },
+    {
+      "id": "batu",
+      "status": "partial",
+      "facts": "Jochi’s son; supported Mongke’s accession. English describes the 1250/1251 election sequence; Mongolian supporting passages are less specific.",
+      "sources": ["wiki-batu-en", "wiki-batu-mn"],
+      "issues": ["mongke-election-detail"],
+      "supportingSources": [
+        {
+          "id": "armouries",
+          "url": "https://royalarmouries.org/objects-and-stories/stories/the-mongols/the-family-of-genghis-khan"
+        },
+        {
+          "id": "yuan3",
+          "url": "https://zh.wikisource.org/wiki/元史/卷003"
+        },
+        {
+          "id": "iranicaJoci",
+          "url": "https://www.iranicaonline.org/articles/joci/"
+        },
+        {
+          "id": "dunnell2023",
+          "url": "https://api.pageplace.de/preview/DT0400.9781009301985_A49234927/preview-9781009301985_A49234927.pdf"
+        },
+        {
+          "id": "iranicaMongols",
+          "url": "https://www.iranicaonline.org/articles/mongols/"
+        }
+      ]
+    },
+    {
+      "id": "hulegu",
+      "status": "partial",
+      "facts": "Son of Tolui and Sorghaghtani; campaign ordered by Mongke; founded the Ilkhanate; died 1265. English/Mongolian campaign-start dates differ (1253 mobilization versus 1255 dispatch).",
+      "sources": ["wiki-hulegu-en", "wiki-hulegu-mn"],
+      "issues": ["hulegu-departure"],
+      "supportingSources": [
+        {
+          "id": "iranicaHulagu",
+          "url": "https://www.iranicaonline.org/articles/hulagu-khan/"
+        },
+        {
+          "id": "yuan3",
+          "url": "https://zh.wikisource.org/wiki/元史/卷003"
+        },
+        {
+          "id": "iranicaChinaIran",
+          "url": "https://www.iranicaonline.org/articles/chinese-iranian-iii/"
+        }
+      ]
+    },
+    {
+      "id": "berke",
+      "status": "paired-with-differences",
+      "facts": "Jochi’s son and Golden Horde ruler; war with Hulegu in 1262–1263. Keep the 1266/1267 end-date uncertainty; do not infer a direct succession from Batu.",
+      "sources": ["wiki-berke-en", "wiki-berke-mn"],
+      "issues": ["berke-succession"]
+    },
+    {
+      "id": "tumbinai",
+      "status": "paired-core-facts",
+      "facts": "Khabul’s father in the recorded genealogy. Exact dates and expanded Timurid genealogical traditions remain uncertain.",
+      "sources": ["wiki-tumbinai-en", "wiki-tumbinai-mn"],
+      "issues": []
+    },
+    {
+      "id": "khabul",
+      "status": "paired-with-differences",
+      "facts": "Tumbinai’s son, Bartan’s father and ruler of Khamag Mongol; Ambaghai succeeded him. Conflicting claims about other descendants are not imported.",
+      "sources": ["wiki-khabul-en", "wiki-khabul-mn"],
+      "issues": ["khabul-genealogy"]
+    },
+    {
+      "id": "bartan",
+      "status": "paired-core-facts",
+      "facts": "Khabul’s son and Yesugei’s father. English evidence is in Yesugei/Khabul biographies, since the English Bartan title redirects to Yesugei.",
+      "sources": ["wiki-yesugei-en", "wiki-bartan-mn"],
+      "issues": []
+    },
+    {
+      "id": "ayushiridara",
+      "status": "paired-with-differences",
+      "facts": "Toghon Temur’s son; reign 1370–1378; Maidarbal’s father. Mongolian birth years disagree internally, so no exact birth year is added.",
+      "sources": ["wiki-ayushiridara-en", "wiki-ayushiridara-mn"],
+      "issues": ["ayushiridara-birth"]
+    },
+    {
+      "id": "maidarbal",
+      "status": "partial",
+      "facts": "Ayushiridara’s son; captured by Ming forces in 1370 and returned north in 1374. English Maidilibala and Mongolian Ayushiridara support these episodes unevenly; identification with Elbeg remains a hypothesis.",
+      "sources": ["wiki-maidarbal-en", "wiki-ayushiridara-mn"],
+      "issues": ["maidarbal-identity"],
+      "supportingSources": [
+        {
+          "id": "mingTaizu57",
+          "url": "https://zh.wikisource.org/wiki/大明太祖高皇帝實錄/卷057"
+        },
+        {
+          "id": "ming327",
+          "url": "https://zh.wikisource.org/wiki/明史/卷327"
+        }
+      ]
+    },
+    {
+      "id": "hongwu",
+      "status": "partial",
+      "facts": "Founder and emperor of Ming, reign 1368–1398. The two biographies do not establish the exact 1370 letter; existing Ming records remain necessary.",
+      "sources": ["wiki-hongwu-en", "wiki-hongwu-mn"],
+      "issues": ["hongwu-letter"],
+      "supportingSources": [
+        {
+          "id": "mingTaizu53",
+          "url": "https://zh.wikisource.org/wiki/大明太祖高皇帝實錄/卷053"
+        },
+        {
+          "id": "mingTaizu57",
+          "url": "https://zh.wikisource.org/wiki/大明太祖高皇帝實錄/卷057"
+        },
+        {
+          "id": "ming327",
+          "url": "https://zh.wikisource.org/wiki/明史/卷327"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "yesugei-death",
+      "sources": ["wiki-yesugei-en", "wiki-yesugei-mn"],
+      "status": "paired-with-differences",
+      "note": "Poisoning tradition and late-twelfth-century placement agree; retain period precision because exact years differ."
+    },
+    {
+      "id": "mongol-empire-1206",
+      "sources": ["wiki-genghis-khan", "wiki-temujin-mn"],
+      "status": "paired-core-facts",
+      "note": "Title and imperial foundation in 1206 agree."
+    },
+    {
+      "id": "tolui-regency-1227",
+      "sources": ["wiki-tolui-en", "wiki-tolui-mn"],
+      "status": "paired-core-facts",
+      "note": "Regency began after Genghis Khan’s death in 1227 and ended in 1229."
+    },
+    {
+      "id": "ogedei-accession-1229",
+      "sources": ["wiki-ogedei-en", "wiki-ogedei-mn"],
+      "status": "paired-core-facts",
+      "note": "1229 election agrees with English and the reviewed Mongolian old revision."
+    },
+    {
+      "id": "toregene-regency-1241",
+      "sources": ["wiki-toregene", "wiki-toregene-mn"],
+      "status": "paired-with-differences",
+      "note": "1241–1246 describes the post-Ogedei interval; both infoboxes start formal regency in 1242. Retain the broad interval, not an exact accession day."
+    },
+    {
+      "id": "guyuk-accession-1246",
+      "sources": ["wiki-guyuk-en", "wiki-guyuk-mn"],
+      "status": "paired-core-facts",
+      "note": "Accession in 1246 agrees."
+    },
+    {
+      "id": "mongke-accession-1251",
+      "sources": ["wiki-mongke-en", "wiki-mongke-mn"],
+      "status": "partial",
+      "note": "1251 accession and Toluid succession agree. Berke’s specific role is supported by English and existing primary/scholarly sources; not established by the inspected Mongolian passages.",
+      "supportingSources": [
+        {
+          "id": "yuan3",
+          "url": "https://zh.wikisource.org/wiki/元史/卷003"
+        },
+        {
+          "id": "dunnell2023",
+          "url": "https://api.pageplace.de/preview/DT0400.9781009301985_A49234927/preview-9781009301985_A49234927.pdf"
+        }
+      ]
+    },
+    {
+      "id": "hulegu-campaign-1253",
+      "sources": ["wiki-hulegu-en", "wiki-hulegu-mn"],
+      "status": "partial",
+      "note": "English describes mobilization in 1253 and arrival in Transoxiana in 1255; Mongolian dates Mongke’s dispatch to 1255. The 1253 departure statement is not bilingually confirmed; retain the existing Yuan shi/Iranica sources for adjudication. Iranica was re-read: it explicitly dates departure to 1253 and arrival in Transoxania to 1255, supporting the existing wording.",
+      "supportingSources": [
+        {
+          "id": "yuan3",
+          "url": "https://zh.wikisource.org/wiki/元史/卷003"
+        },
+        {
+          "id": "iranicaHulagu",
+          "url": "https://www.iranicaonline.org/articles/hulagu-khan/"
+        }
+      ]
+    },
+    {
+      "id": "toluid-war-1260",
+      "sources": ["wiki-ariq-en", "wiki-ariq-mn"],
+      "status": "paired-core-facts",
+      "note": "Rival elections and war from 1260 to 1264 agree; omit judgments of one side’s exclusive legitimacy."
+    },
+    {
+      "id": "berke-hulegu-war-1262",
+      "sources": ["wiki-berke-en", "wiki-berke-mn"],
+      "status": "partial",
+      "note": "1262–1263 fighting agrees; the possible winter 1261–1262 start and relative weight of territorial/revenue causes still rely on existing Iranica scholarship.",
+      "supportingSources": [
+        {
+          "id": "iranicaHulagu",
+          "url": "https://www.iranicaonline.org/articles/hulagu-khan/"
+        },
+        {
+          "id": "iranicaJoci",
+          "url": "https://www.iranicaonline.org/articles/joci/"
+        }
+      ]
+    },
+    {
+      "id": "yuan-name-1271",
+      "sources": ["wiki-kublai-en", "wiki-kublai-mn"],
+      "status": "paired-core-facts",
+      "note": "Great Yuan dynastic name proclaimed in 1271 agrees."
+    },
+    {
+      "id": "song-defeat-1279",
+      "sources": ["wiki-kublai-en", "wiki-kublai-mn"],
+      "status": "paired-core-facts",
+      "note": "Defeat of Southern Song in 1279 agrees."
+    },
+    {
+      "id": "temur-accession-1294",
+      "sources": ["wiki-temur-en", "wiki-temur-mn"],
+      "status": "paired-core-facts",
+      "note": "Temur’s accession in 1294 after Kublai agrees; his father died before Kublai."
+    },
+    {
+      "id": "yuan-retreat-1368",
+      "sources": ["wiki-toghon-en", "wiki-toghon-mn"],
+      "status": "paired-core-facts",
+      "note": "1368 withdrawal from Dadu and continuation of Toghon Temur’s reign until 1370 agree. Replaced the geographically overbroad statement."
+    },
+    {
+      "id": "ayushiridara-accession-1370",
+      "sources": ["wiki-ayushiridara-en", "wiki-ayushiridara-mn"],
+      "status": "paired-core-facts",
+      "note": "Accession after his father’s death in 1370 agrees; do not add an exact day."
+    },
+    {
+      "id": "maidarbal-capture-1370",
+      "sources": ["wiki-maidarbal-en", "wiki-ayushiridara-mn"],
+      "status": "partial",
+      "note": "English Maidilibala records capture in Yingchang in 1370; Mongolian Ayushiridara identifies his captive son on release, without dating the capture. Existing Ming record retained.",
+      "supportingSources": [
+        {
+          "id": "mingTaizu53",
+          "url": "https://zh.wikisource.org/wiki/大明太祖高皇帝實錄/卷053"
+        },
+        {
+          "id": "ming327",
+          "url": "https://zh.wikisource.org/wiki/明史/卷327"
+        }
+      ]
+    },
+    {
+      "id": "hongwu-ayushiridara-letter-1370",
+      "sources": [],
+      "status": "primary-source-retained",
+      "note": "The precise letter and its contents are not located in the two biographies. Keep the existing Ming Taizu shilu volume 57 citation; do not mark Wikipedia verification complete.",
+      "supportingSources": [
+        {
+          "id": "mingTaizu57",
+          "url": "https://zh.wikisource.org/wiki/大明太祖高皇帝實錄/卷057"
+        }
+      ]
+    },
+    {
+      "id": "maidarbal-return-1374",
+      "sources": ["wiki-maidarbal-en", "wiki-ayushiridara-mn"],
+      "status": "paired-core-facts",
+      "note": "English Maidilibala and Mongolian Ayushiridara both record release/return in 1374; autumn detail remains tied to the existing Ming citation."
+    }
+  ],
+  "relationships": [
+    {
+      "from": "yesugei",
+      "to": "hoelun",
+      "type": "spouse",
+      "status": "paired-core-facts",
+      "sources": ["wiki-hoelun-en", "wiki-hoelun-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "temujin",
+      "to": "borte",
+      "type": "spouse",
+      "status": "paired-core-facts",
+      "sources": ["wiki-borte-en", "wiki-borte-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "ogedei",
+      "to": "toregene",
+      "type": "spouse",
+      "status": "paired-core-facts",
+      "sources": ["wiki-toregene", "wiki-toregene-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "tolui",
+      "to": "sorghaghtani",
+      "type": "spouse",
+      "status": "paired-core-facts",
+      "sources": ["wiki-sorghaghtani-en", "wiki-sorghaghtani-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "kublai",
+      "to": "chabi",
+      "type": "spouse",
+      "status": "paired-core-facts",
+      "sources": ["wiki-chabi-en", "wiki-chabi-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "yesugei",
+      "to": "temujin",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-genghis-khan", "wiki-temujin-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "hoelun",
+      "to": "temujin",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-genghis-khan", "wiki-temujin-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "temujin",
+      "to": "jochi",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-jochi-en", "wiki-jochi-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "temujin",
+      "to": "chagatai",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-chagatai-en", "wiki-chagatai-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "temujin",
+      "to": "ogedei",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-ogedei-en", "wiki-ogedei-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "temujin",
+      "to": "tolui",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-tolui-en", "wiki-tolui-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "borte",
+      "to": "jochi",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-jochi-en", "wiki-jochi-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "borte",
+      "to": "chagatai",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-chagatai-en", "wiki-chagatai-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "borte",
+      "to": "ogedei",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-ogedei-en", "wiki-ogedei-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "borte",
+      "to": "tolui",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-tolui-en", "wiki-tolui-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "ogedei",
+      "to": "guyuk",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-guyuk-en", "wiki-guyuk-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "toregene",
+      "to": "guyuk",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-guyuk-en", "wiki-guyuk-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "tolui",
+      "to": "mongke",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-mongke-en", "wiki-mongke-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "tolui",
+      "to": "kublai",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-kublai-en", "wiki-kublai-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "tolui",
+      "to": "ariq",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-ariq-en", "wiki-ariq-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "sorghaghtani",
+      "to": "mongke",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-mongke-en", "wiki-mongke-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "sorghaghtani",
+      "to": "kublai",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-kublai-en", "wiki-kublai-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "sorghaghtani",
+      "to": "ariq",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-ariq-en", "wiki-ariq-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "kublai",
+      "to": "zhenjin",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-zhenjin-en", "wiki-zhenjin-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "chabi",
+      "to": "zhenjin",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-zhenjin-en", "wiki-zhenjin-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "zhenjin",
+      "to": "temur",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-temur-en", "wiki-temur-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "zhenjin",
+      "to": "darmabala",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-darmabala-en", "wiki-darmabala-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "darmabala",
+      "to": "qaishan",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-qaishan-en", "wiki-qaishan-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "qaishan",
+      "to": "kusala",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-kusala-en", "wiki-kusala-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "kusala",
+      "to": "toghon",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-toghon-en", "wiki-toghon-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "temujin",
+      "to": "ogedei",
+      "type": "succession",
+      "status": "paired-core-facts",
+      "sources": ["wiki-ogedei-en", "wiki-ogedei-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "ogedei",
+      "to": "guyuk",
+      "type": "succession",
+      "status": "paired-core-facts",
+      "sources": ["wiki-guyuk-en", "wiki-guyuk-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "guyuk",
+      "to": "mongke",
+      "type": "succession",
+      "status": "paired-core-facts",
+      "sources": ["wiki-mongke-en", "wiki-mongke-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "mongke",
+      "to": "kublai",
+      "type": "succession",
+      "status": "paired-core-facts",
+      "sources": ["wiki-kublai-en", "wiki-kublai-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "kublai",
+      "to": "temur",
+      "type": "succession",
+      "status": "paired-core-facts",
+      "sources": ["wiki-temur-en", "wiki-temur-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "yesugei",
+      "to": "toghrul",
+      "type": "alliance",
+      "status": "paired-core-facts",
+      "sources": ["wiki-toghrul-en", "wiki-toghrul-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "temujin",
+      "to": "jamukha",
+      "type": "alliance",
+      "status": "paired-core-facts",
+      "sources": ["wiki-jamukha-en", "wiki-jamukha-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "toghrul",
+      "to": "temujin",
+      "type": "alliance",
+      "status": "paired-core-facts",
+      "sources": ["wiki-toghrul-en", "wiki-toghrul-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "kublai",
+      "to": "ariq",
+      "type": "rival",
+      "status": "paired-core-facts",
+      "sources": ["wiki-ariq-en", "wiki-ariq-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "jochi",
+      "to": "batu",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-batu-en", "wiki-batu-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "jochi",
+      "to": "berke",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-berke-en", "wiki-berke-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "tolui",
+      "to": "hulegu",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-hulegu-en", "wiki-hulegu-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "sorghaghtani",
+      "to": "hulegu",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-hulegu-en", "wiki-hulegu-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "batu",
+      "to": "mongke",
+      "type": "alliance",
+      "status": "partial",
+      "sources": ["wiki-mongke-en", "wiki-sorghaghtani-mn"],
+      "note": "English confirms the 1250/1251 election episode; Mongolian confirms the family alliance but does not specify the same election dates.",
+      "supportingSources": [
+        {
+          "id": "yuan3",
+          "url": "https://zh.wikisource.org/wiki/元史/卷003"
+        },
+        {
+          "id": "dunnell2023",
+          "url": "https://api.pageplace.de/preview/DT0400.9781009301985_A49234927/preview-9781009301985_A49234927.pdf"
+        }
+      ]
+    },
+    {
+      "from": "berke",
+      "to": "hulegu",
+      "type": "rival",
+      "status": "partial",
+      "sources": ["wiki-berke-en", "wiki-berke-mn"],
+      "note": "1262–1263 conflict compared in both biographies. The optional earliestPossibleStart winter 1261–1262 remains tied to Iranica.",
+      "supportingSources": [
+        {
+          "id": "iranicaHulagu",
+          "url": "https://www.iranicaonline.org/articles/hulagu-khan/"
+        }
+      ]
+    },
+    {
+      "from": "tumbinai",
+      "to": "khabul",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-khabul-en", "wiki-khabul-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "khabul",
+      "to": "bartan",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-yesugei-en", "wiki-bartan-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "bartan",
+      "to": "yesugei",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-yesugei-en", "wiki-yesugei-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "toghon",
+      "to": "ayushiridara",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-ayushiridara-en", "wiki-ayushiridara-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "ayushiridara",
+      "to": "maidarbal",
+      "type": "parent",
+      "status": "paired-core-facts",
+      "sources": ["wiki-maidarbal-en", "wiki-ayushiridara-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "toghon",
+      "to": "ayushiridara",
+      "type": "succession",
+      "status": "paired-core-facts",
+      "sources": ["wiki-ayushiridara-en", "wiki-ayushiridara-mn"],
+      "note": "Parent/child identity, marriage, succession or named relationship compared in the cited biographies."
+    },
+    {
+      "from": "hongwu",
+      "to": "ayushiridara",
+      "type": "contact",
+      "status": "primary-source-retained",
+      "sources": [],
+      "note": "The precise 1370 correspondence/reception is not established by the two Wikipedia biographies. Existing Ming primary-source locators retained.",
+      "supportingSources": [
+        {
+          "id": "mingTaizu57",
+          "url": "https://zh.wikisource.org/wiki/大明太祖高皇帝實錄/卷057"
+        }
+      ]
+    },
+    {
+      "from": "hongwu",
+      "to": "maidarbal",
+      "type": "contact",
+      "status": "primary-source-retained",
+      "sources": [],
+      "note": "The precise 1370 correspondence/reception is not established by the two Wikipedia biographies. Existing Ming primary-source locators retained.",
+      "supportingSources": [
+        {
+          "id": "mingTaizu53",
+          "url": "https://zh.wikisource.org/wiki/大明太祖高皇帝實錄/卷053"
+        },
+        {
+          "id": "ming327",
+          "url": "https://zh.wikisource.org/wiki/明史/卷327"
+        }
+      ]
+    }
+  ]
+}
