@@ -30,34 +30,38 @@ struct RootView: View {
   }
   private var splitNavigation: some View {
     NavigationSplitView(columnVisibility: $visibility) {
-      List {
+      List(
+        selection: Binding<NutugPage?>(
+          get: { model.page }, set: { if let page = $0 { model.page = page } })
+      ) {
         ForEach(NutugPage.allCases) { page in
-          Button {
-            model.page = page
-          } label: {
+          NavigationLink(value: page) {
             Label {
               MongolianText(text: page.title, height: 110, size: 24)
             } icon: {
               Image(systemName: page.symbol)
             }
-          }.buttonStyle(.plain).accessibilityLabel(page.title).accessibilityIdentifier(
-            "page-" + page.rawValue
-          ).listRowBackground(model.page == page ? Color.accentColor.opacity(0.12) : Color.clear)
+          }
+          .accessibilityLabel(page.title)
+          .accessibilityIdentifier("page-" + page.rawValue)
         }
-      }.navigationSplitViewColumnWidth(min: 135, ideal: 165, max: 220)
-    } detail: {
-      content(model.page).toolbar { settingsButton }
-    }
-    .toolbar(removing: .sidebarToggle)
-    .toolbar {
-      ToolbarItem(placement: .navigation) {
-        Button {
-          visibility = visibility == .detailOnly ? .all : .detailOnly
-        } label: {
-          Image(systemName: "sidebar.left")
-        }
-        .accessibilityLabel(Copy.label("catalog"))
       }
+      .listStyle(.sidebar)
+      .navigationSplitViewColumnWidth(min: 135, ideal: 165, max: 220)
+    } detail: {
+      content(model.page)
+        .toolbar(removing: .sidebarToggle)
+        .toolbar {
+          ToolbarItem(placement: .navigation) {
+            Button {
+              visibility = visibility == .detailOnly ? .all : .detailOnly
+            } label: {
+              Image(systemName: "sidebar.left")
+            }
+            .accessibilityLabel(Copy.label("catalog"))
+          }
+          settingsButton
+        }
     }
   }
   @ViewBuilder private func content(_ page: NutugPage) -> some View {
