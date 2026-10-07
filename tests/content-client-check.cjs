@@ -152,6 +152,33 @@ const fs = require('node:fs');
   assert.equal(await partial.checkForUpdates(), false);
   assert.equal((await partialStore.get(partial.key('head'))).version, 'bad-document');
 
+  current = manifest;
+  fault = null;
+  requests.length = 0;
+  const coreStore = memoryStore();
+  const coreClient = new ContentClient({
+    manifestUrl: client.manifestUrl,
+    store: coreStore,
+    fetcher,
+    scope: 'core',
+  });
+  const coreSnapshot = await coreClient.load();
+  assert.equal(requests.length, 2, 'History loads only the manifest and core');
+  assert.equal(coreSnapshot.core.events.length, 18);
+  await coreClient.downloadOffline();
+  online = false;
+  const offlineCore = new ContentClient({
+    manifestUrl: client.manifestUrl,
+    store: coreStore,
+    fetcher,
+    scope: 'core',
+  });
+  assert.equal((await offlineCore.load()).core.events.length, 18);
+  online = true;
+  current = version('core-update');
+  assert.equal(await coreClient.checkForUpdates(), true);
+  assert.equal(coreClient.active.manifest.version, manifest.version);
+  assert.equal(coreClient.update.manifest.version, 'core-update');
   const deviceIds = [];
   for (let page = 0; page < manifest.deviceCatalog.pageCount; page++) {
     const part = JSON.parse(

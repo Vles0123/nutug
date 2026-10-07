@@ -54,10 +54,8 @@ import './discovery.css';
 import './mongolian-interaction.css';
 
 const destinations = [
-  ['people', Users, './'],
-  ['tribes', NetworkIcon, 'tribes.html'],
-  ['library', BookOpen, './#knowledge'],
   ['calendar', CalendarDays, 'calendar.html'],
+  ['chronicle', BookOpen, 'chronicle.html'],
 ];
 const nodeLists = {
   people: Object.entries(people).map(([id, n]) => ({ id, ...n })),
@@ -356,7 +354,7 @@ function App() {
             href="./"
             onClick={(e) => {
               e.preventDefault();
-              navigate('people');
+              location.href = 'calendar.html';
             }}
           >
             <Mn>{labels.brand}</Mn>
@@ -373,7 +371,7 @@ function App() {
                 aria-label={labels[id]}
                 onClick={(e) => {
                   e.preventDefault();
-                  navigate(id);
+                  location.href = href;
                 }}
               >
                 {page === id && (

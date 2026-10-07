@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { currentDate } from './content';
+import { currentDate } from '../shared/calendar.mjs';
 
 export function useToday(zone) {
   const [today, setToday] = useState(() => currentDate(zone));

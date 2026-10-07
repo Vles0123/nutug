@@ -18,7 +18,7 @@ export const contentClient = window.NutugContentClient;
 export { labels } from './ui-copy.mjs';
 
 export const own = (table, id) => typeof id === 'string' && Object.hasOwn(table, id);
-export const edgeKey = (edge) => (edge ? edge.id || `${edge.type}:${edge.from}:${edge.to}` : null);
+export { edgeKey } from '../shared/records.mjs';
 export const sourceItems = (ids = [], table = sources) =>
   [...new Set(ids)]
     .map((id) => table[id])
@@ -34,12 +34,4 @@ export const catalogById = new Map(catalogRecords.map((record) => [record.id, re
 export const normalizeQuery = normalizeSearch;
 export const matches = (query, ...values) =>
   values.some((v) => normalizeQuery(v || '').includes(normalizeQuery(query)));
-export function currentDate(zone = calendar.editorial?.todayTimeZone || 'Asia/Shanghai') {
-  const parts = new Intl.DateTimeFormat('en-CA', {
-    timeZone: zone,
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).formatToParts(new Date());
-  return ['year', 'month', 'day'].map((k) => parts.find((p) => p.type === k).value).join('-');
-}
+export { currentDate } from '../shared/calendar.mjs';

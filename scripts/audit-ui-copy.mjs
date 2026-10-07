@@ -1,6 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import vm from 'node:vm';
 import { labels, uiLocale } from '../src/ui-copy.mjs';
+import { calendarCopy } from '../src/calendar-copy.mjs';
 import { format, resolveConfig } from 'prettier';
 
 const meanings = {
@@ -11,6 +12,7 @@ const meanings = {
   tribes: '历史部落导航',
   library: '历史文化资料导航',
   calendar: '日历导航',
+  chronicle: '编年历史导航',
   search: '打开搜索或查找资料',
   close: '关闭当前浮层',
   clear: '清除已输入的检索文本',
@@ -54,6 +56,7 @@ function collect(scope, value, path = '') {
   }
 }
 collect('app', labels);
+collect('calendar-app', calendarCopy);
 for (const [name, global] of [
   ['knowledge', 'KNOWLEDGE'],
   ['tribes', 'TRIBAL_GRAPH'],

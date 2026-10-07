@@ -10,3 +10,7 @@ tests/fixtures/legacy/
 content-dist/
 public/sw.js
 public/*.html
+
+public/interface-copy.json
+
+apple/Resources/

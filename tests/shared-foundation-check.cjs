@@ -13,6 +13,20 @@ const fs = require('node:fs');
     search: read(manifest.search),
   };
   assertSnapshot(snapshot);
+  const engineForFeed = require('../public/chinese-almanac-core.js');
+  for (const year of manifest.calendar.years)
+    for (let month = 1; month <= 12; month++) {
+      const monthId = `${year}-${String(month).padStart(2, '0')}`;
+      const page = read(manifest.calendar.path.replace('{month}', monthId));
+      assert.equal(page.days.length, new Date(Date.UTC(year, month, 0)).getUTCDate());
+      for (const item of page.days) {
+        const value = engineForFeed.compute(item.date);
+        assert.deepEqual(
+          [item.year, item.month, item.day, item.leap],
+          [value.lunarYear, value.lunarMonth, value.lunarDay, value.leapMonth],
+        );
+      }
+    }
   const bad = (edit) => {
     const copy = structuredClone(snapshot);
     edit(copy);

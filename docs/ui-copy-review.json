@@ -38,11 +38,12 @@
       "basis": "区分文章目录入口与筛选范围，补充可追溯词形用例。"
     }
   ],
-  "totals": { "entries": 159, "nativeReviewed": 0, "differingConcepts": 6 },
+  "totals": { "entries": 175, "nativeReviewed": 0, "differingConcepts": 6 },
   "differingForms": [
     {
       "concept": "today",
       "entries": [
+        { "id": "calendar-app.today", "text": "ᠥᠨᠥᠳᠦᠷ" },
         { "id": "calendar.today", "text": "ᠥᠨᠥᠳᠥᠷ" },
         { "id": "almanac.today", "text": "ᠥᠨᠥᠳᠦᠷ" }
       ]
@@ -128,6 +129,12 @@
       "id": "app.calendar",
       "text": "ᠴᠠᠭ ᠲᠣᠭ᠎ᠠ",
       "context": "日历导航",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "app.chronicle",
+      "text": "ᠲᠡᠦᠬᠡ",
+      "context": "编年历史导航",
       "review": "needs-native-review"
     },
     {
@@ -290,6 +297,96 @@
       "id": "app.catalog",
       "text": "ᠭᠠᠷᠴᠠᠭ",
       "context": "文章目录",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.today",
+      "text": "ᠥᠨᠥᠳᠦᠷ",
+      "context": "calendar-app / today",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.year",
+      "text": "ᠣᠨ",
+      "context": "calendar-app / year",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.month",
+      "text": "ᠰᠠᠷ᠎ᠠ",
+      "context": "calendar-app / month",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.day",
+      "text": "ᠡᠳᠦᠷ",
+      "context": "calendar-app / day",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.choose",
+      "text": "ᠡᠳᠦᠷ ᠰᠣᠩᠭᠣᠬᠤ",
+      "context": "calendar-app / choose",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.gregorian",
+      "text": "ᠠᠷᠭ᠎ᠠ ᠶᠢᠨ ᠲᠣᠭᠠᠯᠠᠯ",
+      "context": "calendar-app / gregorian",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.lunar",
+      "text": "ᠪᠢᠯᠢᠭ ᠦᠨ ᠲᠣᠭᠠᠯᠠᠯ",
+      "context": "calendar-app / lunar",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.leapMonth",
+      "text": "ᠢᠯᠡᠭᠦᠦ ᠰᠠᠷ᠎ᠠ",
+      "context": "calendar-app / leapMonth",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.weekdays.0",
+      "text": "ᠳᠠᠪᠠᠭ᠎ᠠ",
+      "context": "calendar-app / weekdays.0",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.weekdays.1",
+      "text": "ᠮᠢᠭᠮᠠᠷ",
+      "context": "calendar-app / weekdays.1",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.weekdays.2",
+      "text": "ᠯᠬᠠᠭᠪᠠ",
+      "context": "calendar-app / weekdays.2",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.weekdays.3",
+      "text": "ᠫᠦᠷᠪᠦ",
+      "context": "calendar-app / weekdays.3",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.weekdays.4",
+      "text": "ᠪᠠᠰᠠᠩ",
+      "context": "calendar-app / weekdays.4",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.weekdays.5",
+      "text": "ᠪᠢᠮᠪᠠ",
+      "context": "calendar-app / weekdays.5",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.weekdays.6",
+      "text": "ᠨᠶᠠᠮ",
+      "context": "calendar-app / weekdays.6",
       "review": "needs-native-review"
     },
     {

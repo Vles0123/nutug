@@ -1,5 +1,8 @@
 import { readFile, writeFile, mkdir, rename } from 'node:fs/promises';
 import vm from 'node:vm';
+import { createRequire } from 'node:module';
+import { civilDate } from '../shared/calendar.mjs';
+const calendarEngine = createRequire(import.meta.url)('../public/chinese-almanac-core.js');
 import { createCatalogIndex, canonicalSourceUrl } from '../src/catalog.mjs';
 import { assertCore, assertDocument, assertSnapshot } from '../shared/content-contract.mjs';
 
@@ -128,6 +131,34 @@ for (let page = 0; page < pageCount; page++) {
     }) + '\n',
   );
 }
+const calendarYear = new Date().getUTCFullYear();
+const calendarYears = [calendarYear - 1, calendarYear, calendarYear + 1].filter(
+  (year) => year >= 1901 && year <= 2100,
+);
+await mkdir(`${root}/${release}/calendar`, { recursive: true });
+for (const year of calendarYears)
+  for (let month = 1; month <= 12; month++) {
+    const monthId = `${year}-${String(month).padStart(2, '0')}`;
+    const days = [];
+    for (let day = 1; day <= 31; day++) {
+      const date = `${monthId}-${String(day).padStart(2, '0')}`;
+      if (!civilDate(date)) continue;
+      const value = calendarEngine.compute(date);
+      days.push({
+        date,
+        year: value.lunarYear,
+        month: value.lunarMonth,
+        day: value.lunarDay,
+        leap: value.leapMonth,
+      });
+    }
+    await resource(`calendar/${monthId}`, {
+      month: monthId,
+      calendarSystem: data.almanac.calendarSystem,
+      timeZone: data.almanac.timeZone,
+      days,
+    });
+  }
 const manifest = {
   schemaVersion: 2,
   version,
@@ -149,6 +180,12 @@ const manifest = {
   search,
   offline,
   deviceCatalog: { path: `${release}/catalog/{page}.json`, pageSize, pageCount },
+  calendar: {
+    path: `${release}/calendar/{month}.json`,
+    years: calendarYears,
+    calendarSystem: data.almanac.calendarSystem,
+    timeZone: data.almanac.timeZone,
+  },
   updatePolicy: { checkOnConnect: true },
 };
 assertSnapshot({ manifest, core: coreData, catalog, search: searchData });

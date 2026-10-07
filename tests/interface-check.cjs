@@ -3,14 +3,17 @@ const fs = require('node:fs');
 const liveWindows = new Set();
 const { JSDOM, VirtualConsole } = require('jsdom');
 const { setTimeout: pause } = require('node:timers/promises');
-const pages = ['index.html', 'tribes.html', 'tribes-mobile.html', 'calendar.html', 'almanac.html'];
+const pages = ['index.html', 'tribes.html', 'tribes-mobile.html', 'almanac.html'];
 const han = /[\u3400-\u9fff\u{20000}-\u{2FA1F}]/u;
 async function load(page, options = {}) {
   const errors = [];
   const virtualConsole = new VirtualConsole();
   virtualConsole.on('jsdomError', (e) => errors.push(e.message));
   const w = new JSDOM(fs.readFileSync('public/' + page, 'utf8'), {
-    url: 'https://nutug.test/' + page + (options.fragment || ''),
+    url:
+      'https://nutug.test/' +
+      page +
+      (options.fragment || (page === 'index.html' ? '#person=temujin' : '')),
     runScripts: 'outside-only',
     pretendToBeVisual: true,
     virtualConsole,
@@ -95,7 +98,7 @@ function visibleText(d) {
   }
   for (const page of pages) {
     const { w, d, errors } = await load(page);
-    assert.equal(d.querySelectorAll('.destination').length, 4);
+    assert.equal(d.querySelectorAll('.destination').length, 2);
     assert(d.querySelector('h1 .mn, h1.mn'));
     assert(!han.test(visibleText(d)), page + ': Traditional Mongolian interface');
     assert(!visibleText(d).includes('undefined'), page + ': resolved labels');
@@ -163,7 +166,7 @@ function visibleText(d) {
     new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
   );
   await pause(65);
-  await click(w, d.querySelectorAll('.destination')[2]);
+  await click(w, d.querySelector('.legend-library'));
   assert.equal(d.querySelector('.discovery-map').dataset.discovery, 'vertical-script');
   assert.equal(d.querySelectorAll('[data-topic]').length, 6);
   const nextDiscovery = d.querySelector('[data-discovery-node]:not([data-current])').dataset
@@ -319,7 +322,7 @@ function visibleText(d) {
   await pause(90);
   assert(direct.d.querySelector('.reader-content .reading-text'), 'Forward restores article body');
   direct.w.close();
-  for (const page of ['calendar.html', 'almanac.html']) {
+  for (const page of ['almanac.html']) {
     const clock = { now: Date.parse('2026-10-06T15:59:50Z') };
     const timed = await load(page, { clock });
     const selectedDate = () =>
@@ -371,7 +374,7 @@ function visibleText(d) {
   assert(messages.some((m) => m.event === 'record' && m.record?.id === 'batu' && m.interactive));
   native.w.close();
   console.log(
-    'PASS: React production bundle on five routes; graph filters and profiles, topic discovery and browsing path, 484-entry paged search, related reading and history, midnight refresh, almanac tabs, React Aria controls, persistent type scaling and native bridge.',
+    'PASS: React production bundle on retained graph and reading routes; graph filters and profiles, topic discovery and browsing path, 484-entry paged search, related reading and history, midnight refresh, almanac tabs, React Aria controls, persistent type scaling and native bridge.',
   );
 })().catch((error) => {
   for (const w of liveWindows) w.close();

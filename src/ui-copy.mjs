@@ -10,6 +10,7 @@ export const labels = {
   tribes: 'ᠠᠶᠢᠮᠠᠭ',
   library: 'ᠮᠡᠳᠡᠯᠭᠡ',
   calendar: 'ᠴᠠᠭ ᠲᠣᠭ᠎ᠠ',
+  chronicle: 'ᠲᠡᠦᠬᠡ',
   search: 'ᠬᠠᠶᠢᠬᠤ',
   close: 'ᠬᠠᠭᠠᠬᠤ',
   clear: 'ᠠᠷᠢᠯᠭᠠᠬᠤ',

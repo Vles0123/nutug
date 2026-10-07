@@ -2,6 +2,8 @@ import React from 'react';
 import { labels } from './ui-copy.mjs';
 import { createRoot } from 'react-dom/client';
 import { ContentClient, browserStore } from './content-client.mjs';
+import { ProductApp } from './ProductApp';
+import { NativeGraph } from './NativeGraph';
 
 const root = document.getElementById('root');
 let bootstrapRoot = createRoot(root);
@@ -46,4 +48,8 @@ async function start() {
     );
   }
 }
-start();
+const legacy =
+  /tribes|almanac/.test(location.pathname) || /^#(knowledge|article=|person=)/.test(location.hash);
+if (window.NutugGraph) bootstrapRoot.render(<NativeGraph />);
+else if (legacy) start();
+else bootstrapRoot.render(<ProductApp manifestUrl={manifestUrl} />);

@@ -13,3 +13,11 @@ public/assets/
 content-dist/
 public/sw.js
 public/*.html
+
+public/interface-copy.json
+
+apple/Resources/
+
+build/
+xcuserdata/
+*.xcuserstate

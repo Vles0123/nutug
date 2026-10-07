@@ -2,7 +2,7 @@
 
 Nutug 面向传统蒙古文使用者，按“共用底座 → 公历与传统历法日历 → 编年历史与人物关系”的顺序开发。网页、macOS、iPhone、iPad 与后续电子墨水屏共用内容接口，资料按版本更新并保存到设备供离线阅读。
 
-当前工作集中于内容发布、缓存、文字和日期计算基础。已有图谱、资料库和节庆页面作为开发中的界面保留；两条产品主线及交付顺序见 [开发范围](docs/product-scope.md)。
+当前主界面提供日历和编年历史两个入口，人物关系从历史事件进入。网页可直接预览，Apple 应用项目位于 `apple/`；实现范围见 [产品说明](docs/product-scope.md)。
 
 [网站](https://nutug.cn/) · [开发约定](CONTRIBUTING.md) · [架构说明](docs/architecture.md) · [字体说明](FONT-NOTES.md) · [第三方许可](THIRD_PARTY_NOTICES.md)
 
@@ -17,7 +17,7 @@ npm ci
 npm run dev
 ```
 
-打开 <http://127.0.0.1:8000/index.html#knowledge>。开发命令同时启动网页（8000）和独立内容服务（8787）。组件和样式修改后刷新页面即可查看；修改资料后运行 `npm run build:content`，在网页下载菜单中检查并启用更新。
+打开 <http://127.0.0.1:8000/calendar.html>。开发命令同时启动网页（8000）和独立内容服务（8787）。组件和样式修改后刷新页面即可查看；修改资料后运行 `npm run build:content`，在网页下载菜单中检查并启用更新。
 
 ## 开发与检查
 
@@ -31,13 +31,13 @@ npm run check
 | 命令                        | 作用                                            |
 | --------------------------- | ----------------------------------------------- |
 | `npm run dev` / `npm start` | 构建并在 `127.0.0.1:8000` 预览网站              |
-| `npm run build`             | 构建界面、五个入口、字体与离线界面缓存          |
+| `npm run build`             | 构建界面、日历与历史入口、字体与离线界面缓存    |
 | `npm run build:content`     | 将资料编译为版本清单、目录、搜索索引和单篇 JSON |
 | `npm run content:dev`       | 独立预览内容接口                                |
 | `npm run content:publish`   | 将内容更新发布到 `chore/content-feed`           |
 | `npm run format`            | 格式化第一方源码、测试和文档                    |
 | `npm run format:check`      | 报告格式检查结果                                |
-| `npm test`                  | 构建内容和界面，运行全部 15 个回归脚本          |
+| `npm test`                  | 构建内容和界面，运行全部 16 个回归脚本          |
 | `npm run test:core`         | 使用 Node.js 检查黄历核心与固定第三方引擎       |
 | `npm run check`             | 执行格式检查和完整回归测试，与 CI 一致          |
 
@@ -55,21 +55,27 @@ content-source/          资料、关系、词表和引用的编辑源文件
 content-dist/            生成的独立 JSON 内容源（不纳入 Git）
 public/                  界面静态发布目录
   assets/                构建生成的 JavaScript、CSS 与辅助文案
-  index.html             人物图谱和知识库
+  index.html             日历首页与既有阅读深链
   tribes.html            部落图谱
   tribes-mobile.html     同一响应式界面的兼容入口
-  calendar.html          节庆日历
+  calendar.html          公历与农历月视图
+  chronicle.html         编年历史与事件中的人物关系
   almanac.html           中国农历黄历的蒙古文界面
   sw.js                  生成的界面离线缓存
   fonts/                 Onon Sonin Sans、Noto 及原始许可说明
   vendor/                固定版本黄历引擎及 MIT 许可
 tests/                   回归脚本与历史 HTML 夹具
 scripts/                 构建、预览与测试入口
-docs/                   架构说明
+apple/                  macOS、iPhone、iPad 的 SwiftUI 工程
+docs/                   架构与构建说明
 .github/                CI 与 PR 模板
 ```
 
 页面依赖顺序、跨页面链接和模块事件见 [架构说明](docs/architecture.md)。修改规范见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+## Apple 应用
+
+运行 `npm run build:native`，然后使用 Xcode 打开 `apple/Nutug.xcodeproj`。详细编译、日期测试和签名说明见 [Apple 应用](docs/apple-app.md)。
 
 ## 静态部署
 
@@ -77,7 +83,7 @@ docs/                   架构说明
 
 `NUTUG_CONTENT_MANIFEST=https://example.com/manifest.json npm run build` 可以指定自有内容源。内容编辑后运行 `npm run content:publish` 独立发布，已有客户端会在启动或联网时检查版本。网页、原生客户端和电子墨水屏的对接方式见 [内容接口](docs/content-api.md)。
 
-知识库默认从六个主题进入局部关系图，选择条目后更新摘要和相邻资料，支持沿浏览路径返回；搜索和完整目录可随时切换。设计参考与具体取用方式见 [探索设计](docs/discovery-design.md)。蒙古文输入与文案核查规则见 [蒙古文交互说明](docs/mongolian-interaction.md)。
+首页日历独立于历史内容源运行。历史页提供按时间阅读、年份与人物搜索、引用和关联人物关系。既有文化资料与图谱仍可由原链接访问。蒙古文输入与编校记录见 [蒙古文交互说明](docs/mongolian-interaction.md)。
 
 界面参考 Apple 官方 iOS/iPadOS 27 组件库的侧栏、工具栏和分段选择器。真实组件实例与来源保存在 [Figma 参考文件](https://www.figma.com/design/7yJan1z0YUyrybSRLvlY31)，网页实现与竖排适配规则见 [界面说明](docs/interface.md)。
 

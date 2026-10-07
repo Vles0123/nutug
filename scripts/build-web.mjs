@@ -7,11 +7,26 @@ import { getLocalizationScript } from 'react-aria-components/i18n';
 import { LocalizedStringDictionary } from '@internationalized/string';
 
 await mkdir('public/assets', { recursive: true });
-const pages = ['index.html', 'tribes.html', 'tribes-mobile.html', 'calendar.html', 'almanac.html'];
+const pages = [
+  'index.html',
+  'tribes.html',
+  'tribes-mobile.html',
+  'calendar.html',
+  'chronicle.html',
+  'almanac.html',
+];
 async function finish(result) {
   if (result.errors.length) return;
   const copy = new URL('../src/ui-copy.mjs', import.meta.url);
   const { labels, uiLocale } = await import(copy.href + '?mtime=' + (await stat(copy)).mtimeMs);
+  const calendarCopyUrl = new URL('../src/calendar-copy.mjs', import.meta.url);
+  const { calendarCopy, calendarConfig } = await import(
+    calendarCopyUrl.href + '?mtime=' + (await stat(calendarCopyUrl)).mtimeMs
+  );
+  await writeFile(
+    'public/interface-copy.json',
+    JSON.stringify({ labels, calendarCopy, calendarConfig }) + '\n',
+  );
   const strings = {
     '@react-aria/overlays': { dismiss: labels.close },
     '@react-aria/searchfield': { 'Clear search': labels.clear },
@@ -53,6 +68,7 @@ async function finish(result) {
     'fonts/OnonSoninSans.woff2',
     'vendor/lunar-1.7.7.js',
     'chinese-almanac-core.js',
+    'interface-copy.json',
   ];
   const hash = createHash('sha256');
   for (const path of assets) hash.update(await readFile('public/' + path));

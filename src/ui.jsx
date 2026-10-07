@@ -17,8 +17,7 @@ import {
 } from 'react-aria-components';
 import { motion, useReducedMotion } from 'motion/react';
 import { X, Search, Minus, Plus, ArrowUpRight } from 'lucide-react';
-import { labels } from './content';
-import { uiLocale } from './ui-copy.mjs';
+import { labels, uiLocale } from './ui-copy.mjs';
 import { useColumnScroll } from './useColumnScroll';
 
 export function Mn({ as: Tag = 'span', className = '', children, ...props }) {
@@ -80,9 +79,16 @@ export function Sheet({ open, onOpenChange, label, children, wide = false, class
     </ModalOverlay>
   );
 }
-export function ReadingSettings({ open, onOpenChange, scale, onScale }) {
+export function ReadingSettings({
+  open,
+  onOpenChange,
+  scale,
+  onScale,
+  children,
+  title = labels.type,
+}) {
   return (
-    <Sheet open={open} onOpenChange={onOpenChange} label={labels.type}>
+    <Sheet open={open} onOpenChange={onOpenChange} label={title}>
       <div className="settings-content">
         <Slider
           minValue={0.85}
@@ -121,6 +127,7 @@ export function ReadingSettings({ open, onOpenChange, scale, onScale }) {
         <div className="type-sample" style={{ '--reading-scale': scale }}>
           <Mn className="reading-text">ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ᠃ ᠲᠡᠦᠬᠡ ᠪᠠ ᠰᠣᠶᠣᠯ᠃</Mn>
         </div>
+        {children}
       </div>
     </Sheet>
   );

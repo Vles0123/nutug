@@ -12,7 +12,8 @@ import { motion, useReducedMotion } from 'motion/react';
 import { Button } from 'react-aria-components';
 import { Plus, Minus, Scan, Focus } from 'lucide-react';
 import { IconButton, Mn } from './ui';
-import { labels, edgeKey } from './content';
+import { labels } from './ui-copy.mjs';
+import { edgeKey } from '../shared/records.mjs';
 import { placeLabels } from './label-layout.mjs';
 
 export function layoutNetwork(nodes, edges, width, height) {

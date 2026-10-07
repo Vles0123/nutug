@@ -19,7 +19,9 @@
     "build:content": "node scripts/build-content.mjs",
     "content:dev": "node scripts/build-content.mjs && node scripts/content-server.mjs",
     "content:publish": "node scripts/publish-content.mjs",
-    "audit:ui-copy": "node scripts/audit-ui-copy.mjs"
+    "audit:ui-copy": "node scripts/audit-ui-copy.mjs",
+    "build:native": "npm run build && node scripts/build-native-resources.mjs",
+    "sources:wikipedia": "node scripts/update-wikipedia-sources.mjs"
   },
   "devDependencies": {
     "@internationalized/string": "3.2.10",

@@ -2,6 +2,12 @@
 
 Nutug 使用 React 展示传统蒙古文历史资料，D3 计算人物与部落的网状关系位置。界面与内容分别构建和发布，客户端保存可离线读取的内容，联网后比较版本号。
 
+## 主界面
+
+`ProductApp.jsx` 提供日历和历史两个入口。`MonthCalendar.jsx` 从本地日期引擎计算公历与农历，首次断网也可启动。`Chronicle.jsx` 读取独立历史资料，按事件展示日期、正文、人物与来源。网页历史页使用内容客户端的 `core` 范围，只下载清单和核心资料；原有文章深链保留完整资料客户端。
+
+`calendar-copy.mjs` 与 `ui-copy.mjs` 的文案会写入 `interface-copy.json`，供 SwiftUI 使用。原生端通过同一日期引擎计算、独立缓存历史资料；详情见 [Apple 应用](apple-app.md)。
+
 ## 页面与组件
 
 | 页面入口             | 界面                                   |
@@ -12,7 +18,7 @@ Nutug 使用 React 展示传统蒙古文历史资料，D3 计算人物与部落�
 | `calendar.html`      | 地区节庆、月份、日期与来源             |
 | `almanac.html`       | 以传统蒙古文显示的农历日期和民俗条目   |
 
-`src/bootstrap.jsx` 先读取缓存或远端内容，再启动界面。`main.jsx` 管理导航、选择、阅读器和原生桥接；`Network.jsx` 负责 D3 布局、SVG 连线与可操作节点；`Records.jsx` 负责详情和阅读。`Library.jsx`、`Calendar.jsx` 负责目录与日期页面；`Discovery.jsx` 展示主题、局部关系、摘要和浏览路径，`discovery.mjs` 按目录元数据计算相关资料。`ui.jsx` 封装 React Aria 的操作组件，`ContentControls.jsx` 提供内容检查和离线下载。
+`src/bootstrap.jsx` 直接启动主界面；进入历史页或旧资料深链时再加载内容。`main.jsx` 管理导航、选择、阅读器和原生桥接；`Network.jsx` 负责 D3 布局、SVG 连线与可操作节点；`Records.jsx` 负责详情和阅读。`Library.jsx`、`Calendar.jsx` 负责目录与日期页面；`Discovery.jsx` 展示主题、局部关系、摘要和浏览路径，`discovery.mjs` 按目录元数据计算相关资料。`ui.jsx` 封装 React Aria 的操作组件，`ContentControls.jsx` 提供内容检查和离线下载。
 
 `src/tokens.css` 保存 Apple Figma 参考中的语义变量，`styles.css` 与 `reading.css` 负责竖排和响应式布局。`apple-reference.json` 保留实际导入的组件节点和读取到的变量。
 
@@ -28,7 +34,7 @@ Nutug 使用 React 展示传统蒙古文历史资料，D3 计算人物与部落�
 
 ## 构建与运行
 
-`scripts/build-web.mjs` 使用 esbuild 将组件编译为带内容哈希的 JavaScript 与 CSS，生成五个 HTML 入口和蒙古文辅助标签。`public/` 包含这些界面文件、本地字体和固定版本日期引擎。资料源文件与 JSON 内容发布目录均独立于界面目录。
+`scripts/build-web.mjs` 使用 esbuild 将组件编译为带内容哈希的 JavaScript 与 CSS，生成主界面和兼容入口和蒙古文辅助标签。`public/` 包含这些界面文件、本地字体和固定版本日期引擎。资料源文件与 JSON 内容发布目录均独立于界面目录。
 
 `npm run dev` 启动网页 8000 端口与内容 8787 端口，并监听界面源码。`npm run build` 默认使用远端内容源；`NUTUG_CONTENT_MANIFEST` 可指定其他入口。`npm run content:publish` 独立发布资料，保留先前发布的版本目录。
 
@@ -40,4 +46,4 @@ Service Worker 缓存界面、字体和日期引擎；内容由独立客户端�
 
 ## 检查
 
-`scripts/test.cjs` 运行 15 个 `tests/*-check.cjs`。生产构建检查包括分页与完整搜索、阅读深链与浏览历史、午夜刷新、标签页、字号及桥接；内容客户端检查按需加载、离线包、版本切换、下载失败回退和设备目录。十组历史回归保留旧 HTML 夹具以对照数据与行为。jsdom 的布局值为模拟值，字体成形、文字边界、滚动和响应式布局另由真实浏览器验证。
+`scripts/test.cjs` 运行 16 个 `tests/*-check.cjs`。生产构建检查包括分页与完整搜索、阅读深链与浏览历史、午夜刷新、标签页、字号及桥接；内容客户端检查按需加载、离线包、版本切换、下载失败回退和设备目录。十组历史回归保留旧 HTML 夹具以对照数据与行为。jsdom 的布局值为模拟值，字体成形、文字边界、滚动和响应式布局另由真实浏览器验证。

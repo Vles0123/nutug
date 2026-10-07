@@ -1,4 +1,9 @@
-import { assertManifest, assertSnapshot, assertDocument } from '../shared/content-contract.mjs';
+import {
+  assertManifest,
+  assertSnapshot,
+  assertDocument,
+  assertCore,
+} from '../shared/content-contract.mjs';
 
 export function memoryStore() {
   const values = new Map();
@@ -55,10 +60,16 @@ export async function browserStore() {
 }
 
 export class ContentClient {
-  constructor({ manifestUrl, store, fetcher = globalThis.fetch.bind(globalThis) }) {
+  constructor({
+    manifestUrl,
+    store,
+    fetcher = globalThis.fetch.bind(globalThis),
+    scope = 'library',
+  }) {
     this.manifestUrl = manifestUrl;
     this.store = store;
     this.fetcher = fetcher;
+    this.scope = scope;
     this.listeners = new Set();
     this.pending = new Map();
     this.active = null;
@@ -83,7 +94,7 @@ export class ContentClient {
     for (const listener of this.listeners) listener();
   }
   key(name) {
-    return `${this.manifestUrl}:${name}`;
+    return `${this.manifestUrl}:${this.scope === 'core' ? 'core:' : ''}${name}`;
   }
   url(path) {
     const base = new URL('.', this.manifestUrl),
@@ -145,6 +156,10 @@ export class ContentClient {
   }
   async snapshot(manifest, offline = false) {
     this.validateManifest(manifest);
+    if (this.scope === 'core') {
+      const core = await this.resource(manifest.core, offline, assertCore);
+      return { manifest, core };
+    }
     const [core, catalog, search] = await Promise.all([
       this.resource(manifest.core, offline),
       this.resource(manifest.catalog, offline),
@@ -198,7 +213,9 @@ export class ContentClient {
       }
       if (manifest.version === this.update?.manifest.version) return true;
       const snapshot = await this.snapshot(manifest);
-      if (await this.store.get(this.key('keepOffline'))) await this.cacheSnapshot(snapshot);
+      if (this.scope === 'core') {
+        await this.cacheSnapshot(snapshot);
+      } else if (await this.store.get(this.key('keepOffline'))) await this.cacheSnapshot(snapshot);
       else {
         const previous = new Map((this.active?.catalog || []).map((record) => [record.id, record]));
         for (const record of snapshot.catalog) {
@@ -222,6 +239,12 @@ export class ContentClient {
     return this.resource(record.document, false, (value) => assertDocument(value, record.id));
   }
   async cacheSnapshot(snapshot) {
+    if (this.scope === 'core') {
+      await this.resource(snapshot.manifest.core, false, assertCore);
+      await this.store.put(this.key('offline:' + snapshot.manifest.version), true);
+      this.setStatus({ progress: 1, total: 1, offlineReady: true });
+      return;
+    }
     this.setStatus({
       downloading: true,
       progress: 0,
@@ -243,7 +266,7 @@ export class ContentClient {
   }
   async downloadOffline() {
     if (this.status.downloading || this.status.checking) return;
-    this.setStatus({ downloading: true, error: false, total: this.active.catalog.length });
+    this.setStatus({ downloading: true, error: false, total: this.active.catalog?.length || 1 });
     try {
       await this.cacheSnapshot(this.active);
       if (this.update) await this.cacheSnapshot(this.update);

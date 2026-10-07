@@ -1,0 +1,39 @@
+// !$*UTF8*$!
+{ archiveVersion = 1; classes = {}; objectVersion = 56; objects = {
+001000000000000000000003 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NativeHistory.swift"; sourceTree = "<group>"; };
+002000000000000000000003 = { isa = PBXBuildFile; fileRef = 001000000000000000000003; };
+
+001000000000000000000002 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NativeCalendar.swift"; sourceTree = "<group>"; };
+002000000000000000000002 = { isa = PBXBuildFile; fileRef = 001000000000000000000002; };
+
+001000000000000000000001 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarEngine.swift"; sourceTree = "<group>"; };
+002000000000000000000001 = { isa = PBXBuildFile; fileRef = 001000000000000000000001; };
+
+D561B15278C7896DEABF7DEC = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NutugApp.swift"; sourceTree = "<group>"; };
+A0814F832B7879DEEF319DAF = { isa = PBXBuildFile; fileRef = D561B15278C7896DEABF7DEC; };
+115A9B040A2E64A464D8C75F = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootView.swift"; sourceTree = "<group>"; };
+D07D33E6EB9F55B36B8D3605 = { isa = PBXBuildFile; fileRef = 115A9B040A2E64A464D8C75F; };
+6FC0A0AA26B095D01079FAE2 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel.swift"; sourceTree = "<group>"; };
+F6B5F45FFF55524ACEAAED39 = { isa = PBXBuildFile; fileRef = 6FC0A0AA26B095D01079FAE2; };
+4A08B6DD861601EF9DAE5668 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MongolianText.swift"; sourceTree = "<group>"; };
+EDFF2A2BEA628F30B6F7677E = { isa = PBXBuildFile; fileRef = 4A08B6DD861601EF9DAE5668; };
+B895B322832CBEB5C579BC73 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebContentView.swift"; sourceTree = "<group>"; };
+F9FC84F6F896616240E1C78C = { isa = PBXBuildFile; fileRef = B895B322832CBEB5C579BC73; };
+4C260E8D5F03951901BB5AF4 = { isa = PBXFileReference; lastKnownFileType = folder; name = public; path = Resources/public; sourceTree = SOURCE_ROOT; };
+6C1E2ECA5B811B817AAE3952 = { isa = PBXBuildFile; fileRef = 4C260E8D5F03951901BB5AF4; };
+C5BA2F1BDDF9000888BF07C4 = { isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nutug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+4D820FADAFBC7A1FCACC4F07 = { isa = PBXGroup; children = (001000000000000000000001,001000000000000000000002,001000000000000000000003,D561B15278C7896DEABF7DEC,115A9B040A2E64A464D8C75F,6FC0A0AA26B095D01079FAE2,4A08B6DD861601EF9DAE5668,B895B322832CBEB5C579BC73); path = Nutug; sourceTree = "<group>"; };
+BFE00B156DCFC34C4751A6E5 = { isa = PBXGroup; children = (C5BA2F1BDDF9000888BF07C4); name = Products; sourceTree = "<group>"; };
+E50290A24C49A459B43487C5 = { isa = PBXGroup; children = (4D820FADAFBC7A1FCACC4F07,4C260E8D5F03951901BB5AF4,BFE00B156DCFC34C4751A6E5); sourceTree = "<group>"; };
+BCE16DD0260827ECF338C787 = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (002000000000000000000001,002000000000000000000002,002000000000000000000003,A0814F832B7879DEEF319DAF,D07D33E6EB9F55B36B8D3605,F6B5F45FFF55524ACEAAED39,EDFF2A2BEA628F30B6F7677E,F9FC84F6F896616240E1C78C); runOnlyForDeploymentPostprocessing = 0; };
+0189424A5A60FED329FA868E = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (6C1E2ECA5B811B817AAE3952); runOnlyForDeploymentPostprocessing = 0; };
+7561BFB015D8F536760CB671 = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+AB52CB08E0FDF02BF6C67C33 = { isa = XCBuildConfiguration; buildSettings = { CLANG_ENABLE_MODULES = YES; }; name = Debug; };
+59E1BEE911F66DA37FEBACDC = { isa = XCBuildConfiguration; buildSettings = { CLANG_ENABLE_MODULES = YES; SWIFT_VERSION = 5.0; MACOSX_DEPLOYMENT_TARGET = 14.0; IPHONEOS_DEPLOYMENT_TARGET = 17.0; SDKROOT = auto; SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator"; TARGETED_DEVICE_FAMILY = "1,2"; SUPPORTS_MACCATALYST = NO; PRODUCT_BUNDLE_IDENTIFIER = cn.nutug.atlas; PRODUCT_NAME = Nutug; GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = "ᠨᠤᠲᠤᠭ"; INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education"; INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES; INFOPLIST_KEY_UILaunchScreen_Generation = YES; INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"; INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"; MARKETING_VERSION = 1.0.0; CURRENT_PROJECT_VERSION = 1; CODE_SIGN_STYLE = Automatic; ENABLE_USER_SCRIPT_SANDBOXING = YES; SWIFT_EMIT_LOC_STRINGS = NO; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; DEBUG_INFORMATION_FORMAT = dwarf; }; name = Debug; };
+5283471FF90C511CFE244FFF = { isa = XCBuildConfiguration; buildSettings = { CLANG_ENABLE_MODULES = YES; }; name = Release; };
+F4C425279CD5DDD18FD6DC6D = { isa = XCBuildConfiguration; buildSettings = { CLANG_ENABLE_MODULES = YES; SWIFT_VERSION = 5.0; MACOSX_DEPLOYMENT_TARGET = 14.0; IPHONEOS_DEPLOYMENT_TARGET = 17.0; SDKROOT = auto; SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator"; TARGETED_DEVICE_FAMILY = "1,2"; SUPPORTS_MACCATALYST = NO; PRODUCT_BUNDLE_IDENTIFIER = cn.nutug.atlas; PRODUCT_NAME = Nutug; GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = "ᠨᠤᠲᠤᠭ"; INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education"; INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES; INFOPLIST_KEY_UILaunchScreen_Generation = YES; INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"; INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"; MARKETING_VERSION = 1.0.0; CURRENT_PROJECT_VERSION = 1; CODE_SIGN_STYLE = Automatic; ENABLE_USER_SCRIPT_SANDBOXING = YES; SWIFT_EMIT_LOC_STRINGS = NO; SWIFT_OPTIMIZATION_LEVEL = "-O"; DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym"; }; name = Release; };
+862894B703A6DEDF96A9DD6C = { isa = XCConfigurationList; buildConfigurations = (AB52CB08E0FDF02BF6C67C33,5283471FF90C511CFE244FFF); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+C57128001CE614BF8549D6BB = { isa = XCConfigurationList; buildConfigurations = (59E1BEE911F66DA37FEBACDC,F4C425279CD5DDD18FD6DC6D); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+0E8A3AD980EC179856012B7E = { isa = PBXNativeTarget; buildConfigurationList = C57128001CE614BF8549D6BB; buildPhases = (BCE16DD0260827ECF338C787,7561BFB015D8F536760CB671,0189424A5A60FED329FA868E); buildRules = (); dependencies = (); name = Nutug; productName = Nutug; productReference = C5BA2F1BDDF9000888BF07C4; productType = "com.apple.product-type.application"; };
+98F54143AB4E86B28C3AFEE0 = { isa = PBXProject; attributes = { BuildIndependentTargetsInParallel = YES; LastUpgradeCheck = 2700; }; buildConfigurationList = 862894B703A6DEDF96A9DD6C; compatibilityVersion = "Xcode 14.0"; developmentRegion = "mn-Mong-CN"; hasScannedForEncodings = 0; knownRegions = ("mn-Mong-CN",Base); mainGroup = E50290A24C49A459B43487C5; productRefGroup = BFE00B156DCFC34C4751A6E5; projectDirPath = ""; projectRoot = ""; targets = (0E8A3AD980EC179856012B7E); };
+}; rootObject = 98F54143AB4E86B28C3AFEE0; }

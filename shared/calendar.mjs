@@ -7,6 +7,54 @@ export function civilDate(value) {
   return { iso: value, year, month, day };
 }
 
+export function currentDate(zone = 'Asia/Shanghai', now = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: zone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(now);
+  return ['year', 'month', 'day']
+    .map((key) => parts.find((part) => part.type === key).value)
+    .join('-');
+}
+
+export function moveDate(value, days) {
+  if (!civilDate(value)) throw new RangeError('Invalid date');
+  const date = new Date(value + 'T12:00:00Z');
+  date.setUTCDate(date.getUTCDate() + days);
+  return date.toISOString().slice(0, 10);
+}
+
+export function moveMonth(value, months) {
+  const date = civilDate(value);
+  if (!date) throw new RangeError('Invalid date');
+  const target = new Date(value + 'T12:00:00Z');
+  target.setUTCDate(1);
+  target.setUTCMonth(target.getUTCMonth() + months);
+  const month = target.toISOString().slice(0, 7);
+  let day = date.day;
+  while (!civilDate(`${month}-${String(day).padStart(2, '0')}`)) day--;
+  return `${month}-${String(day).padStart(2, '0')}`;
+}
+
+export function monthDays(month, provider) {
+  const first = month + '-01';
+  if (!civilDate(first)) throw new RangeError('Invalid month');
+  const weekday = (new Date(first + 'T12:00:00Z').getUTCDay() + 6) % 7;
+  const next = moveMonth(first, 1);
+  const days = Number(moveDate(next, -1).slice(-2));
+  return Array.from({ length: Math.ceil((weekday + days) / 7) * 7 }, (_, index) => {
+    const iso = moveDate(first, index - weekday);
+    return {
+      iso,
+      day: Number(iso.slice(-2)),
+      inMonth: iso.startsWith(month),
+      lunar: provider?.validDate(iso) ? provider.compute(iso) : null,
+    };
+  });
+}
+
 export function chineseLunisolarProvider(engine, config) {
   if (
     !engine ||
