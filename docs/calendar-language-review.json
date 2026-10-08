@@ -1,0 +1,1654 @@
+{
+  "reviewedOn": "2026-10-08",
+  "locale": "mn-Mong-CN",
+  "convention": "中国境内规范传统蒙古文，内蒙古通行用法",
+  "status": "source-backed-wording-review",
+  "reviewMeaning": "明确词形和操作语义的依据；词典匹配、原生字体渲染、母语编辑和机器翻译各自记录。",
+  "primaryReferences": [
+    {
+      "id": "imu-menghan-1999",
+      "title": "蒙汉词典（增订本）",
+      "publisher": "内蒙古大学出版社",
+      "year": 1999,
+      "compiledBy": "内蒙古大学蒙古学研究院蒙古语文研究所",
+      "digitalProject": "东北大学东北亚研究中心与内蒙古大学蒙古学学院合作",
+      "url": "http://hkuri.cneas.tohoku.ac.jp/p01/mongol/list?groupId=12",
+      "guide": "https://gerel.net/guide/p01/menghan_dic_guide_chinese.pdf",
+      "region": "中国境内蒙古语，以内蒙古用法为基准",
+      "accessedOn": "2026-10-08",
+      "retrieval": {
+        "method": "POST",
+        "url": "http://hkuri.cneas.tohoku.ac.jp/p01/mongol/listAction",
+        "commonForm": {
+          "currentPage": "1",
+          "groupId": "12",
+          "pageSize": "10",
+          "dicIds": "7",
+          "isAmbiguous": "1"
+        },
+        "headwordForm": {
+          "searchRange": "1",
+          "searchMethod": "2"
+        },
+        "fullTextForm": {
+          "searchRange": "3",
+          "searchMethod": "4"
+        }
+      },
+      "note": "逐项提交网页公开检索表单读取返回词条；这里只记录词形和针对本产品的释义摘要。页面未返回原书页码，使用词头/转写作为定位。"
+    }
+  ],
+  "supplementaryReferences": [
+    {
+      "url": "https://ci.nii.ac.jp/ncid/BC02125639?l=en",
+      "title": "民族出版社 1955 年传统蒙古文书目",
+      "use": "today 词形旁证；已实际读取书目正文，不据此推断所有现行用法。"
+    },
+    {
+      "url": "https://mongoltoli.mn/dictionary/detail/29249",
+      "use": "星期一词义旁证",
+      "region": "蒙古国词典"
+    },
+    {
+      "url": "https://mongoltoli.mn/dictionary/detail/55032",
+      "use": "星期三 U+1840 旁证",
+      "region": "蒙古国词典"
+    },
+    {
+      "url": "https://mongoltoli.mn/dictionary/index.php/detail/66035",
+      "use": "星期日词形旁证",
+      "region": "蒙古国词典"
+    },
+    {
+      "url": "https://mongoltoli.mn/dictionary/detail/107303",
+      "use": "delete 的登记删除义项",
+      "region": "蒙古国词典"
+    },
+    {
+      "url": "https://mongoltoli.mn/dictionary/detail/19614",
+      "use": "allDay 组合词的旁证",
+      "region": "蒙古国词典"
+    },
+    {
+      "url": "https://mongoltoli.mn/dictionary/detail/88418",
+      "use": "与中国词典的 agenda 同形异音字取值对读",
+      "region": "蒙古国词典"
+    },
+    {
+      "id": "wikimedia-vector-mvf",
+      "url": "https://raw.githubusercontent.com/wikimedia/mediawiki-skins-Vector/master/i18n/mvf.json",
+      "use": "实际读取的传统蒙古文软件界面用例；显示/外观、阅读、历史、目录、详细内容",
+      "region": "社区维护的传统蒙古文软件语言文件；不是国家规范词典",
+      "accessedOn": "2026-10-08"
+    },
+    {
+      "id": "mongolia-government-search",
+      "url": "https://www.gov.mn/mng/org?pg=1",
+      "use": "qayi-qu 搜索写法的实际软件用例，仅作异写旁证",
+      "region": "蒙古国，不据此覆盖中国境内词典",
+      "accessedOn": "2026-10-08"
+    }
+  ],
+  "totals": {
+    "entries": 73,
+    "calendarEntries": 49,
+    "sharedEntries": 24,
+    "replace": 10,
+    "retained": 63,
+    "evidenceLevels": {
+      "dictionary-headword": 46,
+      "dictionary-composition": 14,
+      "dictionary-phrase": 5,
+      "inflected-draft": 1,
+      "dictionary-pattern": 2,
+      "partial": 2,
+      "software-usage": 1,
+      "dictionary-variant": 2
+    },
+    "nativeReviewed": 0,
+    "machineCheckedEntries": 0
+  },
+  "entries": [
+    {
+      "id": "calendar-app.today",
+      "before": "ᠥᠨᠥᠳᠦᠷ",
+      "after": "ᠥᠨᠥᠳᠥᠷ",
+      "decision": "replace",
+      "meaning": "回到今天",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠥᠨᠥᠳᠥᠷ",
+        "observedHeadword": "ᠥᠨᠥᠳᠥᠷ",
+        "transliteration": "OnOdOr"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "与中国境内词典的明确词头及项目原有 calendar.today 一致。",
+      "reviewLevel": "dictionary-headword"
+    },
+    {
+      "id": "calendar-app.weekdays.0",
+      "before": "ᠳᠠᠪᠠᠭ᠎ᠠ",
+      "after": "ᠳᠠᠸᠠ",
+      "decision": "replace",
+      "meaning": "星期一",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "fullText",
+        "query": "星期一",
+        "observedHeadword": "ᠳᠠᠸᠠ",
+        "transliteration": "dawa"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "修正把山口/关隘词形用于星期一的同音义项误选。",
+      "reviewLevel": "dictionary-headword"
+    },
+    {
+      "id": "calendar-app.weekdays.1",
+      "before": "ᠮᠢᠭᠮᠠᠷ",
+      "after": "ᠮᠢᠭᠮᠠᠷ",
+      "decision": "retain",
+      "meaning": "星期二",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "fullText",
+        "query": "星期二",
+        "observedHeadword": "ᠮᠢᠭᠮᠠᠷ",
+        "transliteration": "miGmar"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "公开词典全文查询返回的星期义项与词头吻合。",
+      "reviewLevel": "dictionary-headword"
+    },
+    {
+      "id": "calendar-app.weekdays.2",
+      "before": "ᠯᠬᠠᠭᠪᠠ",
+      "after": "ᡀᠠᠭᠪᠠ",
+      "decision": "replace",
+      "meaning": "星期三",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "fullText",
+        "query": "星期三",
+        "observedHeadword": "ᡀᠠᠭᠪᠠ",
+        "transliteration": "lhaGba"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "返回词头直接使用 U+1840；中国境内词典与蒙古国词典一致，不能用逐字拼出的 l+h 替代。字体是否覆盖由界面渲染检查确认。",
+      "reviewLevel": "dictionary-headword"
+    },
+    {
+      "id": "calendar-app.weekdays.3",
+      "before": "ᠫᠦᠷᠪᠦ",
+      "after": "ᠫᠦᠷᠪᠦ",
+      "decision": "retain",
+      "meaning": "星期四",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "fullText",
+        "query": "星期四",
+        "observedHeadword": "ᠫᠦᠷᠪᠦ",
+        "transliteration": "pUrbU"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "公开词典全文查询返回的星期义项与词头吻合。",
+      "reviewLevel": "dictionary-headword"
+    },
+    {
+      "id": "calendar-app.weekdays.4",
+      "before": "ᠪᠠᠰᠠᠩ",
+      "after": "ᠪᠠᠰᠠᠩ",
+      "decision": "retain",
+      "meaning": "星期五",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "fullText",
+        "query": "星期五",
+        "observedHeadword": "ᠪᠠᠰᠠᠩ",
+        "transliteration": "basang"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "公开词典全文查询返回的星期义项与词头吻合。",
+      "reviewLevel": "dictionary-headword"
+    },
+    {
+      "id": "calendar-app.weekdays.5",
+      "before": "ᠪᠢᠮᠪᠠ",
+      "after": "ᠪᠢᠮᠪᠠ",
+      "decision": "retain",
+      "meaning": "星期六",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "fullText",
+        "query": "星期六",
+        "observedHeadword": "ᠪᠢᠮᠪᠠ",
+        "transliteration": "bimba"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "公开词典全文查询返回的星期义项与词头吻合。",
+      "reviewLevel": "dictionary-headword"
+    },
+    {
+      "id": "calendar-app.weekdays.6",
+      "before": "ᠨᠶᠠᠮ",
+      "after": "ᠨᠢᠮ᠎ᠠ",
+      "decision": "replace",
+      "meaning": "星期日",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "fullText",
+        "query": "星期日",
+        "observedHeadword": "ᠨᠢᠮ᠎ᠠ",
+        "transliteration": "nim_a"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "按传统书面词头书写，保留词尾前的 MVS。",
+      "reviewLevel": "dictionary-headword"
+    },
+    {
+      "id": "calendar-app.save",
+      "before": "ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ",
+      "after": "ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ",
+      "decision": "retain",
+      "meaning": "保存正在编辑的日程",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ",
+        "observedHeadword": "ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ",
+        "transliteration": "qadaGalaqu"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "词典含存储/保留义，符合提交编辑的操作。",
+      "reviewLevel": "dictionary-headword"
+    },
+    {
+      "id": "calendar-app.delete",
+      "before": "ᠬᠠᠰᠤᠬᠤ",
+      "after": "ᠬᠠᠰᠤᠬᠤ",
+      "decision": "retain",
+      "meaning": "删除所选日程",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠬᠠᠰᠤᠬᠤ",
+        "observedHeadword": "ᠬᠠᠰᠤᠬᠤ",
+        "transliteration": "qasuqu"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "中国词典含删减/撤消义，蒙古国词典另明确列从登记中除去；不应仅因也有减法义就换词。",
+      "reviewLevel": "dictionary-headword"
+    },
+    {
+      "id": "calendar-app.start",
+      "before": "ᠡᠬᠢᠯᠡᠬᠦ",
+      "after": "ᠡᠬᠢᠯᠡᠬᠦ",
+      "decision": "retain",
+      "meaning": "日程开始时间",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠡᠬᠢᠯᠡᠬᠦ",
+        "observedHeadword": "ᠡᠬᠢᠯᠡᠬᠦ",
+        "transliteration": "ekilekU"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "词典明确为开始动作；时间输入的字段上下文足以限定用途。",
+      "reviewLevel": "dictionary-headword"
+    },
+    {
+      "id": "calendar-app.end",
+      "before": "ᠳᠠᠭᠤᠰᠬᠤ",
+      "after": "ᠳᠠᠭᠤᠰᠬᠤ",
+      "decision": "retain",
+      "meaning": "日程结束时间",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠳᠠᠭᠤᠰᠬᠤ",
+        "observedHeadword": "ᠳᠠᠭᠤᠰᠬᠤ",
+        "transliteration": "daGusqu"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "词典明确为结束/完成，与开始字段配对。",
+      "reviewLevel": "dictionary-headword"
+    },
+    {
+      "id": "calendar-app.appearance",
+      "before": "ᠵᠠᠭᠪᠤᠷ",
+      "after": "ᠵᠠᠭᠪᠤᠷ",
+      "decision": "retain",
+      "meaning": "选择界面样式",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠵᠠᠭᠪᠤᠷ",
+        "observedHeadword": "ᠵᠠᠭᠪᠤᠷ",
+        "transliteration": "jaGbur"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "词典含样式和外形义，当前控件实际选择皮肤，保留短标签。",
+      "reviewLevel": "dictionary-headword"
+    },
+    {
+      "id": "calendar-app.agenda",
+      "before": "ᠲᠥᠯᠥᠪᠯᠡᠭᠡ",
+      "after": "ᠲᠥᠯᠥᠪᠯᠡᠭᠡ",
+      "decision": "retain",
+      "meaning": "日程计划列表",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠲᠥᠯᠥᠪᠯᠡᠭᠡ(᠊ᠨ)",
+        "observedHeadword": "ᠲᠥᠯᠥᠪᠯᠡᠭᠡ(᠊ᠨ)",
+        "transliteration": "tOlOblege(n)"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "中国境内词典的词头有计划义；保留中国词典使用的第二个 O，不按蒙古国词典改成 U。",
+      "reviewLevel": "dictionary-headword"
+    },
+    {
+      "id": "calendar-app.empty",
+      "before": "ᠲᠥᠯᠥᠪᠯᠡᠭᠡ ᠠᠯᠭ᠎ᠠ",
+      "after": "ᠲᠥᠯᠥᠪᠯᠡᠭᠡ ᠦᠭᠡᠢ",
+      "decision": "replace",
+      "meaning": "所选日期没有日程计划",
+      "reviewLevel": "dictionary-composition",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠲᠥᠯᠥᠪᠯᠡᠭᠡ(᠊ᠨ)",
+        "observedHeadword": "ᠲᠥᠯᠥᠪᠯᠡᠭᠡ(᠊ᠨ)",
+        "transliteration": "tOlOblege(n)"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "采用中国词典明确给出的无/没有词义。此前只核查了计划名词；本轮补上空状态的否定部分。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠦᠭᠡᠢ",
+          "observedHeadword": "ᠦᠭᠡᠢ",
+          "transliteration": "Ugei"
+        }
+      ],
+      "implementation": "pending-ui-owner-integration"
+    },
+    {
+      "id": "calendar-app.allDay",
+      "before": "ᠪᠦᠲᠦᠨ ᠡᠳᠦᠷ",
+      "after": "ᠪᠦᠲᠦᠨ ᠡᠳᠦᠷ",
+      "decision": "retain-compositional",
+      "meaning": "日程覆盖整天",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠪᠦᠲᠦᠨ",
+        "observedHeadword": "ᠪᠦᠲᠦᠨ + ᠡᠳᠦᠷ",
+        "transliteration": "bUtUn + edUr",
+        "additionalQueries": [
+          {
+            "query": "ᠡᠳᠦᠷ",
+            "mode": "headword",
+            "observedHeadword": "ᠡᠳᠦᠷ"
+          },
+          {
+            "query": "整天",
+            "mode": "fullText",
+            "observedHeadword": "ᠪᠦᠬᠦᠯᠢ",
+            "attestedPhrase": "ᠪᠦᠬᠦᠯᠢ ᠡᠳᠦᠷ"
+          }
+        ]
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "两个词头分别表达完整与日/天；蒙古国词典有完整短语。中国词典另列 ᠪᠦᠬᠦᠯᠢ ᠡᠳᠦᠷ 为整天的用例，未把同义形式误判为当前标签错误。",
+      "reviewLevel": "dictionary-composition"
+    },
+    {
+      "id": "calendar-app.year",
+      "before": "ᠣᠨ",
+      "after": "ᠣᠨ",
+      "decision": "retain",
+      "meaning": "公历年份",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠣᠨ",
+        "observedHeadword": "ᠣᠨ",
+        "transliteration": "on /1"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "使用表示年份的第一个义项。"
+    },
+    {
+      "id": "calendar-app.month",
+      "before": "ᠰᠠᠷ᠎ᠠ",
+      "after": "ᠰᠠᠷ᠎ᠠ",
+      "decision": "retain",
+      "meaning": "日历月份",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠰᠠᠷ᠎ᠠ",
+        "observedHeadword": "ᠰᠠᠷ᠎ᠠ",
+        "transliteration": "sar_a"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "保留月份词头和 MVS，不换成表示月亮的另一词头。"
+    },
+    {
+      "id": "calendar-app.day",
+      "before": "ᠡᠳᠦᠷ",
+      "after": "ᠡᠳᠦᠷ",
+      "decision": "retain",
+      "meaning": "日期中的日",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠡᠳᠦᠷ",
+        "observedHeadword": "ᠡᠳᠦᠷ",
+        "transliteration": "edUr"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "词典明确含日、天及日期号码义。"
+    },
+    {
+      "id": "calendar-app.add",
+      "before": "ᠨᠡᠮᠡᠬᠦ",
+      "after": "ᠨᠡᠮᠡᠬᠦ",
+      "decision": "retain",
+      "meaning": "新增一个日程",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠨᠡᠮᠡᠬᠦ",
+        "observedHeadword": "ᠨᠡᠮᠡᠬᠦ",
+        "transliteration": "nemekU"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "选取增加/追加义，符合新增日程。"
+    },
+    {
+      "id": "calendar-app.edit",
+      "before": "ᠵᠠᠰᠠᠬᠤ",
+      "after": "ᠵᠠᠰᠠᠬᠤ",
+      "decision": "retain",
+      "meaning": "修改已存在的日程",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠵᠠᠰᠠᠬᠤ",
+        "observedHeadword": "ᠵᠠᠰᠠᠬᠤ",
+        "transliteration": "jasaqu /1"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "选取修改/修订义，符合编辑内容。"
+    },
+    {
+      "id": "calendar-app.undo",
+      "before": "ᠪᠤᠴᠠᠭᠠᠬᠤ",
+      "after": "ᠪᠤᠴᠠᠭᠠᠬᠤ",
+      "decision": "retain",
+      "meaning": "撤回刚才的删除",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠪᠤᠴᠠᠭᠠᠬᠤ",
+        "observedHeadword": "ᠪᠤᠴᠠᠭᠠᠬᠤ",
+        "transliteration": "bucaGaqu"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "词典含收回、撤回义；当前按钮用于撤销最近一次删除。"
+    },
+    {
+      "id": "calendar-app.title",
+      "before": "ᠭᠠᠷᠴᠠᠭ",
+      "after": "ᠭᠠᠷᠴᠠᠭ",
+      "decision": "retain",
+      "meaning": "日程标题",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠭᠠᠷᠴᠠᠭ",
+        "observedHeadword": "ᠭᠠᠷᠴᠠᠭ",
+        "transliteration": "GarcaG"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "词典第二义项是标题；目录义不会使标题字段的用法错误。"
+    },
+    {
+      "id": "calendar-app.notes",
+      "before": "ᠲᠡᠮᠳᠡᠭᠯᠡᠯ",
+      "after": "ᠲᠡᠮᠳᠡᠭᠯᠡᠯ",
+      "decision": "retain",
+      "meaning": "日程备注",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠲᠡᠮᠳᠡᠭᠯᠡᠯ",
+        "observedHeadword": "ᠲᠡᠮᠳᠡᠭᠯᠡᠯ",
+        "transliteration": "temdeglel"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "词典有笔记、记录义，适合作为备注字段。"
+    },
+    {
+      "id": "calendar-app.location",
+      "before": "ᠭᠠᠵᠠᠷ",
+      "after": "ᠭᠠᠵᠠᠷ",
+      "decision": "retain",
+      "meaning": "日程地点",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠭᠠᠵᠠᠷ",
+        "observedHeadword": "ᠭᠠᠵᠠᠷ",
+        "transliteration": "Gajar"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "选取地点义。"
+    },
+    {
+      "id": "calendar-app.time",
+      "before": "ᠴᠠᠭ",
+      "after": "ᠴᠠᠭ",
+      "decision": "retain",
+      "meaning": "日程时间",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠴᠠᠭ",
+        "observedHeadword": "ᠴᠠᠭ",
+        "transliteration": "caG"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "选取时间/时刻义。"
+    },
+    {
+      "id": "calendar-app.repeat",
+      "before": "ᠳᠠᠪᠲᠠᠬᠤ",
+      "after": "ᠳᠠᠪᠲᠠᠬᠤ",
+      "decision": "retain",
+      "meaning": "设置重复频率",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠳᠠᠪᠲᠠᠬᠤ",
+        "observedHeadword": "ᠳᠠᠪᠲᠠᠬᠤ",
+        "transliteration": "dabtaqu"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "选取重复义，和一次/日/周/月/年选项配合。"
+    },
+    {
+      "id": "calendar-app.interval",
+      "before": "ᠵᠠᠪᠰᠠᠷ",
+      "after": "ᠵᠠᠪᠰᠠᠷ",
+      "decision": "retain",
+      "meaning": "两次发生之间的间隔",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠵᠠᠪᠰᠠᠷ",
+        "observedHeadword": "ᠵᠠᠪᠰᠠᠷ",
+        "transliteration": "jabsar"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "词典有间隔、间歇义；单位由当前重复频率决定。"
+    },
+    {
+      "id": "calendar-app.import",
+      "before": "ᠣᠷᠣᠭᠤᠯᠬᠤ",
+      "after": "ᠣᠷᠣᠭᠤᠯᠬᠤ",
+      "decision": "retain",
+      "meaning": "把日历文件中的日程导入",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠣᠷᠣᠭᠤᠯᠬᠤ",
+        "observedHeadword": "ᠣᠷᠣᠭᠤᠯᠬᠤ",
+        "transliteration": "oroGulqu"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "词典有纳入、记入义；具体文件操作由上传文件入口限定。"
+    },
+    {
+      "id": "calendar-app.export",
+      "before": "ᠭᠠᠷᠭᠠᠬᠤ",
+      "after": "ᠭᠠᠷᠭᠠᠬᠤ",
+      "decision": "retain",
+      "meaning": "导出日历文件",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠭᠠᠷᠭᠠᠬᠤ",
+        "observedHeadword": "ᠭᠠᠷᠭᠠᠬᠤ",
+        "transliteration": "GarGaqu"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "词典有拿出、输出等动作义；具体文件操作由下载入口限定。"
+    },
+    {
+      "id": "calendar-app.light",
+      "before": "ᠭᠡᠭᠡᠨ",
+      "after": "ᠭᠡᠭᠡᠨ",
+      "decision": "retain",
+      "meaning": "明亮样式",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠭᠡᠭᠡᠨ",
+        "observedHeadword": "ᠭᠡᠭᠡᠨ",
+        "transliteration": "gegen /1"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "选取明亮义。"
+    },
+    {
+      "id": "calendar-app.dark",
+      "before": "ᠬᠠᠷᠠᠩᠭᠤᠢ",
+      "after": "ᠬᠠᠷᠠᠩᠭᠤᠢ",
+      "decision": "retain",
+      "meaning": "深暗样式",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠬᠠᠷᠠᠩᠭᠤᠢ",
+        "observedHeadword": "ᠬᠠᠷᠠᠩᠭᠤᠢ",
+        "transliteration": "qarangGui"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "选取颜色/明暗义。"
+    },
+    {
+      "id": "calendar-app.paper",
+      "before": "ᠴᠠᠭᠠᠰᠤ",
+      "after": "ᠴᠠᠭᠠᠰᠤ",
+      "decision": "retain",
+      "meaning": "纸张样式",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠴᠠᠭᠠᠰᠤ(᠊ᠨ)",
+        "observedHeadword": "ᠴᠠᠭᠠᠰᠤ(᠊ᠨ)",
+        "transliteration": "caGasu(n)"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "词典有纸张义。"
+    },
+    {
+      "id": "calendar-app.ink",
+      "before": "ᠬᠠᠷ᠎ᠠ ᠴᠠᠭᠠᠨ",
+      "after": "ᠬᠠᠷ᠎ᠠ ᠴᠠᠭᠠᠨ",
+      "decision": "retain",
+      "meaning": "黑白样式",
+      "reviewLevel": "dictionary-phrase",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠬᠠᠷ᠎ᠠ ᠴᠠᠭᠠᠨ",
+        "observedHeadword": "ᠬᠠᠷ᠎ᠠ ᠴᠠᠭᠠᠨ",
+        "transliteration": "qar_a caGan"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "保留词典中的黑白词组；此处是样式名。"
+    },
+    {
+      "id": "calendar-app.week",
+      "before": "ᠳᠣᠯᠣᠭᠠᠨ ᠬᠣᠨᠣᠭ",
+      "after": "ᠳᠣᠯᠣᠭᠠᠨ ᠬᠣᠨᠣᠭ",
+      "decision": "retain",
+      "meaning": "一周",
+      "reviewLevel": "dictionary-phrase",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠳᠣᠯᠣᠭᠠᠨ ᠬᠣᠨᠣᠭ",
+        "observedHeadword": "ᠳᠣᠯᠣᠭᠠᠨ ᠬᠣᠨᠣᠭ",
+        "transliteration": "doloGan qonoG"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "完整词组直接命中周/星期义。"
+    },
+    {
+      "id": "calendar-app.leapMonth",
+      "before": "ᠢᠯᠡᠭᠦᠦ ᠰᠠᠷ᠎ᠠ",
+      "after": "ᠢᠯᠡᠭᠦᠦ ᠰᠠᠷ᠎ᠠ",
+      "decision": "retain",
+      "meaning": "闰月",
+      "reviewLevel": "dictionary-phrase",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "fullText",
+        "query": "闰月",
+        "observedHeadword": "ᠢᠯᠡᠭᠦᠦ ᠰᠠᠷ᠎ᠠ",
+        "transliteration": "ilegUU sar_a"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "完整词组直接命中闰月义。"
+    },
+    {
+      "id": "calendar-app.choose",
+      "before": "ᠡᠳᠦᠷ ᠰᠣᠩᠭᠣᠬᠤ",
+      "after": "ᠡᠳᠦᠷ ᠰᠣᠩᠭᠣᠬᠤ",
+      "decision": "retain",
+      "meaning": "选择日期",
+      "reviewLevel": "dictionary-composition",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠡᠳᠦᠷ",
+        "observedHeadword": "ᠡᠳᠦᠷ",
+        "transliteration": "edUr"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "日/天与选择动词组成，保持对象在动作之前。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠰᠣᠩᠭᠣᠬᠤ",
+          "observedHeadword": "ᠰᠣᠩᠭᠣᠬᠤ",
+          "transliteration": "songGoqu"
+        }
+      ]
+    },
+    {
+      "id": "calendar-app.gregorian",
+      "before": "ᠠᠷᠭ᠎ᠠ ᠶᠢᠨ ᠲᠣᠭᠠᠯᠠᠯ",
+      "after": "ᠠᠷᠭ᠎ᠠ ᠶᠢᠨ ᠲᠣᠭᠠᠯᠠᠯ",
+      "decision": "retain",
+      "meaning": "公历日期",
+      "reviewLevel": "dictionary-composition",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠠᠷᠭ᠎ᠠ(᠊ᠨ)",
+        "observedHeadword": "ᠠᠷᠭ᠎ᠠ(᠊ᠨ)",
+        "transliteration": "arG_a(n) /2"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "词典支持阳历概念及计年法；当前标签采用现有简短组合，未把组成词命中记为整句原文。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "fullText",
+          "query": "阳历",
+          "observedHeadword": "ᠠᠷᠭ᠎ᠠ ᠶᠢᠨ ᠤᠯᠠᠷᠢᠯ",
+          "transliteration": "arG_a-yin ularil"
+        },
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠲᠣᠭᠠᠯᠠᠯ",
+          "observedHeadword": "ᠲᠣᠭᠠᠯᠠᠯ",
+          "transliteration": "toGalal"
+        }
+      ]
+    },
+    {
+      "id": "calendar-app.lunar",
+      "before": "ᠪᠢᠯᠢᠭ ᠦᠨ ᠲᠣᠭᠠᠯᠠᠯ",
+      "after": "ᠪᠢᠯᠢᠭ ᠦᠨ ᠲᠣᠭᠠᠯᠠᠯ",
+      "decision": "retain",
+      "meaning": "传统阴阳合历日期",
+      "reviewLevel": "dictionary-composition",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠪᠢᠯᠢᠭ᠌",
+        "observedHeadword": "ᠪᠢᠯᠢᠭ᠌",
+        "transliteration": "bilig /2"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "词典支持阴历概念及计年法；这里只核查语言标签，不据此评价日期换算算法。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "fullText",
+          "query": "阴历",
+          "observedHeadword": "ᠪᠢᠯᠢᠭ᠌ ᠦᠨ ᠤᠯᠠᠷᠢᠯ",
+          "transliteration": "bilig-Un ularil"
+        },
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠲᠣᠭᠠᠯᠠᠯ",
+          "observedHeadword": "ᠲᠣᠭᠠᠯᠠᠯ",
+          "transliteration": "toGalal"
+        }
+      ]
+    },
+    {
+      "id": "calendar-app.once",
+      "before": "ᠨᠢᠭᠡ ᠤᠳᠠᠭ᠎ᠠ",
+      "after": "ᠨᠢᠭᠡ ᠤᠳᠠᠭ᠎ᠠ",
+      "decision": "retain",
+      "meaning": "日程仅发生一次",
+      "reviewLevel": "dictionary-composition",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "fullText",
+        "query": "一次",
+        "observedHeadword": "ᠨᠢᠭᠡ(᠊ᠨ)",
+        "transliteration": "nige(n)"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "一与次组成，准确对应不重复；保留词尾 MVS。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠤᠳᠠᠭ᠎ᠠ(᠊ᠨ)",
+          "observedHeadword": "ᠤᠳᠠᠭ᠎ᠠ(᠊ᠨ)",
+          "transliteration": "udaG_a(n)"
+        }
+      ]
+    },
+    {
+      "id": "calendar-app.thisOccurrence",
+      "before": "ᠡᠨᠡ ᠤᠳᠠᠭ᠎ᠠ",
+      "after": "ᠡᠨᠡ ᠤᠳᠠᠭ᠎ᠠ",
+      "decision": "retain",
+      "meaning": "只操作这一次发生",
+      "reviewLevel": "dictionary-composition",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠡᠨᠡ(᠊ᠨ)",
+        "observedHeadword": "ᠡᠨᠡ(᠊ᠨ)",
+        "transliteration": "ene(n)"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "这与次组成；应在组合按钮中置于编辑/删除动作之前。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠤᠳᠠᠭ᠎ᠠ(᠊ᠨ)",
+          "observedHeadword": "ᠤᠳᠠᠭ᠎ᠠ(᠊ᠨ)",
+          "transliteration": "udaG_a(n)"
+        }
+      ]
+    },
+    {
+      "id": "calendar-app.series",
+      "before": "ᠪᠦᠬᠦ",
+      "after": "ᠪᠦᠬᠦ ᠳᠠᠪᠲᠠᠯᠲᠠ",
+      "decision": "replace",
+      "meaning": "操作整个重复序列",
+      "reviewLevel": "dictionary-composition",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠪᠦᠬᠦ",
+        "observedHeadword": "ᠪᠥᠬᠥ",
+        "transliteration": "bOkO"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "补充重复对象，避免孤立的全部被理解为所有日程；这是场景组合，不是词典原句。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠳᠠᠪᠲᠠᠯᠲᠠ",
+          "observedHeadword": "ᠳᠠᠪᠲᠠᠯᠲᠠ",
+          "transliteration": "dabtalta"
+        }
+      ],
+      "implementation": "pending-ui-owner-integration"
+    },
+    {
+      "id": "calendar-app.until",
+      "before": "ᠬᠦᠷᠲᠡᠯ᠎ᠡ",
+      "after": "ᠳᠠᠭᠤᠰᠬᠤ ᠡᠳᠦᠷ",
+      "decision": "replace",
+      "meaning": "重复日程的截止日期",
+      "reviewLevel": "dictionary-composition",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠬᠦᠷᠲᠡᠯ᠎ᠡ",
+        "observedHeadword": "ᠬᠦᠷᠲᠡᠯ᠎ᠡ",
+        "transliteration": "kUrtel_e"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "原词是后置词，适合置于日期之后；表单把标签放在日期输入之前，因此改用结束日期的名词性短语。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠳᠠᠭᠤᠰᠬᠤ",
+          "observedHeadword": "ᠳᠠᠭᠤᠰᠬᠤ",
+          "transliteration": "daGusqu"
+        },
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠡᠳᠦᠷ",
+          "observedHeadword": "ᠡᠳᠦᠷ",
+          "transliteration": "edUr"
+        }
+      ],
+      "implementation": "pending-ui-owner-integration"
+    },
+    {
+      "id": "calendar-app.imported",
+      "before": "ᠣᠷᠣᠭᠤᠯᠪᠠ",
+      "after": "ᠣᠷᠣᠭᠤᠯᠪᠠ",
+      "decision": "retain-pending-phrase-review",
+      "meaning": "日程已经导入",
+      "reviewLevel": "inflected-draft",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠣᠷᠣᠭᠤᠯᠬᠤ",
+        "observedHeadword": "ᠣᠷᠣᠭᠤᠯᠬᠤ",
+        "transliteration": "oroGulqu"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "动词词干和导入动作一致；完成式没有作为整句在词典中命中，保留为待校对短句。"
+    },
+    {
+      "id": "calendar-app.importError",
+      "before": "ᠤᠩᠰᠢᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ",
+      "after": "ᠤᠩᠰᠢᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ",
+      "decision": "retain",
+      "meaning": "读取日历文件失败",
+      "reviewLevel": "dictionary-pattern",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠤᠩᠰᠢᠬᠤ",
+        "observedHeadword": "ᠤᠩᠰᠢᠬᠤ",
+        "transliteration": "ungsiqu"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "中国词典实际例句支持“动词连接式 + 未能”的结构；当前具体动词组合仍不是词典原句，保留相同失败语义。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠴᠢᠳᠠᠬᠤ",
+          "observedHeadword": "ᠴᠢᠳᠠᠬᠤ",
+          "transliteration": "cidaqu"
+        },
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠦᠭᠡᠢ",
+          "observedHeadword": "ᠦᠭᠡᠢ",
+          "transliteration": "Ugei"
+        },
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "fullText",
+          "query": "ᠴᠢᠳᠠᠭᠰᠠᠨ",
+          "observedHeadword": "ᠠᠮᠠ ᠠᠩᠭᠠᠢᠬᠤ",
+          "transliteration": "ama angGaiqu"
+        }
+      ],
+      "attestedPattern": "ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ",
+      "fullSentenceEditorialReview": "pending"
+    },
+    {
+      "id": "calendar-app.storageError",
+      "before": "ᠬᠠᠳᠠᠭᠠᠯᠠᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ",
+      "after": "ᠬᠠᠳᠠᠭᠠᠯᠠᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ",
+      "decision": "retain",
+      "meaning": "保存日程失败",
+      "reviewLevel": "dictionary-pattern",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ",
+        "observedHeadword": "ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ",
+        "transliteration": "qadaGalaqu"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "中国词典实际例句支持“动词连接式 + 未能”的结构；当前具体动词组合仍不是词典原句，保留相同失败语义。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠴᠢᠳᠠᠬᠤ",
+          "observedHeadword": "ᠴᠢᠳᠠᠬᠤ",
+          "transliteration": "cidaqu"
+        },
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠦᠭᠡᠢ",
+          "observedHeadword": "ᠦᠭᠡᠢ",
+          "transliteration": "Ugei"
+        },
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "fullText",
+          "query": "ᠴᠢᠳᠠᠭᠰᠠᠨ",
+          "observedHeadword": "ᠠᠮᠠ ᠠᠩᠭᠠᠢᠬᠤ",
+          "transliteration": "ama angGaiqu"
+        }
+      ],
+      "attestedPattern": "ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ",
+      "fullSentenceEditorialReview": "pending"
+    },
+    {
+      "id": "calendar-app.invalid",
+      "before": "ᠣᠷᠣᠭᠤᠯᠤᠭᠰᠠᠨ ᠵᠦᠢᠯ ᠢᠶᠡᠨ ᠰᠢᠯᠭᠠᠨ᠎ᠠ ᠤᠤ",
+      "after": "ᠣᠷᠣᠭᠤᠯᠤᠭᠰᠠᠨ ᠵᠦᠢᠯ ᠢᠶᠡᠨ ᠰᠢᠯᠭᠠᠨ᠎ᠠ ᠤᠤ",
+      "decision": "retain-pending-phrase-review",
+      "meaning": "提示检查无法保存的输入",
+      "reviewLevel": "partial",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠣᠷᠣᠭᠤᠯᠬᠤ",
+        "observedHeadword": "ᠣᠷᠣᠭᠤᠯᠬᠤ",
+        "transliteration": "oroGulqu"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "已核查词干和预期意思；完整请求句的格尾、屈折和礼貌语气没有被词典逐句证实。现有校验把标题/日期/时间/重复规则错误归为同一提示，后续宜定位字段而不是再加泛化提示。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠵᠦᠢᠯ",
+          "observedHeadword": "ᠵᠦᠢᠯ",
+          "transliteration": "jUil"
+        },
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠰᠢᠯᠭᠠᠬᠤ",
+          "observedHeadword": "ᠰᠢᠯᠭᠠᠬᠤ",
+          "transliteration": "silGaqu"
+        }
+      ]
+    },
+    {
+      "id": "calendar-app.firstWeekday",
+      "before": "ᠡᠬᠢᠨ ᠦ ᠡᠳᠦᠷ",
+      "after": "ᠡᠬᠢᠯᠡᠬᠦ ᠭᠠᠷᠠᠭ",
+      "decision": "replace",
+      "meaning": "选择每周从星期几开始",
+      "reviewLevel": "dictionary-composition",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠡᠬᠢᠯᠡᠬᠦ",
+        "observedHeadword": "ᠡᠬᠢᠯᠡᠬᠦ",
+        "transliteration": "ekilekU"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "以开始的星期日命名周起点控件，比没有一周语境的第一天更明确；词组为当前控件的编辑组合。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠭᠠᠷᠠᠭ",
+          "observedHeadword": "ᠭᠠᠷᠠᠭ",
+          "transliteration": "GaraG /1"
+        }
+      ],
+      "implementation": "pending-ui-owner-integration"
+    },
+    {
+      "id": "calendar-app.display",
+      "before": "ᠬᠠᠷᠠᠭᠳᠠᠴᠠ",
+      "after": "ᠬᠠᠷᠠᠭᠳᠠᠴᠠ",
+      "decision": "retain-usage-attested",
+      "meaning": "选择日/月/周等显示方式",
+      "reviewLevel": "software-usage",
+      "evidence": {
+        "referenceId": "wikimedia-vector-mvf",
+        "key": "vector-appearance-label",
+        "observedText": "ᠬᠠᠷᠠᠭᠳᠠᠴᠠ"
+      },
+      "regionalBasis": "传统蒙古文软件界面用例，非中国规范词典认证",
+      "reason": "1999 年词典未直接命中；当前 Wikimedia Vector 的传统蒙古文软件语言文件有同词的显示/外观标签。把软件用例与规范词典证据分开，保留现有标签。"
+    },
+    {
+      "id": "app.close",
+      "before": "ᠬᠠᠭᠠᠬᠤ",
+      "after": "ᠬᠠᠭᠠᠬᠤ",
+      "decision": "retain",
+      "meaning": "关闭当前面板",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠬᠠᠭᠠᠬᠤ",
+        "observedHeadword": "ᠬᠠᠭᠠᠬᠤ",
+        "transliteration": "qaGaqu"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "关闭义与面板动作对应。"
+    },
+    {
+      "id": "app.clear",
+      "before": "ᠠᠷᠢᠯᠭᠠᠬᠤ",
+      "after": "ᠠᠷᠢᠯᠭᠠᠬᠤ",
+      "decision": "retain",
+      "meaning": "清空检索内容",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠠᠷᠢᠯᠭᠠᠬᠤ",
+        "observedHeadword": "ᠠᠷᠢᠯᠭᠠᠬᠤ",
+        "transliteration": "arilGaqu"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "选取消去/去掉义。"
+    },
+    {
+      "id": "app.read",
+      "before": "ᠤᠩᠰᠢᠬᠤ",
+      "after": "ᠤᠩᠰᠢᠬᠤ",
+      "decision": "retain",
+      "meaning": "打开阅读正文",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠤᠩᠰᠢᠬᠤ",
+        "observedHeadword": "ᠤᠩᠰᠢᠬᠤ",
+        "transliteration": "ungsiqu"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "阅读义直接对应。"
+    },
+    {
+      "id": "app.settings",
+      "before": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ",
+      "after": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ",
+      "decision": "retain",
+      "meaning": "打开设置",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ",
+        "observedHeadword": "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ",
+        "transliteration": "tokiraGulG_a"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "调整、安排义与设置菜单对应。"
+    },
+    {
+      "id": "app.details",
+      "before": "ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ",
+      "after": "ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ",
+      "decision": "retain",
+      "meaning": "查看详细内容",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ",
+        "observedHeadword": "ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ",
+        "transliteration": "delgerenggUi"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "全面、展开义与详细内容入口对应。"
+    },
+    {
+      "id": "app.sources",
+      "before": "ᠰᠤᠷᠪᠤᠯᠵᠢ",
+      "after": "ᠰᠤᠷᠪᠤᠯᠵᠢ",
+      "decision": "retain",
+      "meaning": "查看引用来源",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠰᠤᠷᠪᠤᠯᠵᠢ(᠊ᠨ)",
+        "observedHeadword": "ᠰᠤᠷᠪᠤᠯᠵᠢ(᠊ᠨ)",
+        "transliteration": "surbulji(n)"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "选取来源义，当前展示文献列表。"
+    },
+    {
+      "id": "app.relations",
+      "before": "ᠬᠠᠷᠢᠯᠴᠠᠭ᠎ᠠ",
+      "after": "ᠬᠠᠷᠢᠯᠴᠠᠭ᠎ᠠ",
+      "decision": "retain",
+      "meaning": "查看人物之间的关系",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠬᠠᠷᠢᠯᠴᠠᠭ᠎ᠠ",
+        "observedHeadword": "ᠬᠠᠷᠢᠯᠴᠠᠭ᠎ᠠ",
+        "transliteration": "qarilcaG_a"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "保留人际来往/交往词；亲属和政治关系另有清楚分类，不把正文中的外交用语一律替换。"
+    },
+    {
+      "id": "app.back",
+      "before": "ᠪᠤᠴᠠᠬᠤ",
+      "after": "ᠪᠤᠴᠠᠬᠤ",
+      "decision": "retain",
+      "meaning": "返回上一阅读位置",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠪᠤᠴᠠᠬᠤ",
+        "observedHeadword": "ᠪᠤᠴᠠᠬᠤ",
+        "transliteration": "bucaqu"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "返回义直接对应。"
+    },
+    {
+      "id": "app.previous",
+      "before": "ᠡᠮᠦᠨᠡᠬᠢ",
+      "after": "ᠡᠮᠦᠨᠡᠬᠢ",
+      "decision": "retain",
+      "meaning": "阅读上一项",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠡᠮᠦᠨᠡᠬᠢ",
+        "observedHeadword": "ᠡᠮᠦᠨᠡᠬᠢ",
+        "transliteration": "emUneki"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "前面的词义由阅读序列限定，不将它作为上下滚动指令。"
+    },
+    {
+      "id": "app.next",
+      "before": "ᠳᠠᠷᠠᠭᠠᠬᠢ",
+      "after": "ᠳᠠᠷᠠᠭᠠᠬᠢ",
+      "decision": "retain",
+      "meaning": "阅读下一项",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠳᠠᠷᠠᠭᠠᠬᠢ",
+        "observedHeadword": "ᠳᠠᠷᠠᠭᠠᠬᠢ",
+        "transliteration": "daraGaki"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "随后的、其次的义直接对应。"
+    },
+    {
+      "id": "app.all",
+      "before": "ᠪᠦᠬᠦ",
+      "after": "ᠪᠦᠬᠦ",
+      "decision": "retain",
+      "meaning": "全部筛选结果",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠪᠦᠬᠦ",
+        "observedHeadword": "ᠪᠦᠬᠦ",
+        "transliteration": "bUkU～bOkO"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "全部义直接对应。"
+    },
+    {
+      "id": "app.focus",
+      "before": "ᠲᠥᠪᠯᠡᠷᠡᠭᠦᠯᠬᠦ",
+      "after": "ᠲᠥᠪᠯᠡᠷᠡᠭᠦᠯᠬᠦ",
+      "decision": "retain",
+      "meaning": "将人物节点移到画面中心",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠲᠥᠪᠯᠡᠷᠡᠭᠦᠯᠬᠦ",
+        "observedHeadword": "ᠲᠥᠪᠯᠡᠷᠡᠭᠦᠯᠬᠦ",
+        "transliteration": "tObleregUlkU"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "集中义与把节点移到中心的行为对应。"
+    },
+    {
+      "id": "app.family",
+      "before": "ᠤᠷᠤᠭ ᠲᠥᠷᠥᠯ",
+      "after": "ᠤᠷᠤᠭ ᠲᠥᠷᠥᠯ",
+      "decision": "retain",
+      "meaning": "亲属关系",
+      "reviewLevel": "dictionary-phrase",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "fullText",
+        "query": "ᠤᠷᠤᠭ ᠲᠥᠷᠥᠯ",
+        "observedHeadword": "ᠤᠷᠤᠭ ᠲᠥᠷᠥᠯ",
+        "transliteration": "uruG tOrOl"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "完整词组有亲属义。"
+    },
+    {
+      "id": "app.power",
+      "before": "ᠤᠯᠤᠰ ᠲᠥᠷᠥ",
+      "after": "ᠤᠯᠤᠰ ᠲᠥᠷᠥ",
+      "decision": "retain",
+      "meaning": "政治关系",
+      "reviewLevel": "dictionary-phrase",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠤᠯᠤᠰ ᠲᠥᠷᠥ",
+        "observedHeadword": "ᠤᠯᠤᠰ ᠲᠥᠷᠥ",
+        "transliteration": "ulus tOrO"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "完整词组有政治义。"
+    },
+    {
+      "id": "app.chronicle",
+      "before": "ᠲᠡᠦᠬᠡ",
+      "after": "ᠲᠡᠦᠬᠡ",
+      "decision": "retain",
+      "meaning": "历史应用入口",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠲᠡᠦᠬᠡ(᠊ᠨ)",
+        "observedHeadword": "ᠲᠡᠦᠬᠡ(᠊ᠨ)",
+        "transliteration": "teUke(n)"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "使用历史义；编年浏览方式由事件顺序呈现。"
+    },
+    {
+      "id": "app.people",
+      "before": "ᠬᠦᠮᠦᠰ",
+      "after": "ᠬᠦᠮᠦᠰ",
+      "decision": "retain",
+      "meaning": "关联历史人物",
+      "reviewLevel": "dictionary-variant",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠬᠦᠮᠦᠰ",
+        "observedHeadword": "ᠬᠥᠮᠦᠰ",
+        "transliteration": "kOmUs～kUmUs"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "中国词典转写明确并列 kOmUs～kUmUs，当前采用后者；不把并列形式当成错误。"
+    },
+    {
+      "id": "app.type",
+      "before": "ᠦᠰᠦᠭ ᠦᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ",
+      "after": "ᠦᠰᠦᠭ ᠦᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ",
+      "decision": "retain",
+      "meaning": "阅读文字大小",
+      "reviewLevel": "dictionary-composition",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠦᠰᠦᠭ",
+        "observedHeadword": "ᠦᠰᠦᠭ",
+        "transliteration": "UsUg"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "字母/字与尺寸名词组合；属格范围明确指文字。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠬᠡᠮᠵᠢᠶ᠎ᠡ(᠊ᠨ)",
+          "observedHeadword": "ᠬᠡᠮᠵᠢᠶ᠎ᠡ(᠊ᠨ)",
+          "transliteration": "kemjiy_e(n)"
+        }
+      ]
+    },
+    {
+      "id": "app.smaller",
+      "before": "ᠪᠠᠭᠠᠰᠬᠠᠬᠤ",
+      "after": "ᠪᠠᠭᠠᠰᠬᠠᠬᠤ",
+      "decision": "retain",
+      "meaning": "缩小文字或图谱",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠪᠠᠭᠠᠰᠬᠠᠬᠤ",
+        "observedHeadword": "ᠪᠠᠭᠠᠰᠬᠠᠬᠤ",
+        "transliteration": "baGasqaqu"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "现有词是词典列出的交叉词条，对应缩小义，保留。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠪᠠᠭᠠᠳᠬᠠᠬᠤ",
+          "observedHeadword": "ᠪᠠᠭᠠᠳᠬᠠᠬᠤ",
+          "transliteration": "baGadqaqu"
+        }
+      ]
+    },
+    {
+      "id": "app.larger",
+      "before": "ᠲᠣᠮᠣᠰᠬᠠᠬᠤ",
+      "after": "ᠲᠣᠮᠣᠳᠬᠠᠬᠤ",
+      "decision": "replace",
+      "meaning": "放大文字或图谱",
+      "reviewLevel": "dictionary-headword",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠲᠣᠮᠣᠳᠬᠠᠬᠤ",
+        "observedHeadword": "ᠲᠣᠮᠣᠳᠬᠠᠬᠤ",
+        "transliteration": "tomodqaqu"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "采用中国词典直接列为扩大/放大的词形；这是选定有明确依据的界面动词，不据一次未命中否定所有其他派生形式。",
+      "implementation": "pending-ui-owner-integration"
+    },
+    {
+      "id": "app.fit",
+      "before": "ᠪᠦᠬᠦᠨ ᠢ ᠦᠵᠡᠭᠦᠯᠬᠦ",
+      "after": "ᠪᠦᠬᠦᠨ ᠢ ᠦᠵᠡᠭᠦᠯᠬᠦ",
+      "decision": "retain",
+      "meaning": "显示全部关系图",
+      "reviewLevel": "dictionary-composition",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠪᠦᠬᠦ",
+        "observedHeadword": "ᠪᠥᠬᠥ",
+        "transliteration": "bOkO"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "全部与显示动作组合，符合整图适配行为；屈折短语未作为词典原句命中。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠦᠵᠡᠭᠦᠯᠬᠦ",
+          "observedHeadword": "ᠦᠵᠡᠭᠦᠯᠬᠦ",
+          "transliteration": "UjegUlkU"
+        }
+      ]
+    },
+    {
+      "id": "app.retry",
+      "before": "ᠳᠠᠬᠢᠨ ᠣᠷᠣᠯᠳᠣᠬᠤ",
+      "after": "ᠳᠠᠬᠢᠨ ᠣᠷᠣᠯᠳᠤᠬᠤ",
+      "decision": "replace",
+      "meaning": "再尝试一次",
+      "reviewLevel": "dictionary-composition",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "fullText",
+        "query": "ᠳᠠᠬᠢᠨ",
+        "observedHeadword": "ᠠᠬᠢᠨ ᠳᠠᠬᠢᠨ",
+        "transliteration": "akin dakin"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "再次义有词典用例；尝试动词采用词典的 orolduqu 录入形式。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠣᠷᠣᠯᠳᠣᠬᠤ",
+          "observedHeadword": "ᠣᠷᠣᠯᠳᠤᠬᠤ",
+          "transliteration": "orolduqu"
+        }
+      ],
+      "implementation": "pending-ui-owner-integration"
+    },
+    {
+      "id": "app.search",
+      "before": "ᠬᠠᠶᠢᠬᠤ",
+      "after": "ᠬᠠᠶᠢᠬᠤ",
+      "decision": "retain-variant-with-regional-limit",
+      "meaning": "搜索日程或历史内容",
+      "reviewLevel": "dictionary-variant",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠬᠠᠢᠬᠤ",
+        "observedHeadword": "ᠬᠠᠢᠬᠤ",
+        "transliteration": "qaiqu"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "中国词典返回 qaiqu；当前 qayi-qu 数字写法有蒙古国官方软件用例。这里只确认语义和有依据的异写，不据字母长度自动删除 YI，也不把该旁证当成中国规范认证。",
+      "supplementaryEvidence": [
+        {
+          "referenceId": "mongolia-government-search",
+          "observedText": "ᠬᠠᠶᠢᠬᠤ"
+        }
+      ],
+      "fullRegionalFormReview": "pending"
+    },
+    {
+      "id": "app.timeline",
+      "before": "ᠣᠨ ᠴᠠᠭ",
+      "after": "ᠣᠨ ᠴᠠᠭ",
+      "decision": "retain",
+      "meaning": "按年代查看编年目录",
+      "reviewLevel": "dictionary-composition",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠣᠨ",
+        "observedHeadword": "ᠣᠨ",
+        "transliteration": "on /1"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "年与时间组成，符合编年目录；未作为完整短语在本词典中命中。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "headword",
+          "query": "ᠴᠠᠭ",
+          "observedHeadword": "ᠴᠠᠭ",
+          "transliteration": "caG"
+        }
+      ]
+    },
+    {
+      "id": "app.calendar",
+      "before": "ᠴᠠᠭ ᠲᠣᠭ᠎ᠠ",
+      "after": "ᠴᠠᠭ ᠲᠣᠭ᠎ᠠ",
+      "decision": "retain-pending-term-review",
+      "meaning": "日历应用标题",
+      "reviewLevel": "partial",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠴᠠᠭ",
+        "observedHeadword": "ᠴᠠᠭ",
+        "transliteration": "caG"
+      },
+      "regionalBasis": "中国境内词典词形及当前控件语境",
+      "reason": "现有简称未直接命中。词典给出的日历全称更长；本轮不在来源不足时更换应用标题，保留待专门术语核对。",
+      "additionalEvidence": [
+        {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "fullText",
+          "query": "日历",
+          "observedHeadword": "ᠴᠠᠭ ᠤᠯᠠᠷᠢᠯ ᠤᠨ ᠪᠢᠴᠢᠭ᠌",
+          "transliteration": "caG ularil-un bicig"
+        }
+      ]
+    }
+  ],
+  "withdrawnRecommendations": [
+    {
+      "id": "calendar-app.agenda",
+      "alsoAppliesTo": ["calendar-app.empty"],
+      "suggested": "ᠲᠥᠯᠦᠪᠯᠡᠭᠡ",
+      "final": "ᠲᠥᠯᠥᠪᠯᠡᠭᠡ",
+      "reason": "最初仅凭蒙古国词典提出的元音替换已撤回；实际查询中国境内词典后，保留符合用户所选地域基准的现有词形。"
+    }
+  ],
+  "contextProposals": [
+    {
+      "id": "scope-before-action",
+      "status": "sent-to-ui-owner",
+      "reason": "重复日程按钮先呈现操作范围，再呈现动作。使用分隔符明确这是范围与动作的组合，避免把当前拼接伪装成已校对完整句。",
+      "controls": [
+        {
+          "action": "edit-occurrence",
+          "order": ["calendar-app.thisOccurrence", "calendar-app.edit"]
+        },
+        {
+          "action": "delete-occurrence",
+          "order": ["calendar-app.thisOccurrence", "calendar-app.delete"]
+        },
+        {
+          "action": "edit-series",
+          "order": ["calendar-app.series", "calendar-app.edit"]
+        },
+        {
+          "action": "delete-series",
+          "order": ["calendar-app.series", "calendar-app.delete"]
+        }
+      ],
+      "separator": " · ",
+      "evidenceIds": [
+        "calendar-app.thisOccurrence",
+        "calendar-app.series",
+        "calendar-app.edit",
+        "calendar-app.delete"
+      ]
+    }
+  ],
+  "scopeLimits": [
+    "calendar-copy 的 49 个标量文字键已逐项记录；dictionary-headword/phrase 表示明确词条，composition/pattern 表示词或结构依据，software-usage 表示实际软件用例，partial 保留具体未完成项。",
+    "补充核查的共享界面键覆盖日历、编年浏览、阅读器和人物关系图的 24 个实际使用项；未把未使用旧入口混入这个计数。",
+    "完整短句、操作中的语气与细节表达未被词典匹配冒充为母语审校。Menksoft 状态沿用原报告，本轮没有新增机器译文。"
+  ],
+  "pendingPhraseOrTermIds": [
+    "calendar-app.imported",
+    "calendar-app.importError",
+    "calendar-app.storageError",
+    "calendar-app.invalid",
+    "app.search",
+    "app.calendar"
+  ]
+}

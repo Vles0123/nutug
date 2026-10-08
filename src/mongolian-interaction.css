@@ -1,0 +1,292 @@
+/* Text controls follow the inline (down) and column (right) axes of mn-Mong. */
+.mongolian-type-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: 30px/1 var(--mn);
+  writing-mode: vertical-lr;
+  flex: none;
+}
+.search-control {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  margin-left: auto;
+  min-width: 0;
+}
+.library-toolbar .catalog-filter {
+  flex-direction: column;
+  gap: 8px;
+  min-width: 48px;
+}
+.library-toolbar .catalog-filter .mn {
+  max-height: 110px;
+}
+.search-trigger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  min-width: 48px;
+  background: var(--sidebar);
+  border: 1px solid var(--separator);
+  border-radius: 14px;
+  color: var(--prose);
+}
+.search-trigger .mn {
+  font-size: 23px;
+  max-height: 110px;
+}
+.search-sheet .sheet-dialog {
+  padding: 20px;
+}
+.search-sheet .sheet-bar {
+  padding-bottom: 16px;
+}
+.search-sheet .sheet-bar h2 .mn {
+  max-height: 85px;
+}
+.search-workspace {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  height: min(64dvh, 580px);
+  min-height: 200px;
+  min-width: 0;
+}
+.search-workspace .search-field {
+  display: flex;
+  flex-direction: column;
+  width: 96px;
+  padding: 12px 8px;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 16px;
+  gap: 12px;
+  flex: none;
+}
+.search-workspace .search-input {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  flex: 1;
+  min-height: 0;
+  padding: 8px 4px;
+  font: 28px/1.65 var(--mn);
+  border: 0;
+  resize: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: pre-wrap;
+  word-break: normal;
+  overflow-wrap: normal;
+  scrollbar-width: thin;
+}
+.search-workspace .search-results {
+  display: flex;
+  gap: 30px;
+  padding: 0 0 14px;
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  overscroll-behavior-inline: contain;
+}
+.search-workspace .search-results section,
+.search-workspace .search-results section:has(.search-all) {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 14px;
+  flex: none;
+  height: 100%;
+  padding: 0;
+}
+.search-workspace .search-results h3 {
+  max-height: 100%;
+  margin: 0;
+  font-size: 23px;
+}
+.search-workspace .search-results section > div {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  gap: 12px;
+}
+.search-workspace .search-results button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 56px;
+  max-width: none;
+  height: 100%;
+  flex: none;
+  padding: 14px;
+  gap: 12px;
+}
+.search-workspace .search-results button .mn {
+  font-size: 24px;
+  max-height: calc(100% - 32px);
+}
+.search-workspace .search-results button svg {
+  flex: none;
+}
+.search-workspace .search-results .search-all {
+  margin: 0;
+}
+.search-workspace .empty-state {
+  margin: 12px;
+}
+
+.app[data-page='library'] .page-scroll:has(.catalog-list) {
+  overflow: hidden;
+}
+.catalog:not(:has(.discovery)) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  max-width: none;
+  padding-bottom: 8px;
+}
+.catalog:not(:has(.discovery)) .library-toolbar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  flex: none;
+}
+.catalog:not(:has(.discovery)) .catalog-list {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 24px;
+  padding: 0 2px 12px;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
+}
+.catalog:not(:has(.discovery)) .catalog-entry {
+  width: max-content;
+  min-width: 190px;
+  min-height: 0;
+  height: 100%;
+  flex: none;
+  padding: 14px 24px 14px 4px;
+  border-bottom: 0;
+  border-right: 1px solid var(--separator);
+  scroll-snap-align: start;
+  scroll-margin-top: 0;
+}
+.catalog:not(:has(.discovery)) .catalog-entry-copy {
+  height: 100%;
+  width: max-content;
+  flex: none;
+}
+.catalog:not(:has(.discovery)) .catalog-entry-title,
+.catalog:not(:has(.discovery)) .catalog-entry-summary {
+  max-height: 100%;
+  flex: none;
+}
+.catalog:not(:has(.discovery)) .catalog-disclosure {
+  display: none;
+}
+.catalog:not(:has(.discovery)) .catalog-pagination {
+  flex: none;
+  justify-content: flex-start;
+  padding: 10px 0;
+  gap: 18px;
+}
+.catalog-pagination .text-button {
+  padding: 8px 16px;
+}
+.catalog-pagination .mn {
+  max-height: 100px;
+}
+.category-popover {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.category-options.segments {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.category-options .segment {
+  flex: none;
+}
+.category-options .segment .mn {
+  max-height: min(48dvh, 230px);
+}
+@media (max-width: 680px) {
+  .search-sheet {
+    width: 100%;
+    border-radius: 20px;
+  }
+  .search-sheet .sheet-dialog {
+    padding: 14px;
+  }
+  .search-workspace {
+    gap: 14px;
+    height: min(66dvh, 620px);
+  }
+  .search-workspace .search-field {
+    width: 76px;
+  }
+  .search-workspace .search-input {
+    font-size: 25px;
+    line-height: 1.6;
+  }
+  .search-workspace .search-results {
+    gap: 20px;
+  }
+  .catalog:not(:has(.discovery)) {
+    padding-inline: 16px;
+  }
+  .catalog:not(:has(.discovery)) .catalog-list {
+    gap: 18px;
+  }
+  .catalog:not(:has(.discovery)) .catalog-entry-copy {
+    gap: 18px;
+  }
+  .catalog:not(:has(.discovery)) .catalog-entry {
+    min-width: 150px;
+    padding-right: 18px;
+  }
+  .search-trigger {
+    padding: 10px;
+  }
+  .search-trigger .mn {
+    max-height: 90px;
+  }
+}
+@media (max-height: 550px) {
+  .search-sheet .sheet-bar {
+    padding-bottom: 6px;
+  }
+  .search-sheet .sheet-bar h2 .mn {
+    max-height: 55px;
+    font-size: 24px;
+  }
+  .search-workspace {
+    height: 60dvh;
+    min-height: 120px;
+  }
+  .catalog:not(:has(.discovery)) .search-trigger .mn {
+    max-height: 58px;
+  }
+  .catalog-pagination .mn {
+    max-height: 60px;
+    font-size: 21px;
+  }
+}

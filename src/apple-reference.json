@@ -1,0 +1,406 @@
+{
+  "file": "https://www.figma.com/design/7yJan1z0YUyrybSRLvlY31",
+  "library": "iOS and iPadOS 27",
+  "source": "https://www.figma.com/community/file/1651309003795292092/ios-and-ipados-27",
+  "observed": {
+    "components": [
+      {
+        "id": "3:573",
+        "name": "Apple iPadOS 27 Sidebar",
+        "width": 320,
+        "height": 802,
+        "radius": 0,
+        "padding": [32, 10, 10, 10],
+        "gap": 0,
+        "children": [
+          {
+            "id": "I3:573;10463:33619",
+            "name": "Sidebar Items",
+            "type": "SLOT",
+            "w": 300,
+            "h": 720,
+            "radius": 0,
+            "fills": [],
+            "bound": {}
+          }
+        ]
+      },
+      {
+        "id": "3:921",
+        "name": "Apple iOS 27 Segmented Control",
+        "width": 370,
+        "height": 32,
+        "radius": 100,
+        "padding": [0, 0, 0, 0],
+        "gap": 0,
+        "children": [
+          {
+            "id": "I3:921;10460:171",
+            "name": "Segments",
+            "type": "SLOT",
+            "w": 370,
+            "h": 32,
+            "radius": 0,
+            "fills": [],
+            "bound": {}
+          }
+        ]
+      },
+      {
+        "id": "3:1262",
+        "name": "Apple iPadOS 27 Toolbar",
+        "width": 820,
+        "height": 54,
+        "radius": 0,
+        "padding": [0, 10, 10, 10],
+        "gap": 10,
+        "children": [
+          {
+            "id": "I3:1262;5573:24145",
+            "name": "Controls",
+            "type": "FRAME",
+            "w": 800,
+            "h": 44,
+            "radius": 0,
+            "fills": [],
+            "bound": {}
+          },
+          {
+            "id": "I3:1262;5573:24157",
+            "name": "Tab Bar",
+            "type": "INSTANCE",
+            "w": 491,
+            "h": 44,
+            "radius": 0,
+            "fills": [],
+            "bound": {}
+          }
+        ]
+      }
+    ],
+    "variables": {
+      "VariableID:14554ce556fa249d70e6aa6cc5ff00ec4240e0a3/12492:99": {
+        "name": "Liquid Glass/Opacity",
+        "values": {
+          "5565:0": 25
+        }
+      },
+      "VariableID:1fc5cedec31035fe6b22dab5dade4f8d6ebb58c9/12492:88": {
+        "name": "Liquid Glass/Refraction",
+        "values": {
+          "5565:0": 70
+        }
+      },
+      "VariableID:7870f2c9a19f7580aa587932120bfe99cf869406/12492:89": {
+        "name": "Liquid Glass/Frost - Regular",
+        "values": {
+          "5565:0": 6
+        }
+      },
+      "VariableID:a22e87f0892424a10d37aac3ca606ebd0b7868e3/12492:87": {
+        "name": "Liquid Glass/Light Angle",
+        "values": {
+          "5565:0": 0
+        }
+      },
+      "VariableID:c8d429e00b19f1ca2aece41ced2e8107ddbd3cb1/12492:92": {
+        "name": "Liquid Glass/Splay - Regular",
+        "values": {
+          "5565:0": 20
+        }
+      },
+      "VariableID:d479ca3290260cfb9bb48700ddc4cd7982e22b11/12492:90": {
+        "name": "Liquid Glass/Depth - Regular",
+        "values": {
+          "5565:0": 30
+        }
+      },
+      "VariableID:db5ec2a343160b40cc113c0665153252de50164c/12492:91": {
+        "name": "Liquid Glass/Dispersion",
+        "values": {
+          "5565:0": 20
+        }
+      },
+      "VariableID:e0fd70a9b783ea889db731f785398641a6c4c234/10456:246": {
+        "name": "Labels - Vibrant - Controls/Primary",
+        "values": {
+          "404:0": {
+            "r": 0.10196078568696976,
+            "g": 0.10196078568696976,
+            "b": 0.10196078568696976,
+            "a": 1
+          },
+          "404:1": {
+            "r": 0.9607843160629272,
+            "g": 0.9607843160629272,
+            "b": 0.9607843160629272,
+            "a": 1
+          }
+        }
+      },
+      "VariableID:250232632da55b33453150f0cab433ec16f81a53/10456:226": {
+        "name": "Labels - Vibrant/Primary",
+        "values": {
+          "404:0": {
+            "r": 0.10196078568696976,
+            "g": 0.10196078568696976,
+            "b": 0.10196078568696976,
+            "a": 1
+          },
+          "404:1": {
+            "r": 0.9607843160629272,
+            "g": 0.9607843160629272,
+            "b": 0.9607843160629272,
+            "a": 1
+          }
+        }
+      },
+      "VariableID:be1e896af9a48097564edaa060c2c6129fd86f14/10456:197": {
+        "name": "Fills/Secondary",
+        "values": {
+          "404:0": {
+            "r": 0.47058823704719543,
+            "g": 0.47058823704719543,
+            "b": 0.501960813999176,
+            "a": 0.1599999964237213
+          },
+          "404:1": {
+            "r": 0.47058823704719543,
+            "g": 0.47058823704719543,
+            "b": 0.501960813999176,
+            "a": 0.3199999928474426
+          }
+        }
+      },
+      "VariableID:b3499654ab2982121271f88aa68cd2fef94e80b1/10456:227": {
+        "name": "Labels - Vibrant/Secondary",
+        "values": {
+          "404:0": {
+            "r": 0.4470588266849518,
+            "g": 0.4470588266849518,
+            "b": 0.4470588266849518,
+            "a": 1
+          },
+          "404:1": {
+            "r": 0.5411764979362488,
+            "g": 0.5411764979362488,
+            "b": 0.5411764979362488,
+            "a": 1
+          }
+        }
+      },
+      "VariableID:a2a887a78db2624665e93ec4f131d7c56da46f24/10456:165": {
+        "name": "Accents/Blue",
+        "values": {
+          "404:0": {
+            "r": 0,
+            "g": 0.5333333611488342,
+            "b": 1,
+            "a": 1
+          },
+          "404:1": {
+            "r": 0,
+            "g": 0.5686274766921997,
+            "b": 1,
+            "a": 1
+          }
+        }
+      },
+      "VariableID:f53b56d4ed0520da1fb2c8586d67d82113ae1dcb/10456:166": {
+        "name": "Labels/Primary",
+        "values": {
+          "404:0": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 1
+          },
+          "404:1": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 1
+          }
+        }
+      },
+      "VariableID:68914bff2ca202c077d79f0df5b672e86e805629/12635:5": {
+        "name": "Typography/Letter spacing/Body",
+        "values": {
+          "5565:0": -0.4300000071525574
+        }
+      },
+      "VariableID:e927ba6a6970b7ef7a93f47d6c20fa8d94be0903/12466:2798": {
+        "name": "Size/Body",
+        "values": {
+          "12436:2": 14,
+          "12436:3": 15,
+          "12436:4": 16,
+          "12436:5": 17,
+          "12436:6": 19,
+          "12436:7": 21,
+          "12436:8": 23,
+          "12446:3": 28,
+          "12446:4": 33,
+          "12446:5": 40,
+          "12446:6": 47,
+          "12446:7": 53
+        }
+      },
+      "VariableID:68fd1459f0c6fe31a75da26fc334161892e9614b/12635:11": {
+        "name": "Typography/Font Weight/Regular",
+        "values": {
+          "5565:0": "Regular"
+        }
+      },
+      "VariableID:693766e50e331ee55a92b992688ff8ab8d35c14d/12460:2219": {
+        "name": "Typography/Font family/SF Pro",
+        "values": {
+          "5565:0": "SF Pro"
+        }
+      },
+      "VariableID:263c5f9fc24ffbd5c0412a4fd6f1ed4cc3349f27/12466:2911": {
+        "name": "Leading/Body",
+        "values": {
+          "12436:2": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:d0463965cf33b9d63ad621be9ec79b8b6139d3a8/12466:1551"
+          },
+          "12436:3": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:d0463965cf33b9d63ad621be9ec79b8b6139d3a8/12466:1551"
+          },
+          "12436:4": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:237f9cf854fe79f014e8b8184b9848014af41a79/12466:1686"
+          },
+          "12436:5": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:80c3d3f7a802edb5e4493fa01d6dcd21807695e1/12466:1427"
+          },
+          "12436:6": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:56b27be829ab4e28b56c1c0de4f9bf1ae0300d68/12466:1810"
+          },
+          "12436:7": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:49296d2cd1c295110cb84aa8ed9f4bb6bdd4b56c/12466:1934"
+          },
+          "12436:8": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:6db953c0e930697d7b31006ba07aac8132ae641a/12466:2058"
+          },
+          "12446:3": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:54c3b3538832c3cadde4a5b311c138ecae1a2295/12466:2182"
+          },
+          "12446:4": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:bf913e8503b02a774ce8f8e5afb95585580da934/12466:2306"
+          },
+          "12446:5": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:a97d470d8862609848e0add155d2a801fd8bb7c2/12466:2430"
+          },
+          "12446:6": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:21dff7f05d729e2a0588976e272db254a099fed9/12466:2554"
+          },
+          "12446:7": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:375cd510cf80f0104463fc2b2d397c83dc073b4a/12466:2678"
+          }
+        }
+      },
+      "VariableID:4cd5aad6cbe2b035a0865fe9661e1e5458ab8f8c/10456:164": {
+        "name": "Labels/Secondary",
+        "values": {
+          "404:0": {
+            "r": 0.23529411852359772,
+            "g": 0.23529411852359772,
+            "b": 0.26274511218070984,
+            "a": 0.6000000238418579
+          },
+          "404:1": {
+            "r": 0.9215686321258545,
+            "g": 0.9215686321258545,
+            "b": 0.9607843160629272,
+            "a": 0.699999988079071
+          }
+        }
+      },
+      "VariableID:98c0ae67e6d05de723ba00e6d448835edbd0b850/10456:231": {
+        "name": "Fills - Vibrant/Tertiary",
+        "values": {
+          "404:0": {
+            "r": 0.929411768913269,
+            "g": 0.929411768913269,
+            "b": 0.929411768913269,
+            "a": 1
+          },
+          "404:1": {
+            "r": 0.07058823853731155,
+            "g": 0.07058823853731155,
+            "b": 0.07058823853731155,
+            "a": 1
+          }
+        }
+      },
+      "VariableID:d21cbd1dac580370515b7174549db004cdbd8ccc/10456:199": {
+        "name": "Fills/Tertiary",
+        "values": {
+          "404:0": {
+            "r": 0.4627451002597809,
+            "g": 0.4627451002597809,
+            "b": 0.501960813999176,
+            "a": 0.11999999731779099
+          },
+          "404:1": {
+            "r": 0.4627451002597809,
+            "g": 0.4627451002597809,
+            "b": 0.501960813999176,
+            "a": 0.23999999463558197
+          }
+        }
+      },
+      "VariableID:9ced0b023ce41ebe23670d4128fde009f49eb1a9/10456:237": {
+        "name": "Miscellaneous/Segmented Control - Selected Fill",
+        "values": {
+          "404:0": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 1
+          },
+          "404:1": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0.27000001072883606
+          }
+        }
+      },
+      "VariableID:4e564e526b2dd3c9692a0b35ea25b05d9fa4c770/10456:247": {
+        "name": "Miscellaneous/Tab Bar Selection",
+        "values": {
+          "404:0": {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:a2a887a78db2624665e93ec4f131d7c56da46f24/10456:165"
+          },
+          "404:1": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 1
+          }
+        }
+      }
+    }
+  },
+  "listReference": {
+    "nodeId": "5:703",
+    "name": "Apple iOS 27 List reference",
+    "componentKey": "d88be1e31d2050ce5dcd65809e51d19da626a3dd",
+    "url": "https://www.figma.com/design/7yJan1z0YUyrybSRLvlY31?node-id=5-703",
+    "application": "Title, supporting text, row separators and disclosure; adapted to vertical Mongolian."
+  }
+}
