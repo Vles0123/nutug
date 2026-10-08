@@ -167,7 +167,10 @@ async function until(check, message) {
   const first = d.querySelector('.chronicle-entry').dataset.eventId;
   assert(w.location.hash.includes(first));
   await click(d.querySelector('[data-action="event-people"]'));
-  await click(d.querySelector('[data-person="temujin"]'));
+  assert(
+    !d.querySelector('.event-context-sheet'),
+    'A single person opens without an intermediate roster',
+  );
   assert.equal(d.querySelector('[data-person-record]').dataset.personRecord, 'temujin');
   assert(d.querySelector('.person-reading'), 'Person opens as a readable biography');
   assert(!d.querySelector('[data-network]'), 'Biography keeps the full reading area');
