@@ -721,7 +721,7 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
                 <div>
                   <input
                     type="text"
-                    inputMode="numeric"
+                    inputMode="text"
                     required
                     pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
                     aria-label={copy[key] + ' · ' + copy.day}
@@ -732,7 +732,7 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
                   {!draft.allDay && (
                     <input
                       type="text"
-                      inputMode="numeric"
+                      inputMode="text"
                       required
                       pattern="[0-9]{2}:[0-9]{2}"
                       className="numeric"
@@ -779,8 +779,9 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
                 <Mn>{copy.until}</Mn>
                 <input
                   type="text"
-                  inputMode="numeric"
+                  inputMode="text"
                   pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+                  placeholder={draft.startDate}
                   className="numeric"
                   aria-label={copy.until}
                   value={draft.until}
