@@ -69,12 +69,13 @@ struct MongolianText: View {
   var height: CGFloat = 300
   var size: CGFloat = 28
   var scale: Double = 1
+  var color: Color = .primary
   @ScaledMetric(relativeTo: .body) private var dynamicScale: CGFloat = 1
   var body: some View {
     let fontSize = size * scale * dynamicScale
     let fittedHeight = max(height, MongolianTypesetting.minimumHeight(text, size: fontSize))
     let width = MongolianTypesetting.width(text, height: fittedHeight, size: fontSize)
-    MongolianDrawing(text: text, size: fontSize)
+    MongolianDrawing(text: text, size: fontSize, color: color)
       .frame(width: width, height: fittedHeight)
       .accessibilityElement(children: .ignore)
       .accessibilityLabel(Text(verbatim: text))
@@ -86,27 +87,31 @@ struct MongolianText: View {
   private struct MongolianDrawing: NSViewRepresentable {
     let text: String
     let size: CGFloat
+    let color: Color
     func makeNSView(context: Context) -> MongolianDrawingView { MongolianDrawingView() }
     func updateNSView(_ view: MongolianDrawingView, context: Context) {
       view.text = text
       view.size = size
+      view.textColor = NSColor(color)
       view.needsDisplay = true
     }
   }
   private final class MongolianDrawingView: NSView {
     var text = ""
     var size: CGFloat = 28
+    var textColor: NSColor = .labelColor
     override func draw(_ dirtyRect: NSRect) {
       guard let context = NSGraphicsContext.current?.cgContext else { return }
       context.textMatrix = .identity
       MongolianTypesetting.draw(
-        text, size: size, rect: bounds, color: NSColor.labelColor.cgColor, context: context)
+        text, size: size, rect: bounds, color: textColor.cgColor, context: context)
     }
   }
 #else
   private struct MongolianDrawing: UIViewRepresentable {
     let text: String
     let size: CGFloat
+    let color: Color
     func makeUIView(context: Context) -> MongolianDrawingView {
       let view = MongolianDrawingView()
       view.backgroundColor = .clear
@@ -115,12 +120,14 @@ struct MongolianText: View {
     func updateUIView(_ view: MongolianDrawingView, context: Context) {
       view.text = text
       view.size = size
+      view.textColor = UIColor(color)
       view.setNeedsDisplay()
     }
   }
   private final class MongolianDrawingView: UIView {
     var text = ""
     var size: CGFloat = 28
+    var textColor: UIColor = .label
     override func draw(_ rect: CGRect) {
       guard let context = UIGraphicsGetCurrentContext() else { return }
       context.textMatrix = .identity
@@ -128,7 +135,7 @@ struct MongolianText: View {
       context.scaleBy(x: 1, y: -1)
       MongolianTypesetting.draw(
         text, size: size, rect: bounds,
-        color: UIColor.label.resolvedColor(with: traitCollection).cgColor, context: context)
+        color: textColor.resolvedColor(with: traitCollection).cgColor, context: context)
     }
   }
 #endif

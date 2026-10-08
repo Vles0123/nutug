@@ -10,6 +10,27 @@ export const weekday = (date) => (new Date(date + 'T12:00:00Z').getUTCDay() + 6)
 export const validCalendarDate = (date) =>
   !!civilDate(date) && date >= '1901-01-01' && date <= '2100-12-31';
 const validTime = (time) => /^([01]\d|2[0-3]):[0-5]\d$/.test(time);
+const numericInput = (value) =>
+  typeof value === 'string'
+    ? value
+        .normalize('NFKC')
+        .replace(/[᠐-᠙]/g, (digit) => String(digit.charCodeAt(0) - 0x1810))
+        .trim()
+    : value;
+const dateInput = (value) => {
+  const text = numericInput(value);
+  return typeof text === 'string'
+    ? text.replace(
+        /^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})$/,
+        (_, y, m, d) => `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`,
+      )
+    : text;
+};
+const timeInput = (value) =>
+  numericInput(value).replace(
+    /^(\d{1,2}):(\d{1,2})$/,
+    (_, h, m) => `${h.padStart(2, '0')}:${m.padStart(2, '0')}`,
+  );
 
 export function normalizeEvent(value) {
   if (!value || typeof value !== 'object') throw new TypeError('event');
@@ -18,14 +39,14 @@ export function normalizeEvent(value) {
     title: String(value.title || '').trim(),
     notes: String(value.notes || ''),
     location: String(value.location || ''),
-    startDate: value.startDate,
-    endDate: value.endDate || value.startDate,
-    startTime: value.startTime || '09:00',
-    endTime: value.endTime || '10:00',
+    startDate: dateInput(value.startDate),
+    endDate: dateInput(value.endDate || value.startDate),
+    startTime: timeInput(String(value.startTime || '09:00')),
+    endTime: timeInput(String(value.endTime || '10:00')),
     allDay: Boolean(value.allDay),
     repeat: value.repeat || 'none',
-    interval: Number(value.interval || 1),
-    until: value.until || '',
+    interval: Number(value.interval ?? 1),
+    until: dateInput(value.until || ''),
     color: eventColors.includes(value.color) ? value.color : 'blue',
     exceptions: [...new Set(value.exceptions || [])],
   };
@@ -42,25 +63,18 @@ export function normalizeEvent(value) {
     event.title.length > 1000
   )
     throw new TypeError('title');
+  if (!validCalendarDate(event.startDate)) throw new RangeError('startDate');
+  if (!validCalendarDate(event.endDate) || event.endDate < event.startDate)
+    throw new RangeError('endDate');
+  if (!validTime(event.startTime)) throw new RangeError('startTime');
   if (
-    !validCalendarDate(event.startDate) ||
-    !validCalendarDate(event.endDate) ||
-    event.endDate < event.startDate
-  )
-    throw new RangeError('date');
-  if (
-    !validTime(event.startTime) ||
     !validTime(event.endTime) ||
     (!event.allDay && event.startDate === event.endDate && event.endTime <= event.startTime)
   )
-    throw new RangeError('time');
-  if (
-    !recurrenceKinds.includes(event.repeat) ||
-    !Number.isInteger(event.interval) ||
-    event.interval < 1 ||
-    event.interval > 99
-  )
-    throw new RangeError('repeat');
+    throw new RangeError('endTime');
+  if (!recurrenceKinds.includes(event.repeat)) throw new RangeError('repeat');
+  if (!Number.isInteger(event.interval) || event.interval < 1 || event.interval > 99)
+    throw new RangeError('interval');
   if (event.until && (!validCalendarDate(event.until) || event.until < event.startDate))
     throw new RangeError('until');
   if (!event.exceptions.every(validCalendarDate)) throw new RangeError('exceptions');

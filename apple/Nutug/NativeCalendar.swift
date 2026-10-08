@@ -17,7 +17,10 @@ final class CalendarModel: ObservableObject {
   { didSet { UserDefaults.standard.set(showLunar, forKey: "calendar.showLunar") } }
   private var previousToday = CivilCalendar.today()
   let engine = try? CalendarEngine(root: AppModel.publicRoot)
-  let appointments = AppointmentStore()
+  let appointments: AppointmentStore
+  init(appointments: AppointmentStore? = nil) {
+    self.appointments = appointments ?? AppointmentStore()
+  }
   var today: String { CivilCalendar.today() }
   var days: [String] { CivilCalendar.days(month, firstWeekday: firstWeekday) }
   func select(_ value: String) {
@@ -50,6 +53,7 @@ struct NativeCalendar: View {
   var scale: Double
   var skin: CalendarSkin
   @Environment(\.scenePhase) private var phase
+  @Environment(\.dynamicTypeSize) private var typeSize
   private enum Panel {
     case month, views, search, day
     case edit(CalendarAppointment)
@@ -70,7 +74,7 @@ struct NativeCalendar: View {
     GeometryReader { geometry in
       let compact = geometry.size.width < 600 || geometry.size.height < 640
       ScrollView {
-        VStack(spacing: 20) {
+        VStack(spacing: 12) {
           HStack {
             Button {
               pickerYear = Int(model.month.prefix(4)) ?? 2026
@@ -81,7 +85,7 @@ struct NativeCalendar: View {
                   model.view == "year"
                     ? String(model.date.prefix(4))
                     : model.month.replacingOccurrences(of: "-", with: " / ")
-                ).font(.title2.monospacedDigit())
+                ).font(.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit())
                 Image(systemName: "chevron.down").font(.caption)
               }
             }.buttonStyle(.plain).accessibilityLabel(Copy.calendar("choose"))
@@ -101,18 +105,8 @@ struct NativeCalendar: View {
             } label: {
               Image(systemName: "chevron.right")
             }.accessibilityLabel(Copy.label("next")).disabled(model.destination(1) == nil)
-          }.buttonStyle(.bordered)
-          HStack(alignment: .top) {
-            Button {
-              panel = .views
-            } label: {
-              HStack {
-                MongolianText(text: Copy.calendar(model.view), height: 70, size: 23)
-                Image(systemName: "chevron.down")
-              }
-            }.buttonStyle(.bordered)
-            Spacer()
-          }.buttonStyle(.bordered)
+          }.buttonStyle(.bordered).buttonBorderShape(.circle)
+            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
           if model.view == "year" {
             yearGrid
           } else if model.view == "week" {
@@ -120,6 +114,10 @@ struct NativeCalendar: View {
           } else if model.view == "day" {
             dayDetail
             agenda(model.date)
+          } else if typeSize.isAccessibilitySize {
+            selectedDaySummary
+            agenda(model.date)
+            accessibleMonth
           } else if geometry.size.width > 900 {
             HStack(alignment: .top, spacing: 28) {
               monthGrid(compact: compact)
@@ -132,6 +130,7 @@ struct NativeCalendar: View {
             monthGrid(compact: compact)
             if compact {
               selectedDaySummary
+              agenda(model.date)
             } else {
               Divider()
               dayDetail
@@ -153,6 +152,15 @@ struct NativeCalendar: View {
     }
     .toolbar {
       ToolbarItemGroup {
+        Button {
+          panel = .views
+        } label: {
+          Image(
+            systemName: model.view == "year"
+              ? "square.grid.2x2"
+              : model.view == "day"
+                ? "list.bullet" : model.view == "week" ? "calendar.day.timeline.left" : "calendar")
+        }.accessibilityLabel(Copy.calendar("display"))
         Button {
           panel = .search
         } label: {
@@ -176,10 +184,13 @@ struct NativeCalendar: View {
     case .month: monthPicker
     case .views: viewPicker
     case .search: searchView
-    case .edit(let event): AppointmentEditor(draft: event, store: store).id(event.id)
+    case .edit(let event):
+      AppointmentEditor(draft: event, store: store, onSaved: didSave).id(event.id)
     case .editOccurrence(let event):
-      AppointmentEditor(draft: store.individual(event), store: store, exception: event)
-        .id(event.id)
+      AppointmentEditor(
+        draft: store.individual(event), store: store, exception: event, onSaved: didSave
+      )
+      .id(event.id)
     case .detail(let event): appointmentDetail(event)
     case .day:
       ScrollView {
@@ -206,9 +217,9 @@ struct NativeCalendar: View {
       panel = .day
     } label: {
       HStack(spacing: 16) {
-        Text(String(Int(model.date.suffix(2))!)).font(.system(size: 38, weight: .light))
+        Text(String(Int(model.date.suffix(2))!)).font(.system(size: 28, weight: .medium))
           .monospacedDigit()
-        MongolianText(text: Copy.weekdays[weekday(model.date)], height: 66, size: 23)
+        MongolianText(text: Copy.weekdays[weekday(model.date)], height: 50, size: 22)
         if model.showLunar, let lunar = model.engine?.lunar(model.date) {
           HStack(spacing: 6) {
             Image(systemName: "moon")
@@ -217,8 +228,12 @@ struct NativeCalendar: View {
         }
         Spacer()
         Image(systemName: "chevron.right")
-      }.padding(12)
+      }.padding(.vertical, 10)
     }.buttonStyle(.plain).accessibilityLabel(model.date + " · " + Copy.calendar("agenda"))
+  }
+  private func didSave(_ event: CalendarAppointment) {
+    model.select(event.startDate)
+    if model.view == "year" { model.view = "month" }
   }
   private func weekday(_ date: String) -> Int {
     (CivilCalendar.calendar.component(.weekday, from: CivilCalendar.date(date)!) + 5) % 7
@@ -230,8 +245,10 @@ struct NativeCalendar: View {
       HStack(spacing: 0) {
         ForEach(0..<7, id: \.self) { offset in
           let day = (offset + model.firstWeekday) % 7
-          MongolianText(text: Copy.weekdays[day], height: 75, size: 23).frame(maxWidth: .infinity)
-            .foregroundStyle(day >= 5 ? Color.accentColor : .secondary)
+          MongolianText(
+            text: Copy.weekdays[day], height: 58, size: 21,
+            color: day >= 5 ? .accentColor : .secondary
+          ).frame(maxWidth: .infinity)
         }
       }
       LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 2), count: 7), spacing: 5)
@@ -241,10 +258,14 @@ struct NativeCalendar: View {
           let lunar = model.engine?.lunar(value)
           Button {
             model.select(value)
-            if compact { panel = .day }
           } label: {
             VStack(spacing: compact ? 3 : 6) {
               Text(String(Int(value.suffix(2)) ?? 0)).font(.title3.monospacedDigit())
+                .frame(width: 34, height: 34)
+                .foregroundStyle(
+                  current ? skin.canvas : (value == model.today ? Color.accentColor : .primary)
+                )
+                .background(current ? Color.accentColor : .clear, in: Circle())
               if model.showLunar, let lunar {
                 Text(
                   (lunar.leap ? "* " : "")
@@ -253,14 +274,12 @@ struct NativeCalendar: View {
               }
               Circle().fill(
                 items.contains { $0.startDate <= value && $0.endDate >= value }
-                  ? (current ? skin.canvas : Color.accentColor) : .clear
+                  ? Color.accentColor : .clear
               ).frame(width: 4, height: 4)
             }.foregroundStyle(
-              current ? skin.canvas : (value == model.today ? Color.accentColor : .primary)
+              current || value == model.today ? Color.accentColor : .primary
             )
-            .frame(maxWidth: .infinity, minHeight: compact ? 52 : 66).background(
-              current ? Color.accentColor : .clear,
-              in: RoundedRectangle(cornerRadius: skin == .ink ? 0 : skin == .paper ? 4 : 14))
+            .frame(maxWidth: .infinity, minHeight: compact ? 58 : 68)
           }.buttonStyle(.plain).opacity(value.hasPrefix(model.month) ? 1 : 0.55)
             .disabled(value < "1901-01-01" || value > "2100-12-31").accessibilityLabel(value)
             .accessibilityAddTraits(current ? .isSelected : [])
@@ -269,7 +288,10 @@ struct NativeCalendar: View {
     }
   }
   private var yearGrid: some View {
-    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 16)], spacing: 16) {
+    LazyVGrid(
+      columns: typeSize.isAccessibilitySize
+        ? [GridItem(.flexible())] : [GridItem(.adaptive(minimum: 150), spacing: 16)], spacing: 16
+    ) {
       ForEach(1...12, id: \.self) { number in
         let month = String(format: "%@-%02d", String(model.date.prefix(4)), number)
         Button {
@@ -310,7 +332,8 @@ struct NativeCalendar: View {
               }
             }.buttonStyle(.bordered)
             agenda(day)
-          }.frame(width: 170).disabled(day < "1901-01-01" || day > "2100-12-31")
+          }.frame(width: typeSize.isAccessibilitySize ? 260 : 170).disabled(
+            day < "1901-01-01" || day > "2100-12-31")
         }
       }
     }
@@ -321,16 +344,54 @@ struct NativeCalendar: View {
       onAdd: { panel = .edit(CalendarAppointment(startDate: date, endDate: date)) })
   }
   private var dayDetail: some View {
-    HStack(alignment: .top, spacing: 24) {
-      datePair(
-        Copy.calendar("gregorian"), year: Int(model.date.prefix(4))!,
-        month: Int(model.date.dropFirst(5).prefix(2))!, day: Int(model.date.suffix(2))!
-      ).frame(maxWidth: .infinity, alignment: .leading)
-      if model.showLunar, let lunar = model.engine?.lunar(model.date) {
+    ViewThatFits(in: .horizontal) {
+      HStack(alignment: .top, spacing: 24) {
         datePair(
-          Copy.calendar("lunar"), year: lunar.year, month: lunar.month, day: lunar.day,
-          leap: lunar.leap
+          Copy.calendar("gregorian"), year: Int(model.date.prefix(4))!,
+          month: Int(model.date.dropFirst(5).prefix(2))!, day: Int(model.date.suffix(2))!
         ).frame(maxWidth: .infinity, alignment: .leading)
+        if model.showLunar, let lunar = model.engine?.lunar(model.date) {
+          datePair(
+            Copy.calendar("lunar"), year: lunar.year, month: lunar.month, day: lunar.day,
+            leap: lunar.leap
+          ).frame(maxWidth: .infinity, alignment: .leading)
+        }
+      }
+      VStack(alignment: .leading, spacing: 24) {
+        datePair(
+          Copy.calendar("gregorian"), year: Int(model.date.prefix(4))!,
+          month: Int(model.date.dropFirst(5).prefix(2))!, day: Int(model.date.suffix(2))!)
+        if model.showLunar, let lunar = model.engine?.lunar(model.date) {
+          datePair(
+            Copy.calendar("lunar"), year: lunar.year, month: lunar.month, day: lunar.day,
+            leap: lunar.leap)
+        }
+      }
+    }
+  }
+  private var accessibleMonth: some View {
+    LazyVStack(spacing: 16) {
+      ForEach(model.days.filter { $0.hasPrefix(model.month) }, id: \.self) { value in
+        Button {
+          model.select(value)
+        } label: {
+          HStack(alignment: .top, spacing: 16) {
+            VStack(alignment: .leading, spacing: 10) {
+              Text(String(Int(value.suffix(2))!)).font(.title2.monospacedDigit())
+              if model.showLunar, let lunar = model.engine?.lunar(value) {
+                Text("\(lunar.month)/\(lunar.day)").font(.caption.monospacedDigit())
+                  .foregroundStyle(.secondary)
+              }
+            }.frame(minWidth: 64, alignment: .leading)
+            MongolianText(text: Copy.weekdays[weekday(value)], height: 85, size: 23)
+            Spacer(minLength: 0)
+            if value == model.date {
+              Image(systemName: "checkmark.circle.fill").foregroundStyle(Color.accentColor)
+            }
+          }.padding(.vertical, 8).frame(maxWidth: .infinity, alignment: .leading)
+        }.buttonStyle(.plain).accessibilityLabel(value).accessibilityAddTraits(
+          value == model.date ? .isSelected : [])
+        Divider()
       }
     }
   }
@@ -471,8 +532,8 @@ struct NativeCalendar: View {
             if let original { panel = .edit(original) }
           } label: {
             MongolianText(
-              text: Copy.calendar("edit")
-                + (event.frequency == "none" ? "" : " · " + Copy.calendar("series")), height: 110,
+              text: (event.frequency == "none" ? "" : Copy.calendar("series") + " · ")
+                + Copy.calendar("edit"), height: 110,
               size: 24)
           }
           Button(role: .destructive) {
@@ -480,8 +541,8 @@ struct NativeCalendar: View {
             panel = nil
           } label: {
             MongolianText(
-              text: Copy.calendar("delete")
-                + (event.frequency == "none" ? "" : " · " + Copy.calendar("series")), height: 110,
+              text: (event.frequency == "none" ? "" : Copy.calendar("series") + " · ")
+                + Copy.calendar("delete"), height: 110,
               size: 24)
           }
           if event.frequency != "none" {
@@ -492,7 +553,7 @@ struct NativeCalendar: View {
                 Image(systemName: "pencil")
                 MongolianText(text: Copy.calendar("thisOccurrence"), height: 110, size: 24)
               }
-            }.accessibilityLabel(Copy.calendar("edit") + " · " + Copy.calendar("thisOccurrence"))
+            }.accessibilityLabel(Copy.calendar("thisOccurrence") + " · " + Copy.calendar("edit"))
             Button(role: .destructive) {
               store.remove(event, onlyThis: true)
               panel = nil
@@ -501,7 +562,7 @@ struct NativeCalendar: View {
                 Image(systemName: "trash")
                 MongolianText(text: Copy.calendar("thisOccurrence"), height: 110, size: 24)
               }
-            }.accessibilityLabel(Copy.calendar("delete") + " · " + Copy.calendar("thisOccurrence"))
+            }.accessibilityLabel(Copy.calendar("thisOccurrence") + " · " + Copy.calendar("delete"))
           }
         }.buttonStyle(.bordered)
       }.padding(20)

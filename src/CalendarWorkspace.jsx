@@ -174,6 +174,7 @@ export function CalendarWorkspace() {
       setEditor(null);
       setSelected(null);
       select(draft.startDate);
+      if (prefs.view === 'year') setPrefs({ ...prefs, view: 'month' });
     }
   };
   const remove = (one) => {
@@ -227,6 +228,7 @@ export function CalendarWorkspace() {
     ['week', CalendarRange],
     ['day', List],
   ];
+  const CurrentViewIcon = viewItems.find(([id]) => id === prefs.view)[1];
   const destination = (amount) =>
     prefs.view === 'year'
       ? moveMonth(date, amount * 12)
@@ -242,20 +244,22 @@ export function CalendarWorkspace() {
             <Button
               key={id}
               data-view={id}
+              aria-label={copy[id]}
+              title={copy[id]}
               aria-pressed={prefs.view === id}
               onPress={() => setPrefs({ ...prefs, view: id })}
             >
               <Icon size={19} />
-              <Mn>{copy[id]}</Mn>
             </Button>
           ))}
         </div>
         <Button
           className="view-menu-trigger"
           data-action="choose-view"
+          aria-label={copy.display + ' · ' + copy[prefs.view]}
           onPress={() => setViewMenu(true)}
         >
-          <Mn>{copy[prefs.view]}</Mn>
+          <CurrentViewIcon size={21} />
           <ChevronDown size={16} />
         </Button>
         <div className="calendar-app-tools">
@@ -599,14 +603,14 @@ export function CalendarWorkspace() {
                 }}
               >
                 <Mn>
+                  {selected.repeat !== 'none' ? `${copy.series} · ` : ''}
                   {copy.edit}
-                  {selected.repeat !== 'none' ? ` · ${copy.series}` : ''}
                 </Mn>
               </Button>
               {selected.repeat !== 'none' && (
                 <Button
                   data-action="edit-occurrence"
-                  aria-label={copy.edit + ' · ' + copy.thisOccurrence}
+                  aria-label={copy.thisOccurrence + ' · ' + copy.edit}
                   onPress={() => {
                     const event = events.find((event) => event.id === selected.eventId);
                     setEditor({
@@ -617,7 +621,7 @@ export function CalendarWorkspace() {
                   }}
                 >
                   <Mn>
-                    {copy.edit} · {copy.thisOccurrence}
+                    {copy.thisOccurrence} · {copy.edit}
                   </Mn>
                 </Button>
               )}
@@ -628,8 +632,8 @@ export function CalendarWorkspace() {
               >
                 <Trash2 size={18} />
                 <Mn>
+                  {selected.repeat !== 'none' ? `${copy.series} · ` : ''}
                   {copy.delete}
-                  {selected.repeat !== 'none' ? ` · ${copy.series}` : ''}
                 </Mn>
               </Button>
               {selected.repeat !== 'none' && (
@@ -639,7 +643,7 @@ export function CalendarWorkspace() {
                   onPress={() => remove(true)}
                 >
                   <Mn>
-                    {copy.delete} · {copy.thisOccurrence}
+                    {copy.thisOccurrence} · {copy.delete}
                   </Mn>
                 </Button>
               )}
@@ -662,7 +666,18 @@ export function CalendarWorkspace() {
 
 function AppointmentEditor({ value, onSave, onClose, storageError }) {
   const [draft, setDraft] = useState(value),
-    [error, setError] = useState(false);
+    [error, setError] = useState('');
+  const form = useRef(null);
+  const errorLabels = {
+    title: copy.title,
+    startDate: copy.start + ' · ' + copy.day,
+    endDate: copy.end + ' · ' + copy.day,
+    startTime: copy.start + ' · ' + copy.time,
+    endTime: copy.end + ' · ' + copy.time,
+    repeat: copy.repeat,
+    interval: copy.interval,
+    until: copy.until,
+  };
   const change = (key, value) => setDraft({ ...draft, [key]: value });
   return (
     <Sheet
@@ -675,14 +690,17 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
       className="appointment-editor"
     >
       <form
+        ref={form}
         noValidate
         onSubmit={(event) => {
           event.preventDefault();
           try {
             onSave(normalizeEvent(draft));
-            setError(false);
-          } catch {
-            setError(true);
+            setError('');
+          } catch (issue) {
+            const field = issue.message;
+            setError(field);
+            requestAnimationFrame(() => form.current?.elements.namedItem(field)?.focus?.());
           }
         }}
       >
@@ -693,6 +711,8 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
               className="mn"
               autoFocus
               required
+              name="title"
+              aria-invalid={error === 'title' || undefined}
               value={draft.title}
               onChange={(event) => change('title', event.target.value)}
               aria-label={copy.title}
@@ -723,6 +743,8 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
                     type="text"
                     inputMode="text"
                     required
+                    name={key + 'Date'}
+                    aria-invalid={error === key + 'Date' || undefined}
                     pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
                     aria-label={copy[key] + ' · ' + copy.day}
                     className="numeric"
@@ -734,6 +756,8 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
                       type="text"
                       inputMode="text"
                       required
+                      name={key + 'Time'}
+                      aria-invalid={error === key + 'Time' || undefined}
                       pattern="[0-9]{2}:[0-9]{2}"
                       className="numeric"
                       aria-label={copy[key] + ' · ' + copy.time}
@@ -769,6 +793,8 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
                   min="1"
                   max="99"
                   required
+                  name="interval"
+                  aria-invalid={error === 'interval' || undefined}
                   className="numeric"
                   aria-label={copy.interval}
                   value={draft.interval}
@@ -782,6 +808,8 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
                   inputMode="text"
                   pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
                   placeholder={draft.startDate}
+                  name="until"
+                  aria-invalid={error === 'until' || undefined}
                   className="numeric"
                   aria-label={copy.until}
                   value={draft.until}
@@ -824,7 +852,9 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
           </div>
         </div>
         {(error || storageError) && (
-          <Mn role="alert">{storageError ? copy.storageError : copy.invalid}</Mn>
+          <Mn role="alert">
+            {storageError ? copy.storageError : errorLabels[error] || copy.invalid}
+          </Mn>
         )}
         <div className="appointment-form-footer">
           <Button type="button" onPress={onClose}>

@@ -71,7 +71,15 @@ async function close(w, d) {
   await click(d.querySelector('[data-action=new-event]'));
   await click(d.querySelector('[data-action=save-event]'));
   assert(d.querySelector('[role=alert]'), 'Invalid forms explain the issue in Mongolian');
+  await pause(30);
+  assert.equal(d.activeElement.name, 'title', 'An invalid title receives focus');
   await fill(w, d.querySelector('textarea[aria-label="' + copy.title + '"]'), 'ᠬᠤᠷᠠᠯ');
+  await fill(w, d.querySelector('input[name=endDate]'), '2026-10-07');
+  await click(d.querySelector('[data-action=save-event]'));
+  await pause(30);
+  assert.equal(d.activeElement.name, 'endDate', 'The field with the invalid date receives focus');
+  assert(d.querySelector('[role=alert]').textContent.includes(copy.end));
+  await fill(w, d.querySelector('input[name=endDate]'), '2026-10-08');
   await click(
     [...d.querySelectorAll('.repeat-field [role=radio]')].find(
       (x) => x.getAttribute('aria-label') === copy.week,

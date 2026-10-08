@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Button, Dialog, DialogTrigger, Popover } from 'react-aria-components';
-import { ChevronLeft, ChevronRight, ChevronDown, Moon } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ChevronDown, Moon, CalendarCheck } from 'lucide-react';
 import { Mn, IconButton } from './ui';
 import { labels } from './ui-copy.mjs';
 import { calendarCopy as copy, calendarConfig } from './calendar-copy.mjs';
@@ -180,9 +180,12 @@ export function MonthCalendar({
           </Popover>
         </DialogTrigger>
         <div className="month-actions">
-          <Button className="today-button" data-action="today" onPress={() => select(today, true)}>
-            <Mn>{copy.today}</Mn>
-          </Button>
+          <IconButton
+            icon={CalendarCheck}
+            label={copy.today}
+            data-action="today"
+            onPress={() => select(today, true)}
+          />
           <IconButton
             icon={ChevronLeft}
             label={labels.previous}
@@ -223,7 +226,6 @@ export function MonthCalendar({
                 onKeyDown={(e) => key(e, day.iso)}
                 onPress={() => {
                   select(day.iso);
-                  if (window.matchMedia('(max-width: 700px)').matches) onOpenDay?.();
                 }}
               >
                 <span className="day-number numeric">{day.day}</span>

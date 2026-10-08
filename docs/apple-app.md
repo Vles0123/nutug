@@ -65,4 +65,10 @@ xcrun swiftc apple/Nutug/CalendarEngine.swift tests/native/ScheduleChecks.swift 
 build/schedule-check "$PWD"
 ```
 
-编译通过与设备交互验收分别记录。在用户办公期间，仅执行后台编译与自动化逻辑检查，不启动模拟器、不切换应用窗口。
+编译通过与设备交互验收分别记录。在用户办公期间，仅执行后台编译与自动化逻辑检查，使用隔离的后台模拟器、不打开桌面模拟器窗口或切换应用窗口。
+
+## 原生渲染与存储回归
+
+`node scripts/native-render-check.mjs` 构建单独的 `NutugRenderChecks` 检查 target，创建隔离的 iPhone 模拟器，运行日程保存、重复展开、单次修改、重读、删除撤销和 ICS 往返检查，并渲染月/年/周/日、四种皮肤、设置、编辑、历史、人物和大字号界面。优先使用可用的 iPhone Duo 运行时，其他环境选择兼容的 iPhone。检查完成后移除本次临时设备，不打开桌面模拟器窗口。
+
+结果保存到 `build/native-render-results/`；`NUTUG_RENDER_OUTPUT` 可指定其他路径。竖排编辑框另外核对实际宽度、加载后的文字和 WebKit 渲染。画面检查与存储检查的结果各自记录，构建成功不替代渲染检查。

@@ -156,7 +156,7 @@ private struct NativeSources: View {
     }
   }
 }
-private struct NativePerson: View {
+struct NativePerson: View {
   let core: HistoryCore
   let scale: Double
   @State private var selected: String
@@ -164,6 +164,7 @@ private struct NativePerson: View {
   @State private var showRelations = false
   @State private var trail: [String] = []
   @Environment(\.dismiss) private var dismiss
+  @Environment(\.dynamicTypeSize) private var typeSize
   init(id: String, core: HistoryCore, scale: Double) {
     self.core = core
     self.scale = scale
@@ -185,27 +186,16 @@ private struct NativePerson: View {
     GeometryReader { geometry in
       if let person = core.people[selected] {
         VStack(spacing: 16) {
-          HStack(alignment: .top, spacing: 8) {
-            MongolianText(text: person.name, height: 110, size: 30)
-            Spacer(minLength: 0)
-            if !trail.isEmpty {
-              Button {
-                selected = trail.removeLast()
-              } label: {
-                Image(systemName: "arrow.left").frame(width: 28, height: 28)
-              }.accessibilityLabel(Copy.label("back"))
+          ViewThatFits(in: .horizontal) {
+            HStack(alignment: .top, spacing: 8) {
+              MongolianText(text: person.name, height: 110, size: 30)
+              Spacer(minLength: 0)
+              personActions
             }
-            HistoryChoice(label: Copy.label("details"), selected: !showRelations) {
-              showRelations = false
+            VStack(alignment: .leading, spacing: 12) {
+              MongolianText(text: person.name, height: 110, size: 30)
+              personActions
             }
-            HistoryChoice(label: Copy.label("relations"), selected: showRelations) {
-              showRelations = true
-            }
-            Button {
-              dismiss()
-            } label: {
-              Image(systemName: "xmark").frame(width: 28, height: 28)
-            }.accessibilityLabel(Copy.label("close"))
           }.buttonStyle(.bordered)
           if showRelations {
             HStack(spacing: 12) {
@@ -223,19 +213,21 @@ private struct NativePerson: View {
             .frame(
               width: max(1, geometry.size.width - 32), height: max(180, geometry.size.height - 264))
           } else {
-            ScrollView(.horizontal) {
-              HStack(alignment: .top, spacing: 24) {
-                if let years = person.years {
+            GeometryReader { reading in
+              ScrollView(typeSize.isAccessibilitySize ? [.horizontal, .vertical] : .horizontal) {
+                HStack(alignment: .top, spacing: 24) {
+                  if let years = person.years {
+                    MongolianText(
+                      text: years, height: max(100, reading.size.height - 16), size: 23,
+                      scale: scale)
+                  }
                   MongolianText(
-                    text: years, height: max(240, geometry.size.height - 170), size: 23,
+                    text: person.summary, height: max(100, reading.size.height - 16), size: 29,
                     scale: scale)
-                }
-                MongolianText(
-                  text: person.summary, height: max(240, geometry.size.height - 170), size: 29,
-                  scale: scale)
-                NativeSources(ids: person.sources, sources: core.sources, scale: scale)
-              }.padding(8)
-            }.id(selected)
+                  NativeSources(ids: person.sources, sources: core.sources, scale: scale)
+                }.padding(8)
+              }.id(selected)
+            }
           }
         }.padding(16)
       }
@@ -243,6 +235,38 @@ private struct NativePerson: View {
     #if os(macOS)
       .frame(width: 840, height: 740)
     #endif
+  }
+  private var personActions: some View {
+    HStack(spacing: 8) {
+      if !trail.isEmpty {
+        Button {
+          selected = trail.removeLast()
+        } label: {
+          Image(systemName: "arrow.left")
+        }
+        .accessibilityLabel(Copy.label("back"))
+      }
+      Button {
+        showRelations = false
+      } label: {
+        Image(systemName: "text.alignleft")
+      }
+      .accessibilityLabel(Copy.label("details"))
+      .tint(showRelations ? .secondary : .accentColor)
+      Button {
+        showRelations = true
+      } label: {
+        Image(systemName: "point.3.connected.trianglepath.dotted")
+      }
+      .accessibilityLabel(Copy.label("relations"))
+      .tint(showRelations ? .accentColor : .secondary)
+      Button {
+        dismiss()
+      } label: {
+        Image(systemName: "xmark")
+      }
+      .accessibilityLabel(Copy.label("close"))
+    }.controlSize(.large).dynamicTypeSize(...DynamicTypeSize.xxxLarge)
   }
 }
 

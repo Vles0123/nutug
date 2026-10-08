@@ -38,16 +38,8 @@
       "basis": "区分文章目录入口与筛选范围，补充可追溯词形用例。"
     }
   ],
-  "totals": { "entries": 209, "nativeReviewed": 0, "differingConcepts": 6 },
+  "totals": { "entries": 209, "nativeReviewed": 0, "differingConcepts": 5 },
   "differingForms": [
-    {
-      "concept": "today",
-      "entries": [
-        { "id": "calendar-app.today", "text": "ᠥᠨᠥᠳᠦᠷ" },
-        { "id": "calendar.today", "text": "ᠥᠨᠥᠳᠥᠷ" },
-        { "id": "almanac.today", "text": "ᠥᠨᠥᠳᠦᠷ" }
-      ]
-    },
     {
       "concept": "all",
       "entries": [
@@ -175,7 +167,7 @@
     },
     {
       "id": "app.larger",
-      "text": "ᠲᠣᠮᠣᠰᠬᠠᠬᠤ",
+      "text": "ᠲᠣᠮᠣᠳᠬᠠᠬᠤ",
       "context": "增大字号或放大图谱",
       "review": "needs-native-review"
     },
@@ -253,7 +245,7 @@
     },
     {
       "id": "app.retry",
-      "text": "ᠳᠠᠬᠢᠨ ᠣᠷᠣᠯᠳᠣᠬᠤ",
+      "text": "ᠳᠠᠬᠢᠨ ᠣᠷᠣᠯᠳᠤᠬᠤ",
       "context": "重试失败的操作",
       "review": "needs-native-review"
     },
@@ -301,7 +293,7 @@
     },
     {
       "id": "calendar-app.today",
-      "text": "ᠥᠨᠥᠳᠦᠷ",
+      "text": "ᠥᠨᠥᠳᠥᠷ",
       "context": "calendar-app / today",
       "review": "needs-native-review"
     },
@@ -451,13 +443,13 @@
     },
     {
       "id": "calendar-app.series",
-      "text": "ᠪᠦᠬᠦ",
+      "text": "ᠪᠦᠬᠦ ᠳᠠᠪᠲᠠᠯᠲᠠ",
       "context": "calendar-app / series",
       "review": "needs-native-review"
     },
     {
       "id": "calendar-app.until",
-      "text": "ᠬᠦᠷᠲᠡᠯ᠎ᠡ",
+      "text": "ᠳᠠᠭᠤᠰᠬᠤ ᠡᠳᠦᠷ",
       "context": "calendar-app / until",
       "review": "needs-native-review"
     },
@@ -469,7 +461,7 @@
     },
     {
       "id": "calendar-app.empty",
-      "text": "ᠲᠥᠯᠥᠪᠯᠡᠭᠡ ᠠᠯᠭ᠎ᠠ",
+      "text": "ᠲᠥᠯᠥᠪᠯᠡᠭᠡ ᠦᠭᠡᠢ",
       "context": "calendar-app / empty",
       "review": "needs-native-review"
     },
@@ -541,7 +533,7 @@
     },
     {
       "id": "calendar-app.firstWeekday",
-      "text": "ᠡᠬᠢᠨ ᠦ ᠡᠳᠦᠷ",
+      "text": "ᠡᠬᠢᠯᠡᠬᠦ ᠭᠠᠷᠠᠭ",
       "context": "calendar-app / firstWeekday",
       "review": "needs-native-review"
     },
@@ -553,7 +545,7 @@
     },
     {
       "id": "calendar-app.weekdays.0",
-      "text": "ᠳᠠᠪᠠᠭ᠎ᠠ",
+      "text": "ᠳᠠᠸᠠ",
       "context": "calendar-app / weekdays.0",
       "review": "needs-native-review"
     },
@@ -565,7 +557,7 @@
     },
     {
       "id": "calendar-app.weekdays.2",
-      "text": "ᠯᠬᠠᠭᠪᠠ",
+      "text": "ᡀᠠᠭᠪᠠ",
       "context": "calendar-app / weekdays.2",
       "review": "needs-native-review"
     },
@@ -589,7 +581,7 @@
     },
     {
       "id": "calendar-app.weekdays.6",
-      "text": "ᠨᠶᠠᠮ",
+      "text": "ᠨᠢᠮ᠎ᠠ",
       "context": "calendar-app / weekdays.6",
       "review": "needs-native-review"
     },
@@ -1033,7 +1025,7 @@
     },
     {
       "id": "calendar.weekdays.0",
-      "text": "ᠳᠠᠪᠠᠭ᠎ᠠ",
+      "text": "ᠳᠠᠸᠠ",
       "context": "calendar / weekdays.0",
       "review": "needs-native-review"
     },
@@ -1045,7 +1037,7 @@
     },
     {
       "id": "calendar.weekdays.2",
-      "text": "ᠯᠬᠠᠭᠪᠠ",
+      "text": "ᡀᠠᠭᠪᠠ",
       "context": "calendar / weekdays.2",
       "review": "needs-native-review"
     },
@@ -1069,7 +1061,7 @@
     },
     {
       "id": "calendar.weekdays.6",
-      "text": "ᠨᠶᠠᠮ",
+      "text": "ᠨᠢᠮ᠎ᠠ",
       "context": "calendar / weekdays.6",
       "review": "needs-native-review"
     },
@@ -1081,7 +1073,7 @@
     },
     {
       "id": "almanac.today",
-      "text": "ᠥᠨᠥᠳᠦᠷ",
+      "text": "ᠥᠨᠥᠳᠥᠷ",
       "context": "almanac / today",
       "review": "needs-native-review"
     },

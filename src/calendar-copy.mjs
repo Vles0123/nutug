@@ -5,7 +5,7 @@ export const calendarConfig = {
   maxDate: '2100-12-31',
 };
 export const calendarCopy = {
-  today: 'ᠥᠨᠥᠳᠦᠷ',
+  today: 'ᠥᠨᠥᠳᠥᠷ',
   year: 'ᠣᠨ',
   month: 'ᠰᠠᠷ᠎ᠠ',
   day: 'ᠡᠳᠦᠷ',
@@ -30,10 +30,10 @@ export const calendarCopy = {
   repeat: 'ᠳᠠᠪᠲᠠᠬᠤ',
   once: 'ᠨᠢᠭᠡ ᠤᠳᠠᠭ᠎ᠠ',
   thisOccurrence: 'ᠡᠨᠡ ᠤᠳᠠᠭ᠎ᠠ',
-  series: 'ᠪᠦᠬᠦ',
-  until: 'ᠬᠦᠷᠲᠡᠯ᠎ᠡ',
+  series: 'ᠪᠦᠬᠦ ᠳᠠᠪᠲᠠᠯᠲᠠ',
+  until: 'ᠳᠠᠭᠤᠰᠬᠤ ᠡᠳᠦᠷ',
   interval: 'ᠵᠠᠪᠰᠠᠷ',
-  empty: 'ᠲᠥᠯᠥᠪᠯᠡᠭᠡ ᠠᠯᠭ᠎ᠠ',
+  empty: 'ᠲᠥᠯᠥᠪᠯᠡᠭᠡ ᠦᠭᠡᠢ',
   invalid: 'ᠣᠷᠣᠭᠤᠯᠤᠭᠰᠠᠨ ᠵᠦᠢᠯ ᠢᠶᠡᠨ ᠰᠢᠯᠭᠠᠨ᠎ᠠ ᠤᠤ',
   import: 'ᠣᠷᠣᠭᠤᠯᠬᠤ',
   export: 'ᠭᠠᠷᠭᠠᠬᠤ',
@@ -45,7 +45,7 @@ export const calendarCopy = {
   dark: 'ᠬᠠᠷᠠᠩᠭᠤᠢ',
   paper: 'ᠴᠠᠭᠠᠰᠤ',
   ink: 'ᠬᠠᠷ᠎ᠠ ᠴᠠᠭᠠᠨ',
-  firstWeekday: 'ᠡᠬᠢᠨ ᠦ ᠡᠳᠦᠷ',
+  firstWeekday: 'ᠡᠬᠢᠯᠡᠬᠦ ᠭᠠᠷᠠᠭ',
   display: 'ᠬᠠᠷᠠᠭᠳᠠᠴᠠ',
-  weekdays: ['ᠳᠠᠪᠠᠭ᠎ᠠ', 'ᠮᠢᠭᠮᠠᠷ', 'ᠯᠬᠠᠭᠪᠠ', 'ᠫᠦᠷᠪᠦ', 'ᠪᠠᠰᠠᠩ', 'ᠪᠢᠮᠪᠠ', 'ᠨᠶᠠᠮ'],
+  weekdays: ['ᠳᠠᠸᠠ', 'ᠮᠢᠭᠮᠠᠷ', 'ᡀᠠᠭᠪᠠ', 'ᠫᠦᠷᠪᠦ', 'ᠪᠠᠰᠠᠩ', 'ᠪᠢᠮᠪᠠ', 'ᠨᠢᠮ᠎ᠠ'],
 };

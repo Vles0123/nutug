@@ -97,6 +97,10 @@ struct CalendarAppointment: Codable, Identifiable, Equatable {
   }
 }
 
+struct ScheduleValidationError: Error {
+  let field: String
+}
+
 final class ScheduleEngine {
   private let context: JSContext
   init(root: URL) throws {
@@ -116,7 +120,13 @@ final class ScheduleEngine {
   private func decode<T: Decodable>(_ value: JSValue?, as type: T.Type) throws -> T {
     guard let value, !value.isUndefined, context.exception == nil, let object = value.toObject()
     else {
+      let field = context.exception?.toString().components(separatedBy: ": ").last ?? ""
       context.exception = nil
+      if ["title", "startDate", "endDate", "startTime", "endTime", "repeat", "interval", "until"]
+        .contains(field)
+      {
+        throw ScheduleValidationError(field: field)
+      }
       throw CocoaError(.coderInvalidValue)
     }
     return try JSONDecoder().decode(type, from: JSONSerialization.data(withJSONObject: object))

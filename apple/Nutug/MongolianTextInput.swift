@@ -5,6 +5,7 @@ import WebKit
 final class TextInputCoordinator: NSObject, WKScriptMessageHandler {
   var text: Binding<String>
   var lastValue: String
+  var lastFocusRequest = 0
   init(text: Binding<String>) {
     self.text = text
     lastValue = text.wrappedValue
@@ -24,7 +25,12 @@ final class TextInputCoordinator: NSObject, WKScriptMessageHandler {
       allowingReadAccessTo: AppModel.publicRoot)
     return view
   }
-  func update(_ view: WKWebView) {
+  func update(_ view: WKWebView, focusRequest: Int) {
+    if focusRequest > 0 && lastFocusRequest != focusRequest {
+      view.callAsyncJavaScript(
+        "document.getElementById('input')?.focus()", arguments: [:], in: nil, in: .page)
+    }
+    lastFocusRequest = focusRequest
     guard lastValue != text.wrappedValue else { return }
     lastValue = text.wrappedValue
     view.callAsyncJavaScript(
@@ -42,11 +48,12 @@ final class TextInputCoordinator: NSObject, WKScriptMessageHandler {
   struct MongolianTextInput: NSViewRepresentable {
     @Binding var text: String
     let label: String
+    var focusRequest: Int = 0
     func makeCoordinator() -> TextInputCoordinator { TextInputCoordinator(text: $text) }
     func makeNSView(context: Context) -> WKWebView { context.coordinator.make(label: label) }
     func updateNSView(_ view: WKWebView, context: Context) {
       context.coordinator.text = $text
-      context.coordinator.update(view)
+      context.coordinator.update(view, focusRequest: focusRequest)
     }
     static func dismantleNSView(_ view: WKWebView, coordinator: TextInputCoordinator) {
       view.configuration.userContentController.removeScriptMessageHandler(forName: "nutugText")
@@ -57,11 +64,12 @@ final class TextInputCoordinator: NSObject, WKScriptMessageHandler {
   struct MongolianTextInput: UIViewRepresentable {
     @Binding var text: String
     let label: String
+    var focusRequest: Int = 0
     func makeCoordinator() -> TextInputCoordinator { TextInputCoordinator(text: $text) }
     func makeUIView(context: Context) -> WKWebView { context.coordinator.make(label: label) }
     func updateUIView(_ view: WKWebView, context: Context) {
       context.coordinator.text = $text
-      context.coordinator.update(view)
+      context.coordinator.update(view, focusRequest: focusRequest)
     }
     static func dismantleUIView(_ view: WKWebView, coordinator: TextInputCoordinator) {
       view.configuration.userContentController.removeScriptMessageHandler(forName: "nutugText")

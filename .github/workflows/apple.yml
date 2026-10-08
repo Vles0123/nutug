@@ -8,6 +8,8 @@ on:
         'shared/**',
         'scripts/build*.mjs',
         'tests/native/**',
+        'scripts/native-render-check.mjs',
+        'content-source/data.js',
         'package*.json',
         '.github/workflows/apple.yml',
       ]
@@ -19,6 +21,8 @@ on:
         'shared/**',
         'scripts/build*.mjs',
         'tests/native/**',
+        'scripts/native-render-check.mjs',
+        'content-source/data.js',
         'package*.json',
         '.github/workflows/apple.yml',
       ]
@@ -52,3 +56,8 @@ jobs:
         run: xcodebuild -project apple/Nutug.xcodeproj -scheme "${{ matrix.scheme }}" -destination 'generic/platform=macOS' -derivedDataPath "$RUNNER_TEMP/nutug-mac" CODE_SIGNING_ALLOWED=NO build
       - name: iPhone and iPad build
         run: xcodebuild -project apple/Nutug.xcodeproj -scheme "${{ matrix.scheme }}" -destination 'generic/platform=iOS Simulator' -derivedDataPath "$RUNNER_TEMP/nutug-ios" CODE_SIGNING_ALLOWED=NO build
+      - name: Native persistence and rendered screens
+        if: matrix.scheme == 'NutugCalendar'
+        run: |
+          npm run build:content
+          node scripts/native-render-check.mjs

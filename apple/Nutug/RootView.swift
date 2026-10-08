@@ -1,7 +1,9 @@
 import SwiftUI
 
 struct RootView: View {
-  @StateObject private var model = AppModel()
+  @StateObject private var model: AppModel
+  init() { _model = StateObject(wrappedValue: AppModel()) }
+  init(model: AppModel) { _model = StateObject(wrappedValue: model) }
   private var page: NutugPage {
     #if NUTUG_HISTORY
       .chronicle
@@ -37,12 +39,16 @@ struct RootView: View {
   private var settings: some View {
     NavigationStack {
       Form {
-        HStack(alignment: .top, spacing: 12) {
+        LazyVGrid(
+          columns: [GridItem(.flexible()), GridItem(.flexible())], alignment: .leading, spacing: 16
+        ) {
           ForEach(CalendarSkin.allCases) { value in
             Button {
               model.skin = value.rawValue
             } label: {
               VStack {
+                Image(systemName: model.skin == value.rawValue ? "checkmark.circle.fill" : "circle")
+                  .accessibilityHidden(true)
                 RoundedRectangle(cornerRadius: value == .ink ? 0 : 8).fill(value.canvas).frame(
                   width: 42, height: 28
                 ).overlay(Rectangle().stroke(value.accent, lineWidth: 2))
@@ -86,17 +92,19 @@ private struct CalendarPreferences: View {
     Toggle(isOn: $model.showLunar) {
       MongolianText(text: Copy.calendar("lunar"), height: 150, size: 23)
     }
-    HStack {
+    VStack(alignment: .leading, spacing: 12) {
       MongolianText(text: Copy.calendar("firstWeekday"), height: 150, size: 23)
-      ForEach([0, 6], id: \.self) { day in
-        Button {
-          model.firstWeekday = day
-        } label: {
-          MongolianText(text: Copy.weekdays[day], height: 90, size: 23)
+      HStack {
+        ForEach([0, 6], id: \.self) { day in
+          Button {
+            model.firstWeekday = day
+          } label: {
+            MongolianText(text: Copy.weekdays[day], height: 90, size: 23)
+          }
+          .buttonStyle(.bordered)
+          .tint(model.firstWeekday == day ? Color.accentColor : .secondary)
+          .accessibilityAddTraits(model.firstWeekday == day ? .isSelected : [])
         }
-        .buttonStyle(.bordered)
-        .tint(model.firstWeekday == day ? Color.accentColor : .secondary)
-        .accessibilityAddTraits(model.firstWeekday == day ? .isSelected : [])
       }
     }
   }

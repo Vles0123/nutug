@@ -103,7 +103,10 @@ final class HistoryStore: ObservableObject {
   @Published var updateAvailable = false
   private var pending: HistoryCore?
   private let connection = NWPathMonitor()
-  init() {
+  private let networkEnabled: Bool
+  init(networkEnabled: Bool = true) {
+    self.networkEnabled = networkEnabled
+    guard networkEnabled else { return }
     connection.pathUpdateHandler = { [weak self] path in
       guard path.status == .satisfied else { return }
       Task { @MainActor in
@@ -144,7 +147,7 @@ final class HistoryStore: ObservableObject {
   }
   private var restored = false
   func load() async {
-    guard !loading else { return }
+    guard networkEnabled, !loading else { return }
     loading = true
     failed = false
     defer { loading = false }

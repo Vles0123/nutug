@@ -92,7 +92,7 @@ docs/                   架构与构建说明
 
 日历支持年/月/周/日视图、日程新增与编辑、全天与跨天日程、按日/周/月/年重复、单次修改与例外删除、撤销、搜索和 ICS 导入导出。日程保存在当前设备，皮肤提供明亮、深色、纸面与黑白四种。具体互通范围见 [产品说明](docs/product-scope.md)。
 
-此分支的历史编辑源含 81 条事件、9 个时期，年代覆盖公元前 209 年至 2024 年。事实核对见 [历史来源记录](docs/history-source-review.md)，覆盖范围见 [历史编排](docs/history-coverage.md)。新增传统蒙古文仍在编校阶段；Menksoft 的实际核对进度见 [翻译核对记录](docs/menksoft-review.json)。本地内容构建与远端发布分别进行。
+历史内容源已发布 81 条事件、44 人物、55 条关系和 9 个时期，年代覆盖公元前 209 年至 2024 年。事实核对见 [历史来源记录](docs/history-source-review.md)，覆盖范围见 [历史编排](docs/history-coverage.md)。新增传统蒙古文仍在编校阶段；Menksoft 的实际核对进度见 [翻译核对记录](docs/menksoft-review.json)。本地内容构建与远端发布分别进行。
 
 ## 内容范围
 

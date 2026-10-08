@@ -14,6 +14,20 @@ const assert = require('node:assert/strict');
     until: '2026-11-30',
     exceptions: ['2026-10-15'],
   });
+  const entered = api.normalizeEvent({
+    ...base,
+    startDate: '᠒᠐᠒᠖/᠑᠐/᠘',
+    endDate: '２０２６．１０．８',
+    startTime: '᠙:᠐᠐',
+  });
+  assert.equal(entered.startDate, '2026-10-08');
+  assert.equal(entered.endDate, '2026-10-08');
+  assert.equal(entered.startTime, '09:00');
+  assert.equal(
+    entered.notes,
+    base.notes,
+    'Numeric input normalization leaves Mongolian prose and shaping controls intact',
+  );
   assert.deepEqual(
     api.occurrencesBetween([base], '2026-10-01', '2026-10-31').map((x) => x.startDate),
     ['2026-10-08', '2026-10-22', '2026-10-29'],
@@ -73,6 +87,7 @@ const assert = require('node:assert/strict');
   assert.equal(converted.endTime, '08:00');
   assert.throws(() => api.normalizeEvent({ ...base, endDate: '2026-10-07' }));
   assert.throws(() => api.normalizeEvent({ ...base, endTime: '08:00' }));
+  assert.throws(() => api.normalizeEvent({ ...base, interval: 0 }), { message: 'interval' });
   assert.throws(
     () =>
       api.importCalendar(
