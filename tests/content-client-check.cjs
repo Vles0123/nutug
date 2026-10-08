@@ -164,7 +164,14 @@ const fs = require('node:fs');
   });
   const coreSnapshot = await coreClient.load();
   assert.equal(requests.length, 2, 'History loads only the manifest and core');
-  assert.equal(coreSnapshot.core.events.length, 18);
+  const reviewedEventIds = JSON.parse(fs.readFileSync('docs/history-source-review.json', 'utf8'))
+    .events.map((event) => event.id)
+    .sort();
+  assert.deepEqual(
+    coreSnapshot.core.events.map((event) => event.id).sort(),
+    reviewedEventIds,
+    'The history feed includes the full reviewed chronology',
+  );
   await coreClient.downloadOffline();
   online = false;
   const offlineCore = new ContentClient({
@@ -173,7 +180,11 @@ const fs = require('node:fs');
     fetcher,
     scope: 'core',
   });
-  assert.equal((await offlineCore.load()).core.events.length, 18);
+  assert.deepEqual(
+    (await offlineCore.load()).core.events.map((event) => event.id).sort(),
+    reviewedEventIds,
+    'Offline history retains the complete chronology',
+  );
   online = true;
   current = version('core-update');
   assert.equal(await coreClient.checkForUpdates(), true);

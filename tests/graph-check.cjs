@@ -8,7 +8,8 @@ const d = vm.runInNewContext(
 );
 assert.equal(Object.keys(d.PEOPLE).length, 32);
 assert.equal(d.EDGES.length, 53);
-assert.equal(d.EVENTS.length, 18);
+const historyReview = JSON.parse(fs.readFileSync('docs/history-source-review.json', 'utf8'));
+assert.equal(d.EVENTS.length, historyReview.events.length);
 assert.equal(d.EVENTS.filter((e) => e.date === '1251').length, 1);
 for (const p of Object.values(d.PEOPLE)) for (const key of p.sources) assert(d.SOURCES[key]);
 for (const e of d.EDGES) {
@@ -112,7 +113,7 @@ assert(after > before, 'zoom out increases the fitted view width');
 assert(!/[\u3400-\u9fff\u0400-\u04ff]/.test(doc.body.textContent));
 assert.equal(doc.querySelectorAll('a[download]').length, 0);
 console.log(
-  'PASS: 32 people, 53 edges, 18 events; source integrity, fixed-coordinate spacing, relationship types, knowledge navigation, conflict focus, fit and zoom.',
+  `PASS: 32 people, 53 edges, ${d.EVENTS.length} events; source integrity, fixed-coordinate spacing, relationship types, knowledge navigation, conflict focus, fit and zoom.`,
 );
 
 const gaps = vm.runInNewContext(

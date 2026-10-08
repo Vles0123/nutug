@@ -22,6 +22,7 @@ const data = JSON.parse(
     context,
   ),
 );
+data.historyPeriods = JSON.parse(await readFile('content-source/history-periods.json', 'utf8'));
 const root = 'content-dist';
 const version = process.env.CONTENT_VERSION || new Date().toISOString().replace(/\D/g, '');
 if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/.test(version)) throw new Error('Invalid content version');

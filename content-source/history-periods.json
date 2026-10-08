@@ -1,0 +1,100 @@
+{
+  "periods": [
+    {
+      "id": "early-steppe",
+      "title": "ᠡᠷᠲᠡᠨ ᠦ ᠲᠠᠯ᠎ᠠ ᠨᠤᠲᠤᠭ",
+      "startYear": -209,
+      "endYear": 1125
+    },
+    {
+      "id": "mongol-formation",
+      "title": "ᠮᠣᠩᠭᠣᠯ ᠠᠶᠢᠮᠠᠭᠤᠳ",
+      "startYear": 500,
+      "endYear": 1206
+    },
+    {
+      "id": "mongol-empire",
+      "title": "ᠶᠡᠬᠡ ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ",
+      "startYear": 1206,
+      "endYear": 1264
+    },
+    {
+      "id": "successor-khanates",
+      "title": "ᠬᠠᠨ ᠤ ᠤᠯᠤᠰ ᠤᠳ",
+      "startYear": 1240,
+      "endYear": 1502
+    },
+    {
+      "id": "yuan",
+      "title": "ᠶᠤᠸᠠᠨ ᠤᠯᠤᠰ",
+      "startYear": 1271,
+      "endYear": 1368
+    },
+    {
+      "id": "northern-yuan",
+      "title": "ᠤᠮᠠᠷᠠᠲᠤ ᠶᠤᠸᠠᠨ",
+      "startYear": 1368,
+      "endYear": 1635
+    },
+    {
+      "id": "qing-period",
+      "title": "ᠴᠢᠩ ᠤᠯᠤᠰ ᠤᠨ ᠦᠶ᠎ᠡ",
+      "startYear": 1636,
+      "endYear": 1911
+    },
+    {
+      "id": "twentieth-century",
+      "title": "20 ᠳᠤᠭᠠᠷ ᠵᠠᠭᠤᠨ",
+      "startYear": 1911,
+      "endYear": 1991
+    },
+    {
+      "id": "contemporary",
+      "title": "ᠣᠷᠴᠢᠨ ᠦᠶ᠎ᠡ",
+      "startYear": 1992,
+      "endYear": 2024
+    }
+  ],
+  "regions": [
+    {
+      "id": "mongolian-plateau",
+      "title": "ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠥᠨᠳᠥᠷᠯᠢᠭ"
+    },
+    {
+      "id": "east-asia",
+      "title": "ᠵᠡᠭᠦᠨ ᠠᠽᠢ"
+    },
+    {
+      "id": "central-asia",
+      "title": "ᠲᠥᠪ ᠠᠽᠢ"
+    },
+    {
+      "id": "west-asia",
+      "title": "ᠪᠠᠷᠠᠭᠤᠨ ᠠᠽᠢ"
+    },
+    {
+      "id": "europe",
+      "title": "ᠡᠦ᠋ᠷᠣᠫᠠ"
+    },
+    {
+      "id": "japan",
+      "title": "ᠶᠠᠫᠣᠨ"
+    },
+    {
+      "id": "inner-mongolia",
+      "title": "ᠥᠪᠥᠷ ᠮᠣᠩᠭᠣᠯ"
+    },
+    {
+      "id": "outer-mongolia",
+      "title": "ᠭᠠᠳᠠᠭᠠᠳᠤ ᠮᠣᠩᠭᠣᠯ"
+    },
+    {
+      "id": "mongolia",
+      "title": "ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ"
+    },
+    {
+      "id": "china-mongolia",
+      "title": "ᠵᠤᠩᠭᠣ ᠪᠠ ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ"
+    }
+  ]
+}

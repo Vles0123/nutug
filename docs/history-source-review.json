@@ -1,8 +1,8 @@
 {
-  "reviewedOn": "2026-10-07",
-  "scope": "The 32 people, 53 relationships and 18 chronicle events currently used by the product. Legacy cultural/tribal articles and calendar rules are outside this review.",
+  "reviewedOn": "2026-10-08",
+  "scope": "32 people, 53 relationships and 81 chronicle events spanning 209 BCE to 2024. The 18 previously reviewed events are retained; the 63 new events cover early steppe history through the present. Cultural/tribal long articles and calendar rules are outside this review.",
   "method": "Read English and Cyrillic-Mongolian Wikipedia biographies/sections; compare only the facts named in each row. Interlanguage agreement is not independent historical proof. Preserve stronger existing sources when coverage differs.",
-  "languageReview": "Traditional Mongolian text edits are limited to dates and short wording built from existing phrases. Native-speaker proofreading is pending; Wikipedia Cyrillic text is not mechanically transliterated.",
+  "languageReview": "The 63 new traditional-Mongolian event drafts and navigation labels are enumerated in history-copy-draft.json. Menksoft machine comparison is deferred until the calendar/UI work is complete, as requested. Native-speaker proofreading is not claimed.",
   "sources": {
     "wiki-mongol-empire": {
       "title": "Mongol Empire",
@@ -451,6 +451,720 @@
       "url": "https://mn.wikipedia.org/w/index.php?oldid=854823",
       "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D1%83%D0%BD%D1%8A%D2%AF",
       "revisionId": 854823
+    },
+    "wiki-history-modu-en": {
+      "title": "Modu Chanyu",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378883373",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Modu_Chanyu",
+      "revisionId": 1378883373
+    },
+    "wiki-history-modu-mn": {
+      "title": "Модун шаньюй",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=847278",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%B4%D1%83%D0%BD_%D1%88%D0%B0%D0%BD%D1%8C%D1%8E%D0%B9",
+      "revisionId": 847278
+    },
+    "wiki-history-xianbei-en": {
+      "title": "Xianbei",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378948076",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Xianbei",
+      "revisionId": 1378948076
+    },
+    "wiki-history-xianbei-mn": {
+      "title": "Сяньби",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=842523",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A1%D1%8F%D0%BD%D1%8C%D0%B1%D0%B8",
+      "revisionId": 842523
+    },
+    "wiki-history-rouran-en": {
+      "title": "Yujiulü Shelun",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1373162866",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Yujiul%C3%BC_Shelun",
+      "revisionId": 1373162866
+    },
+    "wiki-history-rouran-mn": {
+      "title": "Жарун хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=747436",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%96%D0%B0%D1%80%D1%83%D0%BD_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 747436
+    },
+    "wiki-history-turkic-en": {
+      "title": "First Turkic Khaganate",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1379022883",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/First_Turkic_Khaganate",
+      "revisionId": 1379022883
+    },
+    "wiki-history-turkic-mn": {
+      "title": "Хөх Түрэгийн хаант улс",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=868399",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D3%A9%D1%85_%D0%A2%D2%AF%D1%80%D1%8D%D0%B3%D0%B8%D0%B9%D0%BD_%D1%85%D0%B0%D0%B0%D0%BD%D1%82_%D1%83%D0%BB%D1%81",
+      "revisionId": 868399
+    },
+    "wiki-history-shiwei-en": {
+      "title": "Shiwei people",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1323127134",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Shiwei_people",
+      "revisionId": 1323127134
+    },
+    "wiki-history-shiwei-mn": {
+      "title": "Шивэй",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=710861",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A8%D0%B8%D0%B2%D1%8D%D0%B9",
+      "revisionId": 710861
+    },
+    "wiki-history-uyghur-en": {
+      "title": "Uyghur Khaganate",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1374695350",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Uyghur_Khaganate",
+      "revisionId": 1374695350
+    },
+    "wiki-history-uyghur-mn": {
+      "title": "Уйгур улс",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=842842",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A3%D0%B9%D0%B3%D1%83%D1%80_%D1%83%D0%BB%D1%81",
+      "revisionId": 842842
+    },
+    "wiki-history-liao-en": {
+      "title": "Liao dynasty",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378418430",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Liao_dynasty",
+      "revisionId": 1378418430
+    },
+    "wiki-history-liao-mn": {
+      "title": "Хидан Улс",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=837225",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D0%B8%D0%B4%D0%B0%D0%BD_%D0%A3%D0%BB%D1%81",
+      "revisionId": 837225
+    },
+    "wiki-history-khamag-en": {
+      "title": "Khamag Mongol",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375857061",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Khamag_Mongol",
+      "revisionId": 1375857061
+    },
+    "wiki-history-khamag-mn": {
+      "title": "Хамаг Монгол",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=849757",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D0%B0%D0%BC%D0%B0%D0%B3_%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB",
+      "revisionId": 849757
+    },
+    "wiki-history-script-en": {
+      "title": "Mongolian script",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1369934665",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Mongolian_script",
+      "revisionId": 1369934665
+    },
+    "wiki-history-script-mn": {
+      "title": "Монгол бичиг",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=871762",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB_%D0%B1%D0%B8%D1%87%D0%B8%D0%B3",
+      "revisionId": 871762
+    },
+    "wiki-history-xia-en": {
+      "title": "Mongol conquest of Western Xia",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1370628488",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Mongol_conquest_of_Western_Xia",
+      "revisionId": 1370628488
+    },
+    "wiki-history-xia-mn": {
+      "title": "Монголчууд Тангудыг дайлсан нь",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=820877",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB%D1%87%D1%83%D1%83%D0%B4_%D0%A2%D0%B0%D0%BD%D0%B3%D1%83%D0%B4%D1%8B%D0%B3_%D0%B4%D0%B0%D0%B9%D0%BB%D1%81%D0%B0%D0%BD_%D0%BD%D1%8C",
+      "revisionId": 820877
+    },
+    "wiki-history-jin-en": {
+      "title": "Mongol conquest of the Jin dynasty",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1370628492",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Mongol_conquest_of_the_Jin_dynasty",
+      "revisionId": 1370628492
+    },
+    "wiki-history-jin-mn": {
+      "title": "Монголчууд Алтан улсыг дайлсан нь",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=820735",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB%D1%87%D1%83%D1%83%D0%B4_%D0%90%D0%BB%D1%82%D0%B0%D0%BD_%D1%83%D0%BB%D1%81%D1%8B%D0%B3_%D0%B4%D0%B0%D0%B9%D0%BB%D1%81%D0%B0%D0%BD_%D0%BD%D1%8C",
+      "revisionId": 820735
+    },
+    "wiki-history-khwarazm-en": {
+      "title": "Mongol invasion of the Khwarazmian Empire",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1374047957",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Mongol_invasion_of_the_Khwarazmian_Empire",
+      "revisionId": 1374047957
+    },
+    "wiki-history-khwarazm-mn": {
+      "title": "Монголчуудын Хорезм рүү хийсэн дайралт",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=845761",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB%D1%87%D1%83%D1%83%D0%B4%D1%8B%D0%BD_%D0%A5%D0%BE%D1%80%D0%B5%D0%B7%D0%BC_%D1%80%D2%AF%D2%AF_%D1%85%D0%B8%D0%B9%D1%81%D1%8D%D0%BD_%D0%B4%D0%B0%D0%B9%D1%80%D0%B0%D0%BB%D1%82",
+      "revisionId": 845761
+    },
+    "wiki-history-kalka-en": {
+      "title": "Battle of the Kalka River",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1377835066",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Battle_of_the_Kalka_River",
+      "revisionId": 1377835066
+    },
+    "wiki-history-kalka-mn": {
+      "title": "Калка голын тулалдаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=857608",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9A%D0%B0%D0%BB%D0%BA%D0%B0_%D0%B3%D0%BE%D0%BB%D1%8B%D0%BD_%D1%82%D1%83%D0%BB%D0%B0%D0%BB%D0%B4%D0%B0%D0%B0%D0%BD",
+      "revisionId": 857608
+    },
+    "wiki-history-karakorum-en": {
+      "title": "Karakorum",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378588956",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Karakorum",
+      "revisionId": 1378588956
+    },
+    "wiki-history-karakorum-mn": {
+      "title": "Хархорум",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=857779",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D0%B0%D1%80%D1%85%D0%BE%D1%80%D1%83%D0%BC",
+      "revisionId": 857779
+    },
+    "wiki-history-europe-en": {
+      "title": "Mongol invasion of Europe",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1379043900",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Mongol_invasion_of_Europe",
+      "revisionId": 1379043900
+    },
+    "wiki-history-europe-mn": {
+      "title": "Монголчуудын Европ дахь байлдан дагуулалт",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=865092",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB%D1%87%D1%83%D1%83%D0%B4%D1%8B%D0%BD_%D0%95%D0%B2%D1%80%D0%BE%D0%BF_%D0%B4%D0%B0%D1%85%D1%8C_%D0%B1%D0%B0%D0%B9%D0%BB%D0%B4%D0%B0%D0%BD_%D0%B4%D0%B0%D0%B3%D1%83%D1%83%D0%BB%D0%B0%D0%BB%D1%82",
+      "revisionId": 865092
+    },
+    "wiki-history-secret-history-en": {
+      "title": "Secret History of the Mongols",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1372015757",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Secret_History_of_the_Mongols",
+      "revisionId": 1372015757
+    },
+    "wiki-history-secret-history-mn": {
+      "title": "Монголын Нууц Товчоо",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=853798",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB%D1%8B%D0%BD_%D0%9D%D1%83%D1%83%D1%86_%D0%A2%D0%BE%D0%B2%D1%87%D0%BE%D0%BE",
+      "revisionId": 853798
+    },
+    "wiki-history-golden-horde-en": {
+      "title": "Golden Horde",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375905749",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Golden_Horde",
+      "revisionId": 1375905749
+    },
+    "wiki-history-golden-horde-mn": {
+      "title": "Алтан Орд",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=866299",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%90%D0%BB%D1%82%D0%B0%D0%BD_%D0%9E%D1%80%D0%B4",
+      "revisionId": 866299
+    },
+    "wiki-history-ilkhanate-en": {
+      "title": "Ilkhanate",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375525200",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Ilkhanate",
+      "revisionId": 1375525200
+    },
+    "wiki-history-ilkhanate-mn": {
+      "title": "Ил Хаант Улс",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=862444",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%98%D0%BB_%D0%A5%D0%B0%D0%B0%D0%BD%D1%82_%D0%A3%D0%BB%D1%81",
+      "revisionId": 862444
+    },
+    "wiki-history-baghdad-en": {
+      "title": "Siege of Baghdad",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378473365",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Siege_of_Baghdad",
+      "revisionId": 1378473365
+    },
+    "wiki-history-baghdad-mn": {
+      "title": "Монголчууд Багдадыг эзэлсэн нь",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=821657",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB%D1%87%D1%83%D1%83%D0%B4_%D0%91%D0%B0%D0%B3%D0%B4%D0%B0%D0%B4%D1%8B%D0%B3_%D1%8D%D0%B7%D1%8D%D0%BB%D1%81%D1%8D%D0%BD_%D0%BD%D1%8C",
+      "revisionId": 821657
+    },
+    "wiki-history-ain-jalut-en": {
+      "title": "Battle of Ain Jalut",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375442659",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Battle_of_Ain_Jalut",
+      "revisionId": 1375442659
+    },
+    "wiki-history-ain-jalut-mn": {
+      "title": "Айн Жалутын тулалдаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=865596",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%90%D0%B9%D0%BD_%D0%96%D0%B0%D0%BB%D1%83%D1%82%D1%8B%D0%BD_%D1%82%D1%83%D0%BB%D0%B0%D0%BB%D0%B4%D0%B0%D0%B0%D0%BD",
+      "revisionId": 865596
+    },
+    "wiki-history-japan-en": {
+      "title": "Mongol invasions of Japan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375332661",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Mongol_invasions_of_Japan",
+      "revisionId": 1375332661
+    },
+    "wiki-history-japan-mn": {
+      "title": "Монголчуудын Япон руу хийсэн довтолгоо",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=856487",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB%D1%87%D1%83%D1%83%D0%B4%D1%8B%D0%BD_%D0%AF%D0%BF%D0%BE%D0%BD_%D1%80%D1%83%D1%83_%D1%85%D0%B8%D0%B9%D1%81%D1%8D%D0%BD_%D0%B4%D0%BE%D0%B2%D1%82%D0%BE%D0%BB%D0%B3%D0%BE%D0%BE",
+      "revisionId": 856487
+    },
+    "wiki-history-chagatai-khanate-en": {
+      "title": "Chagatai Khanate",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1377015617",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Chagatai_Khanate",
+      "revisionId": 1377015617
+    },
+    "wiki-history-chagatai-khanate-mn": {
+      "title": "Цагаадайн Улс",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=861294",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A6%D0%B0%D0%B3%D0%B0%D0%B0%D0%B4%D0%B0%D0%B9%D0%BD_%D0%A3%D0%BB%D1%81",
+      "revisionId": 861294
+    },
+    "wiki-history-buir-en": {
+      "title": "Battle of Buir Lake",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1376558522",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Battle_of_Buir_Lake",
+      "revisionId": 1376558522
+    },
+    "wiki-history-buir-evidence-mn": {
+      "title": "Төгстөмөр хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=856061",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A2%D3%A9%D0%B3%D1%81%D1%82%D3%A9%D0%BC%D3%A9%D1%80_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 856061
+    },
+    "wiki-history-tumu-en": {
+      "title": "Tumu Crisis",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1374653708",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Tumu_Crisis",
+      "revisionId": 1374653708
+    },
+    "wiki-history-tumu-mn": {
+      "title": "Тумугийн тулалдаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=778279",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A2%D1%83%D0%BC%D1%83%D0%B3%D0%B8%D0%B9%D0%BD_%D1%82%D1%83%D0%BB%D0%B0%D0%BB%D0%B4%D0%B0%D0%B0%D0%BD",
+      "revisionId": 778279
+    },
+    "wiki-history-esen-en": {
+      "title": "Esen Taishi",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1377990273",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Esen_Taishi",
+      "revisionId": 1377990273
+    },
+    "wiki-history-esen-mn": {
+      "title": "Эсэн тайш",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=865496",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%AD%D1%81%D1%8D%D0%BD_%D1%82%D0%B0%D0%B9%D1%88",
+      "revisionId": 865496
+    },
+    "wiki-history-dayan-en": {
+      "title": "Dayan Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378132456",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Dayan_Khan",
+      "revisionId": 1378132456
+    },
+    "wiki-history-dayan-mn": {
+      "title": "Батмөнх Даян хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=868565",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%91%D0%B0%D1%82%D0%BC%D3%A9%D0%BD%D1%85_%D0%94%D0%B0%D1%8F%D0%BD_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 868565
+    },
+    "wiki-history-altan-en": {
+      "title": "Altan Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378198536",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Altan_Khan",
+      "revisionId": 1378198536
+    },
+    "wiki-history-altan-mn": {
+      "title": "Алтан хан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=841576",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%90%D0%BB%D1%82%D0%B0%D0%BD_%D1%85%D0%B0%D0%BD",
+      "revisionId": 841576
+    },
+    "wiki-history-dalai-lama-mn": {
+      "title": "Далай лам",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=855660",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%94%D0%B0%D0%BB%D0%B0%D0%B9_%D0%BB%D0%B0%D0%BC",
+      "revisionId": 855660
+    },
+    "wiki-history-erdene-zuu-en": {
+      "title": "Erdene Zuu Monastery",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1370541715",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Erdene_Zuu_Monastery",
+      "revisionId": 1370541715
+    },
+    "wiki-history-erdene-zuu-mn": {
+      "title": "Эрдэнэ Зуу хийд",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=830763",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%AD%D1%80%D0%B4%D1%8D%D0%BD%D1%8D_%D0%97%D1%83%D1%83_%D1%85%D0%B8%D0%B9%D0%B4",
+      "revisionId": 830763
+    },
+    "wiki-history-ligdan-en": {
+      "title": "Ligdan Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1375869765",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Ligdan_Khan",
+      "revisionId": 1375869765
+    },
+    "wiki-history-ligdan-mn": {
+      "title": "Лигдэн хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=868612",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9B%D0%B8%D0%B3%D0%B4%D1%8D%D0%BD_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 868612
+    },
+    "wiki-history-qing-en": {
+      "title": "Mongolia under Qing rule",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1368506232",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Mongolia_under_Qing_rule",
+      "revisionId": 1368506232
+    },
+    "wiki-history-qing-mn": {
+      "title": "Чин Улсын эрхшээл дэх Монгол орон",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=867053",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A7%D0%B8%D0%BD_%D0%A3%D0%BB%D1%81%D1%8B%D0%BD_%D1%8D%D1%80%D1%85%D1%88%D1%8D%D1%8D%D0%BB_%D0%B4%D1%8D%D1%85_%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB_%D0%BE%D1%80%D0%BE%D0%BD",
+      "revisionId": 867053
+    },
+    "wiki-history-oirat-code-en": {
+      "title": "Oirat Confederation",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1366970557",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Oirat_Confederation",
+      "revisionId": 1366970557
+    },
+    "wiki-history-oirat-code-evidence-mn": {
+      "title": "Эрдэнэбаатар хунтайж",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=861397",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%AD%D1%80%D0%B4%D1%8D%D0%BD%D1%8D%D0%B1%D0%B0%D0%B0%D1%82%D0%B0%D1%80_%D1%85%D1%83%D0%BD%D1%82%D0%B0%D0%B9%D0%B6",
+      "revisionId": 861397
+    },
+    "wiki-history-jao-modo-en": {
+      "title": "Battle of Jao Modo",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1370444089",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Battle_of_Jao_Modo",
+      "revisionId": 1370444089
+    },
+    "wiki-history-jao-modo-mn": {
+      "title": "Зуунмод–Тэрэлжийн тулалдаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=858350",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%97%D1%83%D1%83%D0%BD%D0%BC%D0%BE%D0%B4%E2%80%93%D0%A2%D1%8D%D1%80%D1%8D%D0%BB%D0%B6%D0%B8%D0%B9%D0%BD_%D1%82%D1%83%D0%BB%D0%B0%D0%BB%D0%B4%D0%B0%D0%B0%D0%BD",
+      "revisionId": 858350
+    },
+    "wiki-history-dzungar-en": {
+      "title": "Dzungar genocide",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1376748168",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Dzungar_genocide",
+      "revisionId": 1376748168
+    },
+    "wiki-history-dzungar-mn": {
+      "title": "Зүүнгарын геноцид",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=865038",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%97%D2%AF%D2%AF%D0%BD%D0%B3%D0%B0%D1%80%D1%8B%D0%BD_%D0%B3%D0%B5%D0%BD%D0%BE%D1%86%D0%B8%D0%B4",
+      "revisionId": 865038
+    },
+    "wiki-history-revolution-1911-en": {
+      "title": "Mongolian Revolution of 1911",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1366270452",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Mongolian_Revolution_of_1911",
+      "revisionId": 1366270452
+    },
+    "wiki-history-revolution-1911-mn": {
+      "title": "Үндэсний эрх чөлөөний хувьсгал",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=866463",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D2%AE%D0%BD%D0%B4%D1%8D%D1%81%D0%BD%D0%B8%D0%B9_%D1%8D%D1%80%D1%85_%D1%87%D3%A9%D0%BB%D3%A9%D3%A9%D0%BD%D0%B8%D0%B9_%D1%85%D1%83%D0%B2%D1%8C%D1%81%D0%B3%D0%B0%D0%BB",
+      "revisionId": 866463
+    },
+    "wiki-history-kyakhta-en": {
+      "title": "Treaty of Kyakhta (1915)",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1371202728",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Treaty_of_Kyakhta_(1915)",
+      "revisionId": 1371202728
+    },
+    "wiki-history-kyakhta-mn": {
+      "title": "Хиагтын гэрээ",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=849587",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D0%B8%D0%B0%D0%B3%D1%82%D1%8B%D0%BD_%D0%B3%D1%8D%D1%80%D1%8D%D1%8D",
+      "revisionId": 849587
+    },
+    "wiki-history-occupation-en": {
+      "title": "Occupation of Mongolia",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1376433697",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Occupation_of_Mongolia",
+      "revisionId": 1376433697
+    },
+    "wiki-history-occupation-mn": {
+      "title": "Хятадын Монгол дахь эзлэн түрэмгийлэл",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=867394",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D1%8F%D1%82%D0%B0%D0%B4%D1%8B%D0%BD_%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB_%D0%B4%D0%B0%D1%85%D1%8C_%D1%8D%D0%B7%D0%BB%D1%8D%D0%BD_%D1%82%D2%AF%D1%80%D1%8D%D0%BC%D0%B3%D0%B8%D0%B9%D0%BB%D1%8D%D0%BB",
+      "revisionId": 867394
+    },
+    "wiki-history-revolution-1921-en": {
+      "title": "Mongolian Revolution of 1921",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1377128013",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Mongolian_Revolution_of_1921",
+      "revisionId": 1377128013
+    },
+    "wiki-history-revolution-1921-mn": {
+      "title": "Ардын хувьсгал",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=859143",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%90%D1%80%D0%B4%D1%8B%D0%BD_%D1%85%D1%83%D0%B2%D1%8C%D1%81%D0%B3%D0%B0%D0%BB",
+      "revisionId": 859143
+    },
+    "wiki-history-mpr-en": {
+      "title": "Mongolian People's Republic",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1376551971",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Mongolian_People%27s_Republic",
+      "revisionId": 1376551971
+    },
+    "wiki-history-mpr-mn": {
+      "title": "Бүгд Найрамдах Монгол Ард Улс",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=872051",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%91%D2%AF%D0%B3%D0%B4_%D0%9D%D0%B0%D0%B9%D1%80%D0%B0%D0%BC%D0%B4%D0%B0%D1%85_%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB_%D0%90%D1%80%D0%B4_%D0%A3%D0%BB%D1%81",
+      "revisionId": 872051
+    },
+    "wiki-history-repressions-en": {
+      "title": "Stalinist repressions in Mongolia",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1374463650",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Stalinist_repressions_in_Mongolia",
+      "revisionId": 1374463650
+    },
+    "wiki-history-repressions-mn": {
+      "title": "Монгол дахь Их Хэлмэгдүүлэлт",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=869240",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB_%D0%B4%D0%B0%D1%85%D1%8C_%D0%98%D1%85_%D0%A5%D1%8D%D0%BB%D0%BC%D1%8D%D0%B3%D0%B4%D2%AF%D2%AF%D0%BB%D1%8D%D0%BB%D1%82",
+      "revisionId": 869240
+    },
+    "wiki-history-khalkhin-gol-en": {
+      "title": "Battles of Khalkhin Gol",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378643900",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Battles_of_Khalkhin_Gol",
+      "revisionId": 1378643900
+    },
+    "wiki-history-khalkhin-gol-mn": {
+      "title": "Халхын голын дайн",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=871495",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D0%B0%D0%BB%D1%85%D1%8B%D0%BD_%D0%B3%D0%BE%D0%BB%D1%8B%D0%BD_%D0%B4%D0%B0%D0%B9%D0%BD",
+      "revisionId": 871495
+    },
+    "wiki-history-cyrillic-en": {
+      "title": "Mongolian Cyrillic alphabet",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1369037271",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Mongolian_Cyrillic_alphabet",
+      "revisionId": 1369037271
+    },
+    "wiki-history-un-mn": {
+      "title": "Монгол",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=869535",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB",
+      "revisionId": 869535
+    },
+    "wiki-history-referendum-en": {
+      "title": "1945 Mongolian independence referendum",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1353982995",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/1945_Mongolian_independence_referendum",
+      "revisionId": 1353982995
+    },
+    "wiki-history-referendum-mn": {
+      "title": "1945 оны Монголын тусгаар тогтнолын бүх нийтийн санал асуулга",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=866471",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/1945_%D0%BE%D0%BD%D1%8B_%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB%D1%8B%D0%BD_%D1%82%D1%83%D1%81%D0%B3%D0%B0%D0%B0%D1%80_%D1%82%D0%BE%D0%B3%D1%82%D0%BD%D0%BE%D0%BB%D1%8B%D0%BD_%D0%B1%D2%AF%D1%85_%D0%BD%D0%B8%D0%B9%D1%82%D0%B8%D0%B9%D0%BD_%D1%81%D0%B0%D0%BD%D0%B0%D0%BB_%D0%B0%D1%81%D1%83%D1%83%D0%BB%D0%B3%D0%B0",
+      "revisionId": 866471
+    },
+    "wiki-history-inner-mongolia-en": {
+      "title": "Inner Mongolia",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1376258301",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Inner_Mongolia",
+      "revisionId": 1376258301
+    },
+    "wiki-history-inner-mongolia-mn": {
+      "title": "Өвөр Монгол",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=872042",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D3%A8%D0%B2%D3%A9%D1%80_%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB",
+      "revisionId": 872042
+    },
+    "wiki-history-china-relations-en": {
+      "title": "China–Mongolia relations",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1373717032",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/China%E2%80%93Mongolia_relations",
+      "revisionId": 1373717032
+    },
+    "wiki-history-china-relations-mn": {
+      "title": "Монгол-Хятадын харилцаа",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=865507",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB-%D0%A5%D1%8F%D1%82%D0%B0%D0%B4%D1%8B%D0%BD_%D1%85%D0%B0%D1%80%D0%B8%D0%BB%D1%86%D0%B0%D0%B0",
+      "revisionId": 865507
+    },
+    "wiki-history-un-en": {
+      "title": "Mongolia",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378451710",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Mongolia",
+      "revisionId": 1378451710
+    },
+    "wiki-history-democracy-en": {
+      "title": "Mongolian Revolution of 1990",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378011760",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Mongolian_Revolution_of_1990",
+      "revisionId": 1378011760
+    },
+    "wiki-history-democracy-mn": {
+      "title": "1990 оны Монголын ардчилсан хувьсгал",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=866466",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/1990_%D0%BE%D0%BD%D1%8B_%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB%D1%8B%D0%BD_%D0%B0%D1%80%D0%B4%D1%87%D0%B8%D0%BB%D1%81%D0%B0%D0%BD_%D1%85%D1%83%D0%B2%D1%8C%D1%81%D0%B3%D0%B0%D0%BB",
+      "revisionId": 866466
+    },
+    "wiki-history-constitution-en": {
+      "title": "Constitution of Mongolia",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1321576943",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Constitution_of_Mongolia",
+      "revisionId": 1321576943
+    },
+    "wiki-history-constitution-mn": {
+      "title": "Монгол Улсын Үндсэн Хууль",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=847498",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB_%D0%A3%D0%BB%D1%81%D1%8B%D0%BD_%D2%AE%D0%BD%D0%B4%D1%81%D1%8D%D0%BD_%D0%A5%D1%83%D1%83%D0%BB%D1%8C",
+      "revisionId": 847498
+    },
+    "wiki-history-election-1996-en": {
+      "title": "1996 Mongolian parliamentary election",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1362590475",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/1996_Mongolian_parliamentary_election",
+      "revisionId": 1362590475
+    },
+    "wiki-history-election-1996-mn": {
+      "title": "1996 оны Улсын Их Хурлын сонгууль",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=855889",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/1996_%D0%BE%D0%BD%D1%8B_%D0%A3%D0%BB%D1%81%D1%8B%D0%BD_%D0%98%D1%85_%D0%A5%D1%83%D1%80%D0%BB%D1%8B%D0%BD_%D1%81%D0%BE%D0%BD%D0%B3%D1%83%D1%83%D0%BB%D1%8C",
+      "revisionId": 855889
+    },
+    "wiki-history-oyu-agreement-en": {
+      "title": "Sanjiin Bayar",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1373152215",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Sanjiin_Bayar",
+      "revisionId": 1373152215
+    },
+    "wiki-history-oyu-tolgoi-mn": {
+      "title": "Оюутолгой",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=791630",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9E%D1%8E%D1%83%D1%82%D0%BE%D0%BB%D0%B3%D0%BE%D0%B9",
+      "revisionId": 791630
+    },
+    "wiki-history-election-2024-en": {
+      "title": "2024 Mongolian parliamentary election",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1377809436",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/2024_Mongolian_parliamentary_election",
+      "revisionId": 1377809436
+    },
+    "wiki-history-election-2024-mn": {
+      "title": "2024 оны Улсын Их Хурлын сонгууль",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=868614",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/2024_%D0%BE%D0%BD%D1%8B_%D0%A3%D0%BB%D1%81%D1%8B%D0%BD_%D0%98%D1%85_%D0%A5%D1%83%D1%80%D0%BB%D1%8B%D0%BD_%D1%81%D0%BE%D0%BD%D0%B3%D1%83%D1%83%D0%BB%D1%8C",
+      "revisionId": 868614
+    },
+    "wiki-history-zanabazar-en": {
+      "title": "Zanabazar",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1379000956",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Zanabazar",
+      "revisionId": 1379000956
+    },
+    "wiki-history-zanabazar-mn": {
+      "title": "Занабазар",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=849106",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%97%D0%B0%D0%BD%D0%B0%D0%B1%D0%B0%D0%B7%D0%B0%D1%80",
+      "revisionId": 849106
     }
   },
   "people": [
@@ -903,6 +1617,458 @@
       "sources": ["wiki-maidarbal-en", "wiki-ayushiridara-mn"],
       "status": "paired-core-facts",
       "note": "English Maidilibala and Mongolian Ayushiridara both record release/return in 1374; autumn detail remains tied to the existing Ming citation."
+    },
+    {
+      "id": "xiongnu-modu-209-bce",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-modu-en", "wiki-history-modu-mn"],
+      "note": "Modu became Xiongnu chanyu in 209 BCE and consolidated steppe groups. This is regional background, not a modern ethnic identity claim.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "xianbei-consolidation",
+      "status": "paired-with-differences",
+      "sources": ["wiki-history-xianbei-en", "wiki-history-xianbei-mn"],
+      "note": "Tanshihuai consolidated the Xianbei in the second century. English overview variants use 147/mid-second century; Mongolian uses 156. Keep century precision.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "rouran-khagan-402",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-rouran-en", "wiki-history-rouran-mn"],
+      "note": "Shelun/Jarun assumed the khagan title in 402.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "turkic-khaganate-552",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-turkic-en", "wiki-history-turkic-mn"],
+      "note": "Bumin defeated Rouran forces; the First Turkic Khaganate was established in 552.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "shiwei-records",
+      "status": "paired-with-differences",
+      "sources": ["wiki-history-shiwei-en", "wiki-history-shiwei-mn"],
+      "note": "Shiwei was a historical umbrella name for northeastern Asian groups; records include Menggu Shiwei. Do not equate every Shiwei group with later Mongols. Broad attestation period; the composition and identification of individual groups are debated.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "uyghur-khaganate-744",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-uyghur-en", "wiki-history-uyghur-mn"],
+      "note": "The Uyghur Khaganate formed in 744, with Ordu-Baliq as its centre in the Orkhon valley.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "uyghur-capital-fall-840",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-uyghur-en", "wiki-history-uyghur-mn"],
+      "note": "Yenisei Kyrgyz forces destroyed Ordu-Baliq in 840; Uyghur groups dispersed west and south.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "liao-foundation-916",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-liao-en", "wiki-history-liao-mn"],
+      "note": "Abaoji founded the Khitan-led dynastic state in 916, conventionally known as Liao; its influence extended into the steppe.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "khamag-mongol-confederation",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-khamag-en", "wiki-history-khamag-mn"],
+      "note": "The twelfth-century Khamag Mongol confederation occupied the Onon/Kherlen region; Khabul was one of its early recorded rulers.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "jamukha-gurkhan-1201",
+      "status": "paired-core-facts",
+      "sources": ["wiki-jamukha-en", "wiki-jamukha-mn"],
+      "note": "A coalition opposed to Temujin elected Jamukha Gur Khan in 1201.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "kereit-defeat-1203",
+      "status": "paired-core-facts",
+      "sources": ["wiki-genghis-khan", "wiki-temujin-mn"],
+      "note": "The alliance between Toghrul and Temujin broke down; Temujin defeated the Keraites in 1203.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "naiman-defeat-1204",
+      "status": "paired-core-facts",
+      "sources": ["wiki-genghis-khan", "wiki-temujin-mn"],
+      "note": "Temujin defeated the Naimans under Tayang Khan in 1204, preceding the unification of 1206.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "mongolian-script-adoption",
+      "status": "paired-with-differences",
+      "sources": ["wiki-history-script-en", "wiki-history-script-mn"],
+      "note": "Mongolian writing adapted from Old Uyghur was adopted for state records around 1204; tradition associates this with Tata-tonga. Circa 1204 is a conventional adoption date; distinguish adaptation/use from an exact invention day.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "western-xia-submission-1210",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-xia-en", "wiki-history-xia-mn"],
+      "note": "The 1209–1210 campaign ended with Western Xia submission in 1210.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "jin-war-begins-1211",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-jin-en", "wiki-history-jin-mn"],
+      "note": "The Mongol–Jin war began in 1211 and continued in stages until 1234.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "zhongdu-capture-1215",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-jin-en", "wiki-history-jin-mn"],
+      "note": "Mongol forces captured the Jin capital Zhongdu, in the area of modern Beijing, in 1215.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "khwarazm-campaign-1219",
+      "status": "paired-with-differences",
+      "sources": ["wiki-history-khwarazm-en", "wiki-history-khwarazm-mn"],
+      "note": "The initial campaign of 1219–1221 captured Bukhara and Samarkand and caused severe civilian destruction. The Mongolian page includes subsequent campaigns through 1231; this event covers the initial campaign only.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "kalka-battle-1223",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-kalka-en", "wiki-history-kalka-mn"],
+      "note": "Jebe and Subutai defeated a coalition of Rus and Cuman/Kipchak forces at the Kalka River in 1223.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "western-xia-fall-1227",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-xia-en", "wiki-history-xia-mn"],
+      "note": "Western Xia fell in 1227 after the final Mongol campaign; Genghis Khan died in the same year. Year only; the English campaign page contains a conflicting death-month statement, which is not used.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "jin-fall-1234",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-jin-en", "wiki-history-jin-mn"],
+      "note": "Mongol and Southern Song forces captured Caizhou; the Jin dynasty ended in 1234.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "karakorum-palace-1235",
+      "status": "paired-with-differences",
+      "sources": ["wiki-history-karakorum-en", "wiki-history-karakorum-mn"],
+      "note": "Ogedei developed Karakorum and built the Tumen Amgalan palace in 1235–1236. Sources distinguish construction in 1235 and completion/celebration in 1236; use a range.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "western-campaign-1236",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-europe-en", "wiki-history-europe-mn"],
+      "note": "Batu/Subutai campaigns reached Volga Bulgaria, Rus, Poland and Hungary; the main army withdrew from central Europe in 1242.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "secret-history-compilation",
+      "status": "paired-with-differences",
+      "sources": ["wiki-history-secret-history-en", "wiki-history-secret-history-mn"],
+      "note": "The Secret History is a thirteenth-century Mongolian historical/literary work about Genghis Khan and the reign of Ogedei. Compilation date is disputed among several Year-of-the-Rat dates; retain thirteenth-century precision.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "golden-horde-development",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-golden-horde-en", "wiki-history-golden-horde-mn"],
+      "note": "The Jochid ulus developed around the lower Volga under Batu; later known as the Golden Horde. Broad development period, not a single foundation day.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "ilkhanate-foundation-1256",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-ilkhanate-en", "wiki-history-ilkhanate-mn"],
+      "note": "The Ilkhanate developed from Hulegu’s conquests in Iran from 1256.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "baghdad-capture-1258",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-baghdad-en", "wiki-history-baghdad-mn"],
+      "note": "Hulegu’s forces captured Baghdad in 1258, ending Abbasid rule there; the city suffered destruction and mass killing.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "ain-jalut-1260",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-ain-jalut-en", "wiki-history-ain-jalut-mn"],
+      "note": "Mamluk forces defeated Kitbuqa’s Mongol army at Ain Jalut in 1260, checking the regional advance.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "japan-campaigns-1274-1281",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-japan-en", "wiki-history-japan-mn"],
+      "note": "Yuan forces attempted two invasions of Japan, in 1274 and 1281; neither achieved conquest. Two separate campaigns; the slash-separated display avoids suggesting continuous war between the dates.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "ilkhanate-fragmentation-1335",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-ilkhanate-en", "wiki-history-ilkhanate-mn"],
+      "note": "The Ilkhanate fragmented after Abu Sa’id died in 1335; no unsupported cause of death is asserted.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "chagatai-division-1347",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-chagatai-khanate-en", "wiki-history-chagatai-khanate-mn"],
+      "note": "The Chagatai realm divided into western Transoxiana and eastern Moghulistan in the mid-fourteenth century, conventionally dated 1347.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "buir-lake-battle-1388",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-buir-en", "wiki-history-buir-evidence-mn"],
+      "note": "Ming forces under Lan Yu defeated Toghus Temur’s camp near Buir Lake in 1388; the khan escaped and many people were captured.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "tumu-crisis-1449",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-tumu-en", "wiki-history-tumu-mn"],
+      "note": "Esen’s Oirat army defeated Ming forces at Tumu and captured the Zhengtong emperor in 1449.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "esen-khagan-1453",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-esen-en", "wiki-history-esen-mn"],
+      "note": "Esen assumed the khagan title in 1453; his tenure was brief. Exact end/death years differ across article fields; no precise death date is included.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "dayan-reunification",
+      "status": "paired-with-differences",
+      "sources": ["wiki-history-dayan-en", "wiki-history-dayan-mn"],
+      "note": "Dayan Khan and Mandukhai worked to reunify the Mongol tumens; the six-tumen order developed during his reign. Birth/accession chronology varies. Display a broad fifteenth–sixteenth-century period; 1480–1517 is an ordering interval, not a claim that unification happened in one year.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "great-horde-end-1502",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-golden-horde-en", "wiki-history-golden-horde-mn"],
+      "note": "Crimean forces ended the Great Horde, the Golden Horde’s rump state, in 1502; other Jochid successor khanates continued.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "altan-beijing-1550",
+      "status": "paired-with-differences",
+      "sources": ["wiki-history-altan-en", "wiki-history-altan-mn"],
+      "note": "Altan’s forces reached Beijing’s outskirts in 1550 amid conflict over trade with Ming. Mongolian wording sometimes says Beijing was taken; English specifies the suburbs/siege. Use outskirts, not capture of the imperial city.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "altan-ming-peace-1571",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-altan-en", "wiki-history-altan-mn"],
+      "note": "The 1571 Altan–Ming settlement enabled expanded frontier trade.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "altan-sonam-gyatso-1578",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-altan-en", "wiki-history-dalai-lama-mn"],
+      "note": "Altan conferred the Dalai Lama title on Sonam Gyatso in 1578, influencing the spread of Tibetan Buddhism among Mongols.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "erdene-zuu-foundation",
+      "status": "paired-with-differences",
+      "sources": ["wiki-history-erdene-zuu-en", "wiki-history-erdene-zuu-mn"],
+      "note": "Erdene Zuu was founded near Karakorum under Abtai in 1585–1586 and became an important religious centre. Construction/foundation dates are described as 1585 and 1586 in different accounts; retain the range.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "ligdan-death-1634",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-ligdan-en", "wiki-history-ligdan-mn"],
+      "note": "Ligdan died in 1634 while moving toward Qinghai; Chakhar authority weakened.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "qing-inner-mongolia-1636",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-qing-en", "wiki-history-qing-mn"],
+      "note": "Hong Taiji proclaimed Qing in 1636; many Inner Mongol princes recognized his authority. This is distinct from Khalkha’s later incorporation. Do not copy the Mongolian overview’s erroneous statement dating Ligdan’s death to 1636.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "mongol-oirat-code-1640",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-oirat-code-en", "wiki-history-oirat-code-evidence-mn"],
+      "note": "Khalkha and Oirat rulers adopted the Mongol–Oirat code in 1640, covering mutual obligations and social rules.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "dolon-nor-1691",
+      "status": "paired-core-facts",
+      "sources": [
+        "wiki-history-qing-en",
+        "wiki-history-qing-mn",
+        "wiki-history-zanabazar-en",
+        "wiki-history-zanabazar-mn"
+      ],
+      "note": "At the 1691 Dolon Nor assembly, Khalkha leaders accepted Qing authority and the banner administration was extended to Khalkha. The Dolon Nor assembly itself is explicitly identified in the English and Mongolian Zanabazar biographies.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "jao-modo-1696",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-jao-modo-en", "wiki-history-jao-modo-mn"],
+      "note": "Qing forces defeated Galdan at Jao Modo/Zuunmod in 1696; he withdrew with his remaining forces.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "dzungar-conquest-1755",
+      "status": "paired-with-differences",
+      "sources": ["wiki-history-dzungar-en", "wiki-history-dzungar-mn"],
+      "note": "The Qing conquest ended the Dzungar state in 1755–1758; Qing military mass killing, war and disease devastated the population. The core sequence and mass killing are supported in both versions. Population estimates differ; no numerical death toll is adopted.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "bogd-khanate-1911",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-revolution-1911-en", "wiki-history-revolution-1911-mn"],
+      "note": "Outer Mongolian leaders declared independence from Qing and enthroned the Bogd Jebtsundamba in 1911; this describes the declaration, not universal recognition.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "kyakhta-treaty-1915",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-kyakhta-en", "wiki-history-kyakhta-mn"],
+      "note": "Russia, China and Mongolia signed the 1915 Kyakhta treaty recognizing Outer Mongolian autonomy under Chinese suzerainty.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "autonomy-revoked-1919",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-occupation-en", "wiki-history-occupation-mn"],
+      "note": "The Republic of China’s Beiyang government revoked Outer Mongolia’s autonomy in 1919 and imposed military control.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "peoples-revolution-1921",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-revolution-1921-en", "wiki-history-revolution-1921-mn"],
+      "note": "Mongolian revolutionaries with Soviet Red Army support took Urga in 1921; a new government retained the Bogd as a limited monarch.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "mongolian-peoples-republic-1924",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-mpr-en", "wiki-history-mpr-mn"],
+      "note": "After the Bogd’s death, the first constitution and Mongolian People’s Republic were proclaimed in 1924.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "political-repressions-1937",
+      "status": "paired-with-differences",
+      "sources": ["wiki-history-repressions-en", "wiki-history-repressions-mn"],
+      "note": "Political repression intensified in the Mongolian People’s Republic in 1937–1939; monks, intellectuals and other citizens were executed or imprisoned. Both versions describe the 1937–1939 peak; overall period and death estimates differ, so no death total is used.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "khalkhin-gol-1939",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-khalkhin-gol-en", "wiki-history-khalkhin-gol-mn"],
+      "note": "Mongolian and Soviet forces fought Japan and Manchukuo at Khalkhin Gol in 1939; a Soviet–Mongolian victory was followed by an autumn ceasefire.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "cyrillic-adoption-1941",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-cyrillic-en", "wiki-history-un-mn"],
+      "note": "The Mongolian People’s Republic began introducing Cyrillic in 1941; implementation in education/administration was gradual.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "independence-referendum-1945",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-referendum-en", "wiki-history-referendum-mn"],
+      "note": "An independence referendum was held in 1945; the Republic of China government recognized Outer Mongolian independence in early 1946. No electoral percentage is asserted.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "inner-mongolia-autonomy-1947",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-inner-mongolia-en", "wiki-history-inner-mongolia-mn"],
+      "note": "The Inner Mongolia autonomous government was established on 1 May 1947, initially based in Ulanhot.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "china-mongolia-relations-1949",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-china-relations-en", "wiki-history-china-relations-mn"],
+      "note": "The People’s Republic of China and Mongolian People’s Republic established diplomatic relations in 1949.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "un-membership-1961",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-un-en", "wiki-history-un-mn"],
+      "note": "The Mongolian People’s Republic joined the United Nations in 1961.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "democratic-revolution-1990",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-democracy-en", "wiki-history-democracy-mn"],
+      "note": "The 1989–1990 protests and hunger strikes led to a transition toward multiparty politics and the 1990 multiparty election.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "mongolia-constitution-1992",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-constitution-en", "wiki-history-constitution-mn"],
+      "note": "The 1992 constitution established the name Mongolia and a constitutional framework for multiparty democracy and rights.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "parliament-election-1996",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-election-1996-en", "wiki-history-election-1996-mn"],
+      "note": "The Democratic Union Coalition won the 1996 parliamentary election, producing the first non-MPRP government since 1921.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "oyu-tolgoi-agreement-2009",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-oyu-agreement-en", "wiki-history-oyu-tolgoi-mn"],
+      "note": "The Mongolian government and project partners signed the Oyu Tolgoi investment agreement in 2009, a major mining-sector milestone.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+    },
+    {
+      "id": "china-mongolia-partnership-2014",
+      "status": "partial",
+      "sources": ["wiki-history-china-relations-en", "wiki-history-china-relations-mn"],
+      "note": "China and Mongolia elevated relations to a comprehensive strategic partnership in 2014. The Mongolian article dates the comprehensive strategic partnership to 2014. The inspected English bilateral-relations article establishes the partnership but does not give its 2014 inception date. The 2022 official joint statement explicitly recalls the 2014 founding declaration.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "supportingSources": [
+        {
+          "id": "china-mongolia-joint-statement-2022",
+          "url": "https://www.mfa.gov.cn/web/ziliao_674904/1179_674909/202211/t20221128_10981908.shtml"
+        }
+      ]
+    },
+    {
+      "id": "parliament-election-2024",
+      "status": "paired-core-facts",
+      "sources": ["wiki-history-election-2024-en", "wiki-history-election-2024-mn"],
+      "note": "Following the 2023 constitutional amendment, the 2024 election was the first for a 126-member State Great Khural.",
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
     }
   ],
   "relationships": [
