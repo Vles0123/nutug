@@ -75,6 +75,11 @@ async function key(w, element, value) {
   element.dispatchEvent(new w.KeyboardEvent('keydown', { key: value, bubbles: true }));
   await pause(45);
 }
+async function until(check, message) {
+  const deadline = Date.now() + 2000;
+  while (!check() && Date.now() < deadline) await pause(10);
+  assert(check(), message);
+}
 (async () => {
   const { civilDate, moveMonth, moveDate, monthDays, currentDate } =
     await import('../shared/calendar.mjs');
@@ -110,12 +115,15 @@ async function key(w, element, value) {
   assert.equal(selected(), '2026-10-06');
   clock.now = Date.parse('2026-10-06T16:00:10Z');
   d.dispatchEvent(new w.Event('visibilitychange'));
-  await pause(45);
+  await until(() => selected() === '2026-10-07', 'Mounted calendar follows the date change');
   assert.equal(selected(), '2026-10-07');
   await click(d.querySelector('[data-date="2026-10-05"]'));
   clock.now = Date.parse('2026-10-07T16:00:10Z');
   d.dispatchEvent(new w.Event('visibilitychange'));
-  await pause(45);
+  await until(
+    () => d.querySelector('[aria-current="date"]')?.dataset.date === '2026-10-08',
+    'Today marker refreshes before checking the preserved selection',
+  );
   assert.equal(selected(), '2026-10-05', 'Chosen dates stay selected over midnight');
   await click(d.querySelector('[data-action="next-month"]'));
   assert(d.querySelector('.month-title').textContent.includes('2026 / 11'));
