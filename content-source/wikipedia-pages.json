@@ -892,14 +892,14 @@
     "id": "wiki-history-jao-modo-en",
     "language": "en",
     "page": "Battle of Jao Modo",
-    "title": "ᠵᠠᠭᠤᠨ ᠮᠣᠳᠤ ᠨ ᠤ ᠲᠤᠯᠤᠯᠳᠤᠭᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "title": "ᠵᠠᠭᠤᠨ ᠮᠣᠳᠣᠨ ᠤ ᠲᠤᠯᠤᠯᠳᠤᠭᠠᠨ · ᠠᠩᠭᠯᠢ",
     "revisionId": 1370444089
   },
   {
     "id": "wiki-history-jao-modo-mn",
     "language": "mn",
     "page": "Зуунмод–Тэрэлжийн тулалдаан",
-    "title": "ᠵᠠᠭᠤᠨ ᠮᠣᠳᠤ ᠨ ᠤ ᠲᠤᠯᠤᠯᠳᠤᠭᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "title": "ᠵᠠᠭᠤᠨ ᠮᠣᠳᠣᠨ ᠤ ᠲᠤᠯᠤᠯᠳᠤᠭᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
     "revisionId": 858350
   },
   {
@@ -1160,5 +1160,103 @@
     "page": "Занабазар",
     "title": "ᠵᠠᠨᠠᠪᠠᠵᠠᠷ · ᠮᠣᠩᠭᠣᠯ",
     "revisionId": 849106
+  },
+  {
+    "id": "wiki-abaoji-en",
+    "language": "en",
+    "page": "Abaoji",
+    "title": "ᠠᠪᠤᠵᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1378828921
+  },
+  {
+    "id": "wiki-abaoji-mn",
+    "language": "mn",
+    "page": "Амбагян",
+    "title": "ᠠᠪᠤᠵᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 850611
+  },
+  {
+    "id": "wiki-mandukhai-en",
+    "language": "en",
+    "page": "Mandukhai",
+    "title": "ᠮᠠᠨᠳᠤᠬᠠᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1358916665
+  },
+  {
+    "id": "wiki-mandukhai-mn",
+    "language": "mn",
+    "page": "Мандухай сэцэн хатан",
+    "title": "ᠮᠠᠨᠳᠤᠬᠠᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 840449
+  },
+  {
+    "id": "wiki-sonam-gyatso-en",
+    "language": "en",
+    "page": "3rd Dalai Lama",
+    "title": "ᠰᠣᠳᠨᠠᠮᠵᠠᠮᠰᠤ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1362899372
+  },
+  {
+    "id": "wiki-sonam-gyatso-mn",
+    "language": "mn",
+    "page": "3-р Далай лам",
+    "title": "ᠰᠣᠳᠨᠠᠮᠵᠠᠮᠰᠤ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 717616
+  },
+  {
+    "id": "wiki-galdan-en",
+    "language": "en",
+    "page": "Galdan Boshugtu Khan",
+    "title": "ᠭᠠᠯᠳᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1370054316
+  },
+  {
+    "id": "wiki-galdan-mn",
+    "language": "mn",
+    "page": "Галдан бошигт хаан",
+    "title": "ᠭᠠᠯᠳᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 871670
+  },
+  {
+    "id": "wiki-bogd-en",
+    "language": "en",
+    "page": "Bogd Khan",
+    "title": "ᠪᠣᠭᠳᠠ ᠬᠠᠭᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1369786391
+  },
+  {
+    "id": "wiki-bogd-mn",
+    "language": "mn",
+    "page": "Богд хаан",
+    "title": "ᠪᠣᠭᠳᠠ ᠬᠠᠭᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 866998
+  },
+  {
+    "id": "wiki-sukhbaatar-en",
+    "language": "en",
+    "page": "Damdin Sükhbaatar",
+    "title": "ᠰᠦᠬᠡᠪᠠᠭᠠᠲᠤᠷ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1350938949
+  },
+  {
+    "id": "wiki-sukhbaatar-mn",
+    "language": "mn",
+    "page": "Дамдины Сүхбаатар",
+    "title": "ᠰᠦᠬᠡᠪᠠᠭᠠᠲᠤᠷ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 872796
+  },
+  {
+    "id": "wiki-choibalsan-en",
+    "language": "en",
+    "page": "Khorloogiin Choibalsan",
+    "title": "ᠴᠣᠶᠢᠪᠠᠯᠰᠠᠩ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1376385313
+  },
+  {
+    "id": "wiki-choibalsan-mn",
+    "language": "mn",
+    "page": "Хорлоогийн Чойбалсан",
+    "title": "ᠴᠣᠶᠢᠪᠠᠯᠰᠠᠩ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 854804
   }
 ]

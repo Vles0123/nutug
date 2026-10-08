@@ -367,7 +367,10 @@ function visibleText(d) {
     native = await load('library.html', { native: messages });
   assert(native.d.querySelector('.native-app'));
   assert(messages.some((m) => m.event === 'ready'));
-  assert.equal(messages.find((m) => m.event === 'people')?.records.length, 32);
+  assert.equal(
+    messages.find((m) => m.event === 'people')?.records.length,
+    JSON.parse(fs.readFileSync('docs/history-coverage.json', 'utf8')).peopleCount,
+  );
   native.w.NutugShell.person('batu');
   await pause(75);
   assert.equal(native.d.querySelector('.inspector').dataset.record, 'batu');

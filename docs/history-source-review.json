@@ -1,8 +1,8 @@
 {
-  "reviewedOn": "2026-10-08",
-  "scope": "32 people, 53 relationships and 81 chronicle events spanning 209 BCE to 2024. The 18 previously reviewed events are retained; the 63 new events cover early steppe history through the present. Cultural/tribal long articles and calendar rules are outside this review.",
+  "reviewedOn": "2026-10-09",
+  "scope": "44 people, 55 relationships and 81 chronicle events spanning 209 BCE to 2024. All original 32 people, 53 relationships and 18 initial events are retained. Twelve cross-period biographies add directly sourced person entry points to 17 events.",
   "method": "Read English and Cyrillic-Mongolian Wikipedia biographies/sections; compare only the facts named in each row. Interlanguage agreement is not independent historical proof. Preserve stronger existing sources when coverage differs.",
-  "languageReview": "The 63 new traditional-Mongolian event drafts and navigation labels are enumerated in history-copy-draft.json. Menksoft machine comparison is deferred until the calendar/UI work is complete, as requested. Native-speaker proofreading is not claimed.",
+  "languageReview": "Event, navigation and new-person drafts are enumerated in history-copy-draft.json. Targeted dictionary corrections are separate from complete sentence proofreading; no Menksoft or native-language completion is claimed.",
   "sources": {
     "wiki-mongol-empire": {
       "title": "Mongol Empire",
@@ -1165,6 +1165,104 @@
       "url": "https://mn.wikipedia.org/w/index.php?oldid=849106",
       "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%97%D0%B0%D0%BD%D0%B0%D0%B1%D0%B0%D0%B7%D0%B0%D1%80",
       "revisionId": 849106
+    },
+    "wiki-abaoji-en": {
+      "title": "Abaoji",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378828921",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Abaoji",
+      "revisionId": 1378828921
+    },
+    "wiki-abaoji-mn": {
+      "title": "Амбагян",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=850611",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%90%D0%BC%D0%B1%D0%B0%D0%B3%D1%8F%D0%BD",
+      "revisionId": 850611
+    },
+    "wiki-mandukhai-en": {
+      "title": "Mandukhai",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1358916665",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Mandukhai",
+      "revisionId": 1358916665
+    },
+    "wiki-mandukhai-mn": {
+      "title": "Мандухай сэцэн хатан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=840449",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%B0%D0%BD%D0%B4%D1%83%D1%85%D0%B0%D0%B9_%D1%81%D1%8D%D1%86%D1%8D%D0%BD_%D1%85%D0%B0%D1%82%D0%B0%D0%BD",
+      "revisionId": 840449
+    },
+    "wiki-sonam-gyatso-en": {
+      "title": "3rd Dalai Lama",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1362899372",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/3rd_Dalai_Lama",
+      "revisionId": 1362899372
+    },
+    "wiki-sonam-gyatso-mn": {
+      "title": "3-р Далай лам",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=717616",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/3-%D1%80_%D0%94%D0%B0%D0%BB%D0%B0%D0%B9_%D0%BB%D0%B0%D0%BC",
+      "revisionId": 717616
+    },
+    "wiki-galdan-en": {
+      "title": "Galdan Boshugtu Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1370054316",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Galdan_Boshugtu_Khan",
+      "revisionId": 1370054316
+    },
+    "wiki-galdan-mn": {
+      "title": "Галдан бошигт хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=871670",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%93%D0%B0%D0%BB%D0%B4%D0%B0%D0%BD_%D0%B1%D0%BE%D1%88%D0%B8%D0%B3%D1%82_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 871670
+    },
+    "wiki-bogd-en": {
+      "title": "Bogd Khan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1369786391",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Bogd_Khan",
+      "revisionId": 1369786391
+    },
+    "wiki-bogd-mn": {
+      "title": "Богд хаан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=866998",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%91%D0%BE%D0%B3%D0%B4_%D1%85%D0%B0%D0%B0%D0%BD",
+      "revisionId": 866998
+    },
+    "wiki-sukhbaatar-en": {
+      "title": "Damdin Sükhbaatar",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1350938949",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Damdin_S%C3%BCkhbaatar",
+      "revisionId": 1350938949
+    },
+    "wiki-sukhbaatar-mn": {
+      "title": "Дамдины Сүхбаатар",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=872796",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%94%D0%B0%D0%BC%D0%B4%D0%B8%D0%BD%D1%8B_%D0%A1%D2%AF%D1%85%D0%B1%D0%B0%D0%B0%D1%82%D0%B0%D1%80",
+      "revisionId": 872796
+    },
+    "wiki-choibalsan-en": {
+      "title": "Khorloogiin Choibalsan",
+      "language": "en",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1376385313",
+      "canonicalUrl": "https://en.wikipedia.org/wiki/Khorloogiin_Choibalsan",
+      "revisionId": 1376385313
+    },
+    "wiki-choibalsan-mn": {
+      "title": "Хорлоогийн Чойбалсан",
+      "language": "mn",
+      "url": "https://mn.wikipedia.org/w/index.php?oldid=854804",
+      "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D0%BE%D1%80%D0%BB%D0%BE%D0%BE%D0%B3%D0%B8%D0%B9%D0%BD_%D0%A7%D0%BE%D0%B9%D0%B1%D0%B0%D0%BB%D1%81%D0%B0%D0%BD",
+      "revisionId": 854804
     }
   },
   "people": [
@@ -1461,6 +1559,118 @@
           "url": "https://zh.wikisource.org/wiki/明史/卷327"
         }
       ]
+    },
+    {
+      "id": "modu",
+      "status": "paired-core-facts",
+      "facts": "Xiongnu chanyu; reign 209–174 BCE and consolidation of steppe groups. Birth is approximate, c.234 BCE. No identification of Xiongnu with a modern ethnic group is asserted.",
+      "sources": ["wiki-history-modu-en", "wiki-history-modu-mn"],
+      "differences": [],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed"
+    },
+    {
+      "id": "abaoji",
+      "status": "paired-core-facts",
+      "facts": "872–926; founder of the Khitan polity and imperial enthronement in 916. Leadership from 907 is distinct from the imperial title in 916.",
+      "sources": ["wiki-abaoji-en", "wiki-abaoji-mn"],
+      "differences": [],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed"
+    },
+    {
+      "id": "esen",
+      "status": "paired-with-differences",
+      "facts": "Oirat taishi; commanded the 1449 Tumu campaign and assumed the khagan title in 1453.",
+      "sources": ["wiki-history-esen-en", "wiki-history-esen-mn"],
+      "differences": [
+        "Mongolian infobox/lead uses 1454 for death while its prose and English use 1455; profile uses fifteenth-century precision."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed"
+    },
+    {
+      "id": "dayan",
+      "status": "paired-with-differences",
+      "facts": "Batumongke/Dayan Khan; Mandukhai’s husband; reunification and the six-tumen order.",
+      "sources": ["wiki-history-dayan-en", "wiki-history-dayan-mn"],
+      "differences": [
+        "Birth, accession and death chronology differ across leads, infoboxes and cited traditions; profile keeps fifteenth–sixteenth-century precision."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed"
+    },
+    {
+      "id": "mandukhai",
+      "status": "paired-with-differences",
+      "facts": "Northern Yuan queen; spouse of Dayan Khan; shared role in reunification.",
+      "sources": ["wiki-mandukhai-en", "wiki-mandukhai-mn"],
+      "differences": [
+        "English gives c.1449–1510; Mongolian lead gives 1448–1526 while its infobox gives 1510 for death. Exact life years are not displayed."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed"
+    },
+    {
+      "id": "altan",
+      "status": "paired-with-differences",
+      "facts": "Tumed ruler, 1508–1582; 1571 agreement with Ming enabled trade.",
+      "sources": ["wiki-history-altan-en", "wiki-history-altan-mn"],
+      "differences": [
+        "The Mongolian lead/infobox and calendar discussion differ on the exact birth day; only years are displayed. The existing 1550 event retains its previously reviewed outskirts wording."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed"
+    },
+    {
+      "id": "sonam-gyatso",
+      "status": "paired-with-differences",
+      "facts": "Sonam Gyatso, retrospectively numbered third Dalai Lama, 1543–1588; meeting with Altan in 1578. Title conferment is also explicit in the reviewed Mongolian Dalai Lama overview.",
+      "sources": ["wiki-sonam-gyatso-en", "wiki-sonam-gyatso-mn", "wiki-history-dalai-lama-mn"],
+      "differences": [
+        "Mongolian biography incorrectly combines birth in 1543 with age thirteen in 1546; that age and recognition chronology are excluded."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed"
+    },
+    {
+      "id": "ligdan",
+      "status": "paired-with-differences",
+      "facts": "Ligdan/Khutugtu Khan, 1588–1634; Chakhar ruler; died while moving toward Qinghai.",
+      "sources": ["wiki-history-ligdan-en", "wiki-history-ligdan-mn"],
+      "differences": [
+        "Mongolian infobox begins reign in 1603, while its lead and English use 1604; accession is not stated in the short profile."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed"
+    },
+    {
+      "id": "galdan",
+      "status": "paired-with-differences",
+      "facts": "Dzungar ruler, 1644–1697; defeat at Jao Modo in 1696.",
+      "sources": ["wiki-galdan-en", "wiki-galdan-mn"],
+      "differences": [
+        "Death is May 3 in English and April 4 in Mongolian. The short profile uses only the shared year; contested founder/first-khan language is omitted."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed"
+    },
+    {
+      "id": "bogd",
+      "status": "paired-with-differences",
+      "facts": "Eighth Jebtsundamba; khan in 1911–1919 and 1921–1924; authority limited after the 1921 revolution.",
+      "sources": ["wiki-bogd-en", "wiki-bogd-mn"],
+      "differences": [
+        "English and the Mongolian infobox give birth in 1869; Mongolian lead says 1870. Profile displays explicitly labelled reign intervals, not a claimed lifespan."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed"
+    },
+    {
+      "id": "sukhbaatar",
+      "status": "paired-core-facts",
+      "facts": "1893–1923; commander of the people’s army in the 1921 revolution. No disputed poisoning account is used.",
+      "sources": ["wiki-sukhbaatar-en", "wiki-sukhbaatar-mn"],
+      "differences": [],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed"
+    },
+    {
+      "id": "choibalsan",
+      "status": "paired-core-facts",
+      "facts": "1895–1952; prime minister in 1939–1952; central responsibility for the 1937–1939 political purges. Shared facts only; differing or unsupported victim totals are excluded.",
+      "sources": ["wiki-choibalsan-en", "wiki-choibalsan-mn"],
+      "differences": [],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed"
     }
   ],
   "events": [
@@ -1623,7 +1833,9 @@
       "status": "paired-core-facts",
       "sources": ["wiki-history-modu-en", "wiki-history-modu-mn"],
       "note": "Modu became Xiongnu chanyu in 209 BCE and consolidated steppe groups. This is regional background, not a modern ethnic identity claim.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["modu"],
+      "peopleLinkSources": ["wiki-history-modu-en", "wiki-history-modu-mn"]
     },
     {
       "id": "xianbei-consolidation",
@@ -1672,7 +1884,9 @@
       "status": "paired-core-facts",
       "sources": ["wiki-history-liao-en", "wiki-history-liao-mn"],
       "note": "Abaoji founded the Khitan-led dynastic state in 916, conventionally known as Liao; its influence extended into the steppe.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["abaoji"],
+      "peopleLinkSources": ["wiki-abaoji-en", "wiki-abaoji-mn"]
     },
     {
       "id": "khamag-mongol-confederation",
@@ -1840,21 +2054,32 @@
       "status": "paired-core-facts",
       "sources": ["wiki-history-tumu-en", "wiki-history-tumu-mn"],
       "note": "Esen’s Oirat army defeated Ming forces at Tumu and captured the Zhengtong emperor in 1449.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["esen"],
+      "peopleLinkSources": ["wiki-history-esen-en", "wiki-history-esen-mn"]
     },
     {
       "id": "esen-khagan-1453",
       "status": "paired-core-facts",
       "sources": ["wiki-history-esen-en", "wiki-history-esen-mn"],
       "note": "Esen assumed the khagan title in 1453; his tenure was brief. Exact end/death years differ across article fields; no precise death date is included.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["esen"],
+      "peopleLinkSources": ["wiki-history-esen-en", "wiki-history-esen-mn"]
     },
     {
       "id": "dayan-reunification",
       "status": "paired-with-differences",
       "sources": ["wiki-history-dayan-en", "wiki-history-dayan-mn"],
       "note": "Dayan Khan and Mandukhai worked to reunify the Mongol tumens; the six-tumen order developed during his reign. Birth/accession chronology varies. Display a broad fifteenth–sixteenth-century period; 1480–1517 is an ordering interval, not a claim that unification happened in one year.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["dayan", "mandukhai"],
+      "peopleLinkSources": [
+        "wiki-history-dayan-en",
+        "wiki-history-dayan-mn",
+        "wiki-mandukhai-en",
+        "wiki-mandukhai-mn"
+      ]
     },
     {
       "id": "great-horde-end-1502",
@@ -1868,21 +2093,33 @@
       "status": "paired-with-differences",
       "sources": ["wiki-history-altan-en", "wiki-history-altan-mn"],
       "note": "Altan’s forces reached Beijing’s outskirts in 1550 amid conflict over trade with Ming. Mongolian wording sometimes says Beijing was taken; English specifies the suburbs/siege. Use outskirts, not capture of the imperial city.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["altan"],
+      "peopleLinkSources": ["wiki-history-altan-en", "wiki-history-altan-mn"]
     },
     {
       "id": "altan-ming-peace-1571",
       "status": "paired-core-facts",
       "sources": ["wiki-history-altan-en", "wiki-history-altan-mn"],
       "note": "The 1571 Altan–Ming settlement enabled expanded frontier trade.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["altan"],
+      "peopleLinkSources": ["wiki-history-altan-en", "wiki-history-altan-mn"]
     },
     {
       "id": "altan-sonam-gyatso-1578",
       "status": "paired-core-facts",
       "sources": ["wiki-history-altan-en", "wiki-history-dalai-lama-mn"],
       "note": "Altan conferred the Dalai Lama title on Sonam Gyatso in 1578, influencing the spread of Tibetan Buddhism among Mongols.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["altan", "sonam-gyatso"],
+      "peopleLinkSources": [
+        "wiki-history-altan-en",
+        "wiki-history-altan-mn",
+        "wiki-sonam-gyatso-en",
+        "wiki-sonam-gyatso-mn",
+        "wiki-history-dalai-lama-mn"
+      ]
     },
     {
       "id": "erdene-zuu-foundation",
@@ -1896,7 +2133,9 @@
       "status": "paired-core-facts",
       "sources": ["wiki-history-ligdan-en", "wiki-history-ligdan-mn"],
       "note": "Ligdan died in 1634 while moving toward Qinghai; Chakhar authority weakened.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["ligdan"],
+      "peopleLinkSources": ["wiki-history-ligdan-en", "wiki-history-ligdan-mn"]
     },
     {
       "id": "qing-inner-mongolia-1636",
@@ -1929,7 +2168,9 @@
       "status": "paired-core-facts",
       "sources": ["wiki-history-jao-modo-en", "wiki-history-jao-modo-mn"],
       "note": "Qing forces defeated Galdan at Jao Modo/Zuunmod in 1696; he withdrew with his remaining forces.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["galdan"],
+      "peopleLinkSources": ["wiki-galdan-en", "wiki-galdan-mn"]
     },
     {
       "id": "dzungar-conquest-1755",
@@ -1943,49 +2184,72 @@
       "status": "paired-core-facts",
       "sources": ["wiki-history-revolution-1911-en", "wiki-history-revolution-1911-mn"],
       "note": "Outer Mongolian leaders declared independence from Qing and enthroned the Bogd Jebtsundamba in 1911; this describes the declaration, not universal recognition.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["bogd"],
+      "peopleLinkSources": ["wiki-bogd-en", "wiki-bogd-mn"]
     },
     {
       "id": "kyakhta-treaty-1915",
       "status": "paired-core-facts",
       "sources": ["wiki-history-kyakhta-en", "wiki-history-kyakhta-mn"],
       "note": "Russia, China and Mongolia signed the 1915 Kyakhta treaty recognizing Outer Mongolian autonomy under Chinese suzerainty.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["bogd"],
+      "peopleLinkSources": ["wiki-bogd-en", "wiki-bogd-mn"],
+      "peopleLinkNote": "Bogd is linked as ruler of the state whose autonomy the treaty recognized, not as a claim that he personally signed it."
     },
     {
       "id": "autonomy-revoked-1919",
       "status": "paired-core-facts",
       "sources": ["wiki-history-occupation-en", "wiki-history-occupation-mn"],
       "note": "The Republic of China’s Beiyang government revoked Outer Mongolia’s autonomy in 1919 and imposed military control.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["bogd"],
+      "peopleLinkSources": ["wiki-bogd-en", "wiki-bogd-mn"]
     },
     {
       "id": "peoples-revolution-1921",
       "status": "paired-core-facts",
       "sources": ["wiki-history-revolution-1921-en", "wiki-history-revolution-1921-mn"],
       "note": "Mongolian revolutionaries with Soviet Red Army support took Urga in 1921; a new government retained the Bogd as a limited monarch.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["bogd", "sukhbaatar", "choibalsan"],
+      "peopleLinkSources": [
+        "wiki-bogd-en",
+        "wiki-bogd-mn",
+        "wiki-sukhbaatar-en",
+        "wiki-sukhbaatar-mn",
+        "wiki-choibalsan-en",
+        "wiki-choibalsan-mn"
+      ]
     },
     {
       "id": "mongolian-peoples-republic-1924",
       "status": "paired-core-facts",
       "sources": ["wiki-history-mpr-en", "wiki-history-mpr-mn"],
       "note": "After the Bogd’s death, the first constitution and Mongolian People’s Republic were proclaimed in 1924.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["bogd"],
+      "peopleLinkSources": ["wiki-bogd-en", "wiki-bogd-mn"],
+      "peopleLinkNote": "The event explicitly refers to Bogd’s death before proclamation of the republic; the link does not make him a participant in the later proclamation."
     },
     {
       "id": "political-repressions-1937",
       "status": "paired-with-differences",
       "sources": ["wiki-history-repressions-en", "wiki-history-repressions-mn"],
       "note": "Political repression intensified in the Mongolian People’s Republic in 1937–1939; monks, intellectuals and other citizens were executed or imprisoned. Both versions describe the 1937–1939 peak; overall period and death estimates differ, so no death total is used.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["choibalsan"],
+      "peopleLinkSources": ["wiki-choibalsan-en", "wiki-choibalsan-mn"]
     },
     {
       "id": "khalkhin-gol-1939",
       "status": "paired-core-facts",
       "sources": ["wiki-history-khalkhin-gol-en", "wiki-history-khalkhin-gol-mn"],
       "note": "Mongolian and Soviet forces fought Japan and Manchukuo at Khalkhin Gol in 1939; a Soviet–Mongolian victory was followed by an autumn ceasefire.",
-      "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
+      "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
+      "peopleLinks": ["choibalsan"],
+      "peopleLinkSources": ["wiki-choibalsan-en", "wiki-choibalsan-mn"]
     },
     {
       "id": "cyrillic-adoption-1941",
@@ -2526,6 +2790,32 @@
           "id": "ming327",
           "url": "https://zh.wikisource.org/wiki/明史/卷327"
         }
+      ]
+    },
+    {
+      "from": "dayan",
+      "to": "mandukhai",
+      "type": "spouse",
+      "status": "paired-core-facts",
+      "facts": "Marriage is explicit in English and Cyrillic-Mongolian biographies of both people. No marriage year or disputed child count is asserted.",
+      "sources": [
+        "wiki-history-dayan-en",
+        "wiki-history-dayan-mn",
+        "wiki-mandukhai-en",
+        "wiki-mandukhai-mn"
+      ]
+    },
+    {
+      "from": "altan",
+      "to": "sonam-gyatso",
+      "type": "contact",
+      "status": "paired-core-facts",
+      "facts": "The 1578 meeting is directly recorded in English and Mongolian material. Store only documented contact, without inventing an alliance or family link.",
+      "sources": [
+        "wiki-history-altan-en",
+        "wiki-sonam-gyatso-en",
+        "wiki-sonam-gyatso-mn",
+        "wiki-history-dalai-lama-mn"
       ]
     }
   ]

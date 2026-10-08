@@ -14,9 +14,13 @@
       "id": "science-winter-camp-biomarkers",
       "path": ["body", "1"],
       "before": "ᠬᠠᠰᠢᠶ᠎ᠠ ᠨᠤ ᠥᠲᠡᠭ ᠪᠠ ᠭᠠᠳᠠᠨᠠᠬᠢ ᠬᠥᠷᠦᠰᠦᠨ ᠦ ᠮᠥᠷ ᠠᠳᠠᠯᠢ ᠪᠢᠰᠢ ᠪᠠᠶᠢᠵᠠᠢ᠃ ᠡᠨᠡ ᠨᠢ ᠥᠪᠥᠯ ᠦᠨ ᠲᠡᠵᠢᠭᠡᠯ ᠪᠠ ᠮᠠᠯ ᠢ ᠨᠢᠭᠡ ᠭᠠᠵᠠᠷ ᠬᠠᠱᠢᠬᠤ ᠠᠵᠢᠯ ᠢ ᠬᠥᠷᠦᠰᠦᠨ ᠡᠴᠡ ᠰᠤᠳᠤᠯᠬᠤ ᠪᠣᠯᠣᠮᠵᠢ ᠶᠢ ᠬᠠᠷᠠᠭᠤᠯᠵᠠᠢ᠃ ᠭᠡᠪᠡᠴᠦ ᠣᠷᠣᠨ ᠤ ᠤᠷᠭᠤᠮᠠᠯ ᠪᠠ ᠣᠷᠴᠢᠨ ᠤ ᠨᠥᠬᠥᠴᠡᠯ ᠢ ᠬᠠᠮᠲᠤ ᠲᠣᠭᠠᠴᠠᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ᠃",
-      "sources": ["https://mongoltoli.mn/dictionary/detail/63656"],
+      "sources": [
+        "https://mongoltoli.mn/dictionary/detail/63656",
+        "http://hkuri.cneas.tohoku.ac.jp/p01/mongol/list?groupId=12"
+      ],
       "ledgers": ["approved-condition-correction.json"],
-      "after": "ᠬᠠᠰᠢᠶ᠎ᠠ ᠨᠤ ᠥᠲᠡᠭ ᠪᠠ ᠭᠠᠳᠠᠨᠠᠬᠢ ᠬᠥᠷᠦᠰᠦᠨ ᠦ ᠮᠥᠷ ᠠᠳᠠᠯᠢ ᠪᠢᠰᠢ ᠪᠠᠶᠢᠵᠠᠢ᠃ ᠡᠨᠡ ᠨᠢ ᠥᠪᠥᠯ ᠦᠨ ᠲᠡᠵᠢᠭᠡᠯ ᠪᠠ ᠮᠠᠯ ᠢ ᠨᠢᠭᠡ ᠭᠠᠵᠠᠷ ᠬᠠᠱᠢᠬᠤ ᠠᠵᠢᠯ ᠢ ᠬᠥᠷᠦᠰᠦᠨ ᠡᠴᠡ ᠰᠤᠳᠤᠯᠬᠤ ᠪᠣᠯᠣᠮᠵᠢ ᠶᠢ ᠬᠠᠷᠠᠭᠤᠯᠵᠠᠢ᠃ ᠭᠡᠪᠡᠴᠦ ᠣᠷᠣᠨ ᠤ ᠤᠷᠭᠤᠮᠠᠯ ᠪᠠ ᠣᠷᠴᠢᠨ ᠤ ᠨᠥᠬᠦᠴᠡᠯ ᠢ ᠬᠠᠮᠲᠤ ᠲᠣᠭᠠᠴᠠᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ᠃"
+      "after": "ᠬᠠᠰᠢᠶ᠎ᠠ ᠨᠤ ᠥᠲᠡᠭ ᠪᠠ ᠭᠠᠳᠠᠨᠠᠬᠢ ᠬᠥᠷᠦᠰᠦᠨ ᠦ ᠮᠥᠷ ᠠᠳᠠᠯᠢ ᠪᠢᠰᠢ ᠪᠠᠶᠢᠵᠠᠢ᠃ ᠡᠨᠡ ᠨᠢ ᠡᠪᠦᠯ ᠦᠨ ᠲᠡᠵᠢᠭᠡᠯ ᠪᠠ ᠮᠠᠯ ᠢ ᠨᠢᠭᠡ ᠭᠠᠵᠠᠷ ᠬᠠᠱᠢᠬᠤ ᠠᠵᠢᠯ ᠢ ᠬᠥᠷᠦᠰᠦᠨ ᠡᠴᠡ ᠰᠤᠳᠤᠯᠬᠤ ᠪᠣᠯᠣᠮᠵᠢ ᠶᠢ ᠬᠠᠷᠠᠭᠤᠯᠵᠠᠢ᠃ ᠭᠡᠪᠡᠴᠦ ᠣᠷᠣᠨ ᠤ ᠤᠷᠭᠤᠮᠠᠯ ᠪᠠ ᠣᠷᠴᠢᠨ ᠤ ᠨᠥᠬᠦᠴᠡᠯ ᠢ ᠬᠠᠮᠲᠤ ᠲᠣᠭᠠᠴᠠᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ᠃",
+      "followupReview": "history-language-review.json"
     },
     {
       "id": "khar-balgas-uyghur-city",
@@ -779,9 +783,13 @@
       "id": "science-ikhtamir-hay-trials",
       "path": ["summary"],
       "before": "ᠥᠪᠥᠯ ᠳᠦ ᠬᠡᠷᠡᠭᠯᠡᠬᠦ ᠡᠪᠡᠰᠦ ᠶᠢ ᠨᠡᠮᠡᠭᠳᠡᠭᠦᠯᠬᠦ ᠳᠦ ᠤᠰᠤ᠂ ᠬᠥᠷᠥᠰᠦ ᠪᠠ ᠡᠳ᠋ᠯᠡᠯ ᠦᠨ ᠵᠣᠬᠢᠴᠠᠯ ᠴᠢᠬᠤᠯᠠ᠃",
-      "sources": ["https://mongoltoli.mn/dictionary/detail/113651"],
+      "sources": [
+        "https://mongoltoli.mn/dictionary/detail/113651",
+        "http://hkuri.cneas.tohoku.ac.jp/p01/mongol/list?groupId=12"
+      ],
       "ledgers": ["approved-soil-noun-correction.json"],
-      "after": "ᠥᠪᠥᠯ ᠳᠦ ᠬᠡᠷᠡᠭᠯᠡᠬᠦ ᠡᠪᠡᠰᠦ ᠶᠢ ᠨᠡᠮᠡᠭᠳᠡᠭᠦᠯᠬᠦ ᠳᠦ ᠤᠰᠤ᠂ ᠬᠥᠷᠦᠰᠦ ᠪᠠ ᠡᠳ᠋ᠯᠡᠯ ᠦᠨ ᠵᠣᠬᠢᠴᠠᠯ ᠴᠢᠬᠤᠯᠠ᠃"
+      "after": "ᠡᠪᠦᠯ ᠳᠦ ᠬᠡᠷᠡᠭᠯᠡᠬᠦ ᠡᠪᠡᠰᠦ ᠶᠢ ᠨᠡᠮᠡᠭᠳᠡᠭᠦᠯᠬᠦ ᠳᠦ ᠤᠰᠤ᠂ ᠬᠥᠷᠦᠰᠦ ᠪᠠ ᠡᠳ᠋ᠯᠡᠯ ᠦᠨ ᠵᠣᠬᠢᠴᠠᠯ ᠴᠢᠬᠤᠯᠠ᠃",
+      "followupReview": "history-language-review.json"
     },
     {
       "id": "wudangzhao-mountain-monastery",
@@ -977,6 +985,22 @@
       "sources": ["https://mongoltoli.mn/dictionary/detail/113651"],
       "ledgers": ["approved-soil-noun-correction.json"],
       "after": "᠒᠐᠑᠒ ᠣᠨ ᠤ ᠥᠭᠥᠭᠦᠯᠡᠯ ᠳᠦ᠂ ᠒᠐᠐᠖ ᠣᠨ ᠤ ᠵᠤᠨ ᠣᠢᠲᠤ ᠠᠷᠤ ᠳᠠᠬᠢ ᠬᠥᠷᠦᠰᠦ ᠪᠠ ᠤᠷᠭᠤᠮᠠᠯ ᠠᠴᠠ ᠠᠭᠠᠷ ᠲᠤ ᠠᠯᠳᠠᠭᠳᠠᠬᠤ ᠤᠰᠤᠨ ᠤ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠡᠪᠡᠰᠦᠲᠦ ᠡᠪᠡᠷ ᠡᠴᠡ ᠪᠠᠭ᠎ᠠ ᠪᠠᠶᠢᠭᠰᠠᠨ ᠢ ᠲᠡᠮᠳᠡᠭᠯᠡᠵᠡᠢ᠃ ᠴᠠᠰᠤ ᠬᠠᠶᠢᠯᠬᠤ ᠴᠠᠭ᠂ ᠬᠥᠷᠥᠰᠦᠨ ᠦ ᠴᠢᠭᠢᠭ ᠪᠠ ᠣᠢ ᠶᠢᠨ ᠤᠷᠭᠤᠯᠲᠠ ᠬᠣᠯᠪᠣᠭᠠᠲᠠᠢ᠃ ᠦᠷ᠎ᠡ ᠳ᠋ᠦᠩ ᠨᠢ ᠠᠭᠤᠯᠠᠨ ᠤ ᠣᠢ ᠪᠠ ᠴᠡᠪᠳᠡᠭ ᠢ ᠬᠠᠮᠲᠤ ᠠᠪᠴᠤ ᠦᠵᠡᠬᠦ ᠨᠢ ᠤᠰᠤᠨ ᠤ ᠨᠥᠭᠡᠴᠡ ᠶᠢ ᠣᠶᠢᠯᠠᠭᠠᠬᠤ ᠳᠤ ᠴᠢᠬᠤᠯᠠ ᠪᠣᠯᠣᠬᠤ ᠶᠢ ᠬᠠᠷᠠᠭᠤᠯᠵᠠᠢ᠃"
+    }
+  ],
+  "followupReviews": [
+    {
+      "reviewedOn": "2026-10-08",
+      "report": "history-language-review.json",
+      "fields": [
+        {
+          "id": "science-winter-camp-biomarkers",
+          "path": ["body", "1"]
+        },
+        {
+          "id": "science-ikhtamir-hay-trials",
+          "path": ["summary"]
+        }
+      ]
     }
   ]
 }

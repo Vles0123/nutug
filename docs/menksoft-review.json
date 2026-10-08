@@ -13,12 +13,58 @@
   "translation": null,
   "machineCheckedEntries": 0,
   "queue": ["ui-copy-review.json", "history-copy-draft.json"],
-  "pending": "After the user signs in, compare machine back-translations with each UI action and historical statement, then record corrections with the returned text. Native-language editorial review remains separate.",
+  "pending": "取得正规登录会话后才能进行 Menksoft 译文/校对结果对读；现阶段已独立完成公开规范词典可以支持的词形和语义修正，详见两个语言核查报告。",
   "copyChangeAfterAttempt": {
     "id": "calendar-app.ink",
     "from": "ᠪᠡᠬᠢ",
     "to": "ᠬᠠᠷ᠎ᠠ ᠴᠠᠭᠠᠨ",
     "meaning": "Black and white visual style",
     "machineReview": "pending"
+  },
+  "publicServiceReview": {
+    "checkedOn": "2026-10-08",
+    "method": "HTTP 读取官方产品页、当前公开前端路由和功能入口的登录分支；未调用需要认证的业务接口。",
+    "officialProductPage": "http://www.menksoft.com/channels/3.html",
+    "services": [
+      {
+        "kind": "translation",
+        "url": "https://mts.menksoft.com/",
+        "publicUse": "login-required-observed",
+        "evidence": "原有浏览器实际操作返回“请先登录后再使用翻译功能”，未获得译文。"
+      },
+      {
+        "kind": "proofreading",
+        "url": "https://mts.menksoft.com/proofreading",
+        "publicUse": "login-required-in-public-client",
+        "evidence": "官方产品页链接到本路由；当前公开模块将文本交给 callTool，统一入口在未登录时停止。"
+      },
+      {
+        "kind": "dictionary",
+        "url": "https://mts.menksoft.com/dictionary",
+        "publicUse": "login-required-in-public-client",
+        "evidence": "当前公开路由明确提供在线词典；dictionaryQuery 调用同一登录检查入口。"
+      },
+      {
+        "kind": "encoding",
+        "url": "https://mts.menksoft.com/encoding",
+        "publicUse": "login-required-in-public-client",
+        "evidence": "公开模块包含“请先登录后再使用编码转换功能”的正常使用分支。"
+      },
+      {
+        "kind": "desktop-dictionary",
+        "url": "http://www.menksoft.com/channels/10.html",
+        "publicUse": "download-link-published",
+        "evidence": "官网列出固什汉蒙词典桌面/智能手机版说明，当前页面实际提供 Windows .Exe 下载；未下载、安装或运行。"
+      }
+    ],
+    "publicClientSource": "https://mts.menksoft.com/assets/index-gLQneVgi.js",
+    "publicModules": [
+      "https://mts.menksoft.com/assets/Dictionary-BQ4Af2zn.js",
+      "https://mts.menksoft.com/assets/Proofreading-BIibagp3.js",
+      "https://mts.menksoft.com/assets/Encoding--S7bViOB.js"
+    ],
+    "conclusion": "当前官方公开产品入口与客户端没有展示可用的游客翻译、校对或词典检索路径；词典和校对的判断来自公开客户端正常流程，未声称对服务器绕过验证。",
+    "guestMachineOutputs": 0,
+    "independentLanguageEvidence": "calendar-language-review.json; history-language-review.json"
   }
 }

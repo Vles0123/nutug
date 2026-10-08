@@ -11,7 +11,7 @@ const CHINESE_ALMANAC_CONFIG = {
     fortuneDirectionSect: 2,
   },
   ui: {
-    today: 'ᠥᠨᠥᠳᠦᠷ',
+    today: 'ᠥᠨᠥᠳᠥᠷ',
     previous: 'ᠡᠮᠦᠨᠡᠬᠢ ᠡᠳᠦᠷ',
     next: 'ᠳᠠᠷᠠᠭ᠎ᠠ ᠶᠢᠨ ᠡᠳᠦᠷ',
     selectDate: 'ᠡᠳᠦᠷ ᠰᠣᠩᠭᠣᠬᠤ',

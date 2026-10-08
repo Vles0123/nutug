@@ -1,0 +1,509 @@
+{
+  "reviewedOn": "2026-10-09",
+  "scope": "A bounded addition of twelve people for existing events.",
+  "baseline": {
+    "people": 32,
+    "relationships": 53,
+    "eventsWithPeople": 37
+  },
+  "result": {
+    "people": 44,
+    "relationships": 55,
+    "eventsWithPeople": 54,
+    "eventsWithoutPeople": 27,
+    "newPeople": 12,
+    "newRelationships": 2,
+    "newSourceRecords": 14,
+    "newPersonLinks": 21
+  },
+  "people": [
+    {
+      "id": "modu",
+      "status": "paired-core-facts",
+      "facts": "Xiongnu chanyu; reign 209–174 BCE and consolidation of steppe groups. Birth is approximate, c.234 BCE. No identification of Xiongnu with a modern ethnic group is asserted.",
+      "sources": ["wiki-history-modu-en", "wiki-history-modu-mn"],
+      "differences": [],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed",
+      "sourceLinks": [
+        {
+          "id": "wiki-history-modu-en",
+          "language": "en",
+          "title": "Modu Chanyu",
+          "url": "https://en.wikipedia.org/w/index.php?oldid=1378883373",
+          "canonicalUrl": "https://en.wikipedia.org/wiki/Modu_Chanyu",
+          "revisionId": 1378883373
+        },
+        {
+          "id": "wiki-history-modu-mn",
+          "language": "mn",
+          "title": "Модун шаньюй",
+          "url": "https://mn.wikipedia.org/w/index.php?oldid=847278",
+          "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%BE%D0%B4%D1%83%D0%BD_%D1%88%D0%B0%D0%BD%D1%8C%D1%8E%D0%B9",
+          "revisionId": 847278
+        }
+      ],
+      "nameBasis": "reuse-existing-event",
+      "copy": {
+        "name": "ᠮᠣᠳᠤᠨ",
+        "alias": "ᠬᠦᠩᠨᠦ ᠶᠢᠨ ᠱᠠᠨᠶᠦᠢ",
+        "years": "ᠨᠡᠶᠢᠲᠡ ᠶᠢᠨ ᠲᠣᠭᠠᠯᠠᠯ ᠤᠨ ᠡᠮᠦᠨ᠎ᠡ 234 ᠣᠨ ᠣᠷᠴᠢᠮ—174",
+        "era": "ᠬᠦᠩᠨᠦ",
+        "summary": "ᠬᠦᠩᠨᠦ ᠶᠢᠨ ᠡᠷᠬᠡ ᠶᠢ ᠪᠠᠷᠢᠵᠤ᠂ ᠲᠠᠯ᠎ᠠ ᠨᠤᠲᠤᠭ ᠤᠨ ᠣᠯᠠᠨ ᠠᠶᠢᠮᠠᠭ ᠢ ᠨᠢᠭᠡᠳᠬᠡᠪᠡ᠃"
+      }
+    },
+    {
+      "id": "abaoji",
+      "status": "paired-core-facts",
+      "facts": "872–926; founder of the Khitan polity and imperial enthronement in 916. Leadership from 907 is distinct from the imperial title in 916.",
+      "sources": ["wiki-abaoji-en", "wiki-abaoji-mn"],
+      "differences": [],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed",
+      "sourceLinks": [
+        {
+          "id": "wiki-abaoji-en",
+          "language": "en",
+          "title": "Abaoji",
+          "url": "https://en.wikipedia.org/w/index.php?oldid=1378828921",
+          "canonicalUrl": "https://en.wikipedia.org/wiki/Abaoji",
+          "revisionId": 1378828921
+        },
+        {
+          "id": "wiki-abaoji-mn",
+          "language": "mn",
+          "title": "Амбагян",
+          "url": "https://mn.wikipedia.org/w/index.php?oldid=850611",
+          "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%90%D0%BC%D0%B1%D0%B0%D0%B3%D1%8F%D0%BD",
+          "revisionId": 850611
+        }
+      ],
+      "nameBasis": "reuse-existing-event",
+      "copy": {
+        "name": "ᠠᠪᠤᠵᠢ",
+        "alias": "ᠬᠢᠳᠠᠨ ᠤ ᠬᠠᠭᠠᠨ",
+        "years": "872—926",
+        "era": "ᠬᠢᠳᠠᠨ ᠤᠯᠤᠰ",
+        "summary": "ᠬᠢᠳᠠᠨ ᠤ ᠤᠯᠤᠰ ᠤᠨ ᠦᠨᠳᠦᠰᠦ ᠰᠠᠭᠤᠷᠢ ᠲᠠᠯᠪᠢᠭᠴᠢ᠃ 916 ᠣᠨ ᠳᠤ ᠡᠵᠡᠨ ᠬᠠᠭᠠᠨ ᠴᠣᠯᠠ ᠠᠪᠪᠠ᠃"
+      }
+    },
+    {
+      "id": "esen",
+      "status": "paired-with-differences",
+      "facts": "Oirat taishi; commanded the 1449 Tumu campaign and assumed the khagan title in 1453.",
+      "sources": ["wiki-history-esen-en", "wiki-history-esen-mn"],
+      "differences": [
+        "Mongolian infobox/lead uses 1454 for death while its prose and English use 1455; profile uses fifteenth-century precision."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed",
+      "sourceLinks": [
+        {
+          "id": "wiki-history-esen-en",
+          "language": "en",
+          "title": "Esen Taishi",
+          "url": "https://en.wikipedia.org/w/index.php?oldid=1377990273",
+          "canonicalUrl": "https://en.wikipedia.org/wiki/Esen_Taishi",
+          "revisionId": 1377990273
+        },
+        {
+          "id": "wiki-history-esen-mn",
+          "language": "mn",
+          "title": "Эсэн тайш",
+          "url": "https://mn.wikipedia.org/w/index.php?oldid=865496",
+          "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%AD%D1%81%D1%8D%D0%BD_%D1%82%D0%B0%D0%B9%D1%88",
+          "revisionId": 865496
+        }
+      ],
+      "nameBasis": "reuse-existing-event",
+      "copy": {
+        "name": "ᠡᠰᠡᠨ",
+        "alias": "ᠣᠶᠢᠷᠠᠳ ᠤᠨ ᠲᠠᠶᠢᠱᠢ",
+        "years": "15 ᠳᠤᠭᠠᠷ ᠵᠠᠭᠤᠨ",
+        "era": "ᠤᠮᠠᠷᠠᠲᠤ ᠶᠤᠸᠠᠨ",
+        "summary": "1449 ᠣᠨ ᠤ ᠲᠦᠮᠦ ᠶᠢᠨ ᠲᠤᠯᠤᠯᠳᠤᠭᠠᠨ ᠳᠤ ᠣᠶᠢᠷᠠᠳ ᠤᠨ ᠴᠡᠷᠢᠭ ᠢ ᠤᠳᠤᠷᠢᠳᠤᠪᠠ᠃ 1453 ᠣᠨ ᠳᠤ ᠬᠠᠭᠠᠨ ᠴᠣᠯᠠ ᠠᠪᠪᠠ᠃"
+      }
+    },
+    {
+      "id": "dayan",
+      "status": "paired-with-differences",
+      "facts": "Batumongke/Dayan Khan; Mandukhai’s husband; reunification and the six-tumen order.",
+      "sources": ["wiki-history-dayan-en", "wiki-history-dayan-mn"],
+      "differences": [
+        "Birth, accession and death chronology differ across leads, infoboxes and cited traditions; profile keeps fifteenth–sixteenth-century precision."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed",
+      "sourceLinks": [
+        {
+          "id": "wiki-history-dayan-en",
+          "language": "en",
+          "title": "Dayan Khan",
+          "url": "https://en.wikipedia.org/w/index.php?oldid=1378132456",
+          "canonicalUrl": "https://en.wikipedia.org/wiki/Dayan_Khan",
+          "revisionId": 1378132456
+        },
+        {
+          "id": "wiki-history-dayan-mn",
+          "language": "mn",
+          "title": "Батмөнх Даян хаан",
+          "url": "https://mn.wikipedia.org/w/index.php?oldid=868565",
+          "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%91%D0%B0%D1%82%D0%BC%D3%A9%D0%BD%D1%85_%D0%94%D0%B0%D1%8F%D0%BD_%D1%85%D0%B0%D0%B0%D0%BD",
+          "revisionId": 868565
+        }
+      ],
+      "nameBasis": "reuse-existing-event",
+      "copy": {
+        "name": "ᠪᠠᠲᠤᠮᠥᠩᠬᠡ",
+        "alias": "ᠳᠠᠶᠠᠨ ᠬᠠᠭᠠᠨ",
+        "years": "15—16 ᠳᠤᠭᠠᠷ ᠵᠠᠭᠤᠨ",
+        "era": "ᠤᠮᠠᠷᠠᠲᠤ ᠶᠤᠸᠠᠨ",
+        "summary": "ᠮᠠᠨᠳᠤᠬᠠᠢ ᠰᠡᠴᠡᠨ ᠬᠠᠲᠤᠨ ᠲᠠᠢ ᠬᠠᠮᠲᠤ ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠲᠦᠮᠡᠨ ᠦᠳ ᠢ ᠨᠢᠭᠡᠳᠬᠡᠪᠡ᠃ ᠲᠡᠭᠦᠨ ᠦ ᠦᠶ᠎ᠡ ᠳᠦ ᠵᠢᠷᠭᠤᠭᠠᠨ ᠲᠦᠮᠡᠨ ᠦ ᠵᠣᠬᠢᠶᠠᠨ ᠪᠠᠶᠢᠭᠤᠯᠤᠯᠲᠠ ᠲᠣᠭᠲᠠᠪᠠ᠃"
+      }
+    },
+    {
+      "id": "mandukhai",
+      "status": "paired-with-differences",
+      "facts": "Northern Yuan queen; spouse of Dayan Khan; shared role in reunification.",
+      "sources": ["wiki-mandukhai-en", "wiki-mandukhai-mn"],
+      "differences": [
+        "English gives c.1449–1510; Mongolian lead gives 1448–1526 while its infobox gives 1510 for death. Exact life years are not displayed."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed",
+      "sourceLinks": [
+        {
+          "id": "wiki-mandukhai-en",
+          "language": "en",
+          "title": "Mandukhai",
+          "url": "https://en.wikipedia.org/w/index.php?oldid=1358916665",
+          "canonicalUrl": "https://en.wikipedia.org/wiki/Mandukhai",
+          "revisionId": 1358916665
+        },
+        {
+          "id": "wiki-mandukhai-mn",
+          "language": "mn",
+          "title": "Мандухай сэцэн хатан",
+          "url": "https://mn.wikipedia.org/w/index.php?oldid=840449",
+          "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9C%D0%B0%D0%BD%D0%B4%D1%83%D1%85%D0%B0%D0%B9_%D1%81%D1%8D%D1%86%D1%8D%D0%BD_%D1%85%D0%B0%D1%82%D0%B0%D0%BD",
+          "revisionId": 840449
+        }
+      ],
+      "nameBasis": "reuse-existing-event",
+      "copy": {
+        "name": "ᠮᠠᠨᠳᠤᠬᠠᠢ",
+        "alias": "ᠰᠡᠴᠡᠨ ᠬᠠᠲᠤᠨ",
+        "years": "15—16 ᠳᠤᠭᠠᠷ ᠵᠠᠭᠤᠨ",
+        "era": "ᠤᠮᠠᠷᠠᠲᠤ ᠶᠤᠸᠠᠨ",
+        "summary": "ᠳᠠᠶᠠᠨ ᠬᠠᠭᠠᠨ ᠤ ᠬᠠᠲᠤᠨ᠃ ᠲᠡᠭᠦᠨ ᠲᠡᠢ ᠬᠠᠮᠲᠤ ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠲᠦᠮᠡᠨ ᠦᠳ ᠢ ᠨᠢᠭᠡᠳᠬᠡᠪᠡ᠃"
+      }
+    },
+    {
+      "id": "altan",
+      "status": "paired-with-differences",
+      "facts": "Tumed ruler, 1508–1582; 1571 agreement with Ming enabled trade.",
+      "sources": ["wiki-history-altan-en", "wiki-history-altan-mn"],
+      "differences": [
+        "The Mongolian lead/infobox and calendar discussion differ on the exact birth day; only years are displayed. The existing 1550 event retains its previously reviewed outskirts wording."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed",
+      "sourceLinks": [
+        {
+          "id": "wiki-history-altan-en",
+          "language": "en",
+          "title": "Altan Khan",
+          "url": "https://en.wikipedia.org/w/index.php?oldid=1378198536",
+          "canonicalUrl": "https://en.wikipedia.org/wiki/Altan_Khan",
+          "revisionId": 1378198536
+        },
+        {
+          "id": "wiki-history-altan-mn",
+          "language": "mn",
+          "title": "Алтан хан",
+          "url": "https://mn.wikipedia.org/w/index.php?oldid=841576",
+          "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%90%D0%BB%D1%82%D0%B0%D0%BD_%D1%85%D0%B0%D0%BD",
+          "revisionId": 841576
+        }
+      ],
+      "nameBasis": "reuse-existing-event",
+      "copy": {
+        "name": "ᠠᠯᠲᠠᠨ",
+        "alias": "ᠲᠦᠮᠡᠳ ᠦᠨ ᠬᠠᠨ",
+        "years": "1508—1582",
+        "era": "ᠤᠮᠠᠷᠠᠲᠤ ᠶᠤᠸᠠᠨ",
+        "summary": "ᠲᠦᠮᠡᠳ ᠦᠨ ᠬᠠᠨ᠃ 1571 ᠣᠨ ᠳᠤ ᠮᠢᠩ ᠤᠯᠤᠰ ᠲᠠᠢ ᠨᠠᠶᠢᠷᠠᠮᠳᠠᠯ ᠤᠨ ᠲᠣᠬᠢᠷᠠᠯᠴᠠᠭ᠎ᠠ ᠳᠤ ᠬᠦᠷᠴᠦ᠂ ᠬᠢᠯᠢ ᠶᠢᠨ ᠬᠤᠳᠠᠯᠳᠤᠭ᠎ᠠ ᠥᠷᠭᠡᠵᠢᠪᠡ᠃"
+      }
+    },
+    {
+      "id": "sonam-gyatso",
+      "status": "paired-with-differences",
+      "facts": "Sonam Gyatso, retrospectively numbered third Dalai Lama, 1543–1588; meeting with Altan in 1578. Title conferment is also explicit in the reviewed Mongolian Dalai Lama overview.",
+      "sources": ["wiki-sonam-gyatso-en", "wiki-sonam-gyatso-mn", "wiki-history-dalai-lama-mn"],
+      "differences": [
+        "Mongolian biography incorrectly combines birth in 1543 with age thirteen in 1546; that age and recognition chronology are excluded."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed",
+      "sourceLinks": [
+        {
+          "id": "wiki-sonam-gyatso-en",
+          "language": "en",
+          "title": "3rd Dalai Lama",
+          "url": "https://en.wikipedia.org/w/index.php?oldid=1362899372",
+          "canonicalUrl": "https://en.wikipedia.org/wiki/3rd_Dalai_Lama",
+          "revisionId": 1362899372
+        },
+        {
+          "id": "wiki-sonam-gyatso-mn",
+          "language": "mn",
+          "title": "3-р Далай лам",
+          "url": "https://mn.wikipedia.org/w/index.php?oldid=717616",
+          "canonicalUrl": "https://mn.wikipedia.org/wiki/3-%D1%80_%D0%94%D0%B0%D0%BB%D0%B0%D0%B9_%D0%BB%D0%B0%D0%BC",
+          "revisionId": 717616
+        }
+      ],
+      "nameBasis": "reuse-existing-event",
+      "copy": {
+        "name": "ᠰᠣᠳᠨᠠᠮᠵᠠᠮᠰᠤ",
+        "alias": "ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠳᠠᠯᠠᠢ ᠯᠠᠮ᠎ᠠ",
+        "years": "1543—1588",
+        "era": "16 ᠳᠤᠭᠠᠷ ᠵᠠᠭᠤᠨ",
+        "summary": "1578 ᠣᠨ ᠳᠤ ᠠᠯᠲᠠᠨ ᠬᠠᠨ ᠲᠠᠢ ᠠᠭᠤᠯᠵᠠᠵᠤ᠂ ᠳᠠᠯᠠᠢ ᠯᠠᠮ᠎ᠠ ᠴᠣᠯᠠ ᠠᠪᠪᠠ᠃"
+      }
+    },
+    {
+      "id": "ligdan",
+      "status": "paired-with-differences",
+      "facts": "Ligdan/Khutugtu Khan, 1588–1634; Chakhar ruler; died while moving toward Qinghai.",
+      "sources": ["wiki-history-ligdan-en", "wiki-history-ligdan-mn"],
+      "differences": [
+        "Mongolian infobox begins reign in 1603, while its lead and English use 1604; accession is not stated in the short profile."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed",
+      "sourceLinks": [
+        {
+          "id": "wiki-history-ligdan-en",
+          "language": "en",
+          "title": "Ligdan Khan",
+          "url": "https://en.wikipedia.org/w/index.php?oldid=1375869765",
+          "canonicalUrl": "https://en.wikipedia.org/wiki/Ligdan_Khan",
+          "revisionId": 1375869765
+        },
+        {
+          "id": "wiki-history-ligdan-mn",
+          "language": "mn",
+          "title": "Лигдэн хаан",
+          "url": "https://mn.wikipedia.org/w/index.php?oldid=868612",
+          "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%9B%D0%B8%D0%B3%D0%B4%D1%8D%D0%BD_%D1%85%D0%B0%D0%B0%D0%BD",
+          "revisionId": 868612
+        }
+      ],
+      "nameBasis": "reuse-existing-event",
+      "copy": {
+        "name": "ᠯᠢᠭᠳᠡᠨ",
+        "alias": "ᠬᠤᠲᠤᠭᠲᠤ ᠬᠠᠭᠠᠨ",
+        "years": "1588—1634",
+        "era": "ᠤᠮᠠᠷᠠᠲᠤ ᠶᠤᠸᠠᠨ",
+        "summary": "ᠴᠠᠬᠠᠷ ᠤᠨ ᠬᠠᠭᠠᠨ᠃ 1634 ᠣᠨ ᠳᠤ ᠬᠥᠬᠡ ᠨᠠᠭᠤᠷ ᠤᠨ ᠵᠦᠭ ᠨᠡᠭᠦᠬᠦ ᠵᠠᠮ ᠳᠠᠭᠠᠨ ᠨᠠᠰᠤ ᠪᠠᠷᠠᠪᠠ᠃"
+      }
+    },
+    {
+      "id": "galdan",
+      "status": "paired-with-differences",
+      "facts": "Dzungar ruler, 1644–1697; defeat at Jao Modo in 1696.",
+      "sources": ["wiki-galdan-en", "wiki-galdan-mn"],
+      "differences": [
+        "Death is May 3 in English and April 4 in Mongolian. The short profile uses only the shared year; contested founder/first-khan language is omitted."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed",
+      "sourceLinks": [
+        {
+          "id": "wiki-galdan-en",
+          "language": "en",
+          "title": "Galdan Boshugtu Khan",
+          "url": "https://en.wikipedia.org/w/index.php?oldid=1370054316",
+          "canonicalUrl": "https://en.wikipedia.org/wiki/Galdan_Boshugtu_Khan",
+          "revisionId": 1370054316
+        },
+        {
+          "id": "wiki-galdan-mn",
+          "language": "mn",
+          "title": "Галдан бошигт хаан",
+          "url": "https://mn.wikipedia.org/w/index.php?oldid=871670",
+          "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%93%D0%B0%D0%BB%D0%B4%D0%B0%D0%BD_%D0%B1%D0%BE%D1%88%D0%B8%D0%B3%D1%82_%D1%85%D0%B0%D0%B0%D0%BD",
+          "revisionId": 871670
+        }
+      ],
+      "nameBasis": "reuse-existing-event",
+      "copy": {
+        "name": "ᠭᠠᠯᠳᠠᠨ",
+        "alias": "ᠪᠣᠱᠤᠭᠲᠤ ᠬᠠᠨ",
+        "years": "1644—1697",
+        "era": "ᠵᠡᠭᠦᠨ ᠭᠠᠷ ᠤᠨ ᠤᠯᠤᠰ",
+        "summary": "ᠵᠡᠭᠦᠨ ᠭᠠᠷ ᠤᠨ ᠬᠠᠨ᠃ 1696 ᠣᠨ ᠳᠤ ᠲᠡᠭᠦᠨ ᠦ ᠴᠡᠷᠢᠭ ᠵᠠᠭᠤᠨ ᠮᠣᠳᠣᠨ ᠳᠤ ᠴᠢᠩ ᠦᠨ ᠴᠡᠷᠢᠭ ᠲᠦ ᠶᠢᠯᠠᠭᠳᠠᠪᠠ᠃"
+      }
+    },
+    {
+      "id": "bogd",
+      "status": "paired-with-differences",
+      "facts": "Eighth Jebtsundamba; khan in 1911–1919 and 1921–1924; authority limited after the 1921 revolution.",
+      "sources": ["wiki-bogd-en", "wiki-bogd-mn"],
+      "differences": [
+        "English and the Mongolian infobox give birth in 1869; Mongolian lead says 1870. Profile displays explicitly labelled reign intervals, not a claimed lifespan."
+      ],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed",
+      "sourceLinks": [
+        {
+          "id": "wiki-bogd-en",
+          "language": "en",
+          "title": "Bogd Khan",
+          "url": "https://en.wikipedia.org/w/index.php?oldid=1369786391",
+          "canonicalUrl": "https://en.wikipedia.org/wiki/Bogd_Khan",
+          "revisionId": 1369786391
+        },
+        {
+          "id": "wiki-bogd-mn",
+          "language": "mn",
+          "title": "Богд хаан",
+          "url": "https://mn.wikipedia.org/w/index.php?oldid=866998",
+          "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%91%D0%BE%D0%B3%D0%B4_%D1%85%D0%B0%D0%B0%D0%BD",
+          "revisionId": 866998
+        }
+      ],
+      "nameBasis": "reuse-existing-event",
+      "copy": {
+        "name": "ᠪᠣᠭᠳᠠ ᠬᠠᠭᠠᠨ",
+        "alias": "8 ᠳᠤᠭᠠᠷ ᠵᠠᠪᠵᠤᠨᠳᠠᠮᠪᠠ",
+        "years": "ᠬᠠᠭᠠᠨ ᠪᠠᠶᠢᠭᠰᠠᠨ ᠣᠨ᠄ 1911—1919᠂ 1921—1924",
+        "era": "ᠪᠣᠭᠳᠠ ᠬᠠᠭᠠᠨ ᠤ ᠲᠥᠷᠥ",
+        "summary": "1911 ᠣᠨ ᠳᠤ ᠬᠠᠭᠠᠨ ᠰᠢᠷᠡᠭᠡ ᠳᠦ ᠰᠠᠭᠤᠪᠠ᠃ 1921 ᠣᠨ ᠤ ᠬᠤᠪᠢᠰᠬᠠᠯ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ ᠬᠢᠵᠠᠭᠠᠷᠲᠠᠢ ᠡᠷᠬᠡ ᠲᠡᠢ ᠦᠯᠡᠳᠡᠪᠡ᠃"
+      }
+    },
+    {
+      "id": "sukhbaatar",
+      "status": "paired-core-facts",
+      "facts": "1893–1923; commander of the people’s army in the 1921 revolution. No disputed poisoning account is used.",
+      "sources": ["wiki-sukhbaatar-en", "wiki-sukhbaatar-mn"],
+      "differences": [],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed",
+      "sourceLinks": [
+        {
+          "id": "wiki-sukhbaatar-en",
+          "language": "en",
+          "title": "Damdin Sükhbaatar",
+          "url": "https://en.wikipedia.org/w/index.php?oldid=1350938949",
+          "canonicalUrl": "https://en.wikipedia.org/wiki/Damdin_S%C3%BCkhbaatar",
+          "revisionId": 1350938949
+        },
+        {
+          "id": "wiki-sukhbaatar-mn",
+          "language": "mn",
+          "title": "Дамдины Сүхбаатар",
+          "url": "https://mn.wikipedia.org/w/index.php?oldid=872796",
+          "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%94%D0%B0%D0%BC%D0%B4%D0%B8%D0%BD%D1%8B_%D0%A1%D2%AF%D1%85%D0%B1%D0%B0%D0%B0%D1%82%D0%B0%D1%80",
+          "revisionId": 872796
+        }
+      ],
+      "nameBasis": "reuse-existing-knowledge-name-spelling; distinct historical identity verified by biography",
+      "copy": {
+        "name": "ᠰᠦᠬᠡᠪᠠᠭᠠᠲᠤᠷ",
+        "alias": "ᠴᠡᠷᠢᠭ ᠦᠨ ᠵᠠᠩᠵᠤᠨ",
+        "years": "1893—1923",
+        "era": "20 ᠳᠤᠭᠠᠷ ᠵᠠᠭᠤᠨ",
+        "summary": "1921 ᠣᠨ ᠤ ᠠᠷᠠᠳ ᠤᠨ ᠬᠤᠪᠢᠰᠬᠠᠯ ᠳᠤ ᠣᠷᠣᠯᠴᠠᠵᠤ᠂ ᠠᠷᠠᠳ ᠤᠨ ᠴᠡᠷᠢᠭ ᠢ ᠤᠳᠤᠷᠢᠳᠤᠪᠠ᠃"
+      }
+    },
+    {
+      "id": "choibalsan",
+      "status": "paired-core-facts",
+      "facts": "1895–1952; prime minister in 1939–1952; central responsibility for the 1937–1939 political purges. Shared facts only; differing or unsupported victim totals are excluded.",
+      "sources": ["wiki-choibalsan-en", "wiki-choibalsan-mn"],
+      "differences": [],
+      "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed",
+      "sourceLinks": [
+        {
+          "id": "wiki-choibalsan-en",
+          "language": "en",
+          "title": "Khorloogiin Choibalsan",
+          "url": "https://en.wikipedia.org/w/index.php?oldid=1376385313",
+          "canonicalUrl": "https://en.wikipedia.org/wiki/Khorloogiin_Choibalsan",
+          "revisionId": 1376385313
+        },
+        {
+          "id": "wiki-choibalsan-mn",
+          "language": "mn",
+          "title": "Хорлоогийн Чойбалсан",
+          "url": "https://mn.wikipedia.org/w/index.php?oldid=854804",
+          "canonicalUrl": "https://mn.wikipedia.org/wiki/%D0%A5%D0%BE%D1%80%D0%BB%D0%BE%D0%BE%D0%B3%D0%B8%D0%B9%D0%BD_%D0%A7%D0%BE%D0%B9%D0%B1%D0%B0%D0%BB%D1%81%D0%B0%D0%BD",
+          "revisionId": 854804
+        }
+      ],
+      "nameBasis": "reuse-existing-knowledge-name-spelling; Wikipedia script variants retained in audit only",
+      "copy": {
+        "name": "ᠴᠣᠶᠢᠪᠠᠯᠰᠠᠩ",
+        "alias": "ᠵᠠᠰᠠᠭ ᠤᠨ ᠭᠠᠵᠠᠷ ᠤᠨ ᠲᠡᠷᠢᠭᠦᠯᠡᠭᠴᠢ",
+        "years": "1895—1952",
+        "era": "ᠮᠣᠩᠭᠣᠯ ᠠᠷᠠᠳ ᠤᠯᠤᠰ",
+        "summary": "1939—1952 ᠣᠨ ᠳᠤ ᠮᠣᠩᠭᠣᠯ ᠠᠷᠠᠳ ᠤᠯᠤᠰ ᠤᠨ ᠵᠠᠰᠠᠭ ᠤᠨ ᠭᠠᠵᠠᠷ ᠢ ᠲᠡᠷᠢᠭᠦᠯᠡᠪᠡ᠃ 1937—1939 ᠣᠨ ᠤ ᠤᠯᠤᠰ ᠲᠥᠷᠥ ᠶᠢᠨ ᠬᠡᠯᠮᠡᠭᠳᠡᠭᠦᠯᠦᠯᠲᠡ ᠶᠢ ᠤᠳᠤᠷᠢᠳᠤᠪᠠ᠃"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "from": "dayan",
+      "to": "mandukhai",
+      "type": "spouse",
+      "status": "paired-core-facts",
+      "facts": "Marriage is explicit in English and Cyrillic-Mongolian biographies of both people. No marriage year or disputed child count is asserted.",
+      "sources": [
+        "wiki-history-dayan-en",
+        "wiki-history-dayan-mn",
+        "wiki-mandukhai-en",
+        "wiki-mandukhai-mn"
+      ]
+    },
+    {
+      "from": "altan",
+      "to": "sonam-gyatso",
+      "type": "contact",
+      "status": "paired-core-facts",
+      "facts": "The 1578 meeting is directly recorded in English and Mongolian material. Store only documented contact, without inventing an alliance or family link.",
+      "sources": [
+        "wiki-history-altan-en",
+        "wiki-sonam-gyatso-en",
+        "wiki-sonam-gyatso-mn",
+        "wiki-history-dalai-lama-mn"
+      ]
+    }
+  ],
+  "eventPeopleLinks": {
+    "xiongnu-modu-209-bce": ["modu"],
+    "liao-foundation-916": ["abaoji"],
+    "tumu-crisis-1449": ["esen"],
+    "esen-khagan-1453": ["esen"],
+    "dayan-reunification": ["dayan", "mandukhai"],
+    "altan-beijing-1550": ["altan"],
+    "altan-ming-peace-1571": ["altan"],
+    "altan-sonam-gyatso-1578": ["altan", "sonam-gyatso"],
+    "ligdan-death-1634": ["ligdan"],
+    "jao-modo-1696": ["galdan"],
+    "bogd-khanate-1911": ["bogd"],
+    "kyakhta-treaty-1915": ["bogd"],
+    "autonomy-revoked-1919": ["bogd"],
+    "peoples-revolution-1921": ["bogd", "sukhbaatar", "choibalsan"],
+    "mongolian-peoples-republic-1924": ["bogd"],
+    "political-repressions-1937": ["choibalsan"],
+    "khalkhin-gol-1939": ["choibalsan"]
+  },
+  "languageReview": {
+    "nativeReviewed": 0,
+    "machineCheckedEntries": 0,
+    "draftFile": "history-copy-draft.json",
+    "method": "Reuse event names or existing traditional-Mongolian spellings; verify core facts in English and Cyrillic Mongolian, then write short traditional-Mongolian drafts.",
+    "targetedLexicalReference": {
+      "url": "http://hkuri.cneas.tohoku.ac.jp/p01/mongol/list?groupId=12",
+      "query": "ᠠᠭᠤᠯᠵᠠᠬᠤ",
+      "form": "aGuljaqu",
+      "meaning": "meeting"
+    }
+  },
+  "limits": [
+    "Event links distinguish direct actors from contextual rulers/deceased people where the existing event mentions them.",
+    "No grandparent-to-parent edge is inferred between Dayan and Altan; no undocumented political alliance is added.",
+    "Birth/death and reign disagreements are preserved in the per-person rows. Full traditional-Mongolian sentence proofreading remains separate."
+  ]
+}

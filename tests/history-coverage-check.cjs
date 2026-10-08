@@ -10,12 +10,50 @@ const vm = require('node:vm');
   const labels = JSON.parse(fs.readFileSync('content-source/history-periods.json', 'utf8'));
   const coverage = JSON.parse(fs.readFileSync('docs/history-coverage.json', 'utf8'));
   const copy = JSON.parse(fs.readFileSync('docs/history-copy-draft.json', 'utf8'));
+  const peopleReview = JSON.parse(fs.readFileSync('docs/history-people-review.json', 'utf8'));
   const periods = new Set(labels.periods.map((period) => period.id));
   const regions = new Set(labels.regions.map((region) => region.id));
   const ids = new Set(data.EVENTS.map((event) => event.id));
   assert(data.EVENTS.length >= 60, 'History must extend beyond the imperial-family selection');
   assert.equal(ids.size, data.EVENTS.length);
   assert.equal(data.EVENTS.length, coverage.eventCount);
+  assert.equal(Object.keys(data.PEOPLE).length, coverage.peopleCount);
+  assert.equal(data.EDGES.length, coverage.relationshipCount);
+  assert(coverage.newPeopleIds.length > 0 && coverage.newPeopleIds.length <= 12);
+  for (const id of coverage.originalPeopleIds) assert(data.PEOPLE[id], `Preserve person: ${id}`);
+  assert.deepEqual(
+    peopleReview.people.map((person) => person.id).sort(),
+    [...coverage.newPeopleIds].sort(),
+  );
+  assert.equal(
+    data.EVENTS.filter((event) => event.people.length > 0).length,
+    coverage.eventsWithPeople,
+  );
+  for (const [eventId, people] of Object.entries(peopleReview.eventPeopleLinks)) {
+    const event = data.EVENTS.find((item) => item.id === eventId);
+    assert(event, `Linked event exists: ${eventId}`);
+    for (const id of people) assert(event.people.includes(id), `${eventId}: person entry ${id}`);
+  }
+  for (const person of copy.people) {
+    for (const field of ['name', 'alias', 'years', 'era', 'summary'])
+      assert.equal(person[field], data.PEOPLE[person.id][field]);
+  }
+  assert(
+    data.EDGES.some(
+      (edge) => edge.from === 'dayan' && edge.to === 'mandukhai' && edge.type === 'spouse',
+    ),
+  );
+  assert(
+    data.EDGES.some(
+      (edge) => edge.from === 'altan' && edge.to === 'sonam-gyatso' && edge.type === 'contact',
+    ),
+  );
+  assert(
+    !data.EDGES.some(
+      (edge) => edge.from === 'dayan' && edge.to === 'altan' && edge.type === 'parent',
+    ),
+    'A grandson relationship must not become a parent edge',
+  );
   for (const id of coverage.originalEventIds) assert(ids.has(id), `Preserve original event: ${id}`);
   for (const id of coverage.newEventIds) assert(ids.has(id), `Include reviewed event: ${id}`);
   const periodCounts = new Map();
@@ -55,7 +93,7 @@ const vm = require('node:vm');
     for (const field of ['date', 'title', 'text']) assert.equal(draft[field], event[field]);
   }
   console.log(
-    `PASS: ${data.EVENTS.length} events, ${periods.size} periods, BCE ordering, sources and language-review inventory.`,
+    `PASS: ${data.EVENTS.length} events, ${periods.size} periods, ${coverage.peopleCount} people, ${coverage.eventsWithPeople} person-linked events, BCE ordering, sources and language-review inventory.`,
   );
 })().catch((error) => {
   console.error(error);
