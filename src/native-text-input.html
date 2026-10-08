@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="mn-Mong-CN"
+  ><head
+    ><meta charset="utf-8" /><meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    /><style>
+      @font-face {
+        font-family: Onon;
+        src: url('fonts/OnonSoninSans.woff2') format('woff2');
+      }
+      :root {
+        color-scheme: light dark;
+      }
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+        background: transparent;
+      }
+      textarea {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        resize: none;
+        writing-mode: vertical-lr;
+        text-orientation: mixed;
+        font-family: Onon, serif;
+        font-size: 28px;
+        line-height: 1.7;
+        padding: 12px;
+        color: CanvasText;
+        background: Canvas;
+        border: 1px solid GrayText;
+        border-radius: 12px;
+        outline-offset: -3px;
+        overflow-wrap: normal;
+        word-break: normal;
+      }
+      textarea:focus {
+        outline: 2px solid Highlight;
+      }
+    </style></head
+  ><body>
+    <textarea id="input" spellcheck="false"></textarea
+    ><script>
+      const field = document.getElementById('input');
+      field.value = window.initialValue || '';
+      field.setAttribute('aria-label', window.inputLabel || '');
+      field.addEventListener('input', () =>
+        window.webkit.messageHandlers.nutugText.postMessage(field.value),
+      );
+      window.setText = (value) => {
+        if (field.value !== value) field.value = value;
+      };
+    </script></body
+  ></html
+>

@@ -14,6 +14,7 @@ const pages = [
   'tribes-mobile.html',
   'calendar.html',
   'chronicle.html',
+  'library.html',
   'almanac.html',
 ];
 async function finish(result) {
@@ -58,7 +59,13 @@ async function finish(result) {
     { ...formatting, parser: 'html' },
   );
   for (const page of pages) {
-    await writeFile('public/' + page + '.tmp', html);
+    await writeFile(
+      'public/' + page + '.tmp',
+      html.replace(
+        '<html ',
+        `<html data-product="${page === 'chronicle.html' ? 'history' : 'calendar'}" `,
+      ),
+    );
     await rename('public/' + page + '.tmp', 'public/' + page);
   }
   const assets = [

@@ -4,7 +4,7 @@ Nutug 使用 React 展示传统蒙古文历史资料，D3 计算人物与部落�
 
 ## 主界面
 
-`ProductApp.jsx` 提供日历和历史两个入口。`MonthCalendar.jsx` 从本地日期引擎计算公历与农历，首次断网也可启动。`Chronicle.jsx` 读取独立历史资料，按事件展示日期、正文、人物与来源。网页历史页使用内容客户端的 `core` 范围，只下载清单和核心资料；原有文章深链保留完整资料客户端。
+`ProductApp.jsx` 根据页面的产品标识启动日历或历史，两个界面各自提供独立导航。`CalendarWorkspace.jsx` 管理日程、视图和皮肤。`MonthCalendar.jsx` 从本地日期引擎计算公历与农历，首次断网也可启动。`Chronicle.jsx` 读取独立历史资料，按事件展示日期、正文、人物与来源。网页历史页使用内容客户端的 `core` 范围，只下载清单和核心资料；原有文章深链保留完整资料客户端。
 
 `calendar-copy.mjs` 与 `ui-copy.mjs` 的文案会写入 `interface-copy.json`，供 SwiftUI 使用。原生端通过同一日期引擎计算、独立缓存历史资料；详情见 [Apple 应用](apple-app.md)。
 
@@ -12,10 +12,11 @@ Nutug 使用 React 展示传统蒙古文历史资料，D3 计算人物与部落�
 
 | 页面入口             | 界面                                   |
 | -------------------- | -------------------------------------- |
-| `index.html`         | 日历首页；原有图谱和资料深链继续可用   |
+| `index.html`         | 日历首页                               |
+| `library.html`       | 既有文化资料、文章深链与图谱入口       |
 | `tribes.html`        | 部落关系图和分期筛选                   |
 | `tribes-mobile.html` | 部落图的兼容地址，与桌面共享响应式组件 |
-| `calendar.html`      | 公历与农历月视图、今日和日期选择       |
+| `calendar.html`      | 公历与农历、年/月/周/日、个人日程      |
 | `chronicle.html`     | 编年阅读、年份搜索、事件中的人物关系   |
 | `almanac.html`       | 以传统蒙古文显示的农历日期和民俗条目   |
 
@@ -39,7 +40,11 @@ Nutug 使用 React 展示传统蒙古文历史资料，D3 计算人物与部落�
 
 `npm run dev` 启动网页 8000 端口与内容 8787 端口，并监听界面源码。`npm run build` 默认使用远端内容源；`NUTUG_CONTENT_MANIFEST` 可指定其他入口。`npm run content:publish` 独立发布资料，保留先前发布的版本目录。
 
-Service Worker 缓存界面、字体和日期引擎；内容由独立客户端缓存。下载菜单只有在内容和界面都准备好后才显示离线完成状态。正式网页使用 HTTPS；本地开发可使用 localhost。
+`npm run package:web` 生成两套独立网站，HTML 产品标识使历史首页与日历首页各自启动。Service Worker 缓存按部署路径隔离，离线导航优先恢复当前页面。Service Worker 缓存界面、字体和日期引擎；内容由独立客户端缓存。下载菜单只有在内容和界面都准备好后才显示离线完成状态。正式网页使用 HTTPS；本地开发可使用 localhost。
+
+## 个人日程
+
+`shared/calendar-events.mjs` 定义日程校验、重复展开和 ICS 转换，原生端由 `ScheduleEngine` 在 JavaScriptCore 中执行同一模块。个人日程与历史内容接口分别存储；历史下载不会修改日程。`calendar-skins.mjs` 与 CSS 语义变量负责网页皮肤，原生 `CalendarSkin` 提供对应的四种外观。
 
 ## 原生桥接
 
@@ -47,4 +52,4 @@ Service Worker 缓存界面、字体和日期引擎；内容由独立客户端�
 
 ## 检查
 
-`scripts/test.cjs` 运行 17 个 `tests/*-check.cjs`。生产构建检查包括分页与完整搜索、阅读深链与浏览历史、午夜刷新、标签页、字号及桥接；内容客户端检查按需加载、离线包、版本切换、下载失败回退和设备目录。十组历史回归保留旧 HTML 夹具以对照数据与行为。jsdom 的布局值为模拟值，字体成形、文字边界、滚动和响应式布局另由真实浏览器验证。
+`scripts/test.cjs` 运行全部 `tests/*-check.cjs`。生产构建检查包括分页与完整搜索、阅读深链与浏览历史、午夜刷新、标签页、字号及桥接；内容客户端检查按需加载、离线包、版本切换、下载失败回退和设备目录。十组历史回归保留旧 HTML 夹具以对照数据与行为。jsdom 的布局值为模拟值，字体成形、文字边界、滚动和响应式布局另由真实浏览器验证。

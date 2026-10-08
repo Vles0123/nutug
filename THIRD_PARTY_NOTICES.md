@@ -47,6 +47,7 @@ The interface bundles these pinned npm packages and their dependencies during `n
 - Motion 14.0.0 — MIT.
 - Lucide React 1.51.0 — ISC.
 - D3 Force 3.0.0 — ISC; the D3 dependency notices are also retained in `tests/fixtures/legacy/vendor/d3-LICENSE.txt`.
+- ICAL.js 2.2.1 — MPL-2.0; used for calendar file parsing and serialization, with its original license included in the generated notices.
 
 The generated `public/assets/THIRD_PARTY_LICENSES.txt` collects the license files for packages included in the browser bundle. esbuild also preserves bundled legal comments in `nutug.js.LEGAL.txt`.
 

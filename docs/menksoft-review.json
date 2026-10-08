@@ -1,0 +1,24 @@
+{
+  "provider": "Menksoft",
+  "url": "https://mts.menksoft.com/",
+  "attemptedOn": "2026-10-08",
+  "status": "login-required",
+  "direction": {
+    "from": "mgc_mw",
+    "to": "zh"
+  },
+  "submittedText": "1. ᠴᠠᠭ ᠲᠣᠭ᠎ᠠ\n2. ᠥᠨᠥᠳᠦᠷ\n3. ᠳᠣᠯᠣᠭᠠᠨ ᠬᠣᠨᠣᠭ\n4. ᠲᠥᠯᠥᠪᠯᠡᠭᠡ\n5. ᠭᠠᠷᠴᠠᠭ\n6. ᠲᠡᠮᠳᠡᠭᠯᠡᠯ\n7. ᠭᠠᠵᠠᠷ\n8. ᠪᠦᠲᠦᠨ ᠡᠳᠦᠷ\n9. ᠵᠠᠭᠪᠤᠷ\n10. ᠭᠡᠭᠡᠨ\n11. ᠬᠠᠷᠠᠩᠭᠤᠢ\n12. ᠪᠡᠬᠢ",
+  "observedResponse": "请先登录后再使用翻译功能",
+  "loginUI": "Account or verification-code sign-in; captcha and agreement notice shown.",
+  "translation": null,
+  "machineCheckedEntries": 0,
+  "queue": ["ui-copy-review.json", "history-copy-draft.json"],
+  "pending": "After the user signs in, compare machine back-translations with each UI action and historical statement, then record corrections with the returned text. Native-language editorial review remains separate.",
+  "copyChangeAfterAttempt": {
+    "id": "calendar-app.ink",
+    "from": "ᠪᠡᠬᠢ",
+    "to": "ᠬᠠᠷ᠎ᠠ ᠴᠠᠭᠠᠨ",
+    "meaning": "Black and white visual style",
+    "machineReview": "pending"
+  }
+}

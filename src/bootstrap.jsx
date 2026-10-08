@@ -49,7 +49,9 @@ async function start() {
   }
 }
 const legacy =
-  /tribes|almanac/.test(location.pathname) || /^#(knowledge|article=|person=)/.test(location.hash);
+  /tribes|almanac|library/.test(location.pathname) ||
+  (!document.documentElement.dataset.product &&
+    /^#(knowledge|article=|person=)/.test(location.hash));
 if (window.NutugGraph) bootstrapRoot.render(<NativeGraph />);
 else if (legacy) start();
 else bootstrapRoot.render(<ProductApp manifestUrl={manifestUrl} />);

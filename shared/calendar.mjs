@@ -38,10 +38,10 @@ export function moveMonth(value, months) {
   return `${month}-${String(day).padStart(2, '0')}`;
 }
 
-export function monthDays(month, provider) {
+export function monthDays(month, provider, firstWeekday = 0) {
   const first = month + '-01';
   if (!civilDate(first)) throw new RangeError('Invalid month');
-  const weekday = (new Date(first + 'T12:00:00Z').getUTCDay() + 6) % 7;
+  const weekday = (new Date(first + 'T12:00:00Z').getUTCDay() + 6 - firstWeekday + 7) % 7;
   const next = moveMonth(first, 1);
   const days = Number(moveDate(next, -1).slice(-2));
   return Array.from({ length: Math.ceil((weekday + days) / 7) * 7 }, (_, index) => {

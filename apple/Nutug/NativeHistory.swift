@@ -6,8 +6,11 @@ struct NativeHistory: View {
   @State private var selected: String?
   @State private var chosenPerson: PersonSelection?
   @State private var periods = false
+  @State private var periodID: String?
   @Environment(\.scenePhase) private var phase
-  private var events: [HistoryEvent] { store.content?.events ?? [] }
+  private var events: [HistoryEvent] {
+    (store.content?.events ?? []).sorted { ($0.startYear ?? 0, $0.id) < ($1.startYear ?? 0, $1.id) }
+  }
   private var index: Int { events.firstIndex { $0.id == selected } ?? 0 }
   var body: some View {
     Group {
@@ -20,6 +23,7 @@ struct NativeHistory: View {
               Image(systemName: "chevron.left")
             }.disabled(index == 0).accessibilityLabel(Copy.label("previous"))
             Button {
+              periodID = events[index].periodId
               periods = true
             } label: {
               Text("\(index+1) / \(events.count)").monospacedDigit()
@@ -44,25 +48,27 @@ struct NativeHistory: View {
             ScrollView(.horizontal) {
               HStack(alignment: .top, spacing: 28) {
                 VStack(alignment: .leading, spacing: 20) {
-                  if event.precision != "period" {
+                  if !event.hasScriptedDate {
                     Text(event.date).font(.largeTitle.monospacedDigit()).foregroundStyle(
                       Color.accentColor)
                   }
                   MongolianText(text: event.title, height: height - 65, size: 33, scale: scale)
                 }
-                if event.precision == "period" {
+                if event.hasScriptedDate {
                   MongolianText(text: event.date, height: height, size: 23, scale: scale)
                 }
                 MongolianText(text: event.text, height: height, size: 28, scale: scale)
-                Divider()
-                MongolianText(text: Copy.label("people"), height: 130, size: 23)
-                ForEach(event.people, id: \.self) { id in
-                  if let person = core.people[id] {
-                    Button {
-                      chosenPerson = PersonSelection(id: id)
-                    } label: {
-                      MongolianText(text: person.name, height: 170, size: 25, scale: scale)
-                    }.buttonStyle(.bordered)
+                if !event.people.isEmpty {
+                  Divider()
+                  MongolianText(text: Copy.label("people"), height: 130, size: 23)
+                  ForEach(event.people, id: \.self) { id in
+                    if let person = core.people[id] {
+                      Button {
+                        chosenPerson = PersonSelection(id: id)
+                      } label: {
+                        MongolianText(text: person.name, height: 170, size: 25, scale: scale)
+                      }.buttonStyle(.bordered)
+                    }
                   }
                 }
                 NativeSources(ids: event.sources, sources: core.sources, scale: scale)
@@ -87,26 +93,40 @@ struct NativeHistory: View {
     .onChange(of: phase) { _, phase in if phase == .active { Task { await store.load() } } }
     .sheet(isPresented: $periods) {
       NavigationStack {
-        List(events) { event in
-          Button {
-            selected = event.id
-            periods = false
-          } label: {
-            HStack(alignment: .top, spacing: 24) {
-              Text(event.precision == "period" ? "" : event.date).monospacedDigit().frame(width: 96)
-              MongolianText(text: event.title, height: 160, size: 24)
-            }
-          }.buttonStyle(.plain)
-        }.listStyle(.plain)
-          .toolbar {
-            ToolbarItem(placement: .cancellationAction) {
-              Button {
-                periods = false
-              } label: {
-                Image(systemName: "xmark")
-              }.accessibilityLabel(Copy.label("close"))
-            }
+        VStack {
+          ScrollView(.horizontal) {
+            HStack(alignment: .top, spacing: 12) {
+              ForEach(store.content?.historyPeriods?.periods ?? []) { period in
+                Button {
+                  periodID = period.id
+                } label: {
+                  MongolianText(text: period.title, height: 130, size: 23)
+                }
+                .buttonStyle(.bordered).tint(periodID == period.id ? Color.accentColor : .secondary)
+              }
+            }.padding()
           }
+          List(events.filter { periodID == nil || $0.periodId == periodID }) { event in
+            Button {
+              selected = event.id
+              periods = false
+            } label: {
+              HStack(alignment: .top, spacing: 24) {
+                Text(event.hasScriptedDate ? "" : event.date).monospacedDigit().frame(width: 96)
+                MongolianText(text: event.title, height: 160, size: 24)
+              }
+            }.buttonStyle(.plain)
+          }.listStyle(.plain)
+        }
+        .toolbar {
+          ToolbarItem(placement: .cancellationAction) {
+            Button {
+              periods = false
+            } label: {
+              Image(systemName: "xmark")
+            }.accessibilityLabel(Copy.label("close"))
+          }
+        }
       }
       #if os(macOS)
         .frame(width: 430, height: 620)

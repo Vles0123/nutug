@@ -16,6 +16,7 @@
     "test:core": "node tests/chinese-almanac-core-check.cjs",
     "check": "npm run format:check && npm test",
     "build": "node scripts/build-web.mjs",
+    "package:web": "npm run build && node scripts/package-web.mjs",
     "build:content": "node scripts/build-content.mjs",
     "content:dev": "node scripts/build-content.mjs && node scripts/content-server.mjs",
     "content:publish": "node scripts/publish-content.mjs",
@@ -36,6 +37,7 @@
   "homepage": "https://nutug.cn/",
   "dependencies": {
     "d3-force": "3.0.0",
+    "ical.js": "2.2.1",
     "lucide-react": "1.51.0",
     "motion": "14.0.0",
     "react": "19.3.0",

@@ -63,12 +63,89 @@ enum CivilCalendar {
     else { return nil }
     return string(result)
   }
-  static func days(_ month: String) -> [String] {
+  static func days(_ month: String, firstWeekday: Int = 0) -> [String] {
     guard let first = date(month + "-01"),
       let range = calendar.range(of: .day, in: .month, for: first)
     else { return [] }
-    let offset = (calendar.component(.weekday, from: first) + 5) % 7
+    let offset = (calendar.component(.weekday, from: first) + 5 - firstWeekday + 7) % 7
     let count = ((offset + range.count + 6) / 7) * 7
     return (0..<count).compactMap { moving(month + "-01", component: .day, amount: $0 - offset) }
+  }
+}
+
+struct CalendarAppointment: Codable, Identifiable, Equatable {
+  var id = UUID().uuidString
+  var title = ""
+  var notes = ""
+  var location = ""
+  var startDate: String
+  var endDate: String
+  var startTime = "09:00"
+  var endTime = "10:00"
+  var allDay = false
+  var frequency = "none"
+  var interval = 1
+  var until = ""
+  var color = "blue"
+  var exceptions: [String] = []
+  var eventId: String?
+  var occurrenceDate: String?
+  enum CodingKeys: String, CodingKey {
+    case id, title, notes, location, startDate, endDate, startTime, endTime, allDay, interval,
+      until, color, exceptions, eventId, occurrenceDate
+    case frequency = "repeat"
+  }
+}
+
+final class ScheduleEngine {
+  private let context: JSContext
+  init(root: URL) throws {
+    guard let context = JSContext() else { throw CocoaError(.coderInvalidValue) }
+    self.context = context
+    context.evaluateScript(
+      try String(contentsOf: root.appendingPathComponent("calendar-events.js"), encoding: .utf8))
+    guard context.exception == nil else { throw CocoaError(.coderInvalidValue) }
+    let makeId: @convention(block) () -> String = { UUID().uuidString }
+    context.setObject(makeId, forKeyedSubscript: "calendarUID" as NSString)
+    context.evaluateScript(
+      "function nativeImport(value) { return NutugSchedule.importCalendar(value, calendarUID); }")
+  }
+  private func object<T: Encodable>(_ value: T) throws -> Any {
+    try JSONSerialization.jsonObject(with: JSONEncoder().encode(value))
+  }
+  private func decode<T: Decodable>(_ value: JSValue?, as type: T.Type) throws -> T {
+    guard let value, !value.isUndefined, context.exception == nil, let object = value.toObject()
+    else {
+      context.exception = nil
+      throw CocoaError(.coderInvalidValue)
+    }
+    return try JSONDecoder().decode(type, from: JSONSerialization.data(withJSONObject: object))
+  }
+  func normalize(_ event: CalendarAppointment) throws -> CalendarAppointment {
+    try decode(
+      context.objectForKeyedSubscript("NutugSchedule").invokeMethod(
+        "normalizeEvent", withArguments: [try object(event)]), as: CalendarAppointment.self)
+  }
+  func occurrences(_ events: [CalendarAppointment], from: String, to: String) throws
+    -> [CalendarAppointment]
+  {
+    try decode(
+      context.objectForKeyedSubscript("NutugSchedule").invokeMethod(
+        "occurrencesBetween", withArguments: [try object(events), from, to]),
+      as: [CalendarAppointment].self)
+  }
+  func export(_ events: [CalendarAppointment]) throws -> String {
+    let value = context.objectForKeyedSubscript("NutugSchedule").invokeMethod(
+      "exportCalendar", withArguments: [try object(events)])
+    guard context.exception == nil, let result = value?.toString() else {
+      context.exception = nil
+      throw CocoaError(.coderInvalidValue)
+    }
+    return result
+  }
+  func importText(_ text: String) throws -> [CalendarAppointment] {
+    try decode(
+      context.objectForKeyedSubscript("nativeImport").call(withArguments: [text]),
+      as: [CalendarAppointment].self)
   }
 }

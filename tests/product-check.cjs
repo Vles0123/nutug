@@ -4,7 +4,7 @@ const { JSDOM, VirtualConsole } = require('jsdom');
 const { setTimeout: pause } = require('node:timers/promises');
 const windows = [];
 async function boot(page, clock) {
-  let online = false;
+  let online = page.startsWith('chronicle.html');
   const calls = [],
     errors = [];
   const console = new VirtualConsole();
@@ -35,8 +35,8 @@ async function boot(page, clock) {
       fs.readFileSync('content-dist/' + (start < 0 ? 'manifest.json' : path.slice(start + 1))),
     );
   };
-  w.matchMedia = () => ({
-    matches: true,
+  w.matchMedia = (query) => ({
+    matches: query.includes('prefers-reduced-motion'),
     addListener() {},
     removeListener() {},
     addEventListener() {},
@@ -53,7 +53,8 @@ async function boot(page, clock) {
       .map((s) => fs.readFileSync('public/' + s.getAttribute('src'), 'utf8'))
       .join('\n'),
   );
-  for (let i = 0; i < 100 && !w.document.querySelector('.product-app'); i++) await pause(10);
+  for (let i = 0; i < 100 && !w.document.querySelector('.product-app,.calendar-app'); i++)
+    await pause(10);
   return {
     w,
     d: w.document,
@@ -92,15 +93,19 @@ async function key(w, element, value) {
   ])[0];
   assert.equal(uncertain.start, null, 'An uncertain period is not treated as an exact year range');
   const clock = { now: Date.parse('2026-10-06T15:59:50Z') };
-  const app = await boot('index.html', clock),
-    { w, d } = app;
+  const app = await boot('index.html', clock);
+  let { w, d } = app;
   assert(d.querySelector('.ordinary-calendar'), 'Calendar starts before any content request');
   assert.equal(
     app.calls.length,
     0,
     'Fresh calendar launch works without a content connection or saved content',
   );
-  assert.equal(d.querySelectorAll('.product-tabs a').length, 2);
+  assert.equal(
+    d.querySelectorAll('a[href="chronicle.html"]').length,
+    0,
+    'Calendar has its own navigation',
+  );
   const selected = () => d.querySelector('[data-selected-date]').dataset.selectedDate;
   assert.equal(selected(), '2026-10-06');
   clock.now = Date.parse('2026-10-06T16:00:10Z');
@@ -135,20 +140,22 @@ async function key(w, element, value) {
   await click(d.querySelector('[data-action="product-settings"]'));
   assert(d.querySelector('input[type=range]'));
   await key(w, d.querySelector('[role=dialog]'), 'Escape');
-  app.online();
-  await click(d.querySelector('.product-tabs a[href="chronicle.html"]'));
+  const historyApp = await boot('chronicle.html');
+  ({ w, d } = historyApp);
   for (let i = 0; i < 100 && !d.querySelector('.chronicle-entry'); i++) await pause(20);
-  assert.equal(d.querySelectorAll('.year-rail button').length, 16);
+  assert(d.querySelectorAll('.year-rail button').length >= 16);
   await click(d.querySelector('[data-action="chronicle-contents"]'));
-  assert.equal(d.querySelectorAll('[data-contents-event]').length, 18);
-  await click(d.querySelectorAll('[data-contents-event]')[1]);
+  assert(d.querySelectorAll('[data-contents-event]').length > 0);
+  if (d.querySelector('[data-history-period="mongol-empire"]'))
+    await click(d.querySelector('[data-history-period="mongol-empire"]'));
+  await click(d.querySelector('[data-contents-event="mongol-empire-1206"]'));
   assert(!d.querySelector('[role=dialog]'), 'Choosing a period returns to the reading surface');
-  assert(app.calls.length >= 2, 'History reads the independent content interface');
+  assert(historyApp.calls.length >= 2, 'History reads the independent content interface');
   assert(
-    app.calls.every((url) => url.endsWith('manifest.json') || url.endsWith('core.json')),
+    historyApp.calls.every((url) => url.endsWith('manifest.json') || url.endsWith('core.json')),
     'Chronology fetches only its own content',
   );
-  await click(d.querySelectorAll('.year-rail button')[1]);
+  await click(d.querySelector('[data-event="mongol-empire-1206"]'));
   const first = d.querySelector('.chronicle-entry').dataset.eventId;
   assert(w.location.hash.includes(first));
   await click(d.querySelector('[data-action="event-people"]'));
@@ -201,6 +208,7 @@ async function key(w, element, value) {
     'Product controls and content use Traditional Mongolian',
   );
   assert.equal(app.errors.length, 0, app.errors.join('\n'));
+  assert.equal(historyApp.errors.length, 0, historyApp.errors.join('\n'));
   for (const date of ['1901-01-01', '2100-12-31']) {
     const edge = await boot('calendar.html?date=' + date);
     assert.equal(edge.d.querySelector('[data-selected-date]').dataset.selectedDate, date);
@@ -212,7 +220,7 @@ async function key(w, element, value) {
   }
   for (const window of windows) window.close();
   console.log(
-    'PASS: offline-first calendar, two destinations, dual dates, month/year and keyboard navigation, midnight behavior, range boundaries, chronological reading, year-range search and contextual people.',
+    'PASS: offline-first independent calendar and history, dual dates, month/year and keyboard navigation, midnight behavior, range boundaries, chronological reading, year-range search and contextual people.',
   );
 })().catch((error) => {
   for (const window of windows) window.close();

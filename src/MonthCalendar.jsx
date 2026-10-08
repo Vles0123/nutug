@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Button, Dialog, DialogTrigger, Popover } from 'react-aria-components';
-import { ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ChevronDown, Moon } from 'lucide-react';
 import { Mn, IconButton } from './ui';
 import { labels } from './ui-copy.mjs';
 import { calendarCopy as copy, calendarConfig } from './calendar-copy.mjs';
@@ -12,23 +12,56 @@ import {
   monthDays,
 } from '../shared/calendar.mjs';
 import { useToday } from './useToday';
+import { Agenda } from './CalendarAgenda';
+import { occurrencesBetween } from '../shared/calendar-events.mjs';
 
-export function MonthCalendar() {
+export function MonthCalendar({
+  selectedDate,
+  onSelectDate,
+  firstWeekday = 0,
+  showLunar = true,
+  appointments = [],
+  onAdd,
+  onOpenEvent,
+  onOpenDay,
+}) {
   const today = useToday(calendarConfig.timeZone);
   const provider = useMemo(
     () => chineseLunisolarProvider(window.ChineseAlmanac, calendarConfig),
     [],
   );
   const initial = new URLSearchParams(location.search).get('date');
-  const [date, setDate] = useState(() => (provider.validDate(initial) ? initial : today));
+  const [localDate, setLocalDate] = useState(() => (provider.validDate(initial) ? initial : today));
+  const date = selectedDate || localDate;
+  const setDate = (value) => {
+    setLocalDate(value);
+    onSelectDate?.(value);
+  };
   const [month, setMonth] = useState(date.slice(0, 7));
+  useEffect(() => {
+    if (selectedDate) setMonth(selectedDate.slice(0, 7));
+  }, [selectedDate]);
   const [picker, setPicker] = useState(false);
   const [year, setYear] = useState(Number(month.slice(0, 4)));
   const previousToday = useRef(today),
     grid = useRef(null),
     focusNext = useRef(false);
-  const days = useMemo(() => monthDays(month, provider), [month, provider]);
+  const days = useMemo(
+    () => monthDays(month, provider, firstWeekday),
+    [month, provider, firstWeekday],
+  );
   const lunar = provider.compute(date);
+  const occurrences = useMemo(
+    () =>
+      occurrencesBetween(
+        appointments,
+        days[0].iso < calendarConfig.minDate ? calendarConfig.minDate : days[0].iso,
+        days.at(-1).iso > calendarConfig.maxDate ? calendarConfig.maxDate : days.at(-1).iso,
+      ),
+    [appointments, days],
+  );
+  const forDate = (value) =>
+    occurrences.filter((event) => event.startDate <= value && event.endDate >= value);
   const select = (value, focus = false) => {
     if (!provider.validDate(value)) return;
     focusNext.current = focus;
@@ -65,7 +98,7 @@ export function MonthCalendar() {
       value.slice(0, 7) >= calendarConfig.minDate.slice(0, 7) &&
       value.slice(0, 7) <= calendarConfig.maxDate.slice(0, 7)
     )
-      setMonth(value.slice(0, 7));
+      select(moveMonth(date, delta));
   };
   const key = (event, value) => {
     let target;
@@ -130,7 +163,12 @@ export function MonthCalendar() {
                     aria-label={`${i + 1} ${copy.month}`}
                     isDisabled={!Number.isInteger(year) || year < 1901 || year > 2100}
                     onPress={() => {
-                      setMonth(`${year}-${String(i + 1).padStart(2, '0')}`);
+                      select(
+                        moveMonth(
+                          date,
+                          (year - Number(date.slice(0, 4))) * 12 + i + 1 - Number(date.slice(5, 7)),
+                        ),
+                      );
                       setPicker(false);
                     }}
                   >
@@ -164,9 +202,9 @@ export function MonthCalendar() {
       <div className="calendar-layout">
         <div className="month-surface">
           <div className="weekday-row">
-            {copy.weekdays.map((label, i) => (
-              <Mn key={label} className={i >= 5 ? 'weekend' : ''}>
-                {label}
+            {Array.from({ length: 7 }, (_, i) => (i + firstWeekday) % 7).map((i) => (
+              <Mn key={i} className={i >= 5 ? 'weekend' : ''}>
+                {copy.weekdays[i]}
               </Mn>
             ))}
           </div>
@@ -183,10 +221,13 @@ export function MonthCalendar() {
                 isDisabled={!provider.validDate(day.iso)}
                 tabIndex={day.iso === (date.startsWith(month) ? date : month + '-01') ? 0 : -1}
                 onKeyDown={(e) => key(e, day.iso)}
-                onPress={() => select(day.iso)}
+                onPress={() => {
+                  select(day.iso);
+                  if (window.matchMedia('(max-width: 700px)').matches) onOpenDay?.();
+                }}
               >
                 <span className="day-number numeric">{day.day}</span>
-                {day.lunar && (
+                {showLunar && day.lunar && (
                   <span
                     className={`lunar-number numeric ${day.lunar.lunarDay === 1 ? 'month-start' : ''}`}
                   >
@@ -195,10 +236,40 @@ export function MonthCalendar() {
                     {day.lunar.lunarDay}
                   </span>
                 )}
+                {forDate(day.iso).length > 0 && (
+                  <span className="appointment-dots" aria-hidden="true">
+                    {forDate(day.iso)
+                      .slice(0, 3)
+                      .map((item) => (
+                        <i key={item.id} data-event-color={item.color} />
+                      ))}
+                  </span>
+                )}
               </Button>
             ))}
           </div>
         </div>
+        {onOpenDay && (
+          <Button
+            className="compact-day-summary"
+            data-action="open-day"
+            onPress={onOpenDay}
+            aria-label={date + ' · ' + copy.agenda}
+          >
+            <span className="numeric">{civilDate(date).day}</span>
+            <Mn>{copy.weekdays[week]}</Mn>
+            {showLunar && (
+              <span className="compact-lunar numeric">
+                <Moon size={16} />
+                {lunar.lunarMonth} / {lunar.lunarDay}
+              </span>
+            )}
+            {forDate(date).length > 0 && (
+              <span className="numeric day-event-count">{forDate(date).length}</span>
+            )}
+            <ChevronRight size={18} />
+          </Button>
+        )}
         <aside className="day-detail" aria-live="polite" data-selected-date={date}>
           <div className="day-focus">
             <span className="focus-number numeric">{civilDate(date).day}</span>
@@ -213,16 +284,27 @@ export function MonthCalendar() {
               </strong>
             </time>
           </div>
-          <div className="date-pair">
-            <Mn>{copy.lunar}</Mn>
-            <span className="date-value numeric">
-              <span>{lunar.lunarYear}</span>
-              <strong>
-                {lunar.lunarMonth} / {lunar.lunarDay}
-              </strong>
-              {lunar.leapMonth && <Mn className="leap-month-note">{copy.leapMonth}</Mn>}
-            </span>
-          </div>
+          {showLunar && (
+            <div className="date-pair">
+              <Mn>{copy.lunar}</Mn>
+              <span className="date-value numeric">
+                <span>{lunar.lunarYear}</span>
+                <strong>
+                  {lunar.lunarMonth} / {lunar.lunarDay}
+                </strong>
+                {lunar.leapMonth && <Mn className="leap-month-note">{copy.leapMonth}</Mn>}
+              </span>
+            </div>
+          )}
+          {onAdd && (
+            <section className="month-day-agenda">
+              <div className="agenda-heading">
+                <Mn as="h2">{copy.agenda}</Mn>
+                <span className="numeric">{forDate(date).length}</span>
+              </div>
+              <Agenda items={forDate(date)} onOpen={onOpenEvent} onAdd={() => onAdd(date)} />
+            </section>
+          )}
         </aside>
       </div>
     </section>

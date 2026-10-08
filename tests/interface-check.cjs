@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const liveWindows = new Set();
 const { JSDOM, VirtualConsole } = require('jsdom');
 const { setTimeout: pause } = require('node:timers/promises');
-const pages = ['index.html', 'tribes.html', 'tribes-mobile.html', 'almanac.html'];
+const pages = ['library.html', 'tribes.html', 'tribes-mobile.html', 'almanac.html'];
 const han = /[\u3400-\u9fff\u{20000}-\u{2FA1F}]/u;
 async function load(page, options = {}) {
   const errors = [];
@@ -13,7 +13,7 @@ async function load(page, options = {}) {
     url:
       'https://nutug.test/' +
       page +
-      (options.fragment || (page === 'index.html' ? '#person=temujin' : '')),
+      (options.fragment || (page === 'library.html' ? '#person=temujin' : '')),
     runScripts: 'outside-only',
     pretendToBeVisual: true,
     virtualConsole,
@@ -299,7 +299,7 @@ function visibleText(d) {
   );
   assert.equal(errors.length, 0, errors.join('\n'));
   w.close();
-  const direct = await load('index.html', {
+  const direct = await load('library.html', {
     fragment: '?q=archive#article=archive-lindgren-community-identification',
   });
   for (let i = 0; i < 60 && !direct.d.querySelector('.reader-content .reading-text'); i++)
@@ -359,12 +359,12 @@ function visibleText(d) {
     timed.w.close();
   }
   for (const id of ['constructor', '__proto__']) {
-    const { w, d } = await load('index.html', { fragment: '#person=' + id });
+    const { w, d } = await load('library.html', { fragment: '#person=' + id });
     assert.equal(d.querySelector('.inspector').dataset.record, 'temujin');
     w.close();
   }
   const messages = [],
-    native = await load('index.html', { native: messages });
+    native = await load('library.html', { native: messages });
   assert(native.d.querySelector('.native-app'));
   assert(messages.some((m) => m.event === 'ready'));
   assert.equal(messages.find((m) => m.event === 'people')?.records.length, 32);

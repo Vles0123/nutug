@@ -14,3 +14,4 @@ public/*.html
 public/interface-copy.json
 
 apple/Resources/
+build/

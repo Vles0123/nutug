@@ -38,7 +38,7 @@
       "basis": "区分文章目录入口与筛选范围，补充可追溯词形用例。"
     }
   ],
-  "totals": { "entries": 175, "nativeReviewed": 0, "differingConcepts": 6 },
+  "totals": { "entries": 209, "nativeReviewed": 0, "differingConcepts": 6 },
   "differingForms": [
     {
       "concept": "today",
@@ -345,6 +345,210 @@
       "id": "calendar-app.leapMonth",
       "text": "ᠢᠯᠡᠭᠦᠦ ᠰᠠᠷ᠎ᠠ",
       "context": "calendar-app / leapMonth",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.week",
+      "text": "ᠳᠣᠯᠣᠭᠠᠨ ᠬᠣᠨᠣᠭ",
+      "context": "calendar-app / week",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.agenda",
+      "text": "ᠲᠥᠯᠥᠪᠯᠡᠭᠡ",
+      "context": "calendar-app / agenda",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.add",
+      "text": "ᠨᠡᠮᠡᠬᠦ",
+      "context": "calendar-app / add",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.edit",
+      "text": "ᠵᠠᠰᠠᠬᠤ",
+      "context": "calendar-app / edit",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.save",
+      "text": "ᠬᠠᠳᠠᠭᠠᠯᠠᠬᠤ",
+      "context": "calendar-app / save",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.delete",
+      "text": "ᠬᠠᠰᠤᠬᠤ",
+      "context": "calendar-app / delete",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.undo",
+      "text": "ᠪᠤᠴᠠᠭᠠᠬᠤ",
+      "context": "calendar-app / undo",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.title",
+      "text": "ᠭᠠᠷᠴᠠᠭ",
+      "context": "calendar-app / title",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.notes",
+      "text": "ᠲᠡᠮᠳᠡᠭᠯᠡᠯ",
+      "context": "calendar-app / notes",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.location",
+      "text": "ᠭᠠᠵᠠᠷ",
+      "context": "calendar-app / location",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.start",
+      "text": "ᠡᠬᠢᠯᠡᠬᠦ",
+      "context": "calendar-app / start",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.end",
+      "text": "ᠳᠠᠭᠤᠰᠬᠤ",
+      "context": "calendar-app / end",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.time",
+      "text": "ᠴᠠᠭ",
+      "context": "calendar-app / time",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.allDay",
+      "text": "ᠪᠦᠲᠦᠨ ᠡᠳᠦᠷ",
+      "context": "calendar-app / allDay",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.repeat",
+      "text": "ᠳᠠᠪᠲᠠᠬᠤ",
+      "context": "calendar-app / repeat",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.once",
+      "text": "ᠨᠢᠭᠡ ᠤᠳᠠᠭ᠎ᠠ",
+      "context": "calendar-app / once",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.thisOccurrence",
+      "text": "ᠡᠨᠡ ᠤᠳᠠᠭ᠎ᠠ",
+      "context": "calendar-app / thisOccurrence",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.series",
+      "text": "ᠪᠦᠬᠦ",
+      "context": "calendar-app / series",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.until",
+      "text": "ᠬᠦᠷᠲᠡᠯ᠎ᠡ",
+      "context": "calendar-app / until",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.interval",
+      "text": "ᠵᠠᠪᠰᠠᠷ",
+      "context": "calendar-app / interval",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.empty",
+      "text": "ᠲᠥᠯᠥᠪᠯᠡᠭᠡ ᠠᠯᠭ᠎ᠠ",
+      "context": "calendar-app / empty",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.invalid",
+      "text": "ᠣᠷᠣᠭᠤᠯᠤᠭᠰᠠᠨ ᠵᠦᠢᠯ ᠢᠶᠡᠨ ᠰᠢᠯᠭᠠᠨ᠎ᠠ ᠤᠤ",
+      "context": "calendar-app / invalid",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.import",
+      "text": "ᠣᠷᠣᠭᠤᠯᠬᠤ",
+      "context": "calendar-app / import",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.export",
+      "text": "ᠭᠠᠷᠭᠠᠬᠤ",
+      "context": "calendar-app / export",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.imported",
+      "text": "ᠣᠷᠣᠭᠤᠯᠪᠠ",
+      "context": "calendar-app / imported",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.importError",
+      "text": "ᠤᠩᠰᠢᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ",
+      "context": "calendar-app / importError",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.storageError",
+      "text": "ᠬᠠᠳᠠᠭᠠᠯᠠᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ",
+      "context": "calendar-app / storageError",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.appearance",
+      "text": "ᠵᠠᠭᠪᠤᠷ",
+      "context": "calendar-app / appearance",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.light",
+      "text": "ᠭᠡᠭᠡᠨ",
+      "context": "calendar-app / light",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.dark",
+      "text": "ᠬᠠᠷᠠᠩᠭᠤᠢ",
+      "context": "calendar-app / dark",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.paper",
+      "text": "ᠴᠠᠭᠠᠰᠤ",
+      "context": "calendar-app / paper",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.ink",
+      "text": "ᠬᠠᠷ᠎ᠠ ᠴᠠᠭᠠᠨ",
+      "context": "calendar-app / ink",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.firstWeekday",
+      "text": "ᠡᠬᠢᠨ ᠦ ᠡᠳᠦᠷ",
+      "context": "calendar-app / firstWeekday",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.display",
+      "text": "ᠬᠠᠷᠠᠭᠳᠠᠴᠠ",
+      "context": "calendar-app / display",
       "review": "needs-native-review"
     },
     {

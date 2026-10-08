@@ -16,6 +16,7 @@ export function Chronicle({ snapshot }) {
   const [selected, setSelected] = useState(
     () => events.find((event) => event.id === initial)?.id || events[0]?.id,
   );
+  const [catalogPeriod, setCatalogPeriod] = useState(null);
   const [person, setPerson] = useState(null),
     [mode, setMode] = useState('family'),
     [personView, setPersonView] = useState('details'),
@@ -29,6 +30,11 @@ export function Chronicle({ snapshot }) {
       events.findIndex((event) => event.id === selected),
     ),
     event = events[index];
+  const periods = data.historyPeriods?.periods || [];
+  const contentsEvents = catalogPeriod
+    ? events.filter((item) => item.periodId === catalogPeriod)
+    : events;
+  const scriptedDate = /[\u1800-\u18af]/u.test(event?.date || '');
   const choose = (id) => {
     setSelected(id);
     setSearch(false);
@@ -106,7 +112,10 @@ export function Chronicle({ snapshot }) {
           className="chronicle-contents-button"
           data-action="chronicle-contents"
           aria-label={labels.timeline}
-          onPress={() => setContents(true)}
+          onPress={() => {
+            setCatalogPeriod(event.periodId || null);
+            setContents(true);
+          }}
         >
           <List size={20} aria-hidden="true" />
           <Mn>{labels.timeline}</Mn>
@@ -150,7 +159,7 @@ export function Chronicle({ snapshot }) {
                 aria-current={item.date === event.date ? 'true' : undefined}
                 onPress={() => choose(item.id)}
               >
-                {item.precision === 'period' ? (
+                {/[\u1800-\u18af]/u.test(item.date) ? (
                   <Mn>{item.date}</Mn>
                 ) : (
                   <span className="numeric">{item.date}</span>
@@ -162,26 +171,26 @@ export function Chronicle({ snapshot }) {
           <PagedReading className="chronicle-reading" contentKey={event.id}>
             <article className="chronicle-entry" data-event-id={event.id}>
               <div className="chronicle-title">
-                {event.precision !== 'period' && (
-                  <span className="numeric chronicle-year">{event.date}</span>
-                )}
+                {!scriptedDate && <span className="numeric chronicle-year">{event.date}</span>}
                 <Mn as="h1">{event.title}</Mn>
               </div>
-              {event.precision === 'period' && <Mn className="event-date">{event.date}</Mn>}
+              {scriptedDate && <Mn className="event-date">{event.date}</Mn>}
               <Mn as="p" className="reading-text">
                 {event.text}
               </Mn>
             </article>
           </PagedReading>
           <div className="chronicle-context">
-            <Button
-              ref={peopleTrigger}
-              data-action="event-people"
-              onPress={() => setContext('people')}
-            >
-              <Mn>{labels.people}</Mn>
-              <span className="numeric">{event.people.length}</span>
-            </Button>
+            {event.people.length > 0 && (
+              <Button
+                ref={peopleTrigger}
+                data-action="event-people"
+                onPress={() => setContext('people')}
+              >
+                <Mn>{labels.people}</Mn>
+                <span className="numeric">{event.people.length}</span>
+              </Button>
+            )}
             {event.sources?.length > 0 && (
               <Button data-action="event-sources" onPress={() => setContext('sources')}>
                 <Mn>{labels.sources}</Mn>
@@ -222,17 +231,40 @@ export function Chronicle({ snapshot }) {
         wide
         className="chronicle-contents-sheet"
       >
+        {periods.length > 0 && (
+          <ColumnScroller
+            className="history-period-options"
+            role="group"
+            aria-label={labels.timeline}
+          >
+            {periods.map((period) => (
+              <Button
+                key={period.id}
+                data-history-period={period.id}
+                aria-pressed={catalogPeriod === period.id}
+                onPress={() => setCatalogPeriod(period.id)}
+              >
+                <span className="numeric">
+                  {period.startYear}—{period.endYear}
+                </span>
+                <Mn>{period.title}</Mn>
+              </Button>
+            ))}
+          </ColumnScroller>
+        )}
         <ColumnScroller className="chronicle-contents">
-          {events.map((item) => (
+          {contentsEvents.map((item) => (
             <Button
               key={item.id}
               data-contents-event={item.id}
               aria-current={item.id === event.id ? 'true' : undefined}
               onPress={() => choose(item.id)}
             >
-              {item.precision !== 'period' && <span className="numeric">{item.date}</span>}
+              {!/[\u1800-\u18af]/u.test(item.date) && <span className="numeric">{item.date}</span>}
               <Mn>{item.title}</Mn>
-              {item.precision === 'period' && <Mn className="contents-period">{item.date}</Mn>}
+              {/[\u1800-\u18af]/u.test(item.date) && (
+                <Mn className="contents-period">{item.date}</Mn>
+              )}
             </Button>
           ))}
         </ColumnScroller>
@@ -249,7 +281,9 @@ export function Chronicle({ snapshot }) {
           <ColumnScroller className="chronicle-results">
             {filtered.map((item) => (
               <Button key={item.id} data-search-event={item.id} onPress={() => choose(item.id)}>
-                <span className="numeric">{item.precision === 'period' ? '' : item.date}</span>
+                <span className="numeric">
+                  {/[\u1800-\u18af]/u.test(item.date) ? '' : item.date}
+                </span>
                 <Mn>{item.title}</Mn>
               </Button>
             ))}

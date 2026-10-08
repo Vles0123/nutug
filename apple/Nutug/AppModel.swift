@@ -61,8 +61,24 @@ struct HistoryEvent: Codable, Identifiable {
   var startYear: Int?
   var endYear: Int?
   var precision: String?
+  var periodId: String?
+  var regionId: String?
+  var hasScriptedDate: Bool {
+    date.unicodeScalars.contains { (0x1800...0x18af).contains($0.value) }
+  }
+}
+struct HistoryPeriod: Codable, Identifiable {
+  var id: String
+  var title: String
+  var startYear: Int?
+  var endYear: Int?
+}
+struct HistoryPeriodCatalog: Codable {
+  var periods: [HistoryPeriod]
+  var regions: [HistoryPeriod]
 }
 struct HistoryCore: Codable {
+  var historyPeriods: HistoryPeriodCatalog?
   var people: [String: HistoryPerson]
   var peopleEdges: [HistoryEdge]
   var events: [HistoryEvent]
@@ -107,10 +123,21 @@ final class HistoryStore: ObservableObject {
       await load()
     }
   }
-  private let manifestURL = URL(
-    string:
-      "https://raw.githubusercontent.com/Vles0123/nutug/refs/heads/chore/content-feed/manifest.json"
-  )!
+  private let manifestURL: URL = {
+    if let data = try? Data(
+      contentsOf: AppModel.publicRoot.appendingPathComponent("content-config.json")),
+      let config = try? JSONDecoder().decode([String: String].self, from: data),
+      let value = config["manifestUrl"], let url = URL(string: value),
+      url.scheme == "https"
+        || (url.scheme == "http" && ["127.0.0.1", "localhost", "::1"].contains(url.host ?? ""))
+    {
+      return url
+    }
+    return URL(
+      string:
+        "https://raw.githubusercontent.com/Vles0123/nutug/refs/heads/chore/content-feed/manifest.json"
+    )!
+  }()
   private var file: URL {
     FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
       .appendingPathComponent("Nutug", isDirectory: true).appendingPathComponent("history.json")
@@ -179,8 +206,11 @@ final class AppModel: ObservableObject {
   @Published var readingScale: Double {
     didSet { UserDefaults.standard.set(readingScale, forKey: "nutug.readingScale") }
   }
-  let history = HistoryStore()
-  let calendar = CalendarModel()
+  lazy var history = HistoryStore()
+  lazy var calendar = CalendarModel()
+  @Published var skin: String = UserDefaults.standard.string(forKey: "nutug.skin") ?? "light" {
+    didSet { UserDefaults.standard.set(skin, forKey: "nutug.skin") }
+  }
   nonisolated static var publicRoot: URL {
     Bundle.main.resourceURL!.appendingPathComponent("public", isDirectory: true)
   }
