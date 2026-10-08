@@ -185,10 +185,14 @@ export function Chronicle({ snapshot }) {
               <Button
                 ref={peopleTrigger}
                 data-action="event-people"
-                onPress={() => setContext('people')}
+                onPress={() =>
+                  event.people.length === 1 ? openPerson(event.people[0]) : setContext('people')
+                }
               >
-                <Mn>{labels.people}</Mn>
-                <span className="numeric">{event.people.length}</span>
+                <Mn>
+                  {event.people.length === 1 ? data.people[event.people[0]].name : labels.people}
+                </Mn>
+                {event.people.length > 1 && <span className="numeric">{event.people.length}</span>}
               </Button>
             )}
             {event.sources?.length > 0 && (
