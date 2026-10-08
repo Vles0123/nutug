@@ -52,3 +52,7 @@ The interface bundles these pinned npm packages and their dependencies during `n
 The generated `public/assets/THIRD_PARTY_LICENSES.txt` collects the license files for packages included in the browser bundle. esbuild also preserves bundled legal comments in `nutug.js.LEGAL.txt`.
 
 Apple's iOS/iPadOS 27 Figma resource is used as a component and design-token reference. The source component nodes are recorded in `src/apple-reference.json`. Web icons come from Lucide and the Mongolian typeface remains Onon Sonin Sans.
+
+## Archived v124 snapshot
+
+The original v124 notices are preserved in `docs/upstream/v124/THIRD_PARTY_NOTICES.md`. That archive includes public-domain Natural Earth map data with dataset attribution inside its source ZIP.

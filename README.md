@@ -105,3 +105,7 @@ docs/                   架构与构建说明
 源码基于仓库的 v20 快照，并已整合 main 的 v31 内容增量：主知识库 474 篇、部落资料 8 篇、原始文献入口 2 条。原始压缩包保留于 Git 历史，当前开发直接管理源文件。整合说明见 [v31 内容整合](docs/upstream-sync.md)，来源提交与校验值见 `docs/upstream-v31.json`。
 
 原创代码与编辑内容的授权标识为 `UNLICENSED`，使用授权由权利人确定。第三方组件保持各自许可：Noto Sans Mongolian 使用 OFL 1.1，`lunar-javascript` 使用 MIT。详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+
+## 上游源码快照
+
+main 的 v124 交接包已合入本分支。原始交接记录和 1729 篇知识库快照保存在 `docs/upstream/v124/`；当前应用从仓库根目录的 `src/`、`shared/`、`content-source/` 开发。按产品范围移植的内容见 [v124 整合记录](docs/upstream-v124.md)。
