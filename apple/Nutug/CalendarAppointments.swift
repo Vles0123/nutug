@@ -154,7 +154,7 @@ struct CalendarTransferControls: View {
       } label: {
         HStack(alignment: .top) {
           Image(systemName: "square.and.arrow.down")
-          MongolianText(text: Copy.calendar("import"), height: 110, size: 23)
+          MongolianLabel(text: Copy.calendar("import"), height: 72)
         }
       }
       Button {
@@ -162,10 +162,10 @@ struct CalendarTransferControls: View {
       } label: {
         HStack(alignment: .top) {
           Image(systemName: "square.and.arrow.up")
-          MongolianText(text: Copy.calendar("export"), height: 110, size: 23)
+          MongolianLabel(text: Copy.calendar("export"), height: 72)
         }
       }
-    }.buttonStyle(.bordered)
+    }.buttonStyle(.plain)
       .fileImporter(isPresented: $importing, allowedContentTypes: CalendarFile.readableContentTypes)
     { result in
       do {
@@ -209,27 +209,24 @@ struct NativeAgenda: View {
   let items: [CalendarAppointment]
   let onOpen: (CalendarAppointment) -> Void
   let onAdd: () -> Void
+  var scale: Double = 1
   var body: some View {
     ScrollView(.horizontal) {
       HStack(alignment: .top, spacing: 16) {
-        if items.isEmpty {
-          MongolianText(text: Copy.calendar("empty"), height: 110, size: 24).foregroundStyle(
-            .secondary)
-        }
         ForEach(items) { item in
           Button {
             onOpen(item)
           } label: {
             HStack(alignment: .top, spacing: 12) {
               if item.allDay {
-                MongolianText(text: Copy.calendar("allDay"), height: 120, size: 21)
+                MongolianLabel(text: Copy.calendar("allDay"), height: 76, size: 20)
               } else {
                 VStack(spacing: 8) {
                   Text(item.startTime)
                   Text(item.endTime).foregroundStyle(.secondary)
                 }.font(.callout.monospacedDigit())
               }
-              MongolianText(text: item.title, height: 130, size: 25)
+              MongolianText(text: item.title, height: 112, size: 24, scale: scale, fitContent: true)
               if item.frequency != "none" { Image(systemName: "repeat") }
             }.padding(.horizontal, 10).padding(.vertical, 8)
               .overlay(alignment: .leading) { Rectangle().fill(Color.accentColor).frame(width: 2) }
@@ -238,10 +235,10 @@ struct NativeAgenda: View {
         Button(action: onAdd) {
           HStack(alignment: .top) {
             Image(systemName: "plus")
-            MongolianText(text: Copy.calendar("add"), height: 76, size: 24)
+            MongolianLabel(text: Copy.calendar("add"), height: 64, size: 22)
           }
         }.buttonStyle(.plain)
-      }.padding(.vertical, 8)
+      }.padding(.vertical, 4)
     }
   }
 }
@@ -261,7 +258,7 @@ struct AppointmentEditor: View {
         Section { textField("title", value: $draft.title) }
         Section {
           Toggle(isOn: $draft.allDay) {
-            MongolianText(text: Copy.calendar("allDay"), height: 60, size: 23)
+            MongolianLabel(text: Copy.calendar("allDay"), height: 64)
           }.toggleStyle(.switch)
             .onChange(of: draft.allDay) { _, value in
               if !value && draft.startTime == draft.endTime {
@@ -274,14 +271,14 @@ struct AppointmentEditor: View {
         }
         Section {
           HStack(alignment: .top, spacing: 12) {
-            MongolianText(text: Copy.calendar("repeat"), height: 70, size: 23)
+            MongolianLabel(text: Copy.calendar("repeat"), height: 70)
             ScrollView(.horizontal) {
               HStack(spacing: 8) {
                 ForEach(["none", "daily", "weekly", "monthly", "yearly"], id: \.self) { value in
                   Button {
                     draft.frequency = value
                   } label: {
-                    MongolianText(text: Copy.calendar(repeatLabel(value)), height: 65, size: 22)
+                    MongolianLabel(text: Copy.calendar(repeatLabel(value)), height: 65, size: 21)
                   }.buttonStyle(.bordered)
                     .tint(draft.frequency == value ? Color.accentColor : .secondary)
                     .accessibilityAddTraits(draft.frequency == value ? .isSelected : [])
@@ -292,13 +289,13 @@ struct AppointmentEditor: View {
           if draft.frequency != "none" {
             Stepper(value: $draft.interval, in: 1...99) {
               HStack {
-                MongolianText(text: Copy.calendar("interval"), height: 70, size: 23)
+                MongolianLabel(text: Copy.calendar("interval"), height: 70)
                 Spacer()
                 Text(String(draft.interval)).monospacedDigit()
               }
             }
             HStack(alignment: .top) {
-              MongolianText(text: Copy.calendar("until"), height: 70, size: 23)
+              MongolianLabel(text: Copy.calendar("until"), height: 70)
               TextField(draft.startDate, text: $draft.until).monospacedDigit()
                 .accessibilityLabel(Copy.calendar("until"))
                 .focused($focusedField, equals: "until")
@@ -317,36 +314,43 @@ struct AppointmentEditor: View {
           }
         }
       }
-      .toolbar {
-        ToolbarItem(placement: .cancellationAction) {
-          Button {
-            dismiss()
-          } label: {
-            Image(systemName: "xmark")
-          }
-          .accessibilityLabel(Copy.label("close"))
+      #if os(iOS)
+        .listSectionSpacing(.compact)
+        .safeAreaInset(edge: .top, spacing: 0) {
+          NativeSheetHeader(
+            title: Copy.calendar(
+              exception != nil || store.events.contains { $0.id == draft.id } ? "edit" : "add"),
+            onClose: { dismiss() }, onSave: save)
         }
-        ToolbarItem(placement: .confirmationAction) {
-          Button {
-            if store.save(draft, exception: exception) {
-              if let saved = store.events.first(where: { $0.id == draft.id }) { onSaved?(saved) }
+      #else
+        .toolbar {
+          ToolbarItem(placement: .cancellationAction) {
+            Button {
               dismiss()
-            } else {
-              invalid = true
-              validationAttempt += 1
-              focusedField = store.invalidField
-            }
-          } label: {
-            Image(systemName: "checkmark")
+            } label: {
+              Image(systemName: "xmark")
+            }.accessibilityLabel(Copy.label("close"))
           }
-          .buttonStyle(.borderedProminent)
-          .accessibilityLabel(Copy.calendar("save"))
+          ToolbarItem(placement: .confirmationAction) {
+            Button(action: save) { Image(systemName: "checkmark") }.buttonStyle(.borderedProminent)
+            .accessibilityLabel(Copy.calendar("save"))
+          }
         }
-      }
+      #endif
     }
     #if os(macOS)
       .frame(width: 620, height: 680)
     #endif
+  }
+  private func save() {
+    if store.save(draft, exception: exception) {
+      if let saved = store.events.first(where: { $0.id == draft.id }) { onSaved?(saved) }
+      dismiss()
+    } else {
+      invalid = true
+      validationAttempt += 1
+      focusedField = store.invalidField
+    }
   }
   private func repeatLabel(_ value: String) -> String {
     ["none": "once", "daily": "day", "weekly": "week", "monthly": "month", "yearly": "year"][value]
@@ -362,19 +366,19 @@ struct AppointmentEditor: View {
   }
   private func textField(_ key: String, value: Binding<String>) -> some View {
     HStack(alignment: .top, spacing: 12) {
-      MongolianText(text: Copy.calendar(key), height: 100, size: 23)
+      MongolianLabel(text: Copy.calendar(key), height: 84)
       MongolianTextInput(
         text: value, label: Copy.calendar(key),
         focusRequest: store.invalidField == key ? validationAttempt : 0
       )
       .frame(maxWidth: .infinity)
-      .frame(height: key == "notes" ? 160 : 130)
+      .frame(height: key == "notes" ? 144 : 108)
     }
   }
   private func dateFields(_ key: String, date: Binding<String>, time: Binding<String>) -> some View
   {
     HStack(alignment: .top, spacing: 10) {
-      MongolianText(text: Copy.calendar(key), height: 70, size: 23)
+      MongolianLabel(text: Copy.calendar(key), height: 70)
       VStack(spacing: 10) {
         TextField("", text: date).accessibilityLabel(
           Copy.calendar(key) + " · " + Copy.calendar("day")

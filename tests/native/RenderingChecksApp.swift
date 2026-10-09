@@ -130,6 +130,9 @@ private final class RenderingChecksRun: ObservableObject {
         calendar.view = view
         screenshots.append(try await capture(view))
       }
+      app.readingScale = 1.5
+      screenshots.append(try await capture("reading-scale"))
+      app.readingScale = 1
       calendar.view = "month"
       largeText = true
       screenshots.append(try await capture("large-type"))
@@ -217,6 +220,14 @@ private final class RenderingChecksRun: ObservableObject {
     try bytes.write(to: directory.appendingPathComponent(name + ".png"), options: .atomic)
     return [
       "file": name + ".png", "width": window.bounds.width, "height": window.bounds.height,
+      "safeAreaInsets": [
+        "top": window.safeAreaInsets.top, "left": window.safeAreaInsets.left,
+        "bottom": window.safeAreaInsets.bottom, "right": window.safeAreaInsets.right,
+      ],
+      "rootFrame": [
+        "width": window.rootViewController?.view.bounds.width ?? 0,
+        "height": window.rootViewController?.view.bounds.height ?? 0,
+      ],
       "bytes": bytes.count,
     ]
   }

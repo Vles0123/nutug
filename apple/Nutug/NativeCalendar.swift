@@ -60,6 +60,7 @@ struct NativeCalendar: View {
   @ObservedObject var store: AppointmentStore
   var scale: Double
   var skin: CalendarSkin
+  var onSettings: (() -> Void)?
   @Environment(\.scenePhase) private var phase
   @Environment(\.dynamicTypeSize) private var typeSize
   private enum Panel {
@@ -75,17 +76,21 @@ struct NativeCalendar: View {
   @State private var invalidPickerDate = false
   @FocusState private var pickerDateFocused: Bool
   private let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
-  init(model: CalendarModel, scale: Double = 1, skin: CalendarSkin = .light) {
+  init(
+    model: CalendarModel, scale: Double = 1, skin: CalendarSkin = .light,
+    onSettings: (() -> Void)? = nil
+  ) {
     self.model = model
     self.store = model.appointments
     self.scale = scale
     self.skin = skin
+    self.onSettings = onSettings
   }
   var body: some View {
     GeometryReader { geometry in
-      let compact = geometry.size.width < 600 || geometry.size.height < 640
+      let compact = geometry.size.width < 600 || geometry.size.height < 720
       ScrollView {
-        VStack(spacing: 12) {
+        VStack(spacing: 8) {
           HStack {
             Button {
               pickerYear = Int(model.month.prefix(4)) ?? 2026
@@ -112,8 +117,8 @@ struct NativeCalendar: View {
             Button {
               model.select(model.today)
             } label: {
-              Image(systemName: "calendar.circle")
-            }.accessibilityLabel(Copy.calendar("today"))
+              MongolianLabel(text: Copy.calendar("today"), height: 56, size: 18)
+            }.frame(minWidth: 44, minHeight: 44).accessibilityLabel(Copy.calendar("today"))
             Button {
               model.move(-1)
             } label: {
@@ -124,7 +129,7 @@ struct NativeCalendar: View {
             } label: {
               Image(systemName: "chevron.right")
             }.accessibilityLabel(Copy.label("next")).disabled(model.destination(1) == nil)
-          }.buttonStyle(.bordered).buttonBorderShape(.circle)
+          }.buttonStyle(.borderless).controlSize(.large)
             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
           if model.view == "year" {
             yearGrid
@@ -141,20 +146,15 @@ struct NativeCalendar: View {
             HStack(alignment: .top, spacing: 28) {
               monthGrid(compact: compact)
               VStack(alignment: .leading, spacing: 20) {
-                dayDetail
+                selectedDaySummary
                 agenda(model.date)
               }.frame(width: 320)
             }
           } else {
             monthGrid(compact: compact)
-            if compact {
-              selectedDaySummary
-              agenda(model.date)
-            } else {
-              Divider()
-              dayDetail
-              agenda(model.date)
-            }
+            Divider()
+            selectedDaySummary
+            agenda(model.date)
           }
           if store.error {
             MongolianText(text: Copy.calendar("storageError"), height: 130, size: 23)
@@ -166,37 +166,70 @@ struct NativeCalendar: View {
               MongolianText(text: Copy.calendar("undo"), height: 90, size: 23)
             }.buttonStyle(.bordered)
           }
-        }.padding().frame(maxWidth: 1400)
+        }.padding(.horizontal).padding(.vertical, 8).frame(maxWidth: 1400)
       }.frame(maxWidth: .infinity)
     }
-    .toolbar {
-      ToolbarItemGroup {
-        Button {
-          panel = .views
-        } label: {
-          Image(
-            systemName: model.view == "year"
-              ? "square.grid.2x2"
-              : model.view == "day"
-                ? "list.bullet" : model.view == "week" ? "calendar.day.timeline.left" : "calendar")
-        }.accessibilityLabel(Copy.calendar("display"))
-        Button {
-          panel = .search
-        } label: {
-          Image(systemName: "magnifyingglass")
-        }.accessibilityLabel(Copy.label("search"))
-        Button {
-          panel = .edit(CalendarAppointment(startDate: model.date, endDate: model.date))
-        } label: {
-          Image(systemName: "plus")
-        }.accessibilityLabel(Copy.calendar("add"))
+    #if os(iOS)
+      .safeAreaInset(edge: .bottom, spacing: 0) {
+        HStack(spacing: 16) {
+          viewButton
+          Spacer(minLength: 0)
+          searchButton
+          if let onSettings {
+            Button(action: onSettings) { Image(systemName: "slider.horizontal.3") }
+            .accessibilityLabel(Copy.label("settings")).frame(minWidth: 44, minHeight: 44)
+          }
+          addButton
+        }.buttonStyle(.borderless).controlSize(.large)
+        .padding(.horizontal, 20).padding(.vertical, 10).background(.bar)
       }
-    }
+    #else
+      .toolbar {
+        ToolbarItemGroup {
+          viewButton
+          searchButton
+          addButton
+        }
+      }
+    #endif
     .onReceive(timer) { _ in model.refreshToday() }
     .onChange(of: phase) { _, phase in if phase == .active { model.refreshToday() } }
     .sheet(isPresented: Binding(get: { panel != nil }, set: { if !$0 { panel = nil } })) {
       panelContent
     }
+  }
+  private var viewButton: some View {
+    Button {
+      panel = .views
+    } label: {
+      HStack(spacing: 8) {
+        Image(
+          systemName: model.view == "year"
+            ? "square.grid.2x2"
+            : model.view == "day"
+              ? "list.bullet" : model.view == "week" ? "calendar.day.timeline.left" : "calendar")
+        #if os(iOS)
+          MongolianLabel(text: Copy.calendar(model.view), height: 56, size: 20)
+        #endif
+      }
+    }.accessibilityLabel(Copy.calendar("display") + " · " + Copy.calendar(model.view))
+  }
+  private var searchButton: some View {
+    Button {
+      panel = .search
+    } label: {
+      Image(systemName: "magnifyingglass")
+    }
+    .accessibilityLabel(Copy.label("search")).frame(minWidth: 44, minHeight: 44)
+  }
+  private var addButton: some View {
+    Button {
+      panel = .edit(CalendarAppointment(startDate: model.date, endDate: model.date))
+    } label: {
+      Image(systemName: "plus")
+    }
+    .buttonStyle(.borderedProminent).buttonBorderShape(.circle).accessibilityLabel(
+      Copy.calendar("add"))
   }
   @ViewBuilder private var panelContent: some View {
     switch panel {
@@ -238,7 +271,7 @@ struct NativeCalendar: View {
       HStack(spacing: 16) {
         Text(String(Int(model.date.suffix(2))!)).font(.system(size: 28, weight: .medium))
           .monospacedDigit()
-        MongolianText(text: Copy.weekdays[weekday(model.date)], height: 50, size: 22)
+        MongolianLabel(text: Copy.weekdays[weekday(model.date)], height: 56, size: 21)
         if model.showLunar, let lunar = model.engine?.lunar(model.date) {
           HStack(spacing: 6) {
             Image(systemName: "moon")
@@ -264,8 +297,8 @@ struct NativeCalendar: View {
       HStack(spacing: 0) {
         ForEach(0..<7, id: \.self) { offset in
           let day = (offset + model.firstWeekday) % 7
-          MongolianText(
-            text: Copy.weekdays[day], height: 58, size: 21,
+          MongolianLabel(
+            text: Copy.weekdays[day], height: compact ? 50 : 58, size: compact ? 18 : 20,
             color: day >= 5 ? .accentColor : .secondary
           ).frame(maxWidth: .infinity)
         }
@@ -278,27 +311,30 @@ struct NativeCalendar: View {
           Button {
             model.select(value)
           } label: {
-            VStack(spacing: compact ? 3 : 6) {
-              Text(String(Int(value.suffix(2)) ?? 0)).font(.title3.monospacedDigit())
-                .frame(width: 34, height: 34)
-                .foregroundStyle(
-                  current ? skin.canvas : (value == model.today ? Color.accentColor : .primary)
-                )
-                .background(current ? Color.accentColor : .clear, in: Circle())
+            VStack(spacing: compact ? 1 : 4) {
+              Text(String(Int(value.suffix(2)) ?? 0)).font(
+                (compact ? Font.body : .title3).monospacedDigit()
+              )
+              .frame(width: compact ? 28 : 34, height: compact ? 28 : 34)
+              .foregroundStyle(
+                current ? skin.canvas : (value == model.today ? Color.accentColor : .primary)
+              )
+              .background(current ? Color.accentColor : .clear, in: Circle())
               if model.showLunar, let lunar {
                 Text(
                   (lunar.leap ? "* " : "")
                     + (lunar.day == 1 ? "\(lunar.month) / 1" : String(lunar.day))
-                ).font(.system(size: 13).monospacedDigit()).opacity(current ? 1 : 0.75)
+                ).font(.system(size: compact ? 11 : 13).monospacedDigit()).opacity(
+                  current ? 1 : 0.75)
               }
               Circle().fill(
                 items.contains { $0.startDate <= value && $0.endDate >= value }
                   ? Color.accentColor : .clear
-              ).frame(width: 4, height: 4)
+              ).frame(width: 3, height: 3)
             }.foregroundStyle(
               current || value == model.today ? Color.accentColor : .primary
             )
-            .frame(maxWidth: .infinity, minHeight: compact ? 58 : 68)
+            .frame(maxWidth: .infinity, minHeight: compact ? 46 : 62)
           }.buttonStyle(.plain).opacity(value.hasPrefix(model.month) ? 1 : 0.55)
             .disabled(value < "1901-01-01" || value > "2100-12-31").accessibilityLabel(value)
             .accessibilityAddTraits(current ? .isSelected : [])
@@ -360,7 +396,7 @@ struct NativeCalendar: View {
   private func agenda(_ date: String) -> some View {
     NativeAgenda(
       items: store.occurrences(from: date, to: date), onOpen: { panel = .detail($0) },
-      onAdd: { panel = .edit(CalendarAppointment(startDate: date, endDate: date)) })
+      onAdd: { panel = .edit(CalendarAppointment(startDate: date, endDate: date)) }, scale: scale)
   }
   private var dayDetail: some View {
     ViewThatFits(in: .horizontal) {
@@ -430,7 +466,7 @@ struct NativeCalendar: View {
     ScrollView {
       VStack(spacing: 24) {
         HStack(spacing: 12) {
-          MongolianText(text: Copy.calendar("gregorian"), height: 105, size: 22)
+          MongolianLabel(text: Copy.calendar("gregorian"))
           TextField("", text: $pickerDate).font(.body.monospacedDigit())
             .textFieldStyle(.roundedBorder).accessibilityLabel(Copy.calendar("choose"))
             .focused($pickerDateFocused).onSubmit(jumpToDate)
@@ -440,7 +476,7 @@ struct NativeCalendar: View {
           }.buttonStyle(.bordered).accessibilityLabel(Copy.calendar("choose"))
         }
         if invalidPickerDate {
-          MongolianText(text: Copy.calendar("choose"), height: 100, size: 23)
+          MongolianLabel(text: Copy.calendar("choose"))
         }
         HStack {
           Stepper(value: $pickerYear, in: 1901...2100) {
@@ -492,7 +528,7 @@ struct NativeCalendar: View {
             model.view = view
             panel = nil
           } label: {
-            MongolianText(text: Copy.calendar(view), height: 130, size: 26)
+            MongolianLabel(text: Copy.calendar(view), height: 84, size: 23)
           }.buttonStyle(.bordered)
         }
         Button {
@@ -533,7 +569,7 @@ struct NativeCalendar: View {
             } label: {
               VStack {
                 Text(event.startDate).monospacedDigit()
-                MongolianText(text: event.title, height: 230, size: 26)
+                MongolianText(text: event.title, height: 230, size: 26, scale: scale)
               }
             }.buttonStyle(.bordered)
           }
@@ -567,7 +603,7 @@ struct NativeCalendar: View {
         ScrollView(.horizontal) {
           HStack(alignment: .top, spacing: 20) {
             if !event.location.isEmpty {
-              MongolianText(text: event.location, height: 180, size: 25)
+              MongolianText(text: event.location, height: 180, size: 25, scale: scale)
             }
             if !event.notes.isEmpty {
               MongolianText(text: event.notes, height: 220, size: 27, scale: scale)

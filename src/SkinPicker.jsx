@@ -19,8 +19,10 @@ export function SkinPicker({ value, onChange }) {
             <i />
             <i />
           </span>
-          <Mn>{copy[skin]}</Mn>
-          {value === skin && <Check size={16} />}
+          <Mn compact>{copy[skin]}</Mn>
+          <span className="skin-choice-check" aria-hidden="true">
+            {value === skin && <Check size={16} />}
+          </span>
         </Button>
       ))}
     </div>

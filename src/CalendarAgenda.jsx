@@ -35,11 +35,6 @@ export function DualDate({ date, provider, lunar = true }) {
 export function Agenda({ items, onOpen, onAdd, compact = false, disabled = false }) {
   return (
     <div className={`schedule-agenda ${compact ? 'is-compact' : ''}`}>
-      {!items.length && (
-        <div className="agenda-empty">
-          <Mn>{copy.empty}</Mn>
-        </div>
-      )}
       {items.map((item) => (
         <Button
           key={item.id}
@@ -58,7 +53,7 @@ export function Agenda({ items, onOpen, onAdd, compact = false, disabled = false
               </span>
             )}
           </span>
-          <Mn>{item.title}</Mn>
+          <Mn className="appointment-label">{item.title}</Mn>
           {item.repeat !== 'none' && <Repeat2 size={15} aria-label={copy.repeat} />}
         </Button>
       ))}
@@ -69,7 +64,7 @@ export function Agenda({ items, onOpen, onAdd, compact = false, disabled = false
         onPress={onAdd}
       >
         <Plus size={19} />
-        <Mn>{copy.add}</Mn>
+        <Mn compact>{copy.add}</Mn>
       </Button>
     </div>
   );

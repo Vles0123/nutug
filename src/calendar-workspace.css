@@ -133,8 +133,8 @@
   box-shadow: 0 1px 6px #0001;
 }
 .calendar-view-switch .mn {
-  height: 66px;
-  font-size: 22px;
+  --control-column-height: 54px;
+  --control-font-size: 19px;
 }
 .calendar-app-tools {
   display: flex;
@@ -160,8 +160,8 @@
   padding: 0;
 }
 .calendar-app .calendar-layout {
-  grid-template-columns: minmax(420px, 1fr) 320px;
-  gap: 36px;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: 24px;
   align-items: start;
 }
 .calendar-app .month-surface {
@@ -172,15 +172,15 @@
   margin-bottom: 12px;
 }
 .calendar-app .month-title {
-  font-size: 34px;
+  font-size: 32px;
   font-weight: 600;
-  letter-spacing: -1px;
+  letter-spacing: -0.6px;
 }
 .calendar-app .day-cell {
   min-height: 72px;
   border-radius: 8px;
-  padding: 3px 0 12px;
-  gap: 1px;
+  padding: 4px 0 10px;
+  gap: 2px;
 }
 .calendar-app .day-number {
   display: flex;
@@ -212,36 +212,12 @@
   color: var(--accent);
 }
 .calendar-app .day-detail {
-  border: 0;
-  padding: 0;
-  gap: 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.calendar-app .day-focus {
-  grid-column: 1/-1;
-  padding: 0 12px;
-}
-.calendar-app .date-pair {
-  padding: 12px 8px;
-  border-bottom: 1px solid var(--separator);
-}
-.calendar-app .date-pair > .mn {
-  height: 136px;
-  font-size: 23px;
-}
-.calendar-app .date-value {
-  gap: 8px;
-  font-size: 16px;
-}
-.calendar-app .date-value strong {
-  font-size: 24px;
-}
-.calendar-app .focus-number {
-  font-size: 70px;
-}
-.calendar-app .day-focus .mn {
-  height: 85px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-inline-start: 1px solid var(--separator);
+  padding-inline-start: 24px;
+  min-width: 0;
 }
 .appointment-dots {
   position: absolute;
@@ -282,22 +258,7 @@
   background: var(--accent);
 }
 .month-day-agenda {
-  grid-column: 1/-1;
-  padding-top: 12px;
-}
-.agenda-heading {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 0 8px 12px;
-}
-.agenda-heading .mn {
-  height: 72px;
-  font-size: 24px;
-}
-.agenda-heading .numeric {
-  color: var(--secondary);
-  font-size: 15px;
+  min-width: 0;
 }
 .schedule-agenda {
   display: flex;
@@ -308,17 +269,7 @@
   padding: 4px 4px 14px;
 }
 .month-day-agenda .schedule-agenda {
-  min-height: 140px;
-}
-.agenda-empty {
-  color: var(--prose-secondary);
-  display: flex;
-  align-items: flex-start;
-  padding: 16px;
-}
-.agenda-empty .mn {
-  height: 110px;
-  font-size: 24px;
+  min-height: 76px;
 }
 .appointment-card {
   flex: none;
@@ -334,8 +285,11 @@
   text-align: start;
 }
 .appointment-card > .mn {
-  height: 130px;
-  font-size: calc(25px * var(--reading-scale));
+  height: auto;
+  inline-size: max-content;
+  max-inline-size: 112px;
+  min-inline-size: min-content;
+  font-size: calc(24px * var(--reading-scale));
 }
 .appointment-card > svg {
   color: var(--event-color);
@@ -367,8 +321,8 @@
   border-radius: var(--calendar-radius);
 }
 .agenda-add .mn {
-  height: 76px;
-  font-size: 24px;
+  --control-column-height: 64px;
+  --control-font-size: 22px;
 }
 .calendar-period-bar {
   display: flex;
@@ -396,13 +350,18 @@
 }
 .calendar-today {
   display: flex;
-  padding: 8px;
-  border-radius: var(--calendar-radius);
-  background: var(--secondary-fill);
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 4px 8px;
+  color: var(--accent);
+  background: transparent;
+  border-radius: 12px;
 }
 .calendar-today .mn {
-  height: 60px;
-  font-size: 23px;
+  --control-column-height: 56px;
+  --control-font-size: 20px;
 }
 .year-grid {
   display: grid;
@@ -531,44 +490,41 @@
 .calendar-settings-content {
   min-height: 0;
   overflow-y: auto;
-  padding: 4px 6px 12px;
-}
-.calendar-settings-content > h2 {
-  height: 90px;
-  font-size: 26px;
-  margin-bottom: 16px;
+  padding: 4px 2px 12px;
 }
 .skin-choices {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-bottom: 28px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
 }
 .skin-choices button {
   display: flex;
-  gap: 12px;
-  align-items: flex-start;
+  gap: 8px;
+  align-items: center;
   flex-direction: column;
-  padding: 10px;
-  background: var(--tertiary-fill);
-  border: 2px solid transparent;
-  border-radius: var(--calendar-radius);
+  padding: 8px 4px;
+  min-width: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
 }
 .skin-choices [aria-pressed='true'] {
   border-color: var(--accent);
 }
 .skin-choices .mn {
-  height: 92px;
-  font-size: 23px;
+  --control-column-height: 94px;
+  --control-font-size: 20px;
 }
 .skin-sample {
   display: flex;
-  gap: 4px;
-  height: 44px;
-  width: 100%;
-  padding: 7px;
+  gap: 3px;
+  height: 30px;
+  width: 40px;
+  max-width: 100%;
+  padding: 5px;
   border: 1px solid #9997;
-  border-radius: 6px;
+  border-radius: 5px;
 }
 .skin-sample i {
   flex: 1;
@@ -596,8 +552,9 @@
 .calendar-setting-row {
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
   gap: 24px;
-  padding: 18px 0;
+  padding: 16px 0;
   border-top: 1px solid var(--separator);
 }
 .calendar-font-setting {
@@ -608,8 +565,7 @@
   border-top: 1px solid var(--separator);
 }
 .calendar-font-setting .mn {
-  height: 150px;
-  font-size: 24px;
+  --control-column-height: 84px;
 }
 .calendar-font-setting input {
   flex: 1;
@@ -621,30 +577,29 @@
   color: var(--accent);
 }
 .calendar-setting-row > .mn {
-  height: 130px;
-  font-size: 24px;
+  --control-column-height: 84px;
 }
 .calendar-mode-options {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 .calendar-mode-options > button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: 16px 10px;
-  border: 1px solid var(--separator);
-  border-radius: var(--calendar-radius);
-  background: var(--canvas);
+  gap: 8px;
+  padding: 10px 4px;
+  border: 1px solid transparent;
+  border-bottom-color: var(--separator);
+  border-radius: 10px;
+  background: transparent;
 }
 .calendar-mode-options > button[aria-pressed='true'] {
   border-color: var(--accent);
-  color: var(--accent);
-  background: var(--selection);
+  background: var(--canvas);
 }
-.calendar-mode-icons,
 .calendar-mode-label {
   display: flex;
   gap: 10px;
@@ -653,8 +608,8 @@
   align-items: flex-start;
 }
 .calendar-mode-label .mn {
-  height: 130px;
-  font-size: 23px;
+  --control-column-height: 84px;
+  --control-font-size: 20px;
 }
 .calendar-date-jump {
   display: flex;
@@ -665,8 +620,8 @@
   border-bottom: 1px solid var(--separator);
 }
 .calendar-date-jump > .mn {
-  height: 105px;
-  font-size: 20px;
+  --control-column-height: 84px;
+  --control-font-size: 20px;
   flex: none;
 }
 .calendar-date-jump input {
@@ -699,7 +654,10 @@
   margin: 0;
 }
 .calendar-setting-row .segment .mn {
-  height: 86px;
+  height: auto;
+  inline-size: max-content;
+  max-inline-size: 64px;
+  font-size: 20px;
 }
 .calendar-switch {
   display: flex;
@@ -709,8 +667,7 @@
   cursor: pointer;
 }
 .calendar-switch .mn {
-  height: 120px;
-  font-size: 24px;
+  --control-column-height: 64px;
 }
 .switch-track {
   width: 48px;
@@ -746,13 +703,15 @@
 .calendar-transfer button {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  background: var(--tertiary-fill);
-  padding: 12px 20px;
-  border-radius: var(--calendar-radius);
+  gap: 10px;
+  background: transparent;
+  padding: 8px 12px;
+  border-radius: 10px;
+  min-width: 44px;
+  min-height: 44px;
 }
 .calendar-transfer .mn {
-  height: 100px;
+  --control-column-height: 68px;
 }
 .calendar-import-result {
   display: flex;
@@ -768,7 +727,8 @@
   overflow-x: auto;
 }
 .calendar-view-options .mn {
-  height: 130px;
+  --control-column-height: 84px;
+  --control-font-size: 22px;
 }
 .calendar-view-options button {
   background: var(--tertiary-fill);
@@ -828,24 +788,23 @@
 }
 .appointment-title-field > .mn:not(textarea),
 .appointment-note-field > .mn:not(textarea) {
-  height: 130px;
-  font-size: 24px;
+  --control-column-height: 76px;
   flex: none;
 }
 .appointment-title-field textarea,
 .appointment-note-field textarea {
-  height: 180px;
+  height: 136px;
   width: auto;
   min-width: 0;
   flex: 1;
   padding: 12px;
-  border-radius: var(--calendar-radius);
-  background: var(--tertiary-fill);
+  border-radius: 10px;
+  background: var(--canvas);
   border: 1px solid var(--separator);
   color: var(--label);
   font-family: var(--mn);
-  font-size: 28px;
-  line-height: 1.65;
+  font-size: 26px;
+  line-height: 1.5;
   resize: none;
 }
 .appointment-dates {
@@ -860,8 +819,7 @@
   flex: 1;
 }
 .appointment-dates label > .mn {
-  height: 90px;
-  font-size: 24px;
+  --control-column-height: 70px;
 }
 .appointment-dates input {
   width: 160px;
@@ -911,30 +869,6 @@
   color: white;
   display: grid;
   place-items: center;
-}
-.appointment-form-footer {
-  flex: none;
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-  padding-top: 16px;
-  border-top: 1px solid var(--separator);
-}
-.appointment-form-footer button {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 22px;
-  border-radius: var(--calendar-radius);
-  background: var(--secondary-fill);
-}
-.appointment-form-footer .mn {
-  height: 80px;
-}
-.appointment-form-footer .primary-action {
-  background: var(--accent);
-  color: var(--canvas);
 }
 .appointment-detail {
   min-height: 0;
@@ -1003,21 +937,14 @@
     grid-template-columns: minmax(0, 1fr);
   }
   .calendar-app .day-detail {
-    grid-template-columns: 1fr 1fr minmax(230px, 2fr);
-    gap: 16px;
-  }
-  .calendar-app .day-focus {
-    display: none;
+    padding: 12px 0 0;
+    border-inline-start: 0;
+    border-top: 1px solid var(--separator);
+    gap: 8px;
   }
   .month-day-agenda {
     grid-column: auto;
     padding: 0;
-  }
-  .agenda-heading {
-    display: none;
-  }
-  .calendar-app .date-pair {
-    border: 0;
   }
   .calendar-app-bar {
     padding-inline: 20px;
@@ -1032,9 +959,12 @@
 }
 @media (max-width: 700px) {
   .calendar-app-bar {
-    padding: 7px 16px;
+    order: 2;
+    padding: 8px 16px calc(8px + env(safe-area-inset-bottom));
     gap: 12px;
-    min-height: 58px;
+    min-height: 64px;
+    border-bottom: 0;
+    border-top: 1px solid var(--separator);
   }
   .calendar-app-bar h1 {
     display: none;
@@ -1051,8 +981,8 @@
     border-radius: 24px;
   }
   .view-menu-trigger .mn {
-    height: 62px;
-    font-size: 23px;
+    --control-column-height: 54px;
+    --control-font-size: 20px;
   }
   .calendar-app-tools {
     gap: 4px;
@@ -1064,7 +994,7 @@
     padding: 4px 0 0;
   }
   .calendar-app .day-cell {
-    min-height: 59px;
+    min-height: 56px;
   }
   .calendar-app .day-grid {
     gap: 0;
@@ -1073,18 +1003,16 @@
     height: 56px;
     font-size: 21px;
   }
-  .calendar-app .day-detail {
-    display: block;
-  }
-  .calendar-app .day-detail .day-focus,
-  .calendar-app .day-detail > .date-pair {
-    display: none;
-  }
+
   .calendar-app .compact-day-summary {
     display: flex;
-  }
-  .calendar-app .date-pair {
-    padding-top: 4px;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    width: 100%;
+    background: transparent;
+    border-radius: 0;
+    text-align: start;
   }
   .month-day-agenda {
     grid-column: 1/-1;
@@ -1161,10 +1089,9 @@
   .appointment-editor .sheet-bar h2 .mn,
   .calendar-settings-sheet .sheet-bar h2 .mn,
   .calendar-search-sheet .sheet-bar h2 .mn {
-    height: 100px;
-  }
-  .appointment-form-footer .mn {
-    height: 75px;
+    height: auto;
+    max-inline-size: 76px;
+    font-size: 24px;
   }
   .appointment-dates {
     gap: 14px;
@@ -1183,24 +1110,14 @@
   .repeat-field .segments {
     max-width: 100%;
   }
-  .skin-choices {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .skin-choices button {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  .skin-choices .skin-sample {
-    width: 100%;
-  }
 }
 .compact-day-summary {
-  display: none;
+  display: flex;
   align-items: center;
   gap: 16px;
   padding: 12px 0 4px;
   width: 100%;
-  border-top: 1px solid var(--separator);
+  border: 0;
   background: transparent;
   border-radius: 0;
   text-align: start;
@@ -1209,8 +1126,8 @@
   font-size: 28px;
 }
 .compact-day-summary > .mn {
-  height: 50px;
-  font-size: 22px;
+  --control-column-height: 56px;
+  --control-font-size: 21px;
 }
 .compact-day-summary .compact-lunar {
   display: flex;
@@ -1248,13 +1165,78 @@
     padding-inline: 0;
     border-inline: 0;
   }
-  .calendar-app .date-pair {
-    padding-inline: 4px;
-    gap: 8px;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   .switch-track::after {
     transition: none;
   }
+}
+
+.calendar-mode-check {
+  display: flex;
+  height: 18px;
+  color: var(--accent);
+}
+.calendar-appearance-setting {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--separator);
+}
+.calendar-appearance-setting > h2 {
+  flex: none;
+  --control-column-height: 84px;
+}
+.calendar-appearance-setting .skin-choices {
+  flex: 1;
+  min-width: 0;
+}
+.calendar-app .compact-day-summary {
+  display: flex;
+}
+.calendar-settings-sheet .sheet-bar h2 .mn-compact,
+.appointment-editor .sheet-bar h2 .mn-compact,
+.calendar-search-sheet .sheet-bar h2 .mn-compact {
+  height: auto;
+  max-inline-size: 76px;
+  font-size: 24px;
+}
+.calendar-app .day-number {
+  transition:
+    background-color 140ms,
+    color 140ms;
+}
+@media (max-width: 700px) {
+  .calendar-app .calendar-workspace {
+    padding-top: 12px;
+  }
+  .calendar-message {
+    bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .calendar-app .day-number {
+    transition: none;
+  }
+}
+
+.skin-choice-check {
+  display: flex;
+  height: 16px;
+  margin-top: auto;
+  color: var(--accent);
+}
+
+.appointment-editor .sheet-bar {
+  align-items: center;
+}
+.appointment-editor .sheet-bar h2 {
+  flex: 1;
+  justify-content: center;
+}
+.appointment-editor .sheet-bar .appointment-save {
+  color: var(--canvas);
+  background: var(--accent);
+  border-radius: 50%;
 }

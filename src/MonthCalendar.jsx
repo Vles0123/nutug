@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Button } from 'react-aria-components';
-import { ChevronLeft, ChevronRight, Moon, CalendarCheck } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Moon } from 'lucide-react';
 import { Mn, IconButton } from './ui';
 import { labels } from './ui-copy.mjs';
 import { calendarCopy as copy, calendarConfig } from './calendar-copy.mjs';
@@ -125,12 +125,14 @@ export function MonthCalendar({
       <div className="calendar-heading">
         <CalendarDatePicker date={date} onSelect={select} />
         <div className="month-actions">
-          <IconButton
-            icon={CalendarCheck}
-            label={copy.today}
+          <Button
+            className="calendar-today"
+            aria-label={copy.today}
             data-action="today"
             onPress={() => select(today, true)}
-          />
+          >
+            <Mn compact>{copy.today}</Mn>
+          </Button>
           <IconButton
             icon={ChevronLeft}
             label={labels.previous}
@@ -196,7 +198,7 @@ export function MonthCalendar({
             ))}
           </div>
         </div>
-        {onOpenDay && (
+        <aside className="day-detail" aria-live="polite" data-selected-date={date}>
           <Button
             className="compact-day-summary"
             data-action="open-day"
@@ -204,51 +206,18 @@ export function MonthCalendar({
             aria-label={date + ' · ' + copy.agenda}
           >
             <span className="numeric">{civilDate(date).day}</span>
-            <Mn>{copy.weekdays[week]}</Mn>
+            <Mn compact>{copy.weekdays[week]}</Mn>
             {showLunar && lunar && (
               <span className="compact-lunar numeric">
-                <Moon size={16} />
+                <Moon size={15} />
+                {lunar.leapMonth ? '* ' : ''}
                 {lunar.lunarMonth} / {lunar.lunarDay}
               </span>
             )}
-            {forDate(date).length > 0 && (
-              <span className="numeric day-event-count">{forDate(date).length}</span>
-            )}
-            <ChevronRight size={18} />
+            <ChevronRight size={17} />
           </Button>
-        )}
-        <aside className="day-detail" aria-live="polite" data-selected-date={date}>
-          <div className="day-focus">
-            <span className="focus-number numeric">{civilDate(date).day}</span>
-            <Mn>{copy.weekdays[week]}</Mn>
-          </div>
-          <div className="date-pair">
-            <Mn>{copy.gregorian}</Mn>
-            <time className="date-value numeric" dateTime={date}>
-              <span>{civilDate(date).year}</span>
-              <strong>
-                {civilDate(date).month} / {civilDate(date).day}
-              </strong>
-            </time>
-          </div>
-          {showLunar && lunar && (
-            <div className="date-pair">
-              <Mn>{copy.lunar}</Mn>
-              <span className="date-value numeric">
-                <span>{lunar.lunarYear}</span>
-                <strong>
-                  {lunar.lunarMonth} / {lunar.lunarDay}
-                </strong>
-                {lunar.leapMonth && <Mn className="leap-month-note">{copy.leapMonth}</Mn>}
-              </span>
-            </div>
-          )}
           {onAdd && (
             <section className="month-day-agenda">
-              <div className="agenda-heading">
-                <Mn as="h2">{copy.agenda}</Mn>
-                <span className="numeric">{forDate(date).length}</span>
-              </div>
               <Agenda items={forDate(date)} onOpen={onOpenEvent} onAdd={() => onAdd(date)} />
             </section>
           )}

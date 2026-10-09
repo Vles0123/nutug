@@ -48,6 +48,11 @@ private enum MongolianTypesetting {
       return max(result, ceil(CTLineGetTypographicBounds(line, nil, nil, nil)) + 12)
     }
   }
+  static func naturalHeight(_ text: String, size: CGFloat) -> CGFloat {
+    let line = CTLineCreateWithAttributedString(
+      attributed(text, size: size, color: CGColor(gray: 0, alpha: 1)))
+    return ceil(CTLineGetTypographicBounds(line, nil, nil, nil)) + 12
+  }
   static func draw(_ text: String, size: CGFloat, rect: CGRect, color: CGColor, context: CGContext)
   {
     let value = attributed(text, size: size, color: color)
@@ -70,10 +75,16 @@ struct MongolianText: View {
   var size: CGFloat = 28
   var scale: Double = 1
   var color: Color = .primary
+  var fitContent = false
   @ScaledMetric(relativeTo: .body) private var dynamicScale: CGFloat = 1
   var body: some View {
     let fontSize = size * scale * dynamicScale
-    let fittedHeight = max(height, MongolianTypesetting.minimumHeight(text, size: fontSize))
+    let preferredHeight =
+      fitContent
+      ? min(height * dynamicScale, MongolianTypesetting.naturalHeight(text, size: fontSize))
+      : height
+    let fittedHeight = max(
+      preferredHeight, MongolianTypesetting.minimumHeight(text, size: fontSize))
     let width = MongolianTypesetting.width(text, height: fittedHeight, size: fontSize)
     MongolianDrawing(text: text, size: fontSize, color: color)
       .frame(width: width, height: fittedHeight)
@@ -81,6 +92,18 @@ struct MongolianText: View {
       .accessibilityLabel(Text(verbatim: text))
   }
   @MainActor static func registerFont() { MongolianTypesetting.registerFont() }
+}
+
+struct MongolianLabel: View {
+  let text: String
+  var height: CGFloat = 84
+  var size: CGFloat = 21
+  var scale: Double = 1
+  var color: Color = .primary
+  var body: some View {
+    MongolianText(
+      text: text, height: height, size: size, scale: scale, color: color, fitContent: true)
+  }
 }
 
 #if os(macOS)

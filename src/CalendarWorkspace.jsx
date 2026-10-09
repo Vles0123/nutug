@@ -16,8 +16,6 @@ import {
   Check,
   Trash2,
   MapPin,
-  Sun,
-  Moon,
 } from 'lucide-react';
 import { Mn, IconButton, Sheet, Segments, SearchBox, ColumnScroller } from './ui';
 import { labels } from './ui-copy.mjs';
@@ -274,6 +272,7 @@ export function CalendarWorkspace() {
               onPress={() => setPrefs({ ...prefs, view: id })}
             >
               <Icon size={19} />
+              <Mn compact>{copy[id]}</Mn>
             </Button>
           ))}
         </div>
@@ -284,6 +283,7 @@ export function CalendarWorkspace() {
           onPress={() => setViewMenu(true)}
         >
           <CurrentViewIcon size={21} />
+          <Mn compact>{copy[prefs.view]}</Mn>
           <ChevronDown size={16} />
         </Button>
         <div className="calendar-app-tools">
@@ -294,16 +294,16 @@ export function CalendarWorkspace() {
             onPress={() => setSearch(true)}
           />
           <IconButton
-            icon={Plus}
-            label={copy.add}
-            data-action="new-event"
-            onPress={() => create()}
-          />
-          <IconButton
             icon={Settings2}
             label={labels.settings}
             data-action="product-settings"
             onPress={() => setSettings(true)}
+          />
+          <IconButton
+            icon={Plus}
+            label={copy.add}
+            data-action="new-event"
+            onPress={() => create()}
           />
         </div>
       </header>
@@ -337,7 +337,7 @@ export function CalendarWorkspace() {
               </CalendarDatePicker>
               <div>
                 <Button className="calendar-today" onPress={() => select(today)}>
-                  <Mn>{copy.today}</Mn>
+                  <Mn compact>{copy.today}</Mn>
                 </Button>
                 <IconButton
                   icon={ChevronLeft}
@@ -481,7 +481,7 @@ export function CalendarWorkspace() {
               }}
             >
               <Icon size={20} />
-              <Mn>{copy[id]}</Mn>
+              <Mn compact>{copy[id]}</Mn>
             </Button>
           ))}
         </div>
@@ -502,27 +502,29 @@ export function CalendarWorkspace() {
                 aria-label={dual ? `${copy.gregorian} + ${copy.lunar}` : copy.gregorian}
                 onPress={() => setPrefs({ ...prefs, lunar: dual })}
               >
-                <span className="calendar-mode-icons">
-                  <Sun size={20} />
-                  {dual && <Moon size={18} />}
-                </span>
                 <span className="calendar-mode-label">
-                  <Mn>{copy.gregorian}</Mn>
+                  <Mn compact>{copy.gregorian}</Mn>
                   {dual && (
                     <>
                       <span>+</span>
-                      <Mn>{copy.lunar}</Mn>
+                      <Mn compact>{copy.lunar}</Mn>
                     </>
                   )}
                 </span>
-                {prefs.lunar === dual && <Check size={18} aria-hidden="true" />}
+                <span className="calendar-mode-check" aria-hidden="true">
+                  {prefs.lunar === dual && <Check size={18} />}
+                </span>
               </Button>
             ))}
           </div>
-          <Mn as="h2">{copy.appearance}</Mn>
-          <SkinPicker value={prefs.skin} onChange={(skin) => setPrefs({ ...prefs, skin })} />
+          <section className="calendar-appearance-setting">
+            <Mn compact as="h2">
+              {copy.appearance}
+            </Mn>
+            <SkinPicker value={prefs.skin} onChange={(skin) => setPrefs({ ...prefs, skin })} />
+          </section>
           <label className="calendar-font-setting">
-            <Mn>{labels.type}</Mn>
+            <Mn compact>{labels.type}</Mn>
             <input
               type="range"
               min="0.85"
@@ -535,7 +537,7 @@ export function CalendarWorkspace() {
             <output className="numeric">{Math.round(prefs.fontScale * 100)}%</output>
           </label>
           <div className="calendar-setting-row">
-            <Mn>{copy.firstWeekday}</Mn>
+            <Mn compact>{copy.firstWeekday}</Mn>
             <Segments
               label={copy.firstWeekday}
               value={String(prefs.firstWeekday)}
@@ -549,7 +551,7 @@ export function CalendarWorkspace() {
           <div className="calendar-transfer">
             <Button onPress={() => file.current?.click()}>
               <Upload size={19} />
-              <Mn>{copy.import}</Mn>
+              <Mn compact>{copy.import}</Mn>
             </Button>
             <Button
               onPress={() =>
@@ -557,7 +559,7 @@ export function CalendarWorkspace() {
               }
             >
               <Download size={19} />
-              <Mn>{copy.export}</Mn>
+              <Mn compact>{copy.export}</Mn>
             </Button>
           </div>
           <input
@@ -714,6 +716,7 @@ export function CalendarWorkspace() {
 }
 
 function AppointmentEditor({ value, onSave, onClose, storageError }) {
+  const formId = React.useId();
   const [draft, setDraft] = useState(value),
     [error, setError] = useState('');
   const form = useRef(null);
@@ -734,11 +737,24 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
       onOpenChange={(open) => {
         if (!open) onClose();
       }}
-      label={copy.agenda}
+      label={value.title ? copy.edit : copy.add}
       wide
       className="appointment-editor"
+      leadingClose
+      headerActions={
+        <Button
+          className="icon-button appointment-save"
+          data-action="save-event"
+          type="submit"
+          form={formId}
+          aria-label={copy.save}
+        >
+          <Check size={20} />
+        </Button>
+      }
     >
       <form
+        id={formId}
         ref={form}
         noValidate
         onSubmit={(event) => {
@@ -755,7 +771,7 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
       >
         <div className="appointment-form-scroll">
           <label className="appointment-title-field">
-            <Mn>{copy.title}</Mn>
+            <Mn compact>{copy.title}</Mn>
             <textarea
               className="mn"
               autoFocus
@@ -781,12 +797,12 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
             }
           >
             <span className="switch-track" />
-            <Mn>{copy.allDay}</Mn>
+            <Mn compact>{copy.allDay}</Mn>
           </Switch>
           <div className="appointment-dates">
             {['start', 'end'].map((key) => (
               <label key={key}>
-                <Mn>{copy[key]}</Mn>
+                <Mn compact>{copy[key]}</Mn>
                 <div>
                   <input
                     type="text"
@@ -819,7 +835,7 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
             ))}
           </div>
           <div className="repeat-field">
-            <Mn>{copy.repeat}</Mn>
+            <Mn compact>{copy.repeat}</Mn>
             <Segments
               label={copy.repeat}
               value={draft.repeat}
@@ -836,7 +852,7 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
           {draft.repeat !== 'none' && (
             <div className="appointment-dates">
               <label>
-                <Mn>{copy.interval}</Mn>
+                <Mn compact>{copy.interval}</Mn>
                 <input
                   type="number"
                   min="1"
@@ -851,7 +867,7 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
                 />
               </label>
               <label>
-                <Mn>{copy.until}</Mn>
+                <Mn compact>{copy.until}</Mn>
                 <input
                   type="text"
                   inputMode="text"
@@ -869,7 +885,7 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
           )}
           <label className="appointment-note-field">
             <MapPin size={17} />
-            <Mn>{copy.location}</Mn>
+            <Mn compact>{copy.location}</Mn>
             <textarea
               className="mn"
               aria-label={copy.location}
@@ -878,7 +894,7 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
             />
           </label>
           <label className="appointment-note-field">
-            <Mn>{copy.notes}</Mn>
+            <Mn compact>{copy.notes}</Mn>
             <textarea
               className="mn"
               aria-label={copy.notes}
@@ -905,15 +921,6 @@ function AppointmentEditor({ value, onSave, onClose, storageError }) {
             {storageError ? copy.storageError : errorLabels[error] || copy.invalid}
           </Mn>
         )}
-        <div className="appointment-form-footer">
-          <Button type="button" onPress={onClose}>
-            <Mn>{labels.close}</Mn>
-          </Button>
-          <Button className="primary-action" data-action="save-event" type="submit">
-            <Check size={20} />
-            <Mn>{copy.save}</Mn>
-          </Button>
-        </div>
       </form>
     </Sheet>
   );

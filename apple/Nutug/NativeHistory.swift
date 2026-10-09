@@ -3,6 +3,7 @@ import SwiftUI
 struct NativeHistory: View {
   @ObservedObject var store: HistoryStore
   let scale: Double
+  var onSettings: (() -> Void)? = nil
   @State private var selected: String?
   @State private var chosenPerson: PersonSelection?
   @State private var periods = false
@@ -16,32 +17,9 @@ struct NativeHistory: View {
     Group {
       if let core = store.content, !events.isEmpty {
         VStack(spacing: 16) {
-          HStack {
-            Button {
-              if index > 0 { selected = events[index - 1].id }
-            } label: {
-              Image(systemName: "chevron.left")
-            }.disabled(index == 0).accessibilityLabel(Copy.label("previous"))
-            Button {
-              periodID = events[index].periodId
-              periods = true
-            } label: {
-              Text("\(index+1) / \(events.count)").monospacedDigit()
-            }.accessibilityLabel(Copy.label("timeline"))
-            Button {
-              if index + 1 < events.count { selected = events[index + 1].id }
-            } label: {
-              Image(systemName: "chevron.right")
-            }.disabled(index + 1 == events.count).accessibilityLabel(Copy.label("next"))
-            Spacer()
-            Button {
-              Task { await store.refresh() }
-            } label: {
-              Image(
-                systemName: store.updateAvailable
-                  ? "arrow.clockwise.circle.fill" : "arrow.clockwise")
-            }.disabled(store.loading).accessibilityLabel(Copy.label("update"))
-          }.buttonStyle(.bordered).padding(.horizontal)
+          #if os(macOS)
+            historyNavigation
+          #endif
           GeometryReader { geometry in
             let event = events[index]
             let height = max(240, geometry.size.height - 32)
@@ -89,6 +67,9 @@ struct NativeHistory: View {
         }.buttonStyle(.bordered)
       }
     }
+    #if os(iOS)
+      .safeAreaInset(edge: .bottom, spacing: 0) { historyNavigation.background(.bar) }
+    #endif
     .task { await store.load() }
     .onChange(of: phase) { _, phase in if phase == .active { Task { await store.load() } } }
     .sheet(isPresented: $periods) {
@@ -133,6 +114,41 @@ struct NativeHistory: View {
       #endif
     }
   }
+  private var historyNavigation: some View {
+    HStack {
+      if !events.isEmpty {
+        Button {
+          if index > 0 { selected = events[index - 1].id }
+        } label: {
+          Image(systemName: "chevron.left")
+        }.disabled(index == 0).accessibilityLabel(Copy.label("previous"))
+        Button {
+          periodID = events.indices.contains(index) ? events[index].periodId : nil
+          periods = true
+        } label: {
+          Text("\(index+1) / \(events.count)").monospacedDigit()
+        }.accessibilityLabel(Copy.label("timeline"))
+        Button {
+          if index + 1 < events.count { selected = events[index + 1].id }
+        } label: {
+          Image(systemName: "chevron.right")
+        }.disabled(index + 1 >= events.count).accessibilityLabel(Copy.label("next"))
+      }
+      Spacer()
+      Button {
+        Task { await store.refresh() }
+      } label: {
+        Image(
+          systemName: store.updateAvailable
+            ? "arrow.clockwise.circle.fill" : "arrow.clockwise")
+      }.disabled(store.loading).accessibilityLabel(Copy.label("update"))
+      if let onSettings {
+        Button(action: onSettings) { Image(systemName: "slider.horizontal.3") }
+          .accessibilityLabel(Copy.label("settings"))
+      }
+    }.buttonStyle(.borderless).controlSize(.large).padding(.horizontal, 20).padding(.vertical, 12)
+  }
+
 }
 private struct PersonSelection: Identifiable { let id: String }
 private struct NativeSources: View {

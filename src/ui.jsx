@@ -21,9 +21,9 @@ import { labels, uiLocale } from './ui-copy.mjs';
 import { displayMongolian } from '../shared/mongolian-orthography.mjs';
 import { useColumnScroll } from './useColumnScroll';
 
-export function Mn({ as: Tag = 'span', className = '', children, ...props }) {
+export function Mn({ as: Tag = 'span', className = '', compact = false, children, ...props }) {
   return (
-    <Tag lang={uiLocale} className={`mn ${className}`} {...props}>
+    <Tag lang={uiLocale} className={`mn ${compact ? 'mn-compact' : ''} ${className}`} {...props}>
       {React.Children.map(children, (child) =>
         typeof child === 'string' ? displayMongolian(child) : child,
       )}
@@ -66,6 +66,7 @@ export function Sheet({
   wide = false,
   className = '',
   headerActions,
+  leadingClose = false,
 }) {
   const reduced = useReducedMotion();
   return (
@@ -78,11 +79,16 @@ export function Sheet({
         >
           <Dialog aria-label={label} className="sheet-dialog">
             <div className="sheet-bar">
+              {leadingClose && (
+                <IconButton icon={X} label={labels.close} onPress={() => onOpenChange(false)} />
+              )}
               <Heading slot="title">
-                <Mn>{label}</Mn>
+                <Mn compact>{label}</Mn>
               </Heading>
               {headerActions}
-              <IconButton icon={X} label={labels.close} onPress={() => onOpenChange(false)} />
+              {!leadingClose && (
+                <IconButton icon={X} label={labels.close} onPress={() => onOpenChange(false)} />
+              )}
             </div>
             {children}
           </Dialog>

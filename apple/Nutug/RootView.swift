@@ -2,6 +2,8 @@ import SwiftUI
 
 struct RootView: View {
   @StateObject private var model: AppModel
+  @Environment(\.dynamicTypeSize) private var typeSize
+  @ScaledMetric(relativeTo: .body) private var choiceLabelHeight: CGFloat = 84
   init() { _model = StateObject(wrappedValue: AppModel()) }
   init(model: AppModel) { _model = StateObject(wrappedValue: model) }
   private var page: NutugPage {
@@ -13,18 +15,27 @@ struct RootView: View {
   }
   private var skin: CalendarSkin { CalendarSkin(rawValue: model.skin) ?? .light }
   var body: some View {
-    NavigationStack { content(page).background(skin.canvas).toolbar { settingsButton } }
-      .environment(\.locale, Locale(identifier: "mn_Mong_CN"))
-      .tint(skin.accent)
-      .preferredColorScheme(skin.scheme)
-      .background(skin.canvas)
-      .sheet(isPresented: $model.settingsPresented) { settings }
+    NavigationStack {
+      content(page).background(skin.canvas)
+        #if os(macOS)
+          .toolbar { settingsButton }
+        #endif
+    }
+    .environment(\.locale, Locale(identifier: "mn_Mong_CN"))
+    .tint(skin.accent)
+    .preferredColorScheme(skin.scheme)
+    .background(skin.canvas)
+    .sheet(isPresented: $model.settingsPresented) { settings }
   }
   @ViewBuilder private func content(_ page: NutugPage) -> some View {
     if page == .calendar {
-      NativeCalendar(model: model.calendar, scale: model.readingScale, skin: skin)
+      NativeCalendar(
+        model: model.calendar, scale: model.readingScale, skin: skin,
+        onSettings: { model.settingsPresented = true })
     } else {
-      NativeHistory(store: model.history, scale: model.readingScale)
+      NativeHistory(
+        store: model.history, scale: model.readingScale,
+        onSettings: { model.settingsPresented = true })
     }
   }
   private var settingsButton: some ToolbarContent {
@@ -42,42 +53,69 @@ struct RootView: View {
         if page == .calendar {
           CalendarPreferences(model: model.calendar)
         }
-        LazyVGrid(
-          columns: [GridItem(.flexible()), GridItem(.flexible())], alignment: .leading, spacing: 16
-        ) {
-          ForEach(CalendarSkin.allCases) { value in
-            Button {
-              model.skin = value.rawValue
-            } label: {
-              VStack {
-                Image(systemName: model.skin == value.rawValue ? "checkmark.circle.fill" : "circle")
+        Section {
+          LazyVGrid(
+            columns: Array(
+              repeating: GridItem(.flexible(), spacing: 8),
+              count: typeSize.isAccessibilitySize ? 2 : 4), alignment: .leading,
+            spacing: 12
+          ) {
+            ForEach(CalendarSkin.allCases) { value in
+              Button {
+                model.skin = value.rawValue
+              } label: {
+                VStack(spacing: 8) {
+                  RoundedRectangle(cornerRadius: value == .ink ? 0 : 6)
+                    .fill(value.canvas).frame(width: 34, height: 26)
+                    .overlay(
+                      RoundedRectangle(cornerRadius: value == .ink ? 0 : 6).stroke(
+                        value.accent.opacity(0.6), lineWidth: 1))
+                  MongolianLabel(text: Copy.calendar(value.rawValue), height: 76, size: 20)
+                    .frame(height: choiceLabelHeight, alignment: .top)
+                  Image(
+                    systemName: model.skin == value.rawValue ? "checkmark.circle.fill" : "circle"
+                  )
+                  .foregroundStyle(model.skin == value.rawValue ? Color.accentColor : .secondary)
                   .accessibilityHidden(true)
-                RoundedRectangle(cornerRadius: value == .ink ? 0 : 8).fill(value.canvas).frame(
-                  width: 42, height: 28
-                ).overlay(Rectangle().stroke(value.accent, lineWidth: 2))
-                MongolianText(text: Copy.calendar(value.rawValue), height: 110, size: 23)
-              }
-            }.buttonStyle(.bordered).accessibilityAddTraits(
-              model.skin == value.rawValue ? .isSelected : [])
+                }.frame(maxWidth: .infinity, alignment: .top).padding(.vertical, 8)
+              }.buttonStyle(.plain).accessibilityLabel(Copy.calendar(value.rawValue))
+                .accessibilityAddTraits(model.skin == value.rawValue ? .isSelected : [])
+            }
           }
         }
-        MongolianText(text: Copy.label("type"), height: 170, size: 26)
-        Slider(value: $model.readingScale, in: 0.85...1.5, step: 0.05).accessibilityLabel(
-          Copy.label("type"))
-        Text("\(Int((model.readingScale*100).rounded()))%").monospacedDigit()
-        ScrollView(.horizontal) {
-          MongolianText(text: Copy.label(page.rawValue), height: 180, scale: model.readingScale)
+        Section {
+          HStack(spacing: 20) {
+            MongolianLabel(text: Copy.label("type"), scale: model.readingScale)
+            VStack(alignment: .trailing, spacing: 12) {
+              Slider(value: $model.readingScale, in: 0.85...1.5, step: 0.05)
+                .accessibilityLabel(Copy.label("type"))
+              Text("\(Int((model.readingScale*100).rounded()))%")
+                .font(.footnote.monospacedDigit()).foregroundStyle(.secondary)
+            }
+          }
+        }
+        if page == .calendar {
+          Section { CalendarTransferControls(store: model.calendar.appointments) }
         }
       }
-      .toolbar {
-        ToolbarItem(placement: .confirmationAction) {
-          Button {
-            model.settingsPresented = false
-          } label: {
-            Image(systemName: "checkmark")
-          }.accessibilityLabel(Copy.label("close"))
+      #if os(iOS)
+        .listSectionSpacing(.compact)
+        .safeAreaInset(edge: .top, spacing: 0) {
+          NativeSheetHeader(
+            title: Copy.label("settings"), onClose: { model.settingsPresented = false })
         }
-      }
+      #else
+        .toolbar {
+          ToolbarItem(placement: .confirmationAction) {
+            Button {
+              model.settingsPresented = false
+            } label: {
+              Image(systemName: "checkmark")
+            }
+            .accessibilityLabel(Copy.label("close"))
+          }
+        }
+      #endif
     }
     #if os(macOS)
       .frame(width: 520, height: 680)
@@ -88,48 +126,67 @@ struct RootView: View {
 private struct CalendarPreferences: View {
   @ObservedObject var model: CalendarModel
   var body: some View {
-    HStack(alignment: .top, spacing: 12) {
+    Picker(selection: $model.showLunar) {
       ForEach([false, true], id: \.self) { dual in
-        Button {
-          model.showLunar = dual
-        } label: {
-          VStack(spacing: 12) {
-            HStack {
-              Image(systemName: "sun.max")
-              if dual { Image(systemName: "moon") }
-            }
-            HStack(alignment: .top, spacing: 8) {
-              MongolianText(text: Copy.calendar("gregorian"), height: 130, size: 23)
-              if dual {
-                Text("+")
-                MongolianText(text: Copy.calendar("lunar"), height: 130, size: 23)
-              }
-            }
-            Image(systemName: model.showLunar == dual ? "checkmark.circle.fill" : "circle")
-          }.frame(maxWidth: .infinity)
-        }.buttonStyle(.bordered).buttonBorderShape(.roundedRectangle(radius: 16))
-          .tint(model.showLunar == dual ? Color.accentColor : .secondary)
-          .accessibilityLabel(
-            Copy.calendar("gregorian") + (dual ? " + " + Copy.calendar("lunar") : "")
-          )
-          .accessibilityAddTraits(model.showLunar == dual ? .isSelected : [])
+        HStack(alignment: .top, spacing: 14) {
+          Image(systemName: dual ? "moon" : "sun.max").foregroundStyle(.secondary)
+          MongolianLabel(text: Copy.calendar("gregorian"))
+          if dual {
+            Text("+").foregroundStyle(.secondary)
+            MongolianLabel(text: Copy.calendar("lunar"))
+          }
+        }.tag(dual)
       }
+    } label: {
+      MongolianLabel(text: Copy.label("calendar"))
     }
-    VStack(alignment: .leading, spacing: 12) {
-      MongolianText(text: Copy.calendar("firstWeekday"), height: 150, size: 23)
+    .pickerStyle(.inline).labelsHidden()
+    HStack(alignment: .top, spacing: 24) {
+      MongolianLabel(text: Copy.calendar("firstWeekday"))
+      Spacer(minLength: 0)
       HStack {
         ForEach([0, 6], id: \.self) { day in
           Button {
             model.firstWeekday = day
           } label: {
-            MongolianText(text: Copy.weekdays[day], height: 90, size: 23)
+            VStack(spacing: 8) {
+              MongolianLabel(text: Copy.weekdays[day], height: 64, size: 20)
+              Image(systemName: model.firstWeekday == day ? "checkmark.circle.fill" : "circle")
+                .foregroundStyle(model.firstWeekday == day ? Color.accentColor : .secondary)
+            }.padding(.horizontal, 8).frame(minWidth: 44)
           }
-          .buttonStyle(.bordered)
+          .buttonStyle(.plain)
           .tint(model.firstWeekday == day ? Color.accentColor : .secondary)
           .accessibilityAddTraits(model.firstWeekday == day ? .isSelected : [])
         }
       }
     }
-    CalendarTransferControls(store: model.appointments)
+  }
+}
+
+struct NativeSheetHeader: View {
+  let title: String
+  let onClose: () -> Void
+  var onSave: (() -> Void)? = nil
+  var body: some View {
+    HStack(spacing: 16) {
+      if onSave != nil {
+        Button(action: onClose) { Image(systemName: "xmark") }
+          .buttonStyle(.borderless).accessibilityLabel(Copy.label("close"))
+          .frame(minWidth: 44, minHeight: 44)
+        Spacer(minLength: 0)
+      }
+      MongolianLabel(text: title, height: 70, size: 20)
+      Spacer(minLength: 0)
+      if let onSave {
+        Button(action: onSave) { Image(systemName: "checkmark") }
+          .buttonStyle(.borderedProminent).buttonBorderShape(.circle)
+          .accessibilityLabel(Copy.calendar("save"))
+      } else {
+        Button(action: onClose) { Image(systemName: "xmark") }
+          .buttonStyle(.borderless).accessibilityLabel(Copy.label("close"))
+          .frame(minWidth: 44, minHeight: 44)
+      }
+    }.controlSize(.large).padding(.horizontal, 20).padding(.vertical, 10).background(.bar)
   }
 }
