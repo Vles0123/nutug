@@ -2,17 +2,24 @@ import React from 'react';
 import { Button } from 'react-aria-components';
 import { Plus, Repeat2 } from 'lucide-react';
 import { Mn } from './ui';
-import { calendarCopy as copy } from './calendar-copy.mjs';
+import { calendarCopy as copy, calendarConfig } from './calendar-copy.mjs';
+import { gregorianProvider } from '../shared/calendar.mjs';
+
+const civil = gregorianProvider(calendarConfig);
 
 export function DualDate({ date, provider, lunar = true }) {
-  const value = provider.compute(date);
+  const day = civil.compute(date);
+  const value = lunar && provider?.validDate(date) ? provider.compute(date) : null;
   return (
     <div className="calendar-dual-date">
       <div>
         <Mn>{copy.gregorian}</Mn>
-        <span className="numeric">{date}</span>
+        <time className="numeric" dateTime={date}>
+          {date}
+        </time>
+        <Mn>{copy.weekdays[day.weekday]}</Mn>
       </div>
-      {lunar && (
+      {value && (
         <div>
           <Mn>{copy.lunar}</Mn>
           <span className="numeric">

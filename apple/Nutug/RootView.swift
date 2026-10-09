@@ -39,6 +39,9 @@ struct RootView: View {
   private var settings: some View {
     NavigationStack {
       Form {
+        if page == .calendar {
+          CalendarPreferences(model: model.calendar)
+        }
         LazyVGrid(
           columns: [GridItem(.flexible()), GridItem(.flexible())], alignment: .leading, spacing: 16
         ) {
@@ -57,9 +60,6 @@ struct RootView: View {
             }.buttonStyle(.bordered).accessibilityAddTraits(
               model.skin == value.rawValue ? .isSelected : [])
           }
-        }
-        if page == .calendar {
-          CalendarPreferences(model: model.calendar)
         }
         MongolianText(text: Copy.label("type"), height: 170, size: 26)
         Slider(value: $model.readingScale, in: 0.85...1.5, step: 0.05).accessibilityLabel(
@@ -88,9 +88,32 @@ struct RootView: View {
 private struct CalendarPreferences: View {
   @ObservedObject var model: CalendarModel
   var body: some View {
-    CalendarTransferControls(store: model.appointments)
-    Toggle(isOn: $model.showLunar) {
-      MongolianText(text: Copy.calendar("lunar"), height: 150, size: 23)
+    HStack(alignment: .top, spacing: 12) {
+      ForEach([false, true], id: \.self) { dual in
+        Button {
+          model.showLunar = dual
+        } label: {
+          VStack(spacing: 12) {
+            HStack {
+              Image(systemName: "sun.max")
+              if dual { Image(systemName: "moon") }
+            }
+            HStack(alignment: .top, spacing: 8) {
+              MongolianText(text: Copy.calendar("gregorian"), height: 130, size: 23)
+              if dual {
+                Text("+")
+                MongolianText(text: Copy.calendar("lunar"), height: 130, size: 23)
+              }
+            }
+            Image(systemName: model.showLunar == dual ? "checkmark.circle.fill" : "circle")
+          }.frame(maxWidth: .infinity)
+        }.buttonStyle(.bordered).buttonBorderShape(.roundedRectangle(radius: 16))
+          .tint(model.showLunar == dual ? Color.accentColor : .secondary)
+          .accessibilityLabel(
+            Copy.calendar("gregorian") + (dual ? " + " + Copy.calendar("lunar") : "")
+          )
+          .accessibilityAddTraits(model.showLunar == dual ? .isSelected : [])
+      }
     }
     VStack(alignment: .leading, spacing: 12) {
       MongolianText(text: Copy.calendar("firstWeekday"), height: 150, size: 23)
@@ -107,5 +130,6 @@ private struct CalendarPreferences: View {
         }
       }
     }
+    CalendarTransferControls(store: model.appointments)
   }
 }

@@ -1,11 +1,12 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
-import { Button, Dialog, DialogTrigger, Popover } from 'react-aria-components';
-import { ChevronLeft, ChevronRight, ChevronDown, Moon, CalendarCheck } from 'lucide-react';
+import { Button } from 'react-aria-components';
+import { ChevronLeft, ChevronRight, Moon, CalendarCheck } from 'lucide-react';
 import { Mn, IconButton } from './ui';
 import { labels } from './ui-copy.mjs';
 import { calendarCopy as copy, calendarConfig } from './calendar-copy.mjs';
 import {
   chineseLunisolarProvider,
+  gregorianProvider,
   civilDate,
   moveDate,
   moveMonth,
@@ -13,6 +14,7 @@ import {
 } from '../shared/calendar.mjs';
 import { useToday } from './useToday';
 import { Agenda } from './CalendarAgenda';
+import { CalendarDatePicker } from './CalendarDatePicker';
 import { occurrencesBetween } from '../shared/calendar-events.mjs';
 
 export function MonthCalendar({
@@ -26,12 +28,16 @@ export function MonthCalendar({
   onOpenDay,
 }) {
   const today = useToday(calendarConfig.timeZone);
+  const civil = useMemo(() => gregorianProvider(calendarConfig), []);
   const provider = useMemo(
-    () => chineseLunisolarProvider(window.ChineseAlmanac, calendarConfig),
-    [],
+    () =>
+      showLunar && window.ChineseAlmanac
+        ? chineseLunisolarProvider(window.ChineseAlmanac, calendarConfig)
+        : null,
+    [showLunar],
   );
   const initial = new URLSearchParams(location.search).get('date');
-  const [localDate, setLocalDate] = useState(() => (provider.validDate(initial) ? initial : today));
+  const [localDate, setLocalDate] = useState(() => (civil.validDate(initial) ? initial : today));
   const date = selectedDate || localDate;
   const setDate = (value) => {
     setLocalDate(value);
@@ -41,8 +47,6 @@ export function MonthCalendar({
   useEffect(() => {
     if (selectedDate) setMonth(selectedDate.slice(0, 7));
   }, [selectedDate]);
-  const [picker, setPicker] = useState(false);
-  const [year, setYear] = useState(Number(month.slice(0, 4)));
   const previousToday = useRef(today),
     grid = useRef(null),
     focusNext = useRef(false);
@@ -50,7 +54,7 @@ export function MonthCalendar({
     () => monthDays(month, provider, firstWeekday),
     [month, provider, firstWeekday],
   );
-  const lunar = provider.compute(date);
+  const lunar = provider?.validDate(date) ? provider.compute(date) : null;
   const occurrences = useMemo(
     () =>
       occurrencesBetween(
@@ -63,7 +67,7 @@ export function MonthCalendar({
   const forDate = (value) =>
     occurrences.filter((event) => event.startDate <= value && event.endDate >= value);
   const select = (value, focus = false) => {
-    if (!provider.validDate(value)) return;
+    if (!civil.validDate(value)) return;
     focusNext.current = focus;
     setDate(value);
     setMonth(value.slice(0, 7));
@@ -78,14 +82,14 @@ export function MonthCalendar({
   useEffect(() => {
     const change = () => {
       const target = new URLSearchParams(location.search).get('date');
-      if (provider.validDate(target)) {
+      if (civil.validDate(target)) {
         setDate(target);
         setMonth(target.slice(0, 7));
       }
     };
     window.addEventListener('popstate', change);
     return () => window.removeEventListener('popstate', change);
-  }, [provider]);
+  }, [civil]);
   useEffect(() => {
     if (focusNext.current) {
       grid.current?.querySelector(`[data-date="${date}"]`)?.focus();
@@ -119,66 +123,7 @@ export function MonthCalendar({
   return (
     <section className="ordinary-calendar" aria-label={labels.calendar}>
       <div className="calendar-heading">
-        <DialogTrigger
-          isOpen={picker}
-          onOpenChange={(open) => {
-            setYear(Number(month.slice(0, 4)));
-            setPicker(open);
-          }}
-        >
-          <Button className="month-title" aria-label={copy.choose} data-action="choose-month">
-            <span className="numeric">{month.replace('-', ' / ')}</span>
-            <ChevronDown size={18} />
-          </Button>
-          <Popover className="month-picker" placement="bottom start">
-            <Dialog aria-label={copy.choose}>
-              <div className="picker-year">
-                <IconButton
-                  icon={ChevronLeft}
-                  label={labels.previous}
-                  isDisabled={year <= 1901}
-                  onPress={() => setYear(year - 1)}
-                />
-                <input
-                  className="numeric"
-                  type="number"
-                  min="1901"
-                  max="2100"
-                  value={year}
-                  aria-label={copy.year}
-                  onChange={(e) => setYear(e.target.value === '' ? '' : Number(e.target.value))}
-                />
-                <IconButton
-                  icon={ChevronRight}
-                  label={labels.next}
-                  isDisabled={year >= 2100}
-                  onPress={() => setYear(year + 1)}
-                />
-              </div>
-              <div className="picker-months">
-                {Array.from({ length: 12 }, (_, i) => (
-                  <Button
-                    key={i}
-                    className="numeric"
-                    aria-label={`${i + 1} ${copy.month}`}
-                    isDisabled={!Number.isInteger(year) || year < 1901 || year > 2100}
-                    onPress={() => {
-                      select(
-                        moveMonth(
-                          date,
-                          (year - Number(date.slice(0, 4))) * 12 + i + 1 - Number(date.slice(5, 7)),
-                        ),
-                      );
-                      setPicker(false);
-                    }}
-                  >
-                    {i + 1}
-                  </Button>
-                ))}
-              </div>
-            </Dialog>
-          </Popover>
-        </DialogTrigger>
+        <CalendarDatePicker date={date} onSelect={select} />
         <div className="month-actions">
           <IconButton
             icon={CalendarCheck}
@@ -220,8 +165,8 @@ export function MonthCalendar({
                 data-selected={date === day.iso || undefined}
                 aria-pressed={date === day.iso}
                 aria-current={today === day.iso ? 'date' : undefined}
-                aria-label={`${day.iso} · ${copy.lunar} ${day.lunar?.lunarMonth || ''} / ${day.lunar?.lunarDay || ''}`}
-                isDisabled={!provider.validDate(day.iso)}
+                aria-label={`${copy.gregorian} ${day.iso}${day.lunar ? ` · ${copy.lunar} ${day.lunar.lunarMonth} / ${day.lunar.lunarDay}` : ''}`}
+                isDisabled={!civil.validDate(day.iso)}
                 tabIndex={day.iso === (date.startsWith(month) ? date : month + '-01') ? 0 : -1}
                 onKeyDown={(e) => key(e, day.iso)}
                 onPress={() => {
@@ -260,7 +205,7 @@ export function MonthCalendar({
           >
             <span className="numeric">{civilDate(date).day}</span>
             <Mn>{copy.weekdays[week]}</Mn>
-            {showLunar && (
+            {showLunar && lunar && (
               <span className="compact-lunar numeric">
                 <Moon size={16} />
                 {lunar.lunarMonth} / {lunar.lunarDay}
@@ -286,7 +231,7 @@ export function MonthCalendar({
               </strong>
             </time>
           </div>
-          {showLunar && (
+          {showLunar && lunar && (
             <div className="date-pair">
               <Mn>{copy.lunar}</Mn>
               <span className="date-value numeric">

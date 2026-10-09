@@ -7,6 +7,41 @@ export function civilDate(value) {
   return { iso: value, year, month, day };
 }
 
+export function normalizeDateInput(value) {
+  if (typeof value !== 'string') return value;
+  return value
+    .normalize('NFKC')
+    .replace(/[᠐-᠙]/g, (digit) => String(digit.charCodeAt(0) - 0x1810))
+    .trim()
+    .replace(
+      /^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})$/,
+      (_, y, m, d) => `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`,
+    );
+}
+
+export function gregorianProvider(config) {
+  if (!civilDate(config.minDate) || !civilDate(config.maxDate) || config.minDate > config.maxDate)
+    throw new RangeError('Invalid calendar range');
+  new Intl.DateTimeFormat('en', { timeZone: config.timeZone });
+  const validDate = (value) =>
+    !!civilDate(value) && value >= config.minDate && value <= config.maxDate;
+  return Object.freeze({
+    id: 'gregorian',
+    minDate: config.minDate,
+    maxDate: config.maxDate,
+    timeZone: config.timeZone,
+    validDate,
+    compute(value) {
+      if (!validDate(value)) throw new RangeError('Date is outside the calendar range');
+      return {
+        ...civilDate(value),
+        weekday: (new Date(value + 'T12:00:00Z').getUTCDay() + 6) % 7,
+        calendarSystem: 'gregorian',
+      };
+    },
+  });
+}
+
 export function currentDate(zone = 'Asia/Shanghai', now = new Date()) {
   const parts = new Intl.DateTimeFormat('en-CA', {
     timeZone: zone,

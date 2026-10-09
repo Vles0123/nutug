@@ -38,6 +38,12 @@ struct CalendarChecks {
     }
     precondition(CivilCalendar.date("2000-02-29") != nil)
     precondition(CivilCalendar.date("1900-02-29") == nil)
+    precondition(CivilCalendar.date("2100-02-29") == nil)
+    precondition(CivilCalendar.moving("2028-02-28", component: .day, amount: 1) == "2028-02-29")
+    precondition(CivilCalendar.moving("2028-02-29", component: .day, amount: 1) == "2028-03-01")
+    precondition(CivilCalendar.moving("2026-12-31", component: .day, amount: 1) == "2027-01-01")
+    precondition(CivilCalendar.normalizedInput(" ᠒᠐᠒᠘/᠒/᠒᠙ ") == "2028-02-29")
+    precondition(CivilCalendar.normalizedInput("２０２８．２．２９") == "2028-02-29")
     precondition(CivilCalendar.moving("2026-01-31", component: .month, amount: 1) == "2026-02-28")
     precondition(CivilCalendar.days("2028-02").filter { $0.hasPrefix("2028-02") }.count == 29)
     precondition(engine.lunar("2026-02-30") == nil)

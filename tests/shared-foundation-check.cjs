@@ -1,7 +1,15 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 (async () => {
-  const { civilDate, chineseLunisolarProvider } = await import('../shared/calendar.mjs');
+  const {
+    civilDate,
+    gregorianProvider,
+    chineseLunisolarProvider,
+    normalizeDateInput,
+    monthDays,
+    moveDate,
+    moveMonth,
+  } = await import('../shared/calendar.mjs');
   const { assertManifest, assertSnapshot, assertSource } =
     await import('../shared/content-contract.mjs');
   const manifest = JSON.parse(fs.readFileSync('content-dist/manifest.json', 'utf8'));
@@ -86,6 +94,26 @@ const fs = require('node:fs');
     assert.equal(civilDate(date), null);
   const engine = require('../public/chinese-almanac-core.js');
   const config = snapshot.core.almanac;
+  const civil = gregorianProvider(config);
+  assert.equal(civil.id, 'gregorian');
+  assert.deepEqual(civil.compute('2028-02-29'), {
+    iso: '2028-02-29',
+    year: 2028,
+    month: 2,
+    day: 29,
+    weekday: 1,
+    calendarSystem: 'gregorian',
+  });
+  assert.equal(moveDate('2028-02-28', 1), '2028-02-29');
+  assert.equal(moveDate('2028-02-29', 1), '2028-03-01');
+  assert.equal(moveDate('2026-12-31', 1), '2027-01-01');
+  assert.equal(moveMonth('2028-01-31', 1), '2028-02-29');
+  assert.equal(moveMonth('2028-02-29', 12), '2029-02-28');
+  assert.equal(monthDays('2028-02').filter((day) => day.inMonth).length, 29);
+  assert.equal(monthDays('2100-02').filter((day) => day.inMonth).length, 28);
+  assert.throws(() => civil.compute('2100-02-29'), RangeError);
+  assert.equal(normalizeDateInput(' ᠒᠐᠒᠘/᠒/᠒᠙ '), '2028-02-29');
+  assert.equal(normalizeDateInput('２０２８．２．２９'), '2028-02-29');
   const provider = chineseLunisolarProvider(engine, config);
   for (const test of require('./fixtures/chinese-almanac-cases.json')) {
     const result = provider.compute(test.date);

@@ -1,5 +1,5 @@
 import ICAL from 'ical.js';
-import { civilDate, moveDate, currentDate } from './calendar.mjs';
+import { civilDate, moveDate, currentDate, normalizeDateInput } from './calendar.mjs';
 
 export const eventStorageKey = 'nutug.calendar.events.v1';
 export const recurrenceKinds = ['none', 'daily', 'weekly', 'monthly', 'yearly'];
@@ -17,15 +17,6 @@ const numericInput = (value) =>
         .replace(/[᠐-᠙]/g, (digit) => String(digit.charCodeAt(0) - 0x1810))
         .trim()
     : value;
-const dateInput = (value) => {
-  const text = numericInput(value);
-  return typeof text === 'string'
-    ? text.replace(
-        /^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})$/,
-        (_, y, m, d) => `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`,
-      )
-    : text;
-};
 const timeInput = (value) =>
   numericInput(value).replace(
     /^(\d{1,2}):(\d{1,2})$/,
@@ -39,14 +30,14 @@ export function normalizeEvent(value) {
     title: String(value.title || '').trim(),
     notes: String(value.notes || ''),
     location: String(value.location || ''),
-    startDate: dateInput(value.startDate),
-    endDate: dateInput(value.endDate || value.startDate),
+    startDate: normalizeDateInput(value.startDate),
+    endDate: normalizeDateInput(value.endDate || value.startDate),
     startTime: timeInput(String(value.startTime || '09:00')),
     endTime: timeInput(String(value.endTime || '10:00')),
     allDay: Boolean(value.allDay),
     repeat: value.repeat || 'none',
     interval: Number(value.interval ?? 1),
-    until: dateInput(value.until || ''),
+    until: normalizeDateInput(value.until || ''),
     color: eventColors.includes(value.color) ? value.color : 'blue',
     exceptions: [...new Set(value.exceptions || [])],
   };

@@ -16,15 +16,24 @@ import {
   Check,
   Trash2,
   MapPin,
+  Sun,
+  Moon,
 } from 'lucide-react';
 import { Mn, IconButton, Sheet, Segments, SearchBox, ColumnScroller } from './ui';
 import { labels } from './ui-copy.mjs';
 import { calendarCopy as copy, calendarConfig } from './calendar-copy.mjs';
 import { calendarPreferences, preferenceKey } from './calendar-skins.mjs';
 import { MonthCalendar } from './MonthCalendar';
+import { CalendarDatePicker } from './CalendarDatePicker';
 import { SkinPicker } from './SkinPicker';
 import { Agenda, DualDate } from './CalendarAgenda';
-import { chineseLunisolarProvider, monthDays, moveDate, moveMonth } from '../shared/calendar.mjs';
+import {
+  chineseLunisolarProvider,
+  gregorianProvider,
+  monthDays,
+  moveDate,
+  moveMonth,
+} from '../shared/calendar.mjs';
 import {
   readEvents,
   writeEvents,
@@ -59,10 +68,17 @@ const download = (text, name, type) => {
 
 export function CalendarWorkspace() {
   const today = useToday(calendarConfig.timeZone);
-  const engine = useMemo(() => chineseLunisolarProvider(window.ChineseAlmanac, calendarConfig), []);
+  const engine = useMemo(() => gregorianProvider(calendarConfig), []);
   const initial = new URLSearchParams(location.search).get('date');
   const [date, setDate] = useState(() => (engine.validDate(initial) ? initial : today));
   const [prefs, setPrefs] = useState(preferences);
+  const lunarProvider = useMemo(
+    () =>
+      prefs.lunar && window.ChineseAlmanac
+        ? chineseLunisolarProvider(window.ChineseAlmanac, calendarConfig)
+        : null,
+    [prefs.lunar],
+  );
   const [events, setEvents] = useState(() => {
     try {
       return readEvents(localStorage);
@@ -111,6 +127,14 @@ export function CalendarWorkspace() {
     if (date === previousToday.current) select(today);
     previousToday.current = today;
   }, [today]);
+  useEffect(() => {
+    const change = () => {
+      const value = new URLSearchParams(location.search).get('date');
+      if (engine.validDate(value)) setDate(value);
+    };
+    window.addEventListener('popstate', change);
+    return () => window.removeEventListener('popstate', change);
+  }, [engine]);
   useEffect(() => {
     const changed = (event) => {
       if (event.key === eventStorageKey) {
@@ -298,13 +322,19 @@ export function CalendarWorkspace() {
         ) : (
           <>
             <div className="calendar-period-bar">
-              <span className="numeric">
+              <CalendarDatePicker
+                date={date}
+                onSelect={(next) => {
+                  select(next);
+                  if (prefs.view === 'year') setPrefs({ ...prefs, view: 'month' });
+                }}
+              >
                 {prefs.view === 'year'
                   ? date.slice(0, 4)
                   : prefs.view === 'week'
                     ? `${rangeStart} — ${rangeEnd.slice(5)}`
                     : date}
-              </span>
+              </CalendarDatePicker>
               <div>
                 <Button className="calendar-today" onPress={() => select(today)}>
                   <Mn>{copy.today}</Mn>
@@ -366,9 +396,10 @@ export function CalendarWorkspace() {
                     >
                       <Mn>{copy.weekdays[weekday(day)]}</Mn>
                       <span className="numeric">{Number(day.slice(-2))}</span>
-                      {prefs.lunar && engine.validDate(day) && (
+                      {lunarProvider?.validDate(day) && (
                         <span className="numeric lunar-number">
-                          {engine.compute(day).lunarMonth} / {engine.compute(day).lunarDay}
+                          {lunarProvider.compute(day).lunarMonth} /{' '}
+                          {lunarProvider.compute(day).lunarDay}
                         </span>
                       )}
                     </Button>
@@ -384,7 +415,7 @@ export function CalendarWorkspace() {
               </ColumnScroller>
             ) : (
               <div className="day-workspace">
-                <DualDate date={date} provider={engine} lunar={prefs.lunar} />
+                <DualDate date={date} provider={lunarProvider} lunar={prefs.lunar} />
                 <Agenda items={onDay(date)} onOpen={setSelected} onAdd={() => create()} />
               </div>
             )}
@@ -397,7 +428,7 @@ export function CalendarWorkspace() {
         label={copy.agenda}
         className="calendar-day-sheet"
       >
-        <DualDate date={date} provider={engine} lunar={prefs.lunar} />
+        <DualDate date={date} provider={lunarProvider} lunar={prefs.lunar} />
         <Agenda
           items={onDay(date)}
           onOpen={(item) => {
@@ -462,6 +493,32 @@ export function CalendarWorkspace() {
         className="calendar-settings-sheet"
       >
         <div className="calendar-settings-content">
+          <div className="calendar-mode-options" role="group" aria-label={labels.calendar}>
+            {[false, true].map((dual) => (
+              <Button
+                key={String(dual)}
+                data-calendar-mode={dual ? 'dual' : 'gregorian'}
+                aria-pressed={prefs.lunar === dual}
+                aria-label={dual ? `${copy.gregorian} + ${copy.lunar}` : copy.gregorian}
+                onPress={() => setPrefs({ ...prefs, lunar: dual })}
+              >
+                <span className="calendar-mode-icons">
+                  <Sun size={20} />
+                  {dual && <Moon size={18} />}
+                </span>
+                <span className="calendar-mode-label">
+                  <Mn>{copy.gregorian}</Mn>
+                  {dual && (
+                    <>
+                      <span>+</span>
+                      <Mn>{copy.lunar}</Mn>
+                    </>
+                  )}
+                </span>
+                {prefs.lunar === dual && <Check size={18} aria-hidden="true" />}
+              </Button>
+            ))}
+          </div>
           <Mn as="h2">{copy.appearance}</Mn>
           <SkinPicker value={prefs.skin} onChange={(skin) => setPrefs({ ...prefs, skin })} />
           <label className="calendar-font-setting">
@@ -489,14 +546,6 @@ export function CalendarWorkspace() {
               ]}
             />
           </div>
-          <Switch
-            className="calendar-switch"
-            isSelected={prefs.lunar}
-            onChange={(value) => setPrefs({ ...prefs, lunar: value })}
-          >
-            <span className="switch-track" />
-            <Mn>{copy.lunar}</Mn>
-          </Switch>
           <div className="calendar-transfer">
             <Button onPress={() => file.current?.click()}>
               <Upload size={19} />

@@ -104,6 +104,21 @@ private final class RenderingChecksRun: ObservableObject {
       imported.importText(reopened.exportText())
       try require(imported.events.count == 2, "Calendar file round trip")
 
+      calendar.showLunar = false
+      try require(calendar.selectInput("᠒᠐᠒᠘/᠒/᠒᠙"), "Gregorian leap-day jump")
+      try require(
+        calendar.date == "2028-02-29"
+          && calendar.days.filter { $0.hasPrefix("2028-02") }.count == 29, "Gregorian leap month")
+      try require(
+        !calendar.selectInput("2100-02-29") && calendar.date == "2028-02-29",
+        "Invalid Gregorian date preserves selection")
+      screenshots.append(try await capture("gregorian-month"))
+      calendar.view = "day"
+      screenshots.append(try await capture("gregorian-day"))
+      calendar.view = "month"
+      calendar.showLunar = true
+      calendar.select("2026-10-08")
+
       for skin in CalendarSkin.allCases {
         app.skin = skin.rawValue
         palette = skin
@@ -150,6 +165,7 @@ private final class RenderingChecksRun: ObservableObject {
         "checks": [
           "validation-field", "create", "recurrence", "edit-occurrence", "persistence",
           "delete-undo", "ics-roundtrip", "vertical-input",
+          "gregorian-display", "gregorian-date-jump", "gregorian-validation",
         ],
         "screenshots": screenshots,
       ])

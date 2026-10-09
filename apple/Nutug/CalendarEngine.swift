@@ -39,6 +39,21 @@ final class CalendarEngine {
   }
 }
 enum CivilCalendar {
+  static func normalizedInput(_ value: String) -> String {
+    let text = String(
+      value.precomposedStringWithCompatibilityMapping.unicodeScalars.map { scalar in
+        (0x1810...0x1819).contains(scalar.value) ? String(scalar.value - 0x1810) : String(scalar)
+      }.joined()
+    ).trimmingCharacters(in: .whitespacesAndNewlines)
+    guard text.range(of: #"^\d{4}[-/.]\d{1,2}[-/.]\d{1,2}$"#, options: .regularExpression) != nil
+    else {
+      return text
+    }
+    let parts = text.replacingOccurrences(of: "/", with: "-")
+      .replacingOccurrences(of: ".", with: "-").split(separator: "-").compactMap { Int($0) }
+    guard parts.count == 3 else { return text }
+    return String(format: "%04d-%02d-%02d", parts[0], parts[1], parts[2])
+  }
   static var calendar: Calendar {
     var value = Calendar(identifier: .gregorian)
     value.timeZone = TimeZone(identifier: "Asia/Shanghai")!

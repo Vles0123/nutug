@@ -377,8 +377,17 @@
   gap: 18px;
   margin-bottom: 22px;
 }
-.calendar-period-bar > .numeric {
+.calendar-app .calendar-period-bar .month-title {
   font-size: 30px;
+  letter-spacing: normal;
+  min-width: 0;
+  gap: 8px;
+}
+.calendar-period-bar .month-title .numeric {
+  overflow-wrap: anywhere;
+}
+.calendar-period-bar .month-title svg {
+  flex: none;
 }
 .calendar-period-bar > div {
   display: flex;
@@ -614,6 +623,77 @@
 .calendar-setting-row > .mn {
   height: 130px;
   font-size: 24px;
+}
+.calendar-mode-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.calendar-mode-options > button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 10px;
+  border: 1px solid var(--separator);
+  border-radius: var(--calendar-radius);
+  background: var(--canvas);
+}
+.calendar-mode-options > button[aria-pressed='true'] {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--selection);
+}
+.calendar-mode-icons,
+.calendar-mode-label {
+  display: flex;
+  gap: 10px;
+}
+.calendar-mode-label {
+  align-items: flex-start;
+}
+.calendar-mode-label .mn {
+  height: 130px;
+  font-size: 23px;
+}
+.calendar-date-jump {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 16px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--separator);
+}
+.calendar-date-jump > .mn {
+  height: 105px;
+  font-size: 20px;
+  flex: none;
+}
+.calendar-date-jump input {
+  width: 0;
+  min-width: 0;
+  flex: 1;
+  min-height: 44px;
+  padding: 8px;
+  border: 1px solid var(--separator);
+  border-radius: 8px;
+  color: var(--label);
+  background: var(--canvas);
+  font-size: 16px;
+}
+.calendar-date-jump input[aria-invalid='true'] {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+}
+.calendar-date-error {
+  height: 110px;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+.month-picker {
+  max-width: calc(100vw - 24px);
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
 }
 .calendar-setting-row .segments {
   margin: 0;
@@ -1037,7 +1117,7 @@
     gap: 8px;
     flex-wrap: wrap;
   }
-  .calendar-period-bar > .numeric {
+  .calendar-app .calendar-period-bar .month-title {
     font-size: 24px;
   }
   .calendar-period-bar > div {

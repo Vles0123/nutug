@@ -30,6 +30,14 @@ final class CalendarModel: ObservableObject {
     date = value
     month = String(value.prefix(7))
   }
+  @discardableResult func selectInput(_ input: String) -> Bool {
+    let value = CivilCalendar.normalizedInput(input)
+    guard value >= "1901-01-01", value <= "2100-12-31", CivilCalendar.date(value) != nil else {
+      return false
+    }
+    select(value)
+    return true
+  }
   func move(_ amount: Int) {
     if let value = destination(amount) { select(value) }
   }
@@ -63,6 +71,9 @@ struct NativeCalendar: View {
   @State private var panel: Panel?
   @State private var query = ""
   @State private var pickerYear = 2026
+  @State private var pickerDate = ""
+  @State private var invalidPickerDate = false
+  @FocusState private var pickerDateFocused: Bool
   private let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
   init(model: CalendarModel, scale: Double = 1, skin: CalendarSkin = .light) {
     self.model = model
@@ -78,17 +89,25 @@ struct NativeCalendar: View {
           HStack {
             Button {
               pickerYear = Int(model.month.prefix(4)) ?? 2026
+              pickerDate = model.date
+              invalidPickerDate = false
               panel = .month
             } label: {
               HStack {
                 Text(
                   model.view == "year"
                     ? String(model.date.prefix(4))
-                    : model.month.replacingOccurrences(of: "-", with: " / ")
-                ).font(.system(size: 30, weight: .semibold, design: .rounded).monospacedDigit())
+                    : model.view == "day"
+                      ? model.date : model.month.replacingOccurrences(of: "-", with: " / ")
+                ).font(
+                  .system(size: model.view == "day" ? 24 : 30, weight: .semibold, design: .rounded)
+                    .monospacedDigit()
+                )
+                .lineLimit(1).minimumScaleFactor(0.75)
                 Image(systemName: "chevron.down").font(.caption)
               }
-            }.buttonStyle(.plain).accessibilityLabel(Copy.calendar("choose"))
+            }.buttonStyle(.plain).accessibilityLabel(
+              Copy.calendar("gregorian") + " · " + Copy.calendar("choose") + " · " + model.date)
             Spacer()
             Button {
               model.select(model.today)
@@ -255,7 +274,7 @@ struct NativeCalendar: View {
       {
         ForEach(days, id: \.self) { value in
           let current = value == model.date
-          let lunar = model.engine?.lunar(value)
+          let lunar = model.showLunar ? model.engine?.lunar(value) : nil
           Button {
             model.select(value)
           } label: {
@@ -408,32 +427,62 @@ struct NativeCalendar: View {
     }
   }
   private var monthPicker: some View {
-    VStack(spacing: 24) {
-      HStack {
-        Stepper(value: $pickerYear, in: 1901...2100) {
-          Text(String(pickerYear)).font(.largeTitle.monospacedDigit())
+    ScrollView {
+      VStack(spacing: 24) {
+        HStack(spacing: 12) {
+          MongolianText(text: Copy.calendar("gregorian"), height: 105, size: 22)
+          TextField("", text: $pickerDate).font(.body.monospacedDigit())
+            .textFieldStyle(.roundedBorder).accessibilityLabel(Copy.calendar("choose"))
+            .focused($pickerDateFocused).onSubmit(jumpToDate)
+            .onChange(of: pickerDate) { _, _ in invalidPickerDate = false }
+          Button(action: jumpToDate) {
+            Image(systemName: "checkmark")
+          }.buttonStyle(.bordered).accessibilityLabel(Copy.calendar("choose"))
         }
-        Button {
-          panel = nil
-        } label: {
-          Image(systemName: "xmark")
-        }.accessibilityLabel(Copy.label("close"))
-      }
-      LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 16) {
-        ForEach(1...12, id: \.self) { month in
+        if invalidPickerDate {
+          MongolianText(text: Copy.calendar("choose"), height: 100, size: 23)
+        }
+        HStack {
+          Stepper(value: $pickerYear, in: 1901...2100) {
+            Text(String(pickerYear)).font(.largeTitle.monospacedDigit())
+          }
           Button {
-            model.select(String(format: "%04d-%02d-01", pickerYear, month))
             panel = nil
           } label: {
-            Text(String(month)).frame(maxWidth: .infinity, minHeight: 44)
-          }.buttonStyle(.bordered)
+            Image(systemName: "xmark")
+          }.accessibilityLabel(Copy.label("close"))
         }
-      }
-    }.padding()
-      #if os(macOS)
-        .frame(width: 360, height: 380)
-      #endif
-      .presentationDetents([.medium])
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 16) {
+          ForEach(1...12, id: \.self) { month in
+            Button {
+              let offset =
+                (pickerYear - Int(model.date.prefix(4))!) * 12 + month - Int(
+                  model.date.dropFirst(5).prefix(2))!
+              if let date = CivilCalendar.moving(model.date, component: .month, amount: offset) {
+                model.select(date)
+                if model.view == "year" { model.view = "month" }
+              }
+              panel = nil
+            } label: {
+              Text(String(month)).frame(maxWidth: .infinity, minHeight: 44)
+            }.buttonStyle(.bordered)
+          }
+        }
+      }.padding()
+    }
+    #if os(macOS)
+      .frame(width: 400, height: 520)
+    #endif
+    .presentationDetents([.large])
+  }
+  private func jumpToDate() {
+    if model.selectInput(pickerDate) {
+      if model.view == "year" { model.view = "month" }
+      panel = nil
+    } else {
+      invalidPickerDate = true
+      pickerDateFocused = true
+    }
   }
   private var viewPicker: some View {
     ScrollView(.horizontal) {

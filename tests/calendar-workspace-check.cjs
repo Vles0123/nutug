@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const { JSDOM, VirtualConsole } = require('jsdom');
 const { setTimeout: pause } = require('node:timers/promises');
 const windows = [];
-async function boot(saved = {}) {
+async function boot(saved = {}, { withoutLunar = false, rejectLunar = false } = {}) {
   const errors = [],
     requests = [];
   const console = new VirtualConsole();
@@ -35,11 +35,18 @@ async function boot(saved = {}) {
   };
   let ids = 0;
   w.crypto.randomUUID = () => `appointment-${++ids}`;
-  w.eval(
-    [...w.document.querySelectorAll('script[src]')]
-      .map((s) => fs.readFileSync('public/' + s.getAttribute('src'), 'utf8'))
-      .join('\n'),
-  );
+  for (const script of w.document.querySelectorAll('script[src]')) {
+    const path = script.getAttribute('src');
+    if (withoutLunar && /(?:vendor\/lunar|chinese-almanac-core)/.test(path)) continue;
+    w.eval(fs.readFileSync('public/' + path, 'utf8'));
+    if (rejectLunar && path.includes('chinese-almanac-core')) {
+      w.ChineseAlmanac = {
+        compute() {
+          throw new Error('Gregorian display called the lunar engine');
+        },
+      };
+    }
+  }
   await pause(100);
   return { w, d: w.document, errors, requests };
 }
@@ -64,6 +71,7 @@ async function close(w, d) {
 (async () => {
   const { calendarCopy: copy } = await import('../src/calendar-copy.mjs');
   const { eventStorageKey } = await import('../shared/calendar-events.mjs');
+  const { preferenceKey } = await import('../src/calendar-skins.mjs');
   const app = await boot();
   const { w, d } = app;
   assert(d.querySelector('.calendar-app'));
@@ -138,12 +146,54 @@ async function close(w, d) {
   assert(!/[A-Za-z\u3400-\u9fff\u0400-\u04ff]/.test(text));
   assert.deepEqual(app.errors, []);
   assert.deepEqual(reloaded.errors, []);
+  await click(d.querySelector('[data-action=product-settings]'));
+  await click(d.querySelector('[data-calendar-mode=gregorian]'));
+  assert.equal(JSON.parse(w.localStorage.getItem(preferenceKey)).lunar, false);
+  await close(w, d);
+  assert.equal(d.querySelectorAll('.calendar-dual-date > div').length, 1);
+  const beforeInvalidJump = new URL(w.location.href).searchParams.get('date');
+  await click(d.querySelector('[data-action=choose-month]'));
+  await fill(w, d.querySelector('[name=calendar-date]'), '2100-02-29');
+  await click(d.querySelector('[data-action=jump-date]'));
+  assert.equal(d.activeElement.name, 'calendar-date');
+  assert.equal(d.activeElement.getAttribute('aria-invalid'), 'true');
+  assert.equal(new URL(w.location.href).searchParams.get('date'), beforeInvalidJump);
+  await fill(w, d.querySelector('[name=calendar-date]'), '᠒᠐᠒᠘/᠒/᠒᠙');
+  await click(d.querySelector('[data-action=jump-date]'));
+  assert(!d.querySelector('[role=dialog]'));
+  assert.equal(d.querySelector('time').dateTime, '2028-02-29');
+  await click(d.querySelector('[data-view=month]'));
+  assert.equal(d.querySelectorAll('.day-cell:not(.outside-month)').length, 29);
+  assert.equal(d.querySelectorAll('.lunar-number, .compact-lunar').length, 0);
+  assert(
+    !d.querySelector('[data-date="2028-02-29"]').getAttribute('aria-label').includes(copy.lunar),
+  );
+  for (const view of ['year', 'week', 'day', 'month']) {
+    await click(d.querySelector(`[data-view=${view}]`));
+    await click(d.querySelector('[data-action=choose-month]'));
+    await fill(w, d.querySelector('[name=calendar-date]'), '２０２６．１２．３１');
+    await click(d.querySelector('[data-action=jump-date]'));
+    assert.equal(new URL(w.location.href).searchParams.get('date'), '2026-12-31');
+  }
+  const civilOnly = await boot(
+    { [preferenceKey]: JSON.stringify({ lunar: false }) },
+    { rejectLunar: true },
+  );
+  await click(civilOnly.d.querySelector('[data-view=day]'));
+  assert.equal(civilOnly.d.querySelectorAll('.calendar-dual-date > div').length, 1);
+  assert.deepEqual(civilOnly.errors, []);
+  const noLunar = await boot({}, { withoutLunar: true });
+  assert(noLunar.d.querySelector('[data-date="2026-10-08"]'));
+  await click(noLunar.d.querySelector('[data-view=day]'));
+  assert.equal(noLunar.d.querySelector('time').dateTime, '2026-10-08');
+  assert.deepEqual(noLunar.errors, []);
+  assert.deepEqual(app.errors, []);
   const corrupt = await boot({ [eventStorageKey]: 'broken' });
   assert(corrupt.d.querySelector('[role=alert]'));
   assert.equal(corrupt.w.localStorage.getItem(eventStorageKey), 'broken');
   windows.forEach((w) => w.close());
   console.log(
-    'PASS: independent calendar, event CRUD, recurring exception/undo, four views, saved skins and offline persistence.',
+    'PASS: independent Gregorian calendar, dual display, leap-day jumps with Mongolian digits, event CRUD, recurring exception/undo, four views, saved skins and offline persistence.',
   );
 })().catch((error) => {
   windows.forEach((w) => w.close());
