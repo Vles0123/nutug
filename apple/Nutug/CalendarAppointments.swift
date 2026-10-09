@@ -249,6 +249,8 @@ struct AppointmentEditor: View {
   var exception: CalendarAppointment? = nil
   var onSaved: ((CalendarAppointment) -> Void)? = nil
   @Environment(\.dismiss) private var dismiss
+  @Environment(\.dynamicTypeSize) private var typeSize
+  @ScaledMetric(relativeTo: .body) private var repeatChoiceHeight: CGFloat = 74
   @State private var invalid = false
   @State private var validationAttempt = 0
   @FocusState private var focusedField: String?
@@ -270,19 +272,23 @@ struct AppointmentEditor: View {
           dateFields("end", date: $draft.endDate, time: $draft.endTime)
         }
         Section {
-          HStack(alignment: .top, spacing: 12) {
-            MongolianLabel(text: Copy.calendar("repeat"), height: 70)
-            ScrollView(.horizontal) {
-              HStack(spacing: 8) {
-                ForEach(["none", "daily", "weekly", "monthly", "yearly"], id: \.self) { value in
-                  Button {
-                    draft.frequency = value
-                  } label: {
-                    MongolianLabel(text: Copy.calendar(repeatLabel(value)), height: 65, size: 21)
-                  }.buttonStyle(.bordered)
-                    .tint(draft.frequency == value ? Color.accentColor : .secondary)
-                    .accessibilityAddTraits(draft.frequency == value ? .isSelected : [])
-                }
+          VStack(alignment: .leading, spacing: 12) {
+            MongolianLabel(text: Copy.calendar("repeat"), height: 60)
+            LazyVGrid(
+              columns: Array(
+                repeating: GridItem(.flexible(), spacing: 8),
+                count: typeSize.isAccessibilitySize ? 2 : 3), spacing: 8
+            ) {
+              ForEach(["none", "daily", "weekly", "monthly", "yearly"], id: \.self) { value in
+                Button {
+                  draft.frequency = value
+                } label: {
+                  MongolianLabel(text: Copy.calendar(repeatLabel(value)), height: 78, size: 20)
+                    .frame(maxWidth: .infinity, minHeight: repeatChoiceHeight, alignment: .top)
+                }.buttonStyle(.bordered).buttonBorderShape(.roundedRectangle(radius: 8))
+                  .controlSize(.small)
+                  .tint(draft.frequency == value ? Color.accentColor : .secondary)
+                  .accessibilityAddTraits(draft.frequency == value ? .isSelected : [])
               }
             }
           }

@@ -846,16 +846,35 @@
 }
 .repeat-field .segments {
   margin: 0;
-  display: flex;
-  overflow-x: auto;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
   flex: 1;
+  width: 100%;
 }
 .repeat-field .segment {
-  flex: none;
+  min-width: 0;
+  min-height: 90px;
+  padding: 8px 6px;
+  border: 1px solid var(--separator);
+  border-radius: 10px;
+  background: transparent;
+  box-shadow: none;
+}
+.repeat-field .segment[data-selected] {
+  border-color: var(--accent);
+  background: var(--selection);
 }
 .repeat-field .segment .mn {
-  height: 85px;
-  font-size: 23px;
+  height: auto;
+  inline-size: max-content;
+  min-inline-size: min-content;
+  max-inline-size: 74px;
+  font-size: 20px;
 }
 .event-colors {
   display: flex;
@@ -1108,6 +1127,7 @@
     height: 70px;
   }
   .repeat-field .segments {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     max-width: 100%;
   }
 }
