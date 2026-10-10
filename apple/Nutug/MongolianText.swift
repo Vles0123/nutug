@@ -175,6 +175,8 @@ struct MongolianCalendarPreview: View {
     func makeUIView(context: Context) -> MongolianDrawingView {
       let view = MongolianDrawingView()
       view.backgroundColor = .clear
+      view.isOpaque = false
+      view.contentMode = .redraw
       return view
     }
     func updateUIView(_ view: MongolianDrawingView, context: Context) {
