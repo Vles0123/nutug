@@ -646,7 +646,7 @@ struct NativeCalendarTimeline: View {
   @State private var gridY: CGFloat = 0
   @State private var cachedLayouts: [String: CalendarDayLayout] = [:]
   @ScaledMetric(relativeTo: .body) private var baseHourHeight: CGFloat = 96
-  private var hourHeight: CGFloat { baseHourHeight * scale }
+  private var hourHeight: CGFloat { baseHourHeight * CGFloat(scale) }
   private let gutter: CGFloat = 48
   private var weekDays: [String] {
     let weekday =
@@ -668,86 +668,100 @@ struct NativeCalendarTimeline: View {
   var body: some View {
     let layouts = days.map { cachedLayouts[$0] ?? CalendarDayLayout() }
     VStack(spacing: 0) {
-      if model.view == "day" {
-        HStack(spacing: 0) {
-          ForEach(weekDays, id: \.self) { day in
-            Button {
-              model.select(day)
-            } label: {
-              VStack(spacing: 6) {
-                MongolianLabel(text: Copy.weekdays[weekday(day)], height: 50, size: 18)
-                  .frame(height: 50, alignment: .top)
-                Text(String(Int(day.suffix(2))!)).font(.body.monospacedDigit())
-                  .frame(width: 30, height: 30)
-                  .foregroundStyle(day == model.date ? skin.canvas : .primary)
-                  .background(day == model.date ? Color.accentColor : .clear, in: Circle())
-              }.frame(maxWidth: .infinity)
-            }.buttonStyle(.plain).accessibilityLabel(day)
-              .accessibilityAddTraits(day == model.date ? .isSelected : [])
-              .disabled(day < "1901-01-01" || day > "2100-12-31")
-          }
-        }.padding(.horizontal, 12).padding(.bottom, 10)
-      }
-      GeometryReader { geometry in
-        let lanes = layouts.flatMap(\.timed).map(\.columns).max() ?? 1
-        let columnWidth = max(
-          (geometry.size.width - gutter) / CGFloat(days.count), max(96, CGFloat(lanes) * 72 * scale)
-        )
-        let width = columnWidth * CGFloat(days.count)
-        let allDayHeight: CGFloat =
-          layouts.contains(where: { !$0.allDay.isEmpty }) ? 84 * scale + 18 : 0
-        HStack(spacing: 0) {
-          timeRuler(allDayHeight: allDayHeight).frame(width: gutter)
-          ScrollViewReader { proxy in
-            ScrollView([.horizontal, .vertical]) {
-              LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                Section {
-                  ZStack(alignment: .topLeading) {
-                    VStack(spacing: 0) {
-                      ForEach(0..<25, id: \.self) { hour in
-                        HStack(spacing: 0) {
-                          Rectangle().fill(Color.secondary.opacity(0.18)).frame(height: 0.5)
-                        }.frame(height: hourHeight, alignment: .top).id("hour-\(hour)")
-                      }
-                    }
-                    HStack(alignment: .top, spacing: 0) {
-                      ForEach(Array(days.enumerated()), id: \.element) { index, day in
-                        timeColumn(day, layout: layouts[index], width: columnWidth)
-                      }
-                    }
-                  }.frame(width: width, height: hourHeight * 25)
-                    .onGeometryChange(for: CGFloat.self) {
-                      $0.frame(in: .scrollView).minY
-                    } action: {
-                      gridY = $0
-                    }
-                    .padding(.top, 8)
-                } header: {
-                  VStack(spacing: 0) {
-                    timeHeading(columnWidth: columnWidth)
-                    if layouts.contains(where: { !$0.allDay.isEmpty }) {
-                      allDayBand(layouts, columnWidth: columnWidth)
-                    }
-                  }.background(skin.canvas)
-                }
-              }.frame(width: width)
-            }
-            .onAppear {
-              proxy.scrollTo("calendar-scroll-" + model.date + "-14", anchor: .topLeading)
-            }
-            .onChange(of: scale) { _, _ in
-              proxy.scrollTo("calendar-scroll-" + model.date + "-14", anchor: .topLeading)
-            }
-            .onChange(of: model.date) { _, _ in
-              proxy.scrollTo("calendar-scroll-" + model.date + "-14", anchor: .topLeading)
-            }
-          }
-        }.frame(width: geometry.size.width, height: geometry.size.height).clipped()
-      }
+      if model.view == "day" { weekStrip }
+      timelineViewport(layouts)
     }
     .onChange(of: days, initial: true) { _, _ in refreshLayouts() }
     .onChange(of: store.events) { _, _ in refreshLayouts() }
     .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { now = $0 }
+  }
+  private var weekStrip: some View {
+    HStack(spacing: 0) {
+      ForEach(weekDays, id: \.self) { day in
+        Button {
+          model.select(day)
+        } label: {
+          VStack(spacing: 6) {
+            MongolianLabel(text: Copy.weekdays[weekday(day)], height: 50, size: 18)
+              .frame(height: 50, alignment: .top)
+            Text(String(Int(day.suffix(2))!)).font(.body.monospacedDigit())
+              .frame(width: 30, height: 30)
+              .foregroundStyle(day == model.date ? skin.canvas : .primary)
+              .background(day == model.date ? Color.accentColor : .clear, in: Circle())
+          }.frame(maxWidth: .infinity)
+        }.buttonStyle(.plain).accessibilityLabel(day)
+          .accessibilityAddTraits(day == model.date ? .isSelected : [])
+          .disabled(day < "1901-01-01" || day > "2100-12-31")
+      }
+    }.padding(.horizontal, 12).padding(.bottom, 10)
+  }
+  private func columnWidth(_ available: CGFloat, layouts: [CalendarDayLayout]) -> CGFloat {
+    let lanes: Int = layouts.flatMap(\.timed).map(\.columns).max() ?? 1
+    let fitted: CGFloat = (available - gutter) / CGFloat(days.count)
+    let minimum: CGFloat = max(96, CGFloat(lanes) * 72 * CGFloat(scale))
+    return max(fitted, minimum)
+  }
+  private func timelineViewport(_ layouts: [CalendarDayLayout]) -> some View {
+    GeometryReader { geometry in
+      let column = columnWidth(geometry.size.width, layouts: layouts)
+      let allDayHeight: CGFloat =
+        layouts.contains(where: { !$0.allDay.isEmpty })
+        ? 84 * CGFloat(scale) + 18 : 0
+      HStack(spacing: 0) {
+        timeRuler(allDayHeight: allDayHeight).frame(width: gutter)
+        scrollingTimeline(layouts, columnWidth: column)
+      }.frame(width: geometry.size.width, height: geometry.size.height).clipped()
+    }
+  }
+  private func scrollingTimeline(_ layouts: [CalendarDayLayout], columnWidth: CGFloat) -> some View
+  {
+    let width = columnWidth * CGFloat(days.count)
+    return ScrollViewReader { proxy in
+      ScrollView([.horizontal, .vertical]) {
+        LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+          Section {
+            timeGrid(layouts, columnWidth: columnWidth)
+          } header: {
+            fixedHeading(layouts, columnWidth: columnWidth)
+          }
+        }.frame(width: width)
+      }
+      .onAppear { scrollToSelection(proxy) }
+      .onChange(of: scale) { _, _ in scrollToSelection(proxy) }
+      .onChange(of: model.date) { _, _ in scrollToSelection(proxy) }
+    }
+  }
+  private func scrollToSelection(_ proxy: ScrollViewProxy) {
+    proxy.scrollTo("calendar-scroll-" + model.date + "-14", anchor: .topLeading)
+  }
+  private func fixedHeading(_ layouts: [CalendarDayLayout], columnWidth: CGFloat) -> some View {
+    VStack(spacing: 0) {
+      timeHeading(columnWidth: columnWidth)
+      if layouts.contains(where: { !$0.allDay.isEmpty }) {
+        allDayBand(layouts, columnWidth: columnWidth)
+      }
+    }.background(skin.canvas)
+  }
+  private func timeGrid(_ layouts: [CalendarDayLayout], columnWidth: CGFloat) -> some View {
+    ZStack(alignment: .topLeading) {
+      VStack(spacing: 0) {
+        ForEach(0..<25, id: \.self) { hour in
+          Rectangle().fill(Color.secondary.opacity(0.18)).frame(height: 0.5)
+            .frame(height: hourHeight, alignment: .top)
+        }
+      }
+      HStack(alignment: .top, spacing: 0) {
+        ForEach(Array(days.enumerated()), id: \.element) { index, day in
+          timeColumn(day, layout: layouts[index], width: columnWidth)
+        }
+      }
+    }.frame(width: columnWidth * CGFloat(days.count), height: hourHeight * 25)
+      .onGeometryChange(for: CGFloat.self) {
+        $0.frame(in: .scrollView).minY
+      } action: {
+        gridY = $0
+      }
+      .padding(.top, 8)
   }
   private func refreshLayouts() {
     cachedLayouts = Dictionary(uniqueKeysWithValues: days.map { ($0, store.timeline($0)) })
@@ -810,7 +824,7 @@ struct NativeCalendarTimeline: View {
                 onOpen(event)
               } label: {
                 MongolianCalendarPreview(text: event.title, scale: scale, color: color(event))
-                  .frame(width: 84 * scale, height: 84 * scale).padding(5)
+                  .frame(width: 84 * CGFloat(scale), height: 84 * CGFloat(scale)).padding(5)
                   .background(color(event).opacity(0.1), in: RoundedRectangle(cornerRadius: 4))
               }.buttonStyle(.plain).accessibilityLabel(
                 Copy.calendar("allDay") + " · " + event.title)
@@ -825,7 +839,7 @@ struct NativeCalendarTimeline: View {
             )
             .disabled(day < "1901-01-01" || day > "2100-12-31")
           }.padding(4)
-        }.frame(width: columnWidth, height: 84 * scale + 18)
+        }.frame(width: columnWidth, height: 84 * CGFloat(scale) + 18)
       }
     }.overlay(alignment: .bottom) { Divider() }
   }
