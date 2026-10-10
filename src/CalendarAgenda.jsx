@@ -2,35 +2,7 @@ import React from 'react';
 import { Button } from 'react-aria-components';
 import { Plus, Repeat2 } from 'lucide-react';
 import { Mn } from './ui';
-import { calendarCopy as copy, calendarConfig } from './calendar-copy.mjs';
-import { gregorianProvider } from '../shared/calendar.mjs';
-
-const civil = gregorianProvider(calendarConfig);
-
-export function DualDate({ date, provider, lunar = true }) {
-  const day = civil.compute(date);
-  const value = lunar && provider?.validDate(date) ? provider.compute(date) : null;
-  return (
-    <div className="calendar-dual-date">
-      <div>
-        <Mn>{copy.gregorian}</Mn>
-        <time className="numeric" dateTime={date}>
-          {date}
-        </time>
-        <Mn>{copy.weekdays[day.weekday]}</Mn>
-      </div>
-      {value && (
-        <div>
-          <Mn>{copy.lunar}</Mn>
-          <span className="numeric">
-            {value.lunarYear} / {value.lunarMonth} / {value.lunarDay}
-          </span>
-          {value.leapMonth && <Mn>{copy.leapMonth}</Mn>}
-        </div>
-      )}
-    </div>
-  );
-}
+import { calendarCopy as copy } from './calendar-copy.mjs';
 
 export function Agenda({ items, onOpen, onAdd, compact = false, disabled = false }) {
   return (
@@ -41,6 +13,7 @@ export function Agenda({ items, onOpen, onAdd, compact = false, disabled = false
           className="appointment-card"
           data-appointment={item.eventId}
           data-event-color={item.color}
+          aria-label={`${item.title} · ${item.allDay ? copy.allDay : item.startTime + '–' + item.endTime}`}
           onPress={() => onOpen(item)}
         >
           <span className="appointment-time">
@@ -53,7 +26,9 @@ export function Agenda({ items, onOpen, onAdd, compact = false, disabled = false
               </span>
             )}
           </span>
-          <Mn className="appointment-label">{item.title}</Mn>
+          <span className="appointment-title-scroll">
+            <Mn className="appointment-label">{item.title}</Mn>
+          </span>
           {item.repeat !== 'none' && <Repeat2 size={15} aria-label={copy.repeat} />}
         </Button>
       ))}

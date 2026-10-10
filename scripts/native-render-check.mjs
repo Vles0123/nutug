@@ -28,6 +28,7 @@ try {
       '-derivedDataPath',
       buildRoot,
       'CODE_SIGNING_ALLOWED=NO',
+      'SDK_STAT_CACHE_ENABLE=NO',
       'build',
     ],
     { env: environment, stdio: ['ignore', log.fd, log.fd] },
@@ -43,7 +44,13 @@ const sim = (...args) =>
   }).trim();
 const inventory = JSON.parse(sim('list', '--json'));
 const runtime = inventory.runtimes
-  .filter((item) => item.isAvailable && item.name.startsWith('iOS'))
+  .filter(
+    (item) =>
+      item.isAvailable &&
+      (process.env.NUTUG_RENDER_RUNTIME
+        ? item.identifier === process.env.NUTUG_RENDER_RUNTIME
+        : item.name.startsWith('iOS')),
+  )
   .sort((a, b) => a.version.localeCompare(b.version, 'en', { numeric: true }))
   .at(-1);
 const runtimeNumber = runtime
@@ -61,9 +68,10 @@ const compatible = inventory.devicetypes.filter(
     item.minRuntimeVersion <= runtimeNumber &&
     item.maxRuntimeVersion >= runtimeNumber,
 );
-const type =
-  compatible.find((item) => item.name === 'iPhone Duo') ||
-  compatible.sort((a, b) => a.minRuntimeVersion - b.minRuntimeVersion).at(-1);
+const type = process.env.NUTUG_RENDER_DEVICE
+  ? compatible.find((item) => item.name === process.env.NUTUG_RENDER_DEVICE)
+  : compatible.find((item) => item.name === 'iPhone Duo') ||
+    compatible.sort((a, b) => a.minRuntimeVersion - b.minRuntimeVersion).at(-1);
 if (!runtime || !type) throw new Error('An available iPhone runtime is required');
 const device = sim('create', 'Nutug-Rendering-Checks', type.identifier, runtime.identifier);
 try {

@@ -143,7 +143,8 @@ async function until(check, message) {
   await pause(45);
   await click(d.querySelectorAll('.picker-months button')[1]);
   await click(d.querySelector('[data-date="2000-02-29"]'));
-  assert.equal(selected(), '2000-02-29');
+  assert.equal(d.querySelector('.calendar-app').dataset.calendarView, 'day');
+  assert.equal(d.querySelector('.timeline-date-heading time').dateTime, '2000-02-29');
   assert(new URL(w.location.href).searchParams.get('date') === '2000-02-29');
   await click(d.querySelector('[data-action="product-settings"]'));
   assert(d.querySelector('input[type=range]'));

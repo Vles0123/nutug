@@ -104,6 +104,31 @@ private final class RenderingChecksRun: ObservableObject {
       imported.importText(reopened.exportText())
       try require(imported.events.count == 2, "Calendar file round trip")
 
+      var overlap = CalendarAppointment(
+        startDate: "2026-10-08", endDate: "2026-10-08", startTime: "09:30", endTime: "11:00")
+      overlap.title = "ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠪᠢᠴᠢᠭ"
+      overlap.color = "green"
+      try require(store.save(overlap), "Concurrent event fixture")
+      var afternoon = CalendarAppointment(
+        startDate: "2026-10-08", endDate: "2026-10-08", startTime: "13:00", endTime: "14:30")
+      afternoon.title = "ᠪᠢᠴᠢᠭ"
+      afternoon.color = "orange"
+      try require(store.save(afternoon), "Afternoon fixture")
+      var allDay = CalendarAppointment(startDate: "2026-10-08", endDate: "2026-10-10", allDay: true)
+      allDay.title = "ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ"
+      allDay.color = "purple"
+      try require(store.save(allDay), "All-day fixture")
+      let timeline = store.timeline("2026-10-08")
+      try require(
+        timeline.allDay.count == 1 && timeline.timed.count == 3, "All-day and timed separation")
+      try require(
+        timeline.timed[0].columns == 2 && timeline.timed[1].columns == 2, "Concurrent event columns"
+      )
+      let slot = store.draft(date: "2026-10-08", minute: 1410)
+      try require(
+        slot?.startTime == "23:30" && slot?.endDate == "2026-10-09" && slot?.endTime == "00:30",
+        "Slot seeds editor across midnight")
+
       calendar.showLunar = false
       try require(calendar.selectInput("᠒᠐᠒᠘/᠒/᠒᠙"), "Gregorian leap-day jump")
       try require(
@@ -169,6 +194,7 @@ private final class RenderingChecksRun: ObservableObject {
           "validation-field", "create", "recurrence", "edit-occurrence", "persistence",
           "delete-undo", "ics-roundtrip", "vertical-input",
           "gregorian-display", "gregorian-date-jump", "gregorian-validation",
+          "timeline-all-day", "timeline-overlap", "timeline-slot",
         ],
         "screenshots": screenshots,
       ])

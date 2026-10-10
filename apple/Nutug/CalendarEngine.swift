@@ -112,6 +112,28 @@ struct CalendarAppointment: Codable, Identifiable, Equatable {
   }
 }
 
+struct CalendarTimedEntry: Codable, Identifiable {
+  let event: CalendarAppointment
+  let start: Double
+  let end: Double
+  let visualEnd: Double
+  let before: Bool
+  let after: Bool
+  let column: Int
+  let columns: Int
+  var id: String { event.id }
+}
+struct CalendarDayLayout: Codable {
+  var allDay: [CalendarAppointment] = []
+  var timed: [CalendarTimedEntry] = []
+}
+struct CalendarSlot: Codable {
+  let startDate: String
+  let endDate: String
+  let startTime: String
+  let endTime: String
+}
+
 struct ScheduleValidationError: Error {
   let field: String
 }
@@ -158,6 +180,16 @@ final class ScheduleEngine {
       context.objectForKeyedSubscript("NutugSchedule").invokeMethod(
         "occurrencesBetween", withArguments: [try object(events), from, to]),
       as: [CalendarAppointment].self)
+  }
+  func dayLayout(_ events: [CalendarAppointment], date: String) throws -> CalendarDayLayout {
+    try decode(
+      context.objectForKeyedSubscript("NutugSchedule").invokeMethod(
+        "dayTimeline", withArguments: [try object(events), date]), as: CalendarDayLayout.self)
+  }
+  func slot(date: String, minute: Int) throws -> CalendarSlot {
+    try decode(
+      context.objectForKeyedSubscript("NutugSchedule").invokeMethod(
+        "slotTimes", withArguments: [date, minute]), as: CalendarSlot.self)
   }
   func export(_ events: [CalendarAppointment]) throws -> String {
     let value = context.objectForKeyedSubscript("NutugSchedule").invokeMethod(

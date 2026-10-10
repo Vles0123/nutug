@@ -8,6 +8,7 @@ async function boot(saved = {}, { withoutLunar = false, rejectLunar = false } = 
     requests = [];
   const console = new VirtualConsole();
   console.on('jsdomError', (error) => errors.push(error.message));
+  console.on('error', (error) => errors.push(String(error)));
   const w = new JSDOM(fs.readFileSync('public/calendar.html', 'utf8'), {
     url: 'https://nutug.test/calendar.html?date=2026-10-08',
     runScripts: 'outside-only',
@@ -15,6 +16,7 @@ async function boot(saved = {}, { withoutLunar = false, rejectLunar = false } = 
     virtualConsole: console,
   }).window;
   windows.push(w);
+  w.addEventListener('error', (event) => errors.push(event.error?.stack || event.message));
   for (const [key, value] of Object.entries(saved)) w.localStorage.setItem(key, value);
   w.matchMedia = () => ({
     matches: false,
@@ -74,7 +76,7 @@ async function close(w, d) {
   const { preferenceKey } = await import('../src/calendar-skins.mjs');
   const app = await boot();
   const { w, d } = app;
-  assert(d.querySelector('.calendar-app'));
+  assert(d.querySelector('.calendar-app'), JSON.stringify(app.errors));
   assert(!d.querySelector('.product-tabs'));
   await click(d.querySelector('[data-action=new-event]'));
   await click(d.querySelector('[data-action=save-event]'));
@@ -121,9 +123,26 @@ async function close(w, d) {
   assert.equal(d.querySelectorAll('[data-year-month]').length, 12);
   await click(d.querySelector('[data-year-month="2026-10"]'));
   await click(d.querySelector('[data-view=week]'));
-  assert.equal(d.querySelectorAll('.week-day').length, 7);
+  assert.equal(d.querySelectorAll('.timeline-day-column').length, 7);
   await click(d.querySelector('[data-view=day]'));
-  assert(d.querySelector('.day-workspace'));
+  assert(d.querySelector('.calendar-time-layout.single-day'));
+  assert.equal(d.querySelectorAll('[data-action=timeline-add-slot]').length, 48);
+  const selectedSlotDate = new URL(w.location.href).searchParams.get('date');
+  await click(d.querySelector('[data-slot-minute="870"]'));
+  assert.equal(d.querySelector('[name=startDate]').value, selectedSlotDate);
+  assert.equal(d.querySelector('[name=startTime]').value, '14:30');
+  assert.equal(d.querySelector('[name=endTime]').value, '15:30');
+  await fill(w, d.querySelector('textarea[name=title]'), 'ᠪᠢᠴᠢᠭ');
+  await click(d.querySelector('[data-action=save-event]'));
+  assert(d.querySelector('.timeline-event').getAttribute('aria-label').includes('14:30'));
+  await click(d.querySelector('.timeline-event'));
+  assert(d.querySelector('[data-action=edit-event]'));
+  await close(w, d);
+  await click(d.querySelector('[data-slot-minute="1410"]'));
+  assert.equal(d.querySelector('[name=endDate]').value, '2026-10-02');
+  assert.equal(d.querySelector('[name=endTime]').value, '00:30');
+  await close(w, d);
+
   await click(d.querySelector('[data-action=product-settings]'));
   await click(d.querySelector('[data-skin-choice=paper]'));
   assert.equal(d.documentElement.dataset.skin, 'paper');
@@ -150,7 +169,7 @@ async function close(w, d) {
   await click(d.querySelector('[data-calendar-mode=gregorian]'));
   assert.equal(JSON.parse(w.localStorage.getItem(preferenceKey)).lunar, false);
   await close(w, d);
-  assert.equal(d.querySelectorAll('.calendar-dual-date > div').length, 1);
+  assert.equal(d.querySelectorAll('.timeline-lunar').length, 0);
   const beforeInvalidJump = new URL(w.location.href).searchParams.get('date');
   await click(d.querySelector('[data-action=choose-month]'));
   await fill(w, d.querySelector('[name=calendar-date]'), '2100-02-29');
@@ -180,7 +199,7 @@ async function close(w, d) {
     { rejectLunar: true },
   );
   await click(civilOnly.d.querySelector('[data-view=day]'));
-  assert.equal(civilOnly.d.querySelectorAll('.calendar-dual-date > div').length, 1);
+  assert.equal(civilOnly.d.querySelectorAll('.timeline-lunar').length, 0);
   assert.deepEqual(civilOnly.errors, []);
   const noLunar = await boot({}, { withoutLunar: true });
   assert(noLunar.d.querySelector('[data-date="2026-10-08"]'));

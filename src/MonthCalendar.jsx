@@ -14,6 +14,8 @@ import {
 } from '../shared/calendar.mjs';
 import { useToday } from './useToday';
 import { Agenda } from './CalendarAgenda';
+import { CalendarTitle } from './CalendarTitle';
+import { dayTimeline } from '../shared/calendar-layout.mjs';
 import { CalendarDatePicker } from './CalendarDatePicker';
 import { occurrencesBetween } from '../shared/calendar-events.mjs';
 
@@ -64,8 +66,10 @@ export function MonthCalendar({
       ),
     [appointments, days],
   );
-  const forDate = (value) =>
-    occurrences.filter((event) => event.startDate <= value && event.endDate >= value);
+  const forDate = (value) => {
+    const layout = dayTimeline(occurrences, value);
+    return [...layout.allDay, ...layout.timed.map((item) => item.event)];
+  };
   const select = (value, focus = false) => {
     if (!civil.validDate(value)) return;
     focusNext.current = focus;
@@ -160,41 +164,74 @@ export function MonthCalendar({
           </div>
           <div ref={grid} className="day-grid" role="group" aria-label={copy.choose}>
             {days.map((day) => (
-              <Button
+              <div
                 key={day.iso}
-                className={`day-cell ${day.inMonth ? '' : 'outside-month'}`}
-                data-date={day.iso}
-                data-selected={date === day.iso || undefined}
-                aria-pressed={date === day.iso}
-                aria-current={today === day.iso ? 'date' : undefined}
-                aria-label={`${copy.gregorian} ${day.iso}${day.lunar ? ` · ${copy.lunar} ${day.lunar.lunarMonth} / ${day.lunar.lunarDay}` : ''}`}
-                isDisabled={!civil.validDate(day.iso)}
-                tabIndex={day.iso === (date.startsWith(month) ? date : month + '-01') ? 0 : -1}
-                onKeyDown={(e) => key(e, day.iso)}
-                onPress={() => {
-                  select(day.iso);
-                }}
+                className="month-day-tile"
+                data-outside={!day.inMonth || undefined}
               >
-                <span className="day-number numeric">{day.day}</span>
-                {showLunar && day.lunar && (
-                  <span
-                    className={`lunar-number numeric ${day.lunar.lunarDay === 1 ? 'month-start' : ''}`}
-                  >
-                    {day.lunar.leapMonth ? '* ' : ''}
-                    {day.lunar.lunarDay === 1 ? `${day.lunar.lunarMonth} / ` : ''}
-                    {day.lunar.lunarDay}
-                  </span>
-                )}
-                {forDate(day.iso).length > 0 && (
-                  <span className="appointment-dots" aria-hidden="true">
-                    {forDate(day.iso)
-                      .slice(0, 3)
-                      .map((item) => (
-                        <i key={item.id} data-event-color={item.color} />
-                      ))}
-                  </span>
-                )}
-              </Button>
+                <Button
+                  className={`day-cell ${day.inMonth ? '' : 'outside-month'}`}
+                  data-date={day.iso}
+                  data-selected={date === day.iso || undefined}
+                  aria-pressed={date === day.iso}
+                  aria-current={today === day.iso ? 'date' : undefined}
+                  aria-label={`${copy.gregorian} ${day.iso}${day.lunar ? ` · ${copy.lunar} ${day.lunar.lunarMonth} / ${day.lunar.lunarDay}` : ''}`}
+                  isDisabled={!civil.validDate(day.iso)}
+                  tabIndex={day.iso === (date.startsWith(month) ? date : month + '-01') ? 0 : -1}
+                  onKeyDown={(e) => key(e, day.iso)}
+                  onPress={() => {
+                    if (date === day.iso) onOpenDay?.();
+                    else select(day.iso);
+                  }}
+                >
+                  <span className="day-number numeric">{day.day}</span>
+                  {showLunar && day.lunar && (
+                    <span
+                      className={`lunar-number numeric ${day.lunar.lunarDay === 1 ? 'month-start' : ''}`}
+                    >
+                      {day.lunar.leapMonth ? '* ' : ''}
+                      {day.lunar.lunarDay === 1 ? `${day.lunar.lunarMonth} / ` : ''}
+                      {day.lunar.lunarDay}
+                    </span>
+                  )}
+                  {forDate(day.iso).length > 0 && (
+                    <span className="appointment-dots" aria-hidden="true">
+                      {forDate(day.iso)
+                        .slice(0, 3)
+                        .map((item) => (
+                          <i key={item.id} data-event-color={item.color} />
+                        ))}
+                    </span>
+                  )}
+                </Button>
+                <div className="month-event-previews">
+                  {forDate(day.iso)
+                    .slice(0, 2)
+                    .map((event) => (
+                      <Button
+                        key={event.id}
+                        className="month-event-preview"
+                        data-event-color={event.color}
+                        aria-label={`${event.title} · ${event.allDay ? copy.allDay : event.startTime}`}
+                        onPress={() => onOpenEvent?.(event)}
+                      >
+                        <CalendarTitle text={event.title} />
+                      </Button>
+                    ))}
+                  {forDate(day.iso).length > 2 && (
+                    <Button
+                      className="month-event-more numeric"
+                      aria-label={`${copy.agenda} · ${day.iso} · ${forDate(day.iso).length}`}
+                      onPress={() => {
+                        select(day.iso);
+                        onOpenDay?.();
+                      }}
+                    >
+                      +{forDate(day.iso).length - 2}
+                    </Button>
+                  )}
+                </div>
+              </div>
             ))}
           </div>
         </div>

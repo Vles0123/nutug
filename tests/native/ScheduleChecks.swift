@@ -25,6 +25,14 @@ struct ScheduleChecks {
     } catch {}
     let recovered = try engine.normalize(event)
     precondition(recovered == event)
+    let scheduled = try engine.occurrences([event], from: "2026-10-08", to: "2026-10-08")
+    let layout = try engine.dayLayout(scheduled, date: "2026-10-08")
+    precondition(
+      layout.timed.count == 1 && layout.timed[0].start == 540 && layout.timed[0].end == 600)
+    let late = try engine.slot(date: "2026-10-08", minute: 1410)
+    precondition(late.endDate == "2026-10-09" && late.endTime == "00:30")
+    let leap = try engine.slot(date: "2028-02-28", minute: 1410)
+    precondition(leap.endDate == "2028-02-29")
     print(
       "PASS: native schedule uses shared recurrence, exceptions, ICS and Mongolian text preservation"
     )

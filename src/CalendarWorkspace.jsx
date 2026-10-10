@@ -22,9 +22,10 @@ import { labels } from './ui-copy.mjs';
 import { calendarCopy as copy, calendarConfig } from './calendar-copy.mjs';
 import { calendarPreferences, preferenceKey } from './calendar-skins.mjs';
 import { MonthCalendar } from './MonthCalendar';
+import { CalendarTimeline } from './CalendarTimeline';
+import { slotTimes } from '../shared/calendar-layout.mjs';
 import { CalendarDatePicker } from './CalendarDatePicker';
 import { SkinPicker } from './SkinPicker';
-import { Agenda, DualDate } from './CalendarAgenda';
 import {
   chineseLunisolarProvider,
   gregorianProvider,
@@ -95,7 +96,6 @@ export function CalendarWorkspace() {
   const [storageLocked, setStorageLocked] = useState(storageError);
   const [undo, setUndo] = useState(null);
   const [viewMenu, setViewMenu] = useState(false),
-    [dayOpen, setDayOpen] = useState(false),
     [settings, setSettings] = useState(false),
     [search, setSearch] = useState(false),
     [query, setQuery] = useState('');
@@ -163,19 +163,15 @@ export function CalendarWorkspace() {
       return false;
     }
   };
-  const create = (chosen = date) => {
-    setDayOpen(false);
+  const create = (chosen = date, minute = 540, allDay = false) => {
     setEditor({
       draft: {
         id: newId(),
         title: '',
         notes: '',
         location: '',
-        startDate: chosen,
-        endDate: chosen,
-        startTime: '09:00',
-        endTime: '10:00',
-        allDay: false,
+        ...slotTimes(chosen, minute),
+        allDay,
         repeat: 'none',
         interval: 1,
         until: '',
@@ -212,7 +208,6 @@ export function CalendarWorkspace() {
       setUndo(events);
     }
   };
-  const first = date.slice(0, 7) + '-01';
   const monthRange = monthDays(date.slice(0, 7));
   const rangeStart =
     prefs.view === 'week'
@@ -235,8 +230,6 @@ export function CalendarWorkspace() {
       ),
     [events, rangeStart, rangeEnd],
   );
-  const onDay = (day) =>
-    occurrences.filter((event) => event.startDate <= day && event.endDate >= day);
   const found = useMemo(
     () =>
       events.filter((event) =>
@@ -317,7 +310,7 @@ export function CalendarWorkspace() {
             appointments={events}
             onAdd={create}
             onOpenEvent={setSelected}
-            onOpenDay={() => setDayOpen(true)}
+            onOpenDay={() => setPrefs({ ...prefs, view: 'day' })}
           />
         ) : (
           <>
@@ -332,7 +325,7 @@ export function CalendarWorkspace() {
                 {prefs.view === 'year'
                   ? date.slice(0, 4)
                   : prefs.view === 'week'
-                    ? `${rangeStart} — ${rangeEnd.slice(5)}`
+                    ? date.slice(0, 7).replace('-', ' / ')
                     : date}
               </CalendarDatePicker>
               <div>
@@ -382,62 +375,26 @@ export function CalendarWorkspace() {
                   );
                 })}
               </div>
-            ) : prefs.view === 'week' ? (
-              <ColumnScroller className="week-board">
-                {Array.from({ length: 7 }, (_, i) => moveDate(rangeStart, i)).map((day) => (
-                  <section key={day} className="week-day" data-today={day === today || undefined}>
-                    <Button
-                      className="week-day-heading"
-                      isDisabled={!engine.validDate(day)}
-                      onPress={() => {
-                        select(day);
-                        setPrefs({ ...prefs, view: 'day' });
-                      }}
-                    >
-                      <Mn>{copy.weekdays[weekday(day)]}</Mn>
-                      <span className="numeric">{Number(day.slice(-2))}</span>
-                      {lunarProvider?.validDate(day) && (
-                        <span className="numeric lunar-number">
-                          {lunarProvider.compute(day).lunarMonth} /{' '}
-                          {lunarProvider.compute(day).lunarDay}
-                        </span>
-                      )}
-                    </Button>
-                    <Agenda
-                      items={onDay(day)}
-                      onOpen={setSelected}
-                      onAdd={() => create(day)}
-                      disabled={!engine.validDate(day)}
-                      compact
-                    />
-                  </section>
-                ))}
-              </ColumnScroller>
             ) : (
-              <div className="day-workspace">
-                <DualDate date={date} provider={lunarProvider} lunar={prefs.lunar} />
-                <Agenda items={onDay(date)} onOpen={setSelected} onAdd={() => create()} />
-              </div>
+              <CalendarTimeline
+                date={date}
+                days={
+                  prefs.view === 'week'
+                    ? Array.from({ length: 7 }, (_, i) => moveDate(rangeStart, i))
+                    : [date]
+                }
+                occurrences={occurrences}
+                provider={lunarProvider}
+                firstWeekday={prefs.firstWeekday}
+                scale={prefs.fontScale}
+                onSelectDate={select}
+                onOpen={setSelected}
+                onAdd={create}
+              />
             )}
           </>
         )}
       </main>
-      <Sheet
-        open={dayOpen}
-        onOpenChange={setDayOpen}
-        label={copy.agenda}
-        className="calendar-day-sheet"
-      >
-        <DualDate date={date} provider={lunarProvider} lunar={prefs.lunar} />
-        <Agenda
-          items={onDay(date)}
-          onOpen={(item) => {
-            setDayOpen(false);
-            setSelected(item);
-          }}
-          onAdd={() => create()}
-        />
-      </Sheet>
       {undo && (
         <div className="calendar-message" role="status">
           <Button data-action="undo-event" onPress={() => persist(undo)}>

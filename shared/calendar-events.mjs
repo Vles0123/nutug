@@ -1,5 +1,6 @@
 import ICAL from 'ical.js';
 import { civilDate, moveDate, currentDate, normalizeDateInput } from './calendar.mjs';
+export { dayTimeline, slotTimes } from './calendar-layout.mjs';
 
 export const eventStorageKey = 'nutug.calendar.events.v1';
 export const recurrenceKinds = ['none', 'daily', 'weekly', 'monthly', 'yearly'];

@@ -55,6 +55,15 @@ final class AppointmentStore: ObservableObject {
     (try? engine?.occurrences(events, from: max("1901-01-01", from), to: min("2100-12-31", to)))
       ?? []
   }
+  func timeline(_ date: String) -> CalendarDayLayout {
+    (try? engine?.dayLayout(occurrences(from: date, to: date), date: date)) ?? CalendarDayLayout()
+  }
+  func draft(date: String, minute: Int = 540, allDay: Bool = false) -> CalendarAppointment? {
+    guard let slot = try? engine?.slot(date: date, minute: minute) else { return nil }
+    return CalendarAppointment(
+      startDate: slot.startDate, endDate: slot.endDate,
+      startTime: slot.startTime, endTime: slot.endTime, allDay: allDay)
+  }
   @discardableResult func save(
     _ event: CalendarAppointment, exception: CalendarAppointment? = nil
   ) -> Bool {
@@ -205,40 +214,66 @@ enum CalendarSkin: String, CaseIterable, Identifiable {
   var scheme: ColorScheme { self == .dark ? .dark : .light }
 }
 
+func calendarEventColor(_ name: String, skin: CalendarSkin = .light) -> Color {
+  if skin == .ink { return .primary }
+  if skin == .dark {
+    switch name {
+    case "green": return Color(red: 0.56, green: 0.84, blue: 0.71)
+    case "orange": return Color(red: 0.91, green: 0.73, blue: 0.53)
+    case "purple": return Color(red: 0.78, green: 0.65, blue: 0.93)
+    default: return Color(red: 0.54, green: 0.75, blue: 1)
+    }
+  }
+  switch name {
+  case "green": return Color(red: 0.16, green: 0.46, blue: 0.32)
+  case "orange": return Color(red: 0.584, green: 0.349, blue: 0.098)
+  case "purple": return Color(red: 0.47, green: 0.33, blue: 0.70)
+  default: return Color(red: 0.141, green: 0.420, blue: 0.725)
+  }
+}
+
 struct NativeAgenda: View {
   let items: [CalendarAppointment]
   let onOpen: (CalendarAppointment) -> Void
   let onAdd: () -> Void
   var scale: Double = 1
+  var skin: CalendarSkin = .light
   var body: some View {
-    ScrollView(.horizontal) {
-      HStack(alignment: .top, spacing: 16) {
-        ForEach(items) { item in
-          Button {
-            onOpen(item)
-          } label: {
-            HStack(alignment: .top, spacing: 12) {
+    VStack(alignment: .leading, spacing: 0) {
+      ForEach(items) { item in
+        Button {
+          onOpen(item)
+        } label: {
+          HStack(alignment: .top, spacing: 14) {
+            Group {
               if item.allDay {
                 MongolianLabel(text: Copy.calendar("allDay"), height: 76, size: 20)
               } else {
-                VStack(spacing: 8) {
+                VStack(alignment: .leading, spacing: 6) {
                   Text(item.startTime)
-                  Text(item.endTime).foregroundStyle(.secondary)
+                  Text(item.endTime).font(.caption).foregroundStyle(.secondary)
                 }.font(.callout.monospacedDigit())
               }
-              MongolianText(text: item.title, height: 112, size: 24, scale: scale, fitContent: true)
-              if item.frequency != "none" { Image(systemName: "repeat") }
-            }.padding(.horizontal, 10).padding(.vertical, 8)
-              .overlay(alignment: .leading) { Rectangle().fill(Color.accentColor).frame(width: 2) }
-          }.buttonStyle(.plain)
-        }
-        Button(action: onAdd) {
-          HStack(alignment: .top) {
-            Image(systemName: "plus")
-            MongolianLabel(text: Copy.calendar("add"), height: 64, size: 22)
-          }
-        }.buttonStyle(.plain)
-      }.padding(.vertical, 4)
+            }.frame(width: 52, alignment: .leading)
+            Rectangle().fill(calendarEventColor(item.color, skin: skin)).frame(width: 3)
+            ScrollView(.horizontal) {
+              MongolianText(text: item.title, height: 96, size: 24, scale: scale, fitContent: true)
+            }
+            if item.frequency != "none" {
+              Image(systemName: "repeat").font(.caption).foregroundStyle(.secondary)
+            }
+          }.fixedSize(horizontal: false, vertical: true).padding(.vertical, 14)
+        }.buttonStyle(.plain).accessibilityLabel(
+          item.title + " · "
+            + (item.allDay ? Copy.calendar("allDay") : item.startTime + "–" + item.endTime))
+        Divider()
+      }
+      Button(action: onAdd) {
+        HStack(alignment: .top, spacing: 12) {
+          Image(systemName: "plus")
+          MongolianLabel(text: Copy.calendar("add"), height: 58, size: 21)
+        }.padding(.vertical, 14)
+      }.buttonStyle(.plain).foregroundStyle(Color.accentColor)
     }
   }
 }

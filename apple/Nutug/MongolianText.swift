@@ -106,6 +106,43 @@ struct MongolianLabel: View {
   }
 }
 
+// Calendar previews keep full words and their shaping controls together.
+struct MongolianCalendarPreview: View {
+  let text: String
+  var size: CGFloat = 20
+  var scale: Double = 1
+  var color: Color = .primary
+  @ScaledMetric(relativeTo: .body) private var dynamicScale: CGFloat = 1
+  var body: some View {
+    GeometryReader { geometry in
+      let fontSize = size * scale * dynamicScale
+      let fitted = fit(width: geometry.size.width, height: geometry.size.height, size: fontSize)
+      ZStack(alignment: .bottomTrailing) {
+        MongolianDrawing(text: fitted.text, size: fontSize, color: color)
+        if fitted.shortened {
+          Image(systemName: "ellipsis").font(.system(size: 10)).foregroundStyle(color)
+        }
+      }.clipped()
+    }.accessibilityHidden(true)
+  }
+  private func fit(width: CGFloat, height: CGFloat, size: CGFloat) -> (
+    text: String, shortened: Bool
+  ) {
+    let words = text.split { $0 == " " || $0 == "\n" || $0 == "\t" || $0 == "\r" }
+    var kept: [String] = []
+    for word in words {
+      let candidate = (kept + [String(word)]).joined(separator: " ")
+      if MongolianTypesetting.minimumHeight(String(word), size: size) > height
+        || MongolianTypesetting.width(candidate, height: height, size: size) > width
+      {
+        break
+      }
+      kept.append(String(word))
+    }
+    return (kept.joined(separator: " "), kept.count < words.count)
+  }
+}
+
 #if os(macOS)
   private struct MongolianDrawing: NSViewRepresentable {
     let text: String
