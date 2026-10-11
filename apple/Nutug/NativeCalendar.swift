@@ -723,7 +723,9 @@ struct NativeCalendarTimeline: View {
       } else {
         weekdayButtons(expanded: false)
       }
-    }.padding(.horizontal, 12).padding(.bottom, 10)
+    }.padding(.horizontal, 20).padding(.bottom, 8)
+      .frame(maxWidth: 760).frame(maxWidth: .infinity)
+      .overlay(alignment: .bottom) { Divider() }
   }
   private func weekdayButtons(expanded: Bool) -> some View {
     HStack(spacing: 0) {
@@ -732,12 +734,12 @@ struct NativeCalendarTimeline: View {
           model.select(day)
         } label: {
           VStack(spacing: 6) {
-            MongolianLabel(text: Copy.weekdays[weekday(day)], height: weekdayHeight, size: 18)
-              .frame(height: weekdayHeight, alignment: .top)
             Text(String(Int(day.suffix(2))!)).font(.body.monospacedDigit())
               .frame(width: 30, height: 30)
               .foregroundStyle(day == model.date ? skin.canvas : .primary)
               .background(day == model.date ? Color.accentColor : .clear, in: Circle())
+            MongolianLabel(text: Copy.weekdays[weekday(day)], height: weekdayHeight, size: 18)
+              .frame(height: weekdayHeight, alignment: .top)
           }.frame(maxWidth: .infinity)
         }.buttonStyle(.plain).accessibilityLabel(day + " · " + Copy.weekdays[weekday(day)])
           .accessibilityAddTraits(day == model.date ? .isSelected : [])

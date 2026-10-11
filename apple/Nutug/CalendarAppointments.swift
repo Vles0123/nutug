@@ -247,7 +247,7 @@ struct NativeAgenda: View {
         Button {
           onOpen(item)
         } label: {
-          HStack(alignment: .top, spacing: 14) {
+          HStack(alignment: .top, spacing: 12) {
             Group {
               if item.allDay {
                 MongolianLabel(text: Copy.calendar("allDay"), height: 76, size: 20)
@@ -260,12 +260,12 @@ struct NativeAgenda: View {
             }.frame(width: 52, alignment: .leading)
             Rectangle().fill(calendarEventColor(item.color, skin: skin)).frame(width: 3)
             ScrollView(.horizontal) {
-              MongolianText(text: item.title, height: 160, size: 26, scale: scale, fitContent: true)
+              MongolianText(text: item.title, height: 112, size: 24, scale: scale)
             }
-            if item.frequency != "none" {
-              Image(systemName: "repeat").font(.caption).foregroundStyle(.secondary)
-            }
-          }.fixedSize(horizontal: false, vertical: true).padding(.vertical, 14)
+            Image(systemName: "repeat").font(.caption).foregroundStyle(.secondary)
+              .frame(width: 16).opacity(item.frequency == "none" ? 0 : 1)
+              .accessibilityHidden(item.frequency == "none")
+          }.fixedSize(horizontal: false, vertical: true).padding(.vertical, 12)
         }.buttonStyle(.plain).accessibilityLabel(
           item.title + " · "
             + (item.allDay ? Copy.calendar("allDay") : start + "–" + end))

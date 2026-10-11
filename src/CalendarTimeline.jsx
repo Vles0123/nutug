@@ -80,8 +80,8 @@ export function CalendarTimeline({
           isDisabled={day < calendarConfig.minDate || day > calendarConfig.maxDate}
           onPress={() => onSelectDate(day)}
         >
-          <Mn compact>{copy.weekdays[weekday(day)]}</Mn>
           <span className="numeric">{Number(day.slice(-2))}</span>
+          <Mn compact>{copy.weekdays[weekday(day)]}</Mn>
         </Button>
       ))}
     </div>
