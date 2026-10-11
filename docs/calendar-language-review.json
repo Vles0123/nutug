@@ -1,5 +1,5 @@
 {
-  "reviewedOn": "2026-10-08",
+  "reviewedOn": "2026-10-11",
   "locale": "mn-Mong-CN",
   "convention": "中国境内规范传统蒙古文，内蒙古通行用法",
   "status": "source-backed-wording-review",
@@ -93,14 +93,14 @@
     "entries": 73,
     "calendarEntries": 49,
     "sharedEntries": 24,
-    "replace": 10,
-    "retained": 63,
+    "replace": 14,
+    "retained": 53,
     "evidenceLevels": {
-      "dictionary-headword": 46,
+      "dictionary-headword": 39,
+      "dictionary-phrase": 7,
+      "dictionary-pattern": 7,
       "dictionary-composition": 14,
-      "dictionary-phrase": 5,
       "inflected-draft": 1,
-      "dictionary-pattern": 2,
       "partial": 2,
       "software-usage": 1,
       "dictionary-variant": 2
@@ -128,122 +128,227 @@
     },
     {
       "id": "calendar-app.weekdays.0",
-      "before": "ᠳᠠᠪᠠᠭ᠎ᠠ",
-      "after": "ᠳᠠᠸᠠ",
+      "before": "ᠳᠠᠸᠠ",
+      "after": "ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ",
       "decision": "replace",
       "meaning": "星期一",
       "evidence": {
         "referenceId": "imu-menghan-1999",
-        "searchMode": "fullText",
-        "query": "星期一",
-        "observedHeadword": "ᠳᠠᠸᠠ",
-        "transliteration": "dawa"
+        "searchMode": "headword",
+        "query": "ᠭᠠᠷᠠᠭ",
+        "observedHeadword": "ᠭᠠᠷᠠᠭ",
+        "transliteration": "GaraG /1",
+        "observedPattern": ["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ", "ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ"],
+        "numeralHeadword": "ᠨᠢᠭᠡᠨ",
+        "accessedOn": "2026-10-11"
       },
       "regionalBasis": "中国境内词典词形",
-      "reason": "修正把山口/关隘词形用于星期一的同音义项误选。",
-      "reviewLevel": "dictionary-headword"
+      "reason": "采用用户确认的现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
+      "reviewLevel": "dictionary-phrase",
+      "previousReview": {
+        "before": "ᠳᠠᠪᠠᠭ᠎ᠠ",
+        "after": "ᠳᠠᠸᠠ",
+        "evidence": {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "fullText",
+          "query": "星期一",
+          "observedHeadword": "ᠳᠠᠸᠠ",
+          "transliteration": "dawa"
+        },
+        "reviewLevel": "dictionary-headword"
+      }
     },
     {
       "id": "calendar-app.weekdays.1",
       "before": "ᠮᠢᠭᠮᠠᠷ",
-      "after": "ᠮᠢᠭᠮᠠᠷ",
-      "decision": "retain",
+      "after": "ᠭᠠᠷᠠᠭ ᠤᠨ ᠬᠣᠶᠠᠷ",
+      "decision": "replace",
       "meaning": "星期二",
       "evidence": {
         "referenceId": "imu-menghan-1999",
-        "searchMode": "fullText",
-        "query": "星期二",
-        "observedHeadword": "ᠮᠢᠭᠮᠠᠷ",
-        "transliteration": "miGmar"
+        "searchMode": "headword",
+        "query": "ᠭᠠᠷᠠᠭ",
+        "observedHeadword": "ᠭᠠᠷᠠᠭ",
+        "transliteration": "GaraG /1",
+        "observedPattern": ["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ", "ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ"],
+        "numeralHeadword": "ᠬᠣᠶᠠᠷ",
+        "accessedOn": "2026-10-11"
       },
       "regionalBasis": "中国境内词典词形",
-      "reason": "公开词典全文查询返回的星期义项与词头吻合。",
-      "reviewLevel": "dictionary-headword"
+      "reason": "采用用户确认的现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
+      "reviewLevel": "dictionary-pattern",
+      "previousReview": {
+        "before": "ᠮᠢᠭᠮᠠᠷ",
+        "after": "ᠮᠢᠭᠮᠠᠷ",
+        "evidence": {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "fullText",
+          "query": "星期二",
+          "observedHeadword": "ᠮᠢᠭᠮᠠᠷ",
+          "transliteration": "miGmar"
+        },
+        "reviewLevel": "dictionary-headword"
+      }
     },
     {
       "id": "calendar-app.weekdays.2",
-      "before": "ᠯᠬᠠᠭᠪᠠ",
-      "after": "ᡀᠠᠭᠪᠠ",
+      "before": "ᡀᠠᠭᠪᠠ",
+      "after": "ᠭᠠᠷᠠᠭ ᠤᠨ ᠭᠤᠷᠪᠠᠨ",
       "decision": "replace",
       "meaning": "星期三",
       "evidence": {
         "referenceId": "imu-menghan-1999",
-        "searchMode": "fullText",
-        "query": "星期三",
-        "observedHeadword": "ᡀᠠᠭᠪᠠ",
-        "transliteration": "lhaGba"
+        "searchMode": "headword",
+        "query": "ᠭᠠᠷᠠᠭ",
+        "observedHeadword": "ᠭᠠᠷᠠᠭ",
+        "transliteration": "GaraG /1",
+        "observedPattern": ["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ", "ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ"],
+        "numeralHeadword": "ᠭᠤᠷᠪᠠᠨ",
+        "accessedOn": "2026-10-11"
       },
       "regionalBasis": "中国境内词典词形",
-      "reason": "返回词头直接使用 U+1840；中国境内词典与蒙古国词典一致，不能用逐字拼出的 l+h 替代。字体是否覆盖由界面渲染检查确认。",
-      "reviewLevel": "dictionary-headword"
+      "reason": "采用用户确认的现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
+      "reviewLevel": "dictionary-pattern",
+      "previousReview": {
+        "before": "ᠯᠬᠠᠭᠪᠠ",
+        "after": "ᡀᠠᠭᠪᠠ",
+        "evidence": {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "fullText",
+          "query": "星期三",
+          "observedHeadword": "ᡀᠠᠭᠪᠠ",
+          "transliteration": "lhaGba"
+        },
+        "reviewLevel": "dictionary-headword"
+      }
     },
     {
       "id": "calendar-app.weekdays.3",
       "before": "ᠫᠦᠷᠪᠦ",
-      "after": "ᠫᠦᠷᠪᠦ",
-      "decision": "retain",
+      "after": "ᠭᠠᠷᠠᠭ ᠤᠨ ᠳᠥᠷᠪᠡᠨ",
+      "decision": "replace",
       "meaning": "星期四",
       "evidence": {
         "referenceId": "imu-menghan-1999",
-        "searchMode": "fullText",
-        "query": "星期四",
-        "observedHeadword": "ᠫᠦᠷᠪᠦ",
-        "transliteration": "pUrbU"
+        "searchMode": "headword",
+        "query": "ᠭᠠᠷᠠᠭ",
+        "observedHeadword": "ᠭᠠᠷᠠᠭ",
+        "transliteration": "GaraG /1",
+        "observedPattern": ["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ", "ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ"],
+        "numeralHeadword": "ᠳᠥᠷᠪᠡᠨ",
+        "accessedOn": "2026-10-11"
       },
       "regionalBasis": "中国境内词典词形",
-      "reason": "公开词典全文查询返回的星期义项与词头吻合。",
-      "reviewLevel": "dictionary-headword"
+      "reason": "采用用户确认的现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
+      "reviewLevel": "dictionary-pattern",
+      "previousReview": {
+        "before": "ᠫᠦᠷᠪᠦ",
+        "after": "ᠫᠦᠷᠪᠦ",
+        "evidence": {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "fullText",
+          "query": "星期四",
+          "observedHeadword": "ᠫᠦᠷᠪᠦ",
+          "transliteration": "pUrbU"
+        },
+        "reviewLevel": "dictionary-headword"
+      }
     },
     {
       "id": "calendar-app.weekdays.4",
       "before": "ᠪᠠᠰᠠᠩ",
-      "after": "ᠪᠠᠰᠠᠩ",
-      "decision": "retain",
+      "after": "ᠭᠠᠷᠠᠭ ᠤᠨ ᠲᠠᠪᠤᠨ",
+      "decision": "replace",
       "meaning": "星期五",
       "evidence": {
         "referenceId": "imu-menghan-1999",
-        "searchMode": "fullText",
-        "query": "星期五",
-        "observedHeadword": "ᠪᠠᠰᠠᠩ",
-        "transliteration": "basang"
+        "searchMode": "headword",
+        "query": "ᠭᠠᠷᠠᠭ",
+        "observedHeadword": "ᠭᠠᠷᠠᠭ",
+        "transliteration": "GaraG /1",
+        "observedPattern": ["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ", "ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ"],
+        "numeralHeadword": "ᠲᠠᠪᠤᠨ",
+        "accessedOn": "2026-10-11"
       },
       "regionalBasis": "中国境内词典词形",
-      "reason": "公开词典全文查询返回的星期义项与词头吻合。",
-      "reviewLevel": "dictionary-headword"
+      "reason": "采用用户确认的现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
+      "reviewLevel": "dictionary-pattern",
+      "previousReview": {
+        "before": "ᠪᠠᠰᠠᠩ",
+        "after": "ᠪᠠᠰᠠᠩ",
+        "evidence": {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "fullText",
+          "query": "星期五",
+          "observedHeadword": "ᠪᠠᠰᠠᠩ",
+          "transliteration": "basang"
+        },
+        "reviewLevel": "dictionary-headword"
+      }
     },
     {
       "id": "calendar-app.weekdays.5",
       "before": "ᠪᠢᠮᠪᠠ",
-      "after": "ᠪᠢᠮᠪᠠ",
-      "decision": "retain",
+      "after": "ᠭᠠᠷᠠᠭ ᠤᠨ ᠵᠢᠷᠭᠤᠭᠠᠨ",
+      "decision": "replace",
       "meaning": "星期六",
       "evidence": {
         "referenceId": "imu-menghan-1999",
-        "searchMode": "fullText",
-        "query": "星期六",
-        "observedHeadword": "ᠪᠢᠮᠪᠠ",
-        "transliteration": "bimba"
+        "searchMode": "headword",
+        "query": "ᠭᠠᠷᠠᠭ",
+        "observedHeadword": "ᠭᠠᠷᠠᠭ",
+        "transliteration": "GaraG /1",
+        "observedPattern": ["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ", "ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ"],
+        "numeralHeadword": "ᠵᠢᠷᠭᠤᠭᠠᠨ",
+        "accessedOn": "2026-10-11"
       },
       "regionalBasis": "中国境内词典词形",
-      "reason": "公开词典全文查询返回的星期义项与词头吻合。",
-      "reviewLevel": "dictionary-headword"
+      "reason": "采用用户确认的现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
+      "reviewLevel": "dictionary-pattern",
+      "previousReview": {
+        "before": "ᠪᠢᠮᠪᠠ",
+        "after": "ᠪᠢᠮᠪᠠ",
+        "evidence": {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "fullText",
+          "query": "星期六",
+          "observedHeadword": "ᠪᠢᠮᠪᠠ",
+          "transliteration": "bimba"
+        },
+        "reviewLevel": "dictionary-headword"
+      }
     },
     {
       "id": "calendar-app.weekdays.6",
-      "before": "ᠨᠶᠠᠮ",
-      "after": "ᠨᠢᠮ᠎ᠠ",
+      "before": "ᠨᠢᠮ᠎ᠠ",
+      "after": "ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ",
       "decision": "replace",
       "meaning": "星期日",
       "evidence": {
         "referenceId": "imu-menghan-1999",
-        "searchMode": "fullText",
-        "query": "星期日",
-        "observedHeadword": "ᠨᠢᠮ᠎ᠠ",
-        "transliteration": "nim_a"
+        "searchMode": "headword",
+        "query": "ᠭᠠᠷᠠᠭ",
+        "observedHeadword": "ᠭᠠᠷᠠᠭ",
+        "transliteration": "GaraG /1",
+        "observedPattern": ["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ", "ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ"],
+        "numeralHeadword": "ᠡᠳᠦᠷ",
+        "accessedOn": "2026-10-11"
       },
       "regionalBasis": "中国境内词典词形",
-      "reason": "按传统书面词头书写，保留词尾前的 MVS。",
-      "reviewLevel": "dictionary-headword"
+      "reason": "采用用户确认的现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
+      "reviewLevel": "dictionary-phrase",
+      "previousReview": {
+        "before": "ᠨᠶᠠᠮ",
+        "after": "ᠨᠢᠮ᠎ᠠ",
+        "evidence": {
+          "referenceId": "imu-menghan-1999",
+          "searchMode": "fullText",
+          "query": "星期日",
+          "observedHeadword": "ᠨᠢᠮ᠎ᠠ",
+          "transliteration": "nim_a"
+        },
+        "reviewLevel": "dictionary-headword"
+      }
     },
     {
       "id": "calendar-app.save",

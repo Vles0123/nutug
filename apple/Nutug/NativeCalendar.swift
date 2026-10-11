@@ -9,7 +9,9 @@ final class CalendarModel: ObservableObject {
   @Published var view = UserDefaults.standard.string(forKey: "calendar.view") ?? "month" {
     didSet { UserDefaults.standard.set(view, forKey: "calendar.view") }
   }
-  @Published var firstWeekday = UserDefaults.standard.integer(forKey: "calendar.firstWeekday") {
+  @Published var firstWeekday =
+    (UserDefaults.standard.object(forKey: "calendar.firstWeekday") as? Int) ?? 6
+  {
     didSet { UserDefaults.standard.set(firstWeekday, forKey: "calendar.firstWeekday") }
   }
   @Published var showLunar =
@@ -265,7 +267,7 @@ struct NativeCalendar: View {
       HStack(spacing: 16) {
         Text(String(Int(model.date.suffix(2))!)).font(.system(size: 28, weight: .medium))
           .monospacedDigit()
-        MongolianLabel(text: Copy.weekdays[weekday(model.date)], height: 56, size: 21)
+        MongolianLabel(text: Copy.weekdays[weekday(model.date)], height: 90, size: 20)
         if model.showLunar, let lunar = model.engine?.lunar(model.date) {
           HStack(spacing: 6) {
             Image(systemName: "moon")
@@ -287,16 +289,16 @@ struct NativeCalendar: View {
   private func monthGrid(compact: Bool, availableHeight: CGFloat? = nil) -> some View {
     let days = model.days
     let rowHeight = availableHeight.map {
-      max(70, ($0 - (compact ? 60 : 68)) / CGFloat(days.count / 7))
+      max(70, ($0 - 134) / CGFloat(days.count / 7))
     }
     return VStack(spacing: 0) {
       HStack(spacing: 0) {
         ForEach(0..<7, id: \.self) { offset in
           let day = (offset + model.firstWeekday) % 7
           MongolianLabel(
-            text: Copy.weekdays[day], height: compact ? 50 : 58,
-            size: compact ? 18 : 20, color: day >= 5 ? .accentColor : .secondary
-          ).frame(height: compact ? 50 : 58, alignment: .top).frame(maxWidth: .infinity)
+            text: Copy.weekdays[day], height: 124,
+            size: 18, color: day >= 5 ? .accentColor : .secondary
+          ).frame(height: 124, alignment: .top).frame(maxWidth: .infinity)
         }
       }.padding(.bottom, 10)
       ForEach(0..<(days.count / 7), id: \.self) { row in
@@ -348,7 +350,8 @@ struct NativeCalendar: View {
       }.buttonStyle(.plain).frame(width: compact ? nil : 42).disabled(
         value < "1901-01-01" || value > "2100-12-31"
       )
-      .accessibilityLabel(value).accessibilityAddTraits(current ? .isSelected : [])
+      .accessibilityLabel(value + " · " + Copy.weekdays[weekday(value)]).accessibilityAddTraits(
+        current ? .isSelected : [])
       if !compact {
         HStack(alignment: .top, spacing: 3) {
           ForEach(Array(items.prefix(1))) { event in
@@ -382,7 +385,7 @@ struct NativeCalendar: View {
   private var yearGrid: some View {
     LazyVGrid(
       columns: typeSize.isAccessibilitySize
-        ? [GridItem(.flexible())] : [GridItem(.adaptive(minimum: 150), spacing: 16)], spacing: 16
+        ? [GridItem(.flexible())] : [GridItem(.adaptive(minimum: 280), spacing: 16)], spacing: 16
     ) {
       ForEach(1...12, id: \.self) { number in
         let month = String(format: "%@-%02d", String(model.date.prefix(4)), number)
@@ -392,6 +395,7 @@ struct NativeCalendar: View {
         } label: {
           VStack(alignment: .leading, spacing: 12) {
             Text(String(number)).font(.title2.monospacedDigit())
+            yearWeekdayHeads
             LazyVGrid(
               columns: Array(repeating: GridItem(.flexible(), spacing: 0), count: 7), spacing: 6
             ) {
@@ -406,12 +410,25 @@ struct NativeCalendar: View {
       }
     }
   }
+  private var yearWeekdayHeads: some View {
+    HStack(spacing: 0) {
+      ForEach(0..<7, id: \.self) { offset in
+        let day = (offset + model.firstWeekday) % 7
+        MongolianLabel(
+          text: Copy.weekdays[day].components(separatedBy: " ").last ?? "", height: 70,
+          size: 15
+        )
+        .frame(height: 70, alignment: .top).frame(maxWidth: .infinity)
+        .accessibilityLabel(Copy.weekdays[day])
+      }
+    }.dynamicTypeSize(.large)
+  }
   private func agenda(_ date: String) -> some View {
     NativeAgenda(
       items: store.timeline(date).allDay + store.timeline(date).timed.map(\.event),
       onOpen: { panel = .detail($0) },
       onAdd: { panel = .edit(CalendarAppointment(startDate: date, endDate: date)) }, scale: scale,
-      skin: skin)
+      skin: skin, date: date)
   }
   private var accessibleMonth: some View {
     LazyVStack(spacing: 16) {
@@ -642,6 +659,9 @@ struct NativeCalendarTimeline: View {
   var skin: CalendarSkin
   let onOpen: (CalendarAppointment) -> Void
   let onAdd: (String, Int, Bool) -> Void
+  @Environment(\.dynamicTypeSize) private var typeSize
+  @ScaledMetric(relativeTo: .body) private var weekdayHeight: CGFloat = 124
+  @ScaledMetric(relativeTo: .body) private var weekdayWidth: CGFloat = 52
   @State private var now = Date()
   @State private var gridY: CGFloat = 0
   @State private var cachedLayouts: [String: CalendarDayLayout] = [:]
@@ -668,37 +688,68 @@ struct NativeCalendarTimeline: View {
   var body: some View {
     let layouts = days.map { cachedLayouts[$0] ?? CalendarDayLayout() }
     VStack(spacing: 0) {
-      if model.view == "day" { weekStrip }
-      timelineViewport(layouts)
+      if model.view == "day" {
+        weekStrip
+        dailyAgenda(layouts.first ?? CalendarDayLayout())
+      } else {
+        timelineViewport(layouts)
+      }
     }
     .onChange(of: days, initial: true) { _, _ in refreshLayouts() }
     .onChange(of: store.events) { _, _ in refreshLayouts() }
     .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { now = $0 }
   }
+  private func dailyAgenda(_ layout: CalendarDayLayout) -> some View {
+    ScrollView {
+      VStack(alignment: .leading, spacing: 8) {
+        HStack(spacing: 12) {
+          Text(model.date).font(.callout.monospacedDigit())
+          if model.showLunar, let lunar = model.engine?.lunar(model.date) {
+            Image(systemName: "moon").font(.caption)
+            Text("\(lunar.month)/\(lunar.day)").font(.caption.monospacedDigit())
+          }
+        }.foregroundStyle(.secondary).padding(.vertical, 10)
+        NativeAgenda(
+          items: layout.allDay + layout.timed.map(\.event), onOpen: onOpen,
+          onAdd: { onAdd(model.date, 540, false) }, scale: scale, skin: skin, date: model.date)
+      }.padding(.horizontal, 20).frame(maxWidth: 760, alignment: .leading)
+        .frame(maxWidth: .infinity)
+    }
+  }
   private var weekStrip: some View {
+    Group {
+      if typeSize.isAccessibilitySize {
+        ScrollView(.horizontal) { weekdayButtons(expanded: true) }
+      } else {
+        weekdayButtons(expanded: false)
+      }
+    }.padding(.horizontal, 12).padding(.bottom, 10)
+  }
+  private func weekdayButtons(expanded: Bool) -> some View {
     HStack(spacing: 0) {
       ForEach(weekDays, id: \.self) { day in
         Button {
           model.select(day)
         } label: {
           VStack(spacing: 6) {
-            MongolianLabel(text: Copy.weekdays[weekday(day)], height: 50, size: 18)
-              .frame(height: 50, alignment: .top)
+            MongolianLabel(text: Copy.weekdays[weekday(day)], height: weekdayHeight, size: 18)
+              .frame(height: weekdayHeight, alignment: .top)
             Text(String(Int(day.suffix(2))!)).font(.body.monospacedDigit())
               .frame(width: 30, height: 30)
               .foregroundStyle(day == model.date ? skin.canvas : .primary)
               .background(day == model.date ? Color.accentColor : .clear, in: Circle())
           }.frame(maxWidth: .infinity)
-        }.buttonStyle(.plain).accessibilityLabel(day)
+        }.buttonStyle(.plain).accessibilityLabel(day + " · " + Copy.weekdays[weekday(day)])
           .accessibilityAddTraits(day == model.date ? .isSelected : [])
           .disabled(day < "1901-01-01" || day > "2100-12-31")
+          .frame(width: expanded ? weekdayWidth : nil)
       }
-    }.padding(.horizontal, 12).padding(.bottom, 10)
+    }
   }
   private func columnWidth(_ available: CGFloat, layouts: [CalendarDayLayout]) -> CGFloat {
     let lanes: Int = layouts.flatMap(\.timed).map(\.columns).max() ?? 1
     let fitted: CGFloat = (available - gutter) / CGFloat(days.count)
-    let minimum: CGFloat = max(96, CGFloat(lanes) * 72 * CGFloat(scale))
+    let minimum: CGFloat = max(128, CGFloat(lanes) * 72 * CGFloat(scale))
     return max(fitted, minimum)
   }
   private func timelineViewport(_ layouts: [CalendarDayLayout]) -> some View {
@@ -767,7 +818,7 @@ struct NativeCalendarTimeline: View {
     cachedLayouts = Dictionary(uniqueKeysWithValues: days.map { ($0, store.timeline($0)) })
   }
   private func timeRuler(allDayHeight: CGFloat) -> some View {
-    let heading: CGFloat = days.count > 1 ? 68 : 48
+    let heading: CGFloat = days.count > 1 ? 144 : 48
     return GeometryReader { geometry in
       ZStack(alignment: .topTrailing) {
         skin.canvas
@@ -799,7 +850,7 @@ struct NativeCalendarTimeline: View {
           HStack(spacing: 7) {
             if days.count > 1 {
               Text(String(Int(day.suffix(2))!)).font(.title3.monospacedDigit())
-              MongolianLabel(text: Copy.weekdays[weekday(day)], height: 52, size: 18)
+              MongolianLabel(text: Copy.weekdays[weekday(day)], height: 124, size: 18)
             } else {
               Text(day).font(.callout.monospacedDigit())
             }
@@ -807,9 +858,9 @@ struct NativeCalendarTimeline: View {
               Text("\(lunar.month)/\(lunar.day)").font(.caption2.monospacedDigit()).foregroundStyle(
                 .secondary)
             }
-          }.frame(width: columnWidth, height: days.count > 1 ? 68 : 48)
+          }.frame(width: columnWidth, height: days.count > 1 ? 144 : 48)
             .foregroundStyle(day == model.date ? Color.accentColor : .primary)
-        }.buttonStyle(.plain).accessibilityLabel(day)
+        }.buttonStyle(.plain).accessibilityLabel(day + " · " + Copy.weekdays[weekday(day)])
           .disabled(day < "1901-01-01" || day > "2100-12-31")
       }
     }.overlay(alignment: .bottom) { Divider() }

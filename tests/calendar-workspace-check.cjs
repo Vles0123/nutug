@@ -124,25 +124,30 @@ async function close(w, d) {
   await click(d.querySelector('[data-year-month="2026-10"]'));
   await click(d.querySelector('[data-view=week]'));
   assert.equal(d.querySelectorAll('.timeline-day-column').length, 7);
-  await click(d.querySelector('[data-view=day]'));
-  assert(d.querySelector('.calendar-time-layout.single-day'));
-  assert.equal(d.querySelectorAll('[data-action=timeline-add-slot]').length, 48);
   const selectedSlotDate = new URL(w.location.href).searchParams.get('date');
-  await click(d.querySelector('[data-slot-minute="870"]'));
+  await click(d.querySelector(`[data-slot-date="${selectedSlotDate}"][data-slot-minute="870"]`));
   assert.equal(d.querySelector('[name=startDate]').value, selectedSlotDate);
   assert.equal(d.querySelector('[name=startTime]').value, '14:30');
   assert.equal(d.querySelector('[name=endTime]').value, '15:30');
   await fill(w, d.querySelector('textarea[name=title]'), 'ᠪᠢᠴᠢᠭ');
   await click(d.querySelector('[data-action=save-event]'));
-  assert(d.querySelector('.timeline-event').getAttribute('aria-label').includes('14:30'));
-  await click(d.querySelector('.timeline-event'));
+  await click(d.querySelector('[data-view=day]'));
+  assert(d.querySelector('.calendar-day-agenda'));
+  assert.equal(d.querySelectorAll('.timeline-day-column').length, 0);
+  assert(d.querySelector('.appointment-card').getAttribute('aria-label').includes('14:30'));
+  await click(d.querySelector('.appointment-card'));
   assert(d.querySelector('[data-action=edit-event]'));
   await close(w, d);
-  await click(d.querySelector('[data-slot-minute="1410"]'));
+  await click(d.querySelector('[data-view=week]'));
+  await click(d.querySelector(`[data-slot-date="${selectedSlotDate}"][data-slot-minute="1410"]`));
   assert.equal(d.querySelector('[name=endDate]').value, '2026-10-02');
   assert.equal(d.querySelector('[name=endTime]').value, '00:30');
   await close(w, d);
-
+  await click(d.querySelector('[data-view=day]'));
+  const weekdayHeads = [...d.querySelectorAll('.timeline-week-strip .mn')].map(
+    (x) => x.textContent,
+  );
+  assert.deepEqual(weekdayHeads, [copy.weekdays[6], ...copy.weekdays.slice(0, 6)]);
   await click(d.querySelector('[data-action=product-settings]'));
   await click(d.querySelector('[data-skin-choice=paper]'));
   assert.equal(d.documentElement.dataset.skin, 'paper');

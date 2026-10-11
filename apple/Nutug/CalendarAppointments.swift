@@ -238,9 +238,12 @@ struct NativeAgenda: View {
   let onAdd: () -> Void
   var scale: Double = 1
   var skin: CalendarSkin = .light
+  var date: String? = nil
   var body: some View {
     VStack(alignment: .leading, spacing: 0) {
       ForEach(items) { item in
+        let start = date.map { item.startDate < $0 ? "00:00" : item.startTime } ?? item.startTime
+        let end = date.map { item.endDate > $0 ? "24:00" : item.endTime } ?? item.endTime
         Button {
           onOpen(item)
         } label: {
@@ -250,14 +253,14 @@ struct NativeAgenda: View {
                 MongolianLabel(text: Copy.calendar("allDay"), height: 76, size: 20)
               } else {
                 VStack(alignment: .leading, spacing: 6) {
-                  Text(item.startTime)
-                  Text(item.endTime).font(.caption).foregroundStyle(.secondary)
+                  Text(start)
+                  Text(end).font(.caption).foregroundStyle(.secondary)
                 }.font(.callout.monospacedDigit())
               }
             }.frame(width: 52, alignment: .leading)
             Rectangle().fill(calendarEventColor(item.color, skin: skin)).frame(width: 3)
             ScrollView(.horizontal) {
-              MongolianText(text: item.title, height: 96, size: 24, scale: scale, fitContent: true)
+              MongolianText(text: item.title, height: 160, size: 26, scale: scale, fitContent: true)
             }
             if item.frequency != "none" {
               Image(systemName: "repeat").font(.caption).foregroundStyle(.secondary)
@@ -265,8 +268,12 @@ struct NativeAgenda: View {
           }.fixedSize(horizontal: false, vertical: true).padding(.vertical, 14)
         }.buttonStyle(.plain).accessibilityLabel(
           item.title + " · "
-            + (item.allDay ? Copy.calendar("allDay") : item.startTime + "–" + item.endTime))
+            + (item.allDay ? Copy.calendar("allDay") : start + "–" + end))
         Divider()
+      }
+      if items.isEmpty {
+        MongolianLabel(text: Copy.calendar("empty"), height: 150, size: 22, color: .secondary)
+          .padding(.vertical, 12)
       }
       Button(action: onAdd) {
         HStack(alignment: .top, spacing: 12) {

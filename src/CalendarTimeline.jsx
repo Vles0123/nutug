@@ -3,6 +3,7 @@ import { Button } from 'react-aria-components';
 import { Plus } from 'lucide-react';
 import { Mn } from './ui';
 import { CalendarTitle } from './CalendarTitle';
+import { Agenda } from './CalendarAgenda';
 import { calendarCopy as copy, calendarConfig } from './calendar-copy.mjs';
 import { dayTimeline, clockLabel } from '../shared/calendar-layout.mjs';
 import { weekday } from '../shared/calendar-events.mjs';
@@ -69,27 +70,50 @@ export function CalendarTimeline({
     });
     return () => cancelAnimationFrame(frame);
   }, [date, days.length, scale]);
-  return (
-    <section
-      className={`calendar-time-layout ${single ? 'single-day' : 'seven-days'}`}
-      aria-label={single ? copy.day : copy.week}
-    >
-      {single && (
-        <div className="timeline-week-strip" aria-label={copy.choose}>
-          {Array.from({ length: 7 }, (_, i) => moveDate(weekStart, i)).map((day) => (
-            <Button
-              key={day}
-              aria-label={day}
-              aria-pressed={day === date}
-              isDisabled={day < calendarConfig.minDate || day > calendarConfig.maxDate}
-              onPress={() => onSelectDate(day)}
-            >
-              <Mn compact>{copy.weekdays[weekday(day)]}</Mn>
-              <span className="numeric">{Number(day.slice(-2))}</span>
-            </Button>
-          ))}
+  const weekStrip = (
+    <div className="timeline-week-strip" aria-label={copy.choose}>
+      {Array.from({ length: 7 }, (_, i) => moveDate(weekStart, i)).map((day) => (
+        <Button
+          key={day}
+          aria-label={`${day} · ${copy.weekdays[weekday(day)]}`}
+          aria-pressed={day === date}
+          isDisabled={day < calendarConfig.minDate || day > calendarConfig.maxDate}
+          onPress={() => onSelectDate(day)}
+        >
+          <Mn compact>{copy.weekdays[weekday(day)]}</Mn>
+          <span className="numeric">{Number(day.slice(-2))}</span>
+        </Button>
+      ))}
+    </div>
+  );
+  if (single) {
+    const lunar = provider?.validDate(date) ? provider.compute(date) : null;
+    const items = [...layouts[0].allDay, ...layouts[0].timed.map((entry) => entry.event)];
+    return (
+      <section
+        className="calendar-time-layout single-day calendar-day-agenda"
+        aria-label={copy.agenda}
+      >
+        {weekStrip}
+        <div className="day-agenda-scroll">
+          <div className="day-agenda-date">
+            <time className="numeric" dateTime={date}>
+              {date}
+            </time>
+            {lunar && (
+              <span className="numeric timeline-lunar">
+                {lunar.leapMonth ? '* ' : ''}
+                {lunar.lunarMonth}/{lunar.lunarDay}
+              </span>
+            )}
+          </div>
+          <Agenda date={date} items={items} onOpen={onOpen} onAdd={() => onAdd(date, 540)} />
         </div>
-      )}
+      </section>
+    );
+  }
+  return (
+    <section className="calendar-time-layout seven-days" aria-label={single ? copy.day : copy.week}>
       <div
         className="timeline-scroll"
         ref={scroll}
@@ -112,7 +136,7 @@ export function CalendarTimeline({
                   className="timeline-date-heading"
                   data-timeline-date={day}
                   data-selected={day === date || undefined}
-                  aria-label={day}
+                  aria-label={`${day} · ${copy.weekdays[weekday(day)]}`}
                   isDisabled={day < calendarConfig.minDate || day > calendarConfig.maxDate}
                   onPress={() => onSelectDate(day)}
                 >

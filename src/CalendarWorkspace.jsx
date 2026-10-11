@@ -347,33 +347,49 @@ export function CalendarWorkspace() {
               </div>
             </div>
             {prefs.view === 'year' ? (
-              <div className="year-grid">
-                {Array.from({ length: 12 }, (_, index) => {
-                  const month = `${date.slice(0, 4)}-${String(index + 1).padStart(2, '0')}`;
-                  return (
-                    <Button
-                      key={month}
-                      data-year-month={month}
-                      onPress={() => {
-                        select(month + '-01');
-                        setPrefs({ ...prefs, view: 'month' });
-                      }}
-                    >
-                      <span className="numeric year-month-number">{index + 1}</span>
-                      <div className="mini-month">
-                        {monthDays(month, undefined, prefs.firstWeekday).map((day) => (
-                          <span
-                            key={day.iso}
-                            data-current={day.iso === today || undefined}
-                            className={`numeric ${day.inMonth ? '' : 'muted'}`}
-                          >
-                            {day.day}
-                          </span>
-                        ))}
-                      </div>
-                    </Button>
-                  );
-                })}
+              <div className="calendar-year-view">
+                <div className="weekday-row year-weekdays">
+                  {Array.from({ length: 7 }, (_, i) => (i + prefs.firstWeekday) % 7).map((i) => (
+                    <Mn key={i}>{copy.weekdays[i]}</Mn>
+                  ))}
+                </div>
+                <div className="year-grid">
+                  {Array.from({ length: 12 }, (_, index) => {
+                    const month = `${date.slice(0, 4)}-${String(index + 1).padStart(2, '0')}`;
+                    return (
+                      <Button
+                        key={month}
+                        data-year-month={month}
+                        onPress={() => {
+                          select(month + '-01');
+                          setPrefs({ ...prefs, view: 'month' });
+                        }}
+                      >
+                        <span className="numeric year-month-number">{index + 1}</span>
+                        <div className="mini-weekdays">
+                          {Array.from({ length: 7 }, (_, i) => (i + prefs.firstWeekday) % 7).map(
+                            (i) => (
+                              <Mn key={i} aria-label={copy.weekdays[i]}>
+                                {copy.weekdays[i].split(' ').at(-1)}
+                              </Mn>
+                            ),
+                          )}
+                        </div>
+                        <div className="mini-month">
+                          {monthDays(month, undefined, prefs.firstWeekday).map((day) => (
+                            <span
+                              key={day.iso}
+                              data-current={day.iso === today || undefined}
+                              className={`numeric ${day.inMonth ? '' : 'muted'}`}
+                            >
+                              {day.day}
+                            </span>
+                          ))}
+                        </div>
+                      </Button>
+                    );
+                  })}
+                </div>
               </div>
             ) : (
               <CalendarTimeline

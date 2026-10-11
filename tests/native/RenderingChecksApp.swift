@@ -75,6 +75,10 @@ private final class RenderingChecksRun: ObservableObject {
     do {
       try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
       let store = calendar.appointments
+      try require(
+        Copy.weekdays.count == 7 && Copy.weekdays[6] == "ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ",
+        "Modern weekday names are bundled")
+      try require(calendar.firstWeekday == 6, "New calendars start on Sunday")
       var invalid = fixture
       invalid.title = ""
       try require(
@@ -194,7 +198,8 @@ private final class RenderingChecksRun: ObservableObject {
           "validation-field", "create", "recurrence", "edit-occurrence", "persistence",
           "delete-undo", "ics-roundtrip", "vertical-input",
           "gregorian-display", "gregorian-date-jump", "gregorian-validation",
-          "timeline-all-day", "timeline-overlap", "timeline-slot",
+          "timeline-all-day", "timeline-overlap", "timeline-slot", "modern-weekdays",
+          "sunday-start",
         ],
         "screenshots": screenshots,
       ])

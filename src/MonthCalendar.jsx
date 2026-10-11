@@ -17,12 +17,12 @@ import { Agenda } from './CalendarAgenda';
 import { CalendarTitle } from './CalendarTitle';
 import { dayTimeline } from '../shared/calendar-layout.mjs';
 import { CalendarDatePicker } from './CalendarDatePicker';
-import { occurrencesBetween } from '../shared/calendar-events.mjs';
+import { occurrencesBetween, weekday } from '../shared/calendar-events.mjs';
 
 export function MonthCalendar({
   selectedDate,
   onSelectDate,
-  firstWeekday = 0,
+  firstWeekday = 6,
   showLunar = true,
   appointments = [],
   onAdd,
@@ -123,7 +123,7 @@ export function MonthCalendar({
       select(target, true);
     }
   };
-  const week = (new Date(date + 'T12:00:00Z').getUTCDay() + 6) % 7;
+  const week = weekday(date);
   return (
     <section className="ordinary-calendar" aria-label={labels.calendar}>
       <div className="calendar-heading">
@@ -175,7 +175,7 @@ export function MonthCalendar({
                   data-selected={date === day.iso || undefined}
                   aria-pressed={date === day.iso}
                   aria-current={today === day.iso ? 'date' : undefined}
-                  aria-label={`${copy.gregorian} ${day.iso}${day.lunar ? ` · ${copy.lunar} ${day.lunar.lunarMonth} / ${day.lunar.lunarDay}` : ''}`}
+                  aria-label={`${copy.gregorian} ${day.iso} · ${copy.weekdays[weekday(day.iso)]}${day.lunar ? ` · ${copy.lunar} ${day.lunar.lunarMonth} / ${day.lunar.lunarDay}` : ''}`}
                   isDisabled={!civil.validDate(day.iso)}
                   tabIndex={day.iso === (date.startsWith(month) ? date : month + '-01') ? 0 : -1}
                   onKeyDown={(e) => key(e, day.iso)}
@@ -255,7 +255,12 @@ export function MonthCalendar({
           </Button>
           {onAdd && (
             <section className="month-day-agenda">
-              <Agenda items={forDate(date)} onOpen={onOpenEvent} onAdd={() => onAdd(date)} />
+              <Agenda
+                date={date}
+                items={forDate(date)}
+                onOpen={onOpenEvent}
+                onAdd={() => onAdd(date)}
+              />
             </section>
           )}
         </aside>

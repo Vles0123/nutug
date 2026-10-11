@@ -300,10 +300,12 @@
   padding-left: 10px;
 }
 .appointment-label {
-  height: 100px;
-  min-height: min-content;
+  height: auto;
+  inline-size: max-content;
+  min-inline-size: min-content;
+  max-inline-size: calc(160px * var(--reading-scale));
   flex: none;
-  font-size: calc(24px * var(--reading-scale));
+  font-size: calc(26px * var(--reading-scale));
 }
 .appointment-card > svg {
   color: var(--event-color);
@@ -980,7 +982,7 @@
 }
 .timeline-week-strip button {
   display: grid;
-  grid-template-rows: 56px 30px;
+  grid-template-rows: 124px 30px;
   align-items: start;
   justify-items: center;
   gap: 6px;
@@ -989,8 +991,8 @@
   padding: 0;
 }
 .timeline-week-strip .mn {
-  height: 50px;
-  --control-column-height: 50px;
+  height: 124px;
+  --control-column-height: 124px;
   --control-font-size: 18px;
 }
 .timeline-week-strip .numeric {
@@ -1016,7 +1018,7 @@
 }
 .timeline-canvas {
   width: 100%;
-  min-width: calc(var(--gutter) + var(--timeline-days) * max(96px, var(--lane-min)));
+  min-width: calc(var(--gutter) + var(--timeline-days) * max(128px, var(--lane-min)));
   position: relative;
 }
 .single-day .timeline-canvas {
@@ -1031,7 +1033,7 @@
 .timeline-heading {
   position: sticky;
   top: 0;
-  height: 80px;
+  height: 144px;
   z-index: 5;
   background: var(--canvas);
   border-bottom: 1px solid var(--separator);
@@ -1061,7 +1063,7 @@
   border-left: 1px solid var(--separator);
 }
 .timeline-date-heading .mn {
-  --control-column-height: 56px;
+  --control-column-height: 124px;
   --control-font-size: 18px;
 }
 .timeline-date-heading > .numeric {
@@ -1087,7 +1089,7 @@
 }
 .timeline-all-day {
   position: sticky;
-  top: 80px;
+  top: 144px;
   z-index: 4;
   background: var(--canvas);
   border-bottom: 1px solid var(--separator);
@@ -1317,8 +1319,8 @@
     gap: 0;
   }
   .calendar-app .weekday-row .mn {
-    height: 56px;
-    font-size: 21px;
+    height: 124px;
+    font-size: 18px;
   }
 
   .calendar-app .compact-day-summary {
@@ -1587,8 +1589,8 @@
     padding-bottom: 12px;
   }
   .calendar-app .weekday-row .mn {
-    height: 52px;
-    font-size: 20px;
+    height: 124px;
+    font-size: 18px;
   }
   .calendar-app .day-grid {
     flex: 1;
@@ -1632,5 +1634,76 @@
     display: flex;
     position: static;
     padding-top: 3px;
+  }
+}
+
+.calendar-app .weekday-row .mn {
+  height: 124px;
+  font-size: 18px;
+}
+.calendar-app .compact-day-summary .mn {
+  --control-column-height: 90px;
+  --control-font-size: 20px;
+}
+.day-agenda-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px 4px 20px;
+}
+.day-agenda-date {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0 14px;
+  color: var(--prose-secondary);
+  border-bottom: 1px solid var(--separator);
+}
+.day-agenda-date,
+.day-agenda-scroll .schedule-agenda {
+  max-width: 760px;
+  margin-inline: auto;
+}
+.day-agenda-date .timeline-lunar {
+  font-size: 13px;
+}
+.day-agenda-scroll .appointment-card {
+  padding-block: 18px;
+}
+.day-agenda-scroll .appointment-time {
+  width: 62px;
+}
+.schedule-empty {
+  padding: 14px 4px;
+  color: var(--prose-secondary);
+}
+.schedule-empty .mn {
+  --control-column-height: 150px;
+  --control-font-size: 22px;
+}
+.calendar-year-view {
+  min-width: 0;
+}
+.year-weekdays {
+  max-width: 760px;
+  margin: 0 auto 16px;
+}
+.mini-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  justify-items: center;
+  gap: 0;
+  margin-bottom: 10px;
+}
+.mini-weekdays .mn {
+  height: 68px;
+  font-size: 14px;
+}
+@media (max-width: 700px) {
+  .year-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .mini-weekdays .mn {
+    font-size: 16px;
   }
 }

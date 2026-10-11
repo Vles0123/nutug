@@ -545,43 +545,43 @@
     },
     {
       "id": "calendar-app.weekdays.0",
-      "text": "ᠳᠠᠸᠠ",
+      "text": "ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ",
       "context": "calendar-app / weekdays.0",
       "review": "needs-native-review"
     },
     {
       "id": "calendar-app.weekdays.1",
-      "text": "ᠮᠢᠭᠮᠠᠷ",
+      "text": "ᠭᠠᠷᠠᠭ ᠤᠨ ᠬᠣᠶᠠᠷ",
       "context": "calendar-app / weekdays.1",
       "review": "needs-native-review"
     },
     {
       "id": "calendar-app.weekdays.2",
-      "text": "ᡀᠠᠭᠪᠠ",
+      "text": "ᠭᠠᠷᠠᠭ ᠤᠨ ᠭᠤᠷᠪᠠᠨ",
       "context": "calendar-app / weekdays.2",
       "review": "needs-native-review"
     },
     {
       "id": "calendar-app.weekdays.3",
-      "text": "ᠫᠦᠷᠪᠦ",
+      "text": "ᠭᠠᠷᠠᠭ ᠤᠨ ᠳᠥᠷᠪᠡᠨ",
       "context": "calendar-app / weekdays.3",
       "review": "needs-native-review"
     },
     {
       "id": "calendar-app.weekdays.4",
-      "text": "ᠪᠠᠰᠠᠩ",
+      "text": "ᠭᠠᠷᠠᠭ ᠤᠨ ᠲᠠᠪᠤᠨ",
       "context": "calendar-app / weekdays.4",
       "review": "needs-native-review"
     },
     {
       "id": "calendar-app.weekdays.5",
-      "text": "ᠪᠢᠮᠪᠠ",
+      "text": "ᠭᠠᠷᠠᠭ ᠤᠨ ᠵᠢᠷᠭᠤᠭᠠᠨ",
       "context": "calendar-app / weekdays.5",
       "review": "needs-native-review"
     },
     {
       "id": "calendar-app.weekdays.6",
-      "text": "ᠨᠢᠮ᠎ᠠ",
+      "text": "ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ",
       "context": "calendar-app / weekdays.6",
       "review": "needs-native-review"
     },
