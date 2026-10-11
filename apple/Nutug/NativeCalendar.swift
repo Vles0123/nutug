@@ -746,7 +746,8 @@ struct NativeCalendarTimeline: View {
             .foregroundStyle(day == model.date ? skin.canvas : .primary)
             .background(day == model.date ? Color.accentColor : .clear, in: Circle())
             MongolianLabel(
-              text: Copy.weekdays[weekday(day)], height: weekdayHeight, size: 16, color: .secondary
+              text: Copy.weekdays[weekday(day)], height: weekdayHeight, size: 16,
+              color: .primary.opacity(0.65)
             )
             .frame(height: weekdayHeight, alignment: .top)
           }.frame(maxWidth: .infinity)
