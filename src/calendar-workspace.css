@@ -10,13 +10,13 @@
   --canvas: #fff;
   --background: #f4f6f9;
   --sidebar: #f5f7fa;
-  --label: #17232d;
+  --label: #1d1d1f;
   --prose: #293742;
-  --prose-secondary: #596875;
+  --prose-secondary: #6e6e73;
   --secondary: #647481;
-  --accent: #087de0;
+  --accent: #007aff;
   --link-text: #0869b9;
-  --separator: #dbe2e9;
+  --separator: #e5e5e7;
   --secondary-fill: #eaf0f5;
   --tertiary-fill: #f0f4f8;
   --selected-fill: #fff;
@@ -109,9 +109,9 @@
 }
 .calendar-view-switch {
   display: flex;
-  background: var(--tertiary-fill);
-  border-radius: 24px;
-  padding: 4px;
+  background: transparent;
+  border-radius: 12px;
+  padding: 2px;
   gap: 4px;
 }
 .calendar-view-switch button,
@@ -128,13 +128,13 @@
 }
 .calendar-view-switch button[aria-pressed='true'],
 .calendar-view-options button[aria-pressed='true'] {
-  background: var(--selected-fill);
+  background: var(--tertiary-fill);
   color: var(--accent);
-  box-shadow: 0 1px 6px #0001;
+  box-shadow: none;
 }
 .calendar-view-switch .mn {
   --control-column-height: 54px;
-  --control-font-size: 19px;
+  --control-font-size: 17px;
 }
 .calendar-app-tools {
   display: flex;
@@ -280,29 +280,41 @@
 }
 .appointment-card {
   display: grid;
-  grid-template-columns: 54px minmax(0, 1fr) 16px;
+  grid-template-columns: 54px minmax(0, 1fr);
   align-items: start;
   gap: 12px;
   width: 100%;
   min-width: 0;
   padding: 14px 2px;
+  min-height: 76px;
   border: 0;
-  border-bottom: 1px solid var(--separator);
+  border-bottom: 0;
   border-radius: 0;
   background: transparent;
   text-align: start;
+  position: relative;
+}
+.appointment-card::after {
+  content: '';
+  position: absolute;
+  left: 68px;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--separator);
 }
 .appointment-title-scroll {
   display: flex;
   flex: 1;
   min-width: 0;
   overflow-x: auto;
-  border-left: 3px solid var(--event-color);
+  border-left: 2px solid var(--event-color);
   padding-left: 10px;
 }
 .appointment-label {
-  height: calc(112px * var(--reading-scale));
-  inline-size: calc(112px * var(--reading-scale));
+  height: auto;
+  inline-size: max-content;
+  max-inline-size: calc(144px * var(--reading-scale));
   flex: none;
   font-size: calc(24px * var(--reading-scale));
 }
@@ -311,6 +323,10 @@
   flex: none;
 }
 .appointment-time {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
   width: 54px;
   flex: none;
   padding-top: 3px;
@@ -985,7 +1001,7 @@
 }
 .timeline-week-strip button {
   display: grid;
-  grid-template-rows: 30px 112px;
+  grid-template-rows: 32px 108px;
   align-items: start;
   justify-items: center;
   gap: 6px;
@@ -994,16 +1010,18 @@
   padding: 0;
 }
 .timeline-week-strip .mn {
-  height: 112px;
-  --control-column-height: 112px;
-  --control-font-size: 18px;
+  height: 108px;
+  --control-column-height: 108px;
+  --control-font-size: 16px;
+  color: var(--prose-secondary);
 }
 .timeline-week-strip .numeric {
   display: grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
-  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  font-size: 21px;
+  font-weight: 500;
   border-radius: 50%;
 }
 .timeline-week-strip [aria-pressed='true'] .numeric {
@@ -1654,21 +1672,26 @@
   overflow-y: auto;
   padding: 0 4px 20px;
 }
-.day-agenda-date {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 0;
-  color: var(--prose-secondary);
-  border-bottom: 1px solid var(--separator);
-}
-.day-agenda-date,
 .day-agenda-scroll .schedule-agenda {
   max-width: 760px;
   margin-inline: auto;
 }
-.day-agenda-date .timeline-lunar {
-  font-size: 13px;
+.calendar-app[data-calendar-view='day'] .calendar-period-bar {
+  width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
+}
+.calendar-period-bar .day-header-lunar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--prose-secondary);
+  margin-top: 5px;
+}
+.appointment-time svg {
+  color: var(--prose-secondary);
 }
 .day-agenda-scroll .appointment-card {
   padding-block: 12px;
@@ -1708,5 +1731,23 @@
   }
   .mini-weekdays .mn {
     font-size: 16px;
+  }
+}
+
+.calendar-app[data-calendar-view='day'] .calendar-period-bar .month-title {
+  font-size: 28px;
+  font-weight: 600;
+}
+.calendar-app[data-calendar-view='day'] .calendar-today {
+  color: var(--prose-secondary);
+}
+@media (max-width: 599px) {
+  .calendar-app[data-calendar-view='day'] .calendar-period-bar .month-title {
+    font-size: 24px;
+  }
+}
+@media (max-width: 359px) {
+  .calendar-app[data-calendar-view='day'] .calendar-period-bar .month-title {
+    font-size: 20px;
   }
 }

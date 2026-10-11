@@ -16,6 +16,7 @@ import {
   Check,
   Trash2,
   MapPin,
+  Moon,
 } from 'lucide-react';
 import { Mn, IconButton, Sheet, Segments, SearchBox, ColumnScroller } from './ui';
 import { labels } from './ui-copy.mjs';
@@ -78,6 +79,7 @@ export function CalendarWorkspace() {
         : null,
     [prefs.lunar],
   );
+  const selectedLunar = lunarProvider?.validDate(date) ? lunarProvider.compute(date) : null;
   const [events, setEvents] = useState(() => {
     try {
       return readEvents(localStorage);
@@ -322,11 +324,22 @@ export function CalendarWorkspace() {
                   if (prefs.view === 'year') setPrefs({ ...prefs, view: 'month' });
                 }}
               >
-                {prefs.view === 'year'
-                  ? date.slice(0, 4)
-                  : prefs.view === 'week'
-                    ? date.slice(0, 7).replace('-', ' / ')
-                    : date}
+                {prefs.view === 'year' ? (
+                  date.slice(0, 4)
+                ) : prefs.view === 'week' ? (
+                  date.slice(0, 7).replace('-', ' / ')
+                ) : (
+                  <>
+                    <time dateTime={date}>{date}</time>
+                    {selectedLunar && (
+                      <span className="day-header-lunar" aria-label={copy.lunar}>
+                        <Moon size={13} />
+                        {selectedLunar.leapMonth ? '* ' : ''}
+                        {selectedLunar.lunarMonth} / {selectedLunar.lunarDay}
+                      </span>
+                    )}
+                  </>
+                )}
               </CalendarDatePicker>
               <div>
                 <Button className="calendar-today" onPress={() => select(today)}>

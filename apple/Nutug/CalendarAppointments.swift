@@ -239,6 +239,7 @@ struct NativeAgenda: View {
   var scale: Double = 1
   var skin: CalendarSkin = .light
   var date: String? = nil
+  var showAdd = true
   var body: some View {
     VStack(alignment: .leading, spacing: 0) {
       ForEach(items) { item in
@@ -248,7 +249,7 @@ struct NativeAgenda: View {
           onOpen(item)
         } label: {
           HStack(alignment: .top, spacing: 12) {
-            Group {
+            VStack(alignment: .leading, spacing: 6) {
               if item.allDay {
                 MongolianLabel(text: Copy.calendar("allDay"), height: 76, size: 20)
               } else {
@@ -257,30 +258,32 @@ struct NativeAgenda: View {
                   Text(end).font(.caption).foregroundStyle(.secondary)
                 }.font(.callout.monospacedDigit())
               }
+              if item.frequency != "none" {
+                Image(systemName: "repeat").font(.caption).foregroundStyle(.secondary)
+              }
             }.frame(width: 52, alignment: .leading)
-            Rectangle().fill(calendarEventColor(item.color, skin: skin)).frame(width: 3)
+            Rectangle().fill(calendarEventColor(item.color, skin: skin)).frame(width: 2)
             ScrollView(.horizontal) {
-              MongolianText(text: item.title, height: 112, size: 24, scale: scale)
+              MongolianText(text: item.title, height: 144, size: 24, scale: scale, fitContent: true)
             }
-            Image(systemName: "repeat").font(.caption).foregroundStyle(.secondary)
-              .frame(width: 16).opacity(item.frequency == "none" ? 0 : 1)
-              .accessibilityHidden(item.frequency == "none")
           }.fixedSize(horizontal: false, vertical: true).padding(.vertical, 12)
         }.buttonStyle(.plain).accessibilityLabel(
           item.title + " · "
             + (item.allDay ? Copy.calendar("allDay") : start + "–" + end))
-        Divider()
+        Divider().padding(.leading, 66)
       }
       if items.isEmpty {
         MongolianLabel(text: Copy.calendar("empty"), height: 150, size: 22, color: .secondary)
           .padding(.vertical, 12)
       }
-      Button(action: onAdd) {
-        HStack(alignment: .top, spacing: 12) {
-          Image(systemName: "plus")
-          MongolianLabel(text: Copy.calendar("add"), height: 58, size: 21)
-        }.padding(.vertical, 14)
-      }.buttonStyle(.plain).foregroundStyle(Color.accentColor)
+      if showAdd {
+        Button(action: onAdd) {
+          HStack(alignment: .top, spacing: 12) {
+            Image(systemName: "plus")
+            MongolianLabel(text: Copy.calendar("add"), height: 58, size: 21)
+          }.padding(.vertical, 14)
+        }.buttonStyle(.plain).foregroundStyle(Color.accentColor)
+      }
     }
   }
 }

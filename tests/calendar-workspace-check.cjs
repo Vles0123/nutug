@@ -133,6 +133,9 @@ async function close(w, d) {
   await click(d.querySelector('[data-action=save-event]'));
   await click(d.querySelector('[data-view=day]'));
   assert(d.querySelector('.calendar-day-agenda'));
+  assert(d.querySelector('.day-agenda-scroll .timeline-week-strip'));
+  assert.equal(d.querySelectorAll('.calendar-period-bar time').length, 1);
+  assert.equal(d.querySelectorAll('.calendar-day-agenda .agenda-add').length, 0);
   assert.equal(d.querySelectorAll('.timeline-day-column').length, 0);
   assert(d.querySelector('.appointment-card').getAttribute('aria-label').includes('14:30'));
   await click(d.querySelector('.appointment-card'));

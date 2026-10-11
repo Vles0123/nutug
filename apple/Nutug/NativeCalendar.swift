@@ -92,7 +92,8 @@ struct NativeCalendar: View {
     GeometryReader { geometry in
       let compact = geometry.size.width < 600 || geometry.size.height < 720
       VStack(spacing: 8) {
-        calendarHeader.padding(.horizontal).padding(.top, 8)
+        calendarHeader.padding(.horizontal, 20).padding(.top, 8)
+          .frame(maxWidth: model.view == "day" ? 760 : .infinity)
         if model.view == "week" || model.view == "day" {
           NativeCalendarTimeline(
             model: model, store: store, scale: scale, skin: skin,
@@ -177,18 +178,26 @@ struct NativeCalendar: View {
         invalidPickerDate = false
         panel = .month
       } label: {
-        HStack {
-          Text(
-            model.view == "year"
-              ? String(model.date.prefix(4))
-              : model.view == "day"
-                ? model.date : model.month.replacingOccurrences(of: "-", with: " / ")
-          ).font(
-            .system(size: model.view == "day" ? 24 : 30, weight: .semibold, design: .rounded)
-              .monospacedDigit()
-          )
-          .lineLimit(1).minimumScaleFactor(0.75)
-          Image(systemName: "chevron.down").font(.caption)
+        VStack(alignment: .leading, spacing: 4) {
+          HStack {
+            Text(
+              model.view == "year"
+                ? String(model.date.prefix(4))
+                : model.view == "day"
+                  ? model.date : model.month.replacingOccurrences(of: "-", with: " / ")
+            ).font(
+              .system(size: model.view == "day" ? 28 : 30, weight: .semibold, design: .rounded)
+                .monospacedDigit()
+            )
+            .lineLimit(1).minimumScaleFactor(0.75)
+            Image(systemName: "chevron.down").font(.caption)
+          }
+          if model.view == "day", model.showLunar, let lunar = model.engine?.lunar(model.date) {
+            HStack(spacing: 6) {
+              Image(systemName: "moon")
+              Text("\(lunar.month) / \(lunar.day)").monospacedDigit()
+            }.font(.caption).foregroundStyle(.secondary)
+          }
         }
       }.buttonStyle(.plain).accessibilityLabel(
         Copy.calendar("gregorian") + " · " + Copy.calendar("choose") + " · " + model.date)
@@ -660,7 +669,7 @@ struct NativeCalendarTimeline: View {
   let onOpen: (CalendarAppointment) -> Void
   let onAdd: (String, Int, Bool) -> Void
   @Environment(\.dynamicTypeSize) private var typeSize
-  @ScaledMetric(relativeTo: .body) private var weekdayHeight: CGFloat = 124
+  @ScaledMetric(relativeTo: .body) private var weekdayHeight: CGFloat = 108
   @ScaledMetric(relativeTo: .body) private var weekdayWidth: CGFloat = 52
   @State private var now = Date()
   @State private var gridY: CGFloat = 0
@@ -689,7 +698,6 @@ struct NativeCalendarTimeline: View {
     let layouts = days.map { cachedLayouts[$0] ?? CalendarDayLayout() }
     VStack(spacing: 0) {
       if model.view == "day" {
-        weekStrip
         dailyAgenda(layouts.first ?? CalendarDayLayout())
       } else {
         timelineViewport(layouts)
@@ -701,18 +709,15 @@ struct NativeCalendarTimeline: View {
   }
   private func dailyAgenda(_ layout: CalendarDayLayout) -> some View {
     ScrollView {
-      VStack(alignment: .leading, spacing: 8) {
-        HStack(spacing: 12) {
-          Text(model.date).font(.callout.monospacedDigit())
-          if model.showLunar, let lunar = model.engine?.lunar(model.date) {
-            Image(systemName: "moon").font(.caption)
-            Text("\(lunar.month)/\(lunar.day)").font(.caption.monospacedDigit())
-          }
-        }.foregroundStyle(.secondary).padding(.vertical, 10)
+      VStack(alignment: .leading, spacing: 0) {
+        weekStrip
         NativeAgenda(
           items: layout.allDay + layout.timed.map(\.event), onOpen: onOpen,
-          onAdd: { onAdd(model.date, 540, false) }, scale: scale, skin: skin, date: model.date)
-      }.padding(.horizontal, 20).frame(maxWidth: 760, alignment: .leading)
+          onAdd: { onAdd(model.date, 540, false) }, scale: scale, skin: skin, date: model.date,
+          showAdd: false
+        )
+        .padding(.horizontal, 20)
+      }.frame(maxWidth: 760, alignment: .leading)
         .frame(maxWidth: .infinity)
     }
   }
@@ -734,12 +739,16 @@ struct NativeCalendarTimeline: View {
           model.select(day)
         } label: {
           VStack(spacing: 6) {
-            Text(String(Int(day.suffix(2))!)).font(.body.monospacedDigit())
-              .frame(width: 30, height: 30)
-              .foregroundStyle(day == model.date ? skin.canvas : .primary)
-              .background(day == model.date ? Color.accentColor : .clear, in: Circle())
-            MongolianLabel(text: Copy.weekdays[weekday(day)], height: weekdayHeight, size: 18)
-              .frame(height: weekdayHeight, alignment: .top)
+            Text(String(Int(day.suffix(2))!)).font(
+              .system(size: 21, weight: .medium).monospacedDigit()
+            )
+            .frame(width: 32, height: 32)
+            .foregroundStyle(day == model.date ? skin.canvas : .primary)
+            .background(day == model.date ? Color.accentColor : .clear, in: Circle())
+            MongolianLabel(
+              text: Copy.weekdays[weekday(day)], height: weekdayHeight, size: 16, color: .secondary
+            )
+            .frame(height: weekdayHeight, alignment: .top)
           }.frame(maxWidth: .infinity)
         }.buttonStyle(.plain).accessibilityLabel(day + " · " + Copy.weekdays[weekday(day)])
           .accessibilityAddTraits(day == model.date ? .isSelected : [])

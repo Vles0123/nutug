@@ -4,7 +4,15 @@ import { Plus, Repeat2 } from 'lucide-react';
 import { Mn } from './ui';
 import { calendarCopy as copy } from './calendar-copy.mjs';
 
-export function Agenda({ date, items, onOpen, onAdd, compact = false, disabled = false }) {
+export function Agenda({
+  date,
+  items,
+  onOpen,
+  onAdd,
+  compact = false,
+  disabled = false,
+  showAdd = true,
+}) {
   return (
     <div className={`schedule-agenda ${compact ? 'is-compact' : ''}`}>
       {items.map((item) => {
@@ -28,11 +36,11 @@ export function Agenda({ date, items, onOpen, onAdd, compact = false, disabled =
                   <small>{end}</small>
                 </span>
               )}
+              {item.repeat !== 'none' && <Repeat2 size={13} aria-label={copy.repeat} />}
             </span>
             <span className="appointment-title-scroll">
               <Mn className="appointment-label">{item.title}</Mn>
             </span>
-            {item.repeat !== 'none' && <Repeat2 size={15} aria-label={copy.repeat} />}
           </Button>
         );
       })}
@@ -41,15 +49,17 @@ export function Agenda({ date, items, onOpen, onAdd, compact = false, disabled =
           <Mn compact>{copy.empty}</Mn>
         </div>
       )}
-      <Button
-        className="agenda-add"
-        data-action="day-add-event"
-        isDisabled={disabled}
-        onPress={onAdd}
-      >
-        <Plus size={19} />
-        <Mn compact>{copy.add}</Mn>
-      </Button>
+      {showAdd && (
+        <Button
+          className="agenda-add"
+          data-action="day-add-event"
+          isDisabled={disabled}
+          onPress={onAdd}
+        >
+          <Plus size={19} />
+          <Mn compact>{copy.add}</Mn>
+        </Button>
+      )}
     </div>
   );
 }

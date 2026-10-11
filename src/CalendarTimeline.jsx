@@ -87,27 +87,21 @@ export function CalendarTimeline({
     </div>
   );
   if (single) {
-    const lunar = provider?.validDate(date) ? provider.compute(date) : null;
     const items = [...layouts[0].allDay, ...layouts[0].timed.map((entry) => entry.event)];
     return (
       <section
         className="calendar-time-layout single-day calendar-day-agenda"
         aria-label={copy.agenda}
       >
-        {weekStrip}
         <div className="day-agenda-scroll">
-          <div className="day-agenda-date">
-            <time className="numeric" dateTime={date}>
-              {date}
-            </time>
-            {lunar && (
-              <span className="numeric timeline-lunar">
-                {lunar.leapMonth ? '* ' : ''}
-                {lunar.lunarMonth}/{lunar.lunarDay}
-              </span>
-            )}
-          </div>
-          <Agenda date={date} items={items} onOpen={onOpen} onAdd={() => onAdd(date, 540)} />
+          {weekStrip}
+          <Agenda
+            date={date}
+            items={items}
+            onOpen={onOpen}
+            onAdd={() => onAdd(date, 540)}
+            showAdd={false}
+          />
         </div>
       </section>
     );
