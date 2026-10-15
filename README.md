@@ -109,3 +109,7 @@ docs/                   架构与构建说明
 ## 上游源码快照
 
 main 的 v124 交接包已合入本分支。原始交接记录和 1729 篇知识库快照保存在 `docs/upstream/v124/`；当前应用从仓库根目录的 `src/`、`shared/`、`content-source/` 开发。按产品范围移植的内容见 [v124 整合记录](docs/upstream-v124.md)。
+
+## 上游交接资料
+
+main 的 v127 源码快照保留在根目录 `nutug-v127-source.zip`，对应的[原始交接文档](docs/upstream/v127/README.md)归档在 `docs/upstream/v127/`。当前日历与编年应用使用本 README 所列的根目录开发、构建和检查命令。
