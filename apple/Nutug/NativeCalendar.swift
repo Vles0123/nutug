@@ -93,7 +93,7 @@ struct NativeCalendar: View {
       let compact = geometry.size.width < 600 || geometry.size.height < 720
       VStack(spacing: 8) {
         calendarHeader.padding(.horizontal, 20).padding(.top, 8)
-          .frame(maxWidth: model.view == "day" ? 760 : .infinity)
+          .frame(maxWidth: model.view == "day" ? 560 : .infinity)
         if model.view == "week" || model.view == "day" {
           NativeCalendarTimeline(
             model: model, store: store, scale: scale, skin: skin,
@@ -717,7 +717,7 @@ struct NativeCalendarTimeline: View {
           showAdd: false
         )
         .padding(.horizontal, 20)
-      }.frame(maxWidth: 760, alignment: .leading)
+      }.frame(maxWidth: 560, alignment: .leading)
         .frame(maxWidth: .infinity)
     }
   }
@@ -729,7 +729,7 @@ struct NativeCalendarTimeline: View {
         weekdayButtons(expanded: false)
       }
     }.padding(.horizontal, 20).padding(.bottom, 8)
-      .frame(maxWidth: 760).frame(maxWidth: .infinity)
+      .frame(maxWidth: 560).frame(maxWidth: .infinity)
       .overlay(alignment: .bottom) { Divider() }
   }
   private func weekdayButtons(expanded: Bool) -> some View {

@@ -279,72 +279,74 @@
   min-width: 0;
 }
 .appointment-card {
-  display: grid;
-  grid-template-columns: 54px minmax(0, 1fr);
-  align-items: start;
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
   width: 100%;
   min-width: 0;
   padding: 14px 2px;
-  min-height: 76px;
   border: 0;
-  border-bottom: 0;
+  border-bottom: 1px solid var(--separator);
   border-radius: 0;
   background: transparent;
   text-align: start;
-  position: relative;
-}
-.appointment-card::after {
-  content: '';
-  position: absolute;
-  left: 68px;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: var(--separator);
 }
 .appointment-title-scroll {
   display: flex;
-  flex: 1;
+  align-items: flex-start;
+  gap: 16px;
   min-width: 0;
   overflow-x: auto;
   border-left: 2px solid var(--event-color);
   padding-left: 10px;
 }
-.appointment-label {
+.appointment-label,
+.appointment-location .mn,
+.appointment-all-day .mn {
   height: auto;
   inline-size: max-content;
-  max-inline-size: calc(144px * var(--reading-scale));
+  max-inline-size: calc(96px * var(--reading-scale));
   flex: none;
   font-size: calc(24px * var(--reading-scale));
 }
-.appointment-card > svg {
-  color: var(--event-color);
+.appointment-location,
+.appointment-all-day {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
   flex: none;
+  color: var(--prose-secondary);
+}
+.appointment-location .mn,
+.appointment-all-day .mn {
+  font-size: calc(18px * var(--reading-scale));
+}
+.appointment-location > svg,
+.appointment-all-day > svg {
+  flex: none;
+}
+.appointment-notes.calendar-title-preview {
+  flex: 0 0 calc(112px * var(--reading-scale));
+  width: calc(112px * var(--reading-scale));
+  height: calc(96px * var(--reading-scale));
+  color: var(--prose-secondary);
+}
+.calendar-app .appointment-notes .mn.calendar-title-measure {
+  font-size: calc(18px * var(--reading-scale));
 }
 .appointment-time {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  width: 54px;
-  flex: none;
-  padding-top: 3px;
+  align-items: center;
+  gap: 8px;
 }
 .appointment-time .numeric {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
   font-size: 15px;
   font-weight: 500;
 }
 .appointment-time small {
-  font-size: 13px;
-  color: var(--prose-secondary);
-}
-.appointment-time .mn {
-  height: 88px;
-  font-size: 20px;
+  font-size: inherit;
+  font-weight: 400;
   color: var(--prose-secondary);
 }
 .agenda-add {
@@ -994,7 +996,7 @@
   grid-template-columns: repeat(7, minmax(0, 1fr));
   flex: none;
   width: 100%;
-  max-width: 760px;
+  max-width: 560px;
   margin-inline: auto;
   padding: 0 4px 8px;
   border-bottom: 1px solid var(--separator);
@@ -1673,12 +1675,12 @@
   padding: 0 4px 20px;
 }
 .day-agenda-scroll .schedule-agenda {
-  max-width: 760px;
+  max-width: 560px;
   margin-inline: auto;
 }
 .calendar-app[data-calendar-view='day'] .calendar-period-bar {
   width: 100%;
-  max-width: 760px;
+  max-width: 560px;
   margin-inline: auto;
 }
 .calendar-period-bar .day-header-lunar {
@@ -1695,9 +1697,6 @@
 }
 .day-agenda-scroll .appointment-card {
   padding-block: 12px;
-}
-.day-agenda-scroll .appointment-time {
-  width: 54px;
 }
 .schedule-empty {
   padding: 14px 4px;

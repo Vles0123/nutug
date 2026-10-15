@@ -84,6 +84,8 @@ async function close(w, d) {
   await pause(30);
   assert.equal(d.activeElement.name, 'title', 'An invalid title receives focus');
   await fill(w, d.querySelector('textarea[aria-label="' + copy.title + '"]'), 'ᠬᠤᠷᠠᠯ');
+  await fill(w, d.querySelector('textarea[aria-label="' + copy.location + '"]'), 'ᠬᠥᠬᠡ ᠬᠣᠲᠠ');
+  await fill(w, d.querySelector('textarea[aria-label="' + copy.notes + '"]'), 'ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ');
   await fill(w, d.querySelector('input[name=endDate]'), '2026-10-07');
   await click(d.querySelector('[data-action=save-event]'));
   await pause(30);
@@ -100,6 +102,10 @@ async function close(w, d) {
   assert(!d.querySelector('.appointment-editor'));
   assert.equal(d.querySelectorAll('.appointment-dots').length, 4);
   assert.equal(JSON.parse(w.localStorage.getItem(eventStorageKey)).events.length, 1);
+  assert(d.querySelector('.appointment-location').textContent.includes('ᠬᠥᠬᠡ'));
+  assert(d.querySelector('.appointment-notes'));
+  assert(d.querySelector('.appointment-card').getAttribute('aria-label').includes('ᠬᠥᠬᠡ'));
+  assert(d.querySelector('.appointment-card').getAttribute('aria-label').includes('ᠪᠢᠴᠢᠭ'));
   await click(d.querySelector('.appointment-card'));
   await click(d.querySelector('[data-action=edit-event]'));
   await fill(w, d.querySelector('textarea[aria-label="' + copy.title + '"]'), 'ᠪᠢᠴᠢᠭ');

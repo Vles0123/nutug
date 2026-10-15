@@ -54,6 +54,7 @@ private final class RenderingChecksRun: ObservableObject {
     fixture = CalendarAppointment(startDate: "2026-10-08", endDate: "2026-10-08")
     fixture.title = "ᠬᠤᠷᠠᠯ"
     fixture.notes = "ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠪᠢᠴᠢᠭ"
+    fixture.location = "ᠬᠥᠬᠡ ᠬᠣᠲᠠ"
     fixture.frequency = "weekly"
     fixture.until = "2026-10-31"
     app.calendar = calendar

@@ -248,29 +248,21 @@ struct NativeAgenda: View {
         Button {
           onOpen(item)
         } label: {
-          HStack(alignment: .top, spacing: 12) {
-            VStack(alignment: .leading, spacing: 6) {
-              if item.allDay {
-                MongolianLabel(text: Copy.calendar("allDay"), height: 76, size: 20)
-              } else {
-                VStack(alignment: .leading, spacing: 6) {
-                  Text(start)
-                  Text(end).font(.caption).foregroundStyle(.secondary)
-                }.font(.callout.monospacedDigit())
+          VStack(alignment: .leading, spacing: 8) {
+            if !item.allDay {
+              HStack(spacing: 8) {
+                (Text(start).fontWeight(.medium) + Text("–" + end).foregroundColor(.secondary))
+                  .font(.callout.monospacedDigit())
+                if item.frequency != "none" {
+                  Image(systemName: "repeat").font(.caption).foregroundStyle(.secondary)
+                }
               }
-              if item.frequency != "none" {
-                Image(systemName: "repeat").font(.caption).foregroundStyle(.secondary)
-              }
-            }.frame(width: 52, alignment: .leading)
-            Rectangle().fill(calendarEventColor(item.color, skin: skin)).frame(width: 2)
-            ScrollView(.horizontal) {
-              MongolianText(text: item.title, height: 144, size: 24, scale: scale, fitContent: true)
             }
-          }.fixedSize(horizontal: false, vertical: true).padding(.vertical, 12)
-        }.buttonStyle(.plain).accessibilityLabel(
-          item.title + " · "
-            + (item.allDay ? Copy.calendar("allDay") : start + "–" + end))
-        Divider().padding(.leading, 66)
+            agendaContent(item)
+          }.frame(maxWidth: .infinity, alignment: .leading)
+            .fixedSize(horizontal: false, vertical: true).padding(.vertical, 12)
+        }.buttonStyle(.plain).accessibilityLabel(agendaLabel(item, start: start, end: end))
+        Divider()
       }
       if items.isEmpty {
         MongolianLabel(text: Copy.calendar("empty"), height: 150, size: 22, color: .secondary)
@@ -286,6 +278,49 @@ struct NativeAgenda: View {
       }
     }
   }
+  private func agendaLabel(_ item: CalendarAppointment, start: String, end: String) -> String {
+    var parts = [item.title, item.allDay ? Copy.calendar("allDay") : start + "–" + end]
+    if item.frequency != "none" { parts.append(Copy.calendar("repeat")) }
+    if !item.location.isEmpty { parts.append(Copy.calendar("location") + " · " + item.location) }
+    if !item.notes.isEmpty { parts.append(Copy.calendar("notes") + " · " + item.notes) }
+    return parts.joined(separator: " · ")
+  }
+  private func agendaContent(_ item: CalendarAppointment) -> some View {
+    ScrollView(.horizontal) {
+      HStack(alignment: .top, spacing: 16) {
+        if item.allDay {
+          HStack(alignment: .top, spacing: 6) {
+            MongolianText(
+              text: Copy.calendar("allDay"), height: 96, size: 18, scale: scale,
+              color: .primary.opacity(0.65),
+              fitContent: true)
+            if item.frequency != "none" {
+              Image(systemName: "repeat").font(.caption).foregroundStyle(.secondary)
+            }
+          }
+        }
+        MongolianText(text: item.title, height: 96, size: 24, scale: scale, fitContent: true)
+        if !item.location.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+          HStack(alignment: .top, spacing: 6) {
+            Image(systemName: "mappin.and.ellipse").font(.caption).foregroundStyle(.secondary)
+            MongolianText(
+              text: item.location, height: 96, size: 18, scale: scale,
+              color: .primary.opacity(0.65),
+              fitContent: true)
+          }
+        }
+        if !item.notes.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+          MongolianCalendarPreview(
+            text: item.notes, size: 18, scale: scale, color: .primary.opacity(0.65)
+          )
+          .frame(width: 112 * scale, height: 96 * scale)
+        }
+      }.padding(.leading, 12)
+    }.overlay(alignment: .leading) {
+      Rectangle().fill(calendarEventColor(item.color, skin: skin)).frame(width: 2)
+    }
+  }
+
 }
 
 struct AppointmentEditor: View {

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button } from 'react-aria-components';
-import { Plus, Repeat2 } from 'lucide-react';
+import { Plus, Repeat2, MapPin } from 'lucide-react';
 import { Mn } from './ui';
+import { CalendarTitle } from './CalendarTitle';
 import { calendarCopy as copy } from './calendar-copy.mjs';
 
 export function Agenda({
@@ -24,22 +25,43 @@ export function Agenda({
             className="appointment-card"
             data-appointment={item.eventId}
             data-event-color={item.color}
-            aria-label={`${item.title} · ${item.allDay ? copy.allDay : start + '–' + end}`}
+            aria-label={[
+              item.title,
+              item.allDay ? copy.allDay : start + '–' + end,
+              item.repeat !== 'none' ? copy.repeat : '',
+              item.location?.trim() ? `${copy.location} · ${item.location}` : '',
+              item.notes?.trim() ? `${copy.notes} · ${item.notes}` : '',
+            ]
+              .filter(Boolean)
+              .join(' · ')}
             onPress={() => onOpen(item)}
           >
-            <span className="appointment-time">
-              {item.allDay ? (
-                <Mn>{copy.allDay}</Mn>
-              ) : (
+            {!item.allDay && (
+              <span className="appointment-time">
                 <span className="numeric">
                   {start}
-                  <small>{end}</small>
+                  <small>–{end}</small>
+                </span>
+                {item.repeat !== 'none' && <Repeat2 size={13} aria-label={copy.repeat} />}
+              </span>
+            )}
+            <span className="appointment-title-scroll">
+              {item.allDay && (
+                <span className="appointment-all-day">
+                  <Mn>{copy.allDay}</Mn>
+                  {item.repeat !== 'none' && <Repeat2 size={13} aria-label={copy.repeat} />}
                 </span>
               )}
-              {item.repeat !== 'none' && <Repeat2 size={13} aria-label={copy.repeat} />}
-            </span>
-            <span className="appointment-title-scroll">
               <Mn className="appointment-label">{item.title}</Mn>
+              {item.location?.trim() && (
+                <span className="appointment-location">
+                  <MapPin size={14} aria-hidden="true" />
+                  <Mn>{item.location}</Mn>
+                </span>
+              )}
+              {item.notes?.trim() && (
+                <CalendarTitle text={item.notes} className="appointment-notes" />
+              )}
             </span>
           </Button>
         );
