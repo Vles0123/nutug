@@ -1,0 +1,152 @@
+(() => {
+  'use strict';
+  const $ = (id) => document.getElementById(id),
+    body = document.body,
+    dialog = $('tl-reader');
+  $('mobilePickerHost').append($('tribePicker'));
+  function closeMenu() {
+    $('mobilePicker').hidden = true;
+    $('mobileMenu').setAttribute('aria-expanded', 'false');
+  }
+  function showScreen(screen, section = null) {
+    body.dataset.screen = screen;
+    closeMenu();
+    document
+      .querySelectorAll('[data-screen-target]')
+      .forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.screenTarget === screen)));
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    if (screen === 'graph')
+      requestAnimationFrame(() => {
+        if (body.dataset.screen !== 'graph') return;
+        $('fitTribes').click();
+        $('tribeGraph').focus({ preventScroll: true });
+      });
+    if (screen === 'detail')
+      requestAnimationFrame(() => {
+        if (body.dataset.screen !== 'detail') return;
+        const target = document.querySelector(
+          section === 'relation'
+            ? '#tribeDetail .event-description'
+            : '#tribeDetail .mobile-overview-heading h2',
+        );
+        if (!target) return;
+        target.setAttribute('tabindex', '-1');
+        if (section === 'relation') target.scrollIntoView({ behavior: 'auto', block: 'start' });
+        target.focus({ preventScroll: true });
+      });
+  }
+  for (const b of document.querySelectorAll('[data-screen-target]'))
+    b.onclick = () => showScreen(b.dataset.screenTarget);
+  $('mobileMenu').onclick = () => {
+    const open = $('mobilePicker').hidden;
+    $('mobilePicker').hidden = !open;
+    $('mobileMenu').setAttribute('aria-expanded', String(open));
+  };
+  document.addEventListener('tribes:mobile-screen', (e) =>
+    showScreen(e.detail?.screen || 'graph', e.detail?.section),
+  );
+  $('tribeLibraryJump').onclick = () => showScreen('library');
+  $('tribeGraph').setAttribute('tabindex', '-1');
+  function decorateDetail() {
+    const panel = $('tribeDetail'),
+      overview = panel.querySelector('.overview');
+    if (!overview || overview.dataset.mobileReady) return;
+    overview.dataset.mobileReady = 'true';
+    const heading = document.createElement('div');
+    heading.className = 'mobile-overview-heading';
+    const title = overview.querySelector('h2'),
+      texts = [...overview.querySelectorAll('p')];
+    heading.append(title, texts.shift());
+    overview.prepend(heading);
+    for (const p of texts) p.classList.add('mobile-text-card');
+    for (const h of [...panel.children].filter((n) => n.tagName === 'H3')) {
+      const group = document.createElement('section');
+      group.className = 'mobile-detail-group';
+      const content = document.createElement('div');
+      content.className = 'mobile-detail-content';
+      h.before(group);
+      group.append(h, content);
+      while (
+        group.nextElementSibling &&
+        group.nextElementSibling.tagName !== 'H3' &&
+        !group.nextElementSibling.classList.contains('tribal-related-reading')
+      )
+        content.append(group.nextElementSibling);
+      const description = content.querySelector('.event-description');
+      if (description) content.prepend(description);
+    }
+    for (const b of panel.querySelectorAll('.event-card')) {
+      const edge = TRIBAL_GRAPH.edges.find((e) => e.id === b.dataset.edge);
+      if (!edge) continue;
+      b.setAttribute(
+        'aria-label',
+        edge.date +
+          ' · ' +
+          TRIBAL_GRAPH.nodes[edge.from].name +
+          ' · ' +
+          TRIBAL_GRAPH.nodes[edge.to].name +
+          ' · ' +
+          edge.label,
+      );
+      b.querySelector('.date').textContent = edge.shortDate || edge.date;
+    }
+  }
+  document.addEventListener('tribes:selected', decorateDetail);
+  decorateDetail();
+  const bar = dialog.querySelector('.tl-reader-bar'),
+    count = bar.querySelector('span');
+  count.id = 'mobilePageCount';
+  const controls = document.createElement('div');
+  controls.className = 'mobile-reader-tools';
+  const buttons = {};
+  for (const [id, mark, label] of [
+    ['previous', '‹', 'ᠥᠮᠦᠨᠡᠬᠢ'],
+    ['next', '›', 'ᠳᠠᠷᠠᠭᠠᠬᠢ'],
+    ['sources', '↗', 'ᠰᠤᠷᠪᠤᠯᠵᠢ'],
+    ['related', '◎', 'ᠵᠢᠷᠤᠭ'],
+  ]) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.id = 'mobileReader-' + id;
+    b.textContent = mark;
+    b.setAttribute('aria-label', label);
+    buttons[id] = b;
+    controls.append(b);
+  }
+  count.after(controls);
+  let page = 0;
+  function readerMode(mode) {
+    dialog.dataset.readerMode = mode;
+    buttons.sources.setAttribute('aria-pressed', String(mode === 'sources'));
+    buttons.related.setAttribute('aria-pressed', String(mode === 'related'));
+    $('tl-reader-scroll').scrollTop = 0;
+  }
+  function drawPage() {
+    const ps = [...$('tl-reader-body').querySelectorAll('p')];
+    page = Math.max(0, Math.min(ps.length - 1, page));
+    ps.forEach((p, i) => (p.hidden = i !== page));
+    count.textContent = page + 1 + ' / ' + ps.length;
+    buttons.previous.disabled = page === 0;
+    buttons.next.disabled = page === ps.length - 1;
+    $('tl-reader-body').scrollLeft = 0;
+    readerMode('body');
+  }
+  buttons.previous.onclick = () => {
+    page--;
+    drawPage();
+  };
+  buttons.next.onclick = () => {
+    page++;
+    drawPage();
+  };
+  buttons.sources.onclick = () =>
+    readerMode(dialog.dataset.readerMode === 'sources' ? 'body' : 'sources');
+  buttons.related.onclick = () =>
+    readerMode(dialog.dataset.readerMode === 'related' ? 'body' : 'related');
+  document.addEventListener('tribes:reader-open', () => {
+    page = 0;
+    drawPage();
+  });
+  if (location.hash === '#tribalLibrary') showScreen('library');
+  else showScreen('graph');
+})();
