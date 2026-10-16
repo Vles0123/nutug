@@ -2,6 +2,14 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const { JSDOM, VirtualConsole } = require('jsdom');
 const pause = () => new Promise((r) => setTimeout(r, 50));
+async function waitFor(predicate) {
+  const deadline = Date.now() + 5000;
+  while (!predicate()) {
+    assert(Date.now() < deadline, 'Calendar initialization completed');
+    await pause();
+  }
+}
+
 (async () => {
   const { normalizeTheme, decodeTheme, encodeTheme } =
     await import('../shared/calendar-themes.mjs');
@@ -48,7 +56,9 @@ const pause = () => new Promise((r) => setTimeout(r, 50));
     w.HTMLAnchorElement.prototype.click = function () {};
     for (const s of w.document.querySelectorAll('script[src]'))
       w.eval(fs.readFileSync('public/' + s.getAttribute('src'), 'utf8'));
-    await pause();
+    await waitFor(
+      () => w.document.querySelector('.calendar-app') && w.document.documentElement.dataset.skin,
+    );
     return w;
   }
   const w = await boot(),
