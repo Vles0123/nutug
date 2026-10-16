@@ -1,3 +1,4 @@
+import { decodeTheme, encodeTheme } from '../shared/calendar-themes.mjs';
 import { execFileSync } from 'node:child_process';
 import { mkdir, readFile, writeFile, copyFile, cp, open } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
@@ -89,6 +90,10 @@ try {
   await mkdir(documents, { recursive: true });
   const manifest = JSON.parse(await readFile('content-dist/manifest.json', 'utf8'));
   await copyFile(resolve('content-dist', manifest.core), join(documents, 'history-fixture.json'));
+  await writeFile(
+    join(documents, 'theme-fixture.json'),
+    encodeTheme(decodeTheme(await readFile('tests/fixtures/calendar-theme.json', 'utf8'))),
+  );
   sim('launch', device, bundle);
   const generated = join(documents, 'render-checks');
   let report;
@@ -110,6 +115,15 @@ try {
     ) + '\n',
   );
   if (!report.success) throw new Error(report.error);
+  const exportedTheme = decodeTheme(await readFile(join(generated, 'theme-export.json'), 'utf8'));
+  const expectedTheme = decodeTheme(await readFile('tests/fixtures/calendar-theme.json', 'utf8'));
+  if (
+    exportedTheme.name !== expectedTheme.name ||
+    Object.keys(expectedTheme.colors).some(
+      (key) => exportedTheme.colors[key] !== expectedTheme.colors[key],
+    )
+  )
+    throw new Error('Native theme export differs from web fixture');
   console.log(
     JSON.stringify({
       success: true,

@@ -248,7 +248,7 @@ struct NativeCalendar: View {
     Button {
       panel = .edit(CalendarAppointment(startDate: model.date, endDate: model.date))
     } label: {
-      Image(systemName: "plus")
+      Image(systemName: "plus").foregroundStyle(skin.onAccent)
     }
     .buttonStyle(.borderedProminent).buttonBorderShape(.circle).accessibilityLabel(
       Copy.calendar("add"))
@@ -335,7 +335,7 @@ struct NativeCalendar: View {
           )
           .frame(width: compact ? 28 : 34, height: compact ? 28 : 34)
           .foregroundStyle(
-            current ? skin.canvas : (value == model.today ? Color.accentColor : .primary)
+            current ? skin.onAccent : (value == model.today ? Color.accentColor : skin.text)
           )
           .background(current ? Color.accentColor : .clear, in: Circle())
           if let lunar {
@@ -743,11 +743,11 @@ struct NativeCalendarTimeline: View {
               .system(size: 21, weight: .medium).monospacedDigit()
             )
             .frame(width: 32, height: 32)
-            .foregroundStyle(day == model.date ? skin.canvas : .primary)
+            .foregroundStyle(day == model.date ? skin.onAccent : skin.text)
             .background(day == model.date ? Color.accentColor : .clear, in: Circle())
             MongolianLabel(
               text: Copy.weekdays[weekday(day)], height: weekdayHeight, size: 16,
-              color: .primary.opacity(0.65)
+              color: skin.text.opacity(0.65)
             )
             .frame(height: weekdayHeight, alignment: .top)
           }.frame(maxWidth: .infinity)
@@ -871,7 +871,7 @@ struct NativeCalendarTimeline: View {
                 .secondary)
             }
           }.frame(width: columnWidth, height: days.count > 1 ? 144 : 48)
-            .foregroundStyle(day == model.date ? Color.accentColor : .primary)
+            .foregroundStyle(day == model.date ? Color.accentColor : skin.text)
         }.buttonStyle(.plain).accessibilityLabel(day + " · " + Copy.weekdays[weekday(day)])
           .disabled(day < "1901-01-01" || day > "2100-12-31")
       }
@@ -947,9 +947,9 @@ struct NativeCalendarTimeline: View {
         let minute =
           CivilCalendar.calendar.component(.hour, from: now) * 60
           + CivilCalendar.calendar.component(.minute, from: now)
-        Rectangle().fill(skin == .ink ? Color.primary : .red).frame(height: 1)
+        Rectangle().fill(skin == .ink ? skin.text : .red).frame(height: 1)
           .overlay(alignment: .leading) {
-            Circle().fill(skin == .ink ? Color.primary : .red).frame(width: 6, height: 6)
+            Circle().fill(skin == .ink ? skin.text : .red).frame(width: 6, height: 6)
           }
           .offset(y: hourHeight * CGFloat(minute) / 60).allowsHitTesting(false).accessibilityHidden(
             true)

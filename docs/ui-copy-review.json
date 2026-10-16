@@ -38,7 +38,7 @@
       "basis": "区分文章目录入口与筛选范围，补充可追溯词形用例。"
     }
   ],
-  "totals": { "entries": 209, "nativeReviewed": 0, "differingConcepts": 5 },
+  "totals": { "entries": 212, "nativeReviewed": 0, "differingConcepts": 5 },
   "differingForms": [
     {
       "concept": "all",
@@ -499,6 +499,24 @@
       "id": "calendar-app.storageError",
       "text": "ᠬᠠᠳᠠᠭᠠᠯᠠᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ",
       "context": "calendar-app / storageError",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.themeBackground",
+      "text": "ᠳᠡᠪᠢᠰᠬᠡᠷ",
+      "context": "calendar-app / themeBackground",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.themeText",
+      "text": "ᠪᠢᠴᠢᠭ",
+      "context": "calendar-app / themeText",
+      "review": "needs-native-review"
+    },
+    {
+      "id": "calendar-app.themeAccent",
+      "text": "ᠭᠣᠣᠯ ᠥᠩᠭᠡ",
+      "context": "calendar-app / themeAccent",
       "review": "needs-native-review"
     },
     {

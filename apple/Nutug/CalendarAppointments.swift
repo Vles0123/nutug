@@ -193,30 +193,50 @@ struct CalendarTransferControls: View {
   }
 }
 
-enum CalendarSkin: String, CaseIterable, Identifiable {
-  case light, dark, paper, ink
+struct CalendarSkin: Equatable, Identifiable {
+  let rawValue: String
+  var theme: CustomTheme? = nil
   var id: String { rawValue }
+  init?(rawValue: String) {
+    guard ["light", "dark", "paper", "ink"].contains(rawValue) else { return nil }
+    self.rawValue = rawValue
+  }
+  init(theme: CustomTheme) {
+    self.rawValue = "custom:" + theme.id
+    self.theme = theme
+  }
+  static let light = CalendarSkin(rawValue: "light")!
+  static let dark = CalendarSkin(rawValue: "dark")!
+  static let paper = CalendarSkin(rawValue: "paper")!
+  static let ink = CalendarSkin(rawValue: "ink")!
+  static let allCases = [light, dark, paper, ink]
   var accent: Color {
-    switch self {
-    case .light: return .blue
-    case .dark: return Color(red: 0.48, green: 0.73, blue: 1)
-    case .paper: return Color(red: 0.51, green: 0.38, blue: 0.24)
-    case .ink: return .black
+    if let theme { return Color(themeHex: theme.colors.accent) }
+    switch rawValue {
+    case "dark": return Color(red: 0.48, green: 0.73, blue: 1)
+    case "paper": return Color(red: 0.51, green: 0.38, blue: 0.24)
+    case "ink": return .black
+    default: return .blue
     }
   }
   var canvas: Color {
-    switch self {
-    case .light, .ink: return .white
-    case .dark: return Color(red: 0.11, green: 0.13, blue: 0.16)
-    case .paper: return Color(red: 1, green: 0.99, blue: 0.95)
+    if let theme { return Color(themeHex: theme.colors.background) }
+    switch rawValue {
+    case "dark": return Color(red: 0.11, green: 0.13, blue: 0.16)
+    case "paper": return Color(red: 1, green: 0.99, blue: 0.95)
+    default: return .white
     }
   }
-  var scheme: ColorScheme { self == .dark ? .dark : .light }
+  var onAccent: Color {
+    theme.map { CustomTheme.isDark($0.colors.accent) ? .white : .black } ?? canvas
+  }
+  var text: Color { theme.map { Color(themeHex: $0.colors.text) } ?? .primary }
+  var scheme: ColorScheme { (theme?.isDark ?? (self == .dark)) ? .dark : .light }
 }
 
 func calendarEventColor(_ name: String, skin: CalendarSkin = .light) -> Color {
   if skin == .ink { return .primary }
-  if skin == .dark {
+  if skin.scheme == .dark {
     switch name {
     case "green": return Color(red: 0.56, green: 0.84, blue: 0.71)
     case "orange": return Color(red: 0.91, green: 0.73, blue: 0.53)

@@ -204,6 +204,7 @@ final class HistoryStore: ObservableObject {
 
 @MainActor
 final class AppModel: ObservableObject {
+  let themes = CustomThemeStore()
   @Published var page: NutugPage = .calendar
   @Published var settingsPresented = false
   @Published var readingScale: Double {

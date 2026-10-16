@@ -27,6 +27,7 @@ import { CalendarTimeline } from './CalendarTimeline';
 import { slotTimes } from '../shared/calendar-layout.mjs';
 import { CalendarDatePicker } from './CalendarDatePicker';
 import { SkinPicker } from './SkinPicker';
+import { themeVariables, themeIsDark } from '../shared/calendar-themes.mjs';
 import {
   chineseLunisolarProvider,
   gregorianProvider,
@@ -115,13 +116,24 @@ export function CalendarWorkspace() {
   };
   useEffect(() => {
     document.title = labels.calendar;
-    document.documentElement.dataset.skin = prefs.skin;
+    const theme = prefs.themes.find((t) => `custom:${t.id}` === prefs.skin);
+    document.documentElement.dataset.skin = theme
+      ? themeIsDark(theme.colors.background)
+        ? 'dark'
+        : 'light'
+      : prefs.skin;
+    const palette = theme ? themeVariables(theme) : {};
+    for (const [key, value] of Object.entries(palette))
+      document.documentElement.style.setProperty(key, value);
     document.documentElement.style.setProperty('--reading-scale', prefs.fontScale);
     try {
       localStorage.setItem(preferenceKey, JSON.stringify(prefs));
     } catch {
       setStorageError(true);
     }
+    return () => {
+      for (const key of Object.keys(palette)) document.documentElement.style.removeProperty(key);
+    };
   }, [prefs]);
   useEffect(() => {
     if (date === previousToday.current) select(today);
@@ -507,7 +519,11 @@ export function CalendarWorkspace() {
             <Mn compact as="h2">
               {copy.appearance}
             </Mn>
-            <SkinPicker value={prefs.skin} onChange={(skin) => setPrefs({ ...prefs, skin })} />
+            <SkinPicker
+              value={prefs.skin}
+              themes={prefs.themes}
+              onUpdate={(change) => setPrefs({ ...prefs, ...change })}
+            />
           </section>
           <label className="calendar-font-setting">
             <Mn compact>{labels.type}</Mn>

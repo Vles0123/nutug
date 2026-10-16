@@ -1,5 +1,5 @@
 {
-  "reviewedOn": "2026-10-11",
+  "reviewedOn": "2026-10-16",
   "locale": "mn-Mong-CN",
   "convention": "中国境内规范传统蒙古文，内蒙古通行用法",
   "status": "source-backed-wording-review",
@@ -90,20 +90,20 @@
     }
   ],
   "totals": {
-    "entries": 73,
-    "calendarEntries": 49,
+    "entries": 76,
+    "calendarEntries": 52,
     "sharedEntries": 24,
     "replace": 14,
-    "retained": 53,
+    "retained": 56,
     "evidenceLevels": {
-      "dictionary-headword": 39,
+      "dictionary-headword": 40,
       "dictionary-phrase": 7,
       "dictionary-pattern": 7,
-      "dictionary-composition": 14,
+      "dictionary-composition": 15,
       "inflected-draft": 1,
       "partial": 2,
       "software-usage": 1,
-      "dictionary-variant": 2
+      "dictionary-variant": 3
     },
     "nativeReviewed": 0,
     "machineCheckedEntries": 0
@@ -1700,6 +1700,57 @@
           "transliteration": "caG ularil-un bicig"
         }
       ]
+    },
+    {
+      "id": "calendar-app.themeBackground",
+      "before": "ᠳᠡᠪᠢᠰᠬᠡᠷ",
+      "after": "ᠳᠡᠪᠢᠰᠬᠡᠷ",
+      "decision": "retain",
+      "meaning": "背景色",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠳᠡᠪᠢᠰᠬᠡᠷ",
+        "observedHeadword": "ᠳᠡᠪᠢᠰᠬᠡᠷ",
+        "accessedOn": "2026-10-16"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "词典第5义为背景、底色。",
+      "reviewLevel": "dictionary-headword"
+    },
+    {
+      "id": "calendar-app.themeText",
+      "before": "ᠪᠢᠴᠢᠭ",
+      "after": "ᠪᠢᠴᠢᠭ",
+      "decision": "retain",
+      "meaning": "文字色",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠪᠢᠴᠢᠭ",
+        "observedHeadword": "ᠪᠢᠴᠢᠭ᠌",
+        "accessedOn": "2026-10-16"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "词典第1义为文、文字；界面沿用既有词形。",
+      "reviewLevel": "dictionary-variant"
+    },
+    {
+      "id": "calendar-app.themeAccent",
+      "before": "ᠭᠣᠣᠯ ᠥᠩᠭᠡ",
+      "after": "ᠭᠣᠣᠯ ᠥᠩᠭᠡ",
+      "decision": "retain",
+      "meaning": "强调色",
+      "evidence": {
+        "referenceId": "imu-menghan-1999",
+        "searchMode": "headword",
+        "query": "ᠭᠣᠣᠯ ᠥᠩᠭᠡ",
+        "observedHeadword": "ᠭᠣᠣᠯ / ᠥᠩᠭᠡ",
+        "accessedOn": "2026-10-16"
+      },
+      "regionalBasis": "中国境内词典词形",
+      "reason": "以主要、颜色两个词头组合，具体界面术语保留审校记录。",
+      "reviewLevel": "dictionary-composition"
     }
   ],
   "withdrawnRecommendations": [

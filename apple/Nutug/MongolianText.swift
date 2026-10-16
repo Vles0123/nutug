@@ -69,12 +69,26 @@ private enum MongolianTypesetting {
   }
 }
 
+private struct ThemeTextKey: EnvironmentKey { static let defaultValue: Color? = nil }
+extension EnvironmentValues {
+  var themeTextColor: Color? {
+    get { self[ThemeTextKey.self] }
+    set { self[ThemeTextKey.self] = newValue }
+  }
+}
+private func themedText(_ color: Color, _ theme: Color?) -> Color {
+  guard let theme else { return color }
+  if color == .primary { return theme }
+  if color == .secondary || color == .primary.opacity(0.65) { return theme.opacity(0.7) }
+  return color
+}
 struct MongolianText: View {
   let text: String
   var height: CGFloat = 300
   var size: CGFloat = 28
   var scale: Double = 1
   var color: Color = .primary
+  @Environment(\.themeTextColor) private var themeText
   var fitContent = false
   @ScaledMetric(relativeTo: .body) private var dynamicScale: CGFloat = 1
   var body: some View {
@@ -86,7 +100,7 @@ struct MongolianText: View {
     let fittedHeight = max(
       preferredHeight, MongolianTypesetting.minimumHeight(text, size: fontSize))
     let width = MongolianTypesetting.width(text, height: fittedHeight, size: fontSize)
-    MongolianDrawing(text: text, size: fontSize, color: color)
+    MongolianDrawing(text: text, size: fontSize, color: themedText(color, themeText))
       .frame(width: width, height: fittedHeight)
       .accessibilityElement(children: .ignore)
       .accessibilityLabel(Text(verbatim: text))
@@ -108,6 +122,7 @@ struct MongolianLabel: View {
 
 // Calendar previews keep full words and their shaping controls together.
 struct MongolianCalendarPreview: View {
+  @Environment(\.themeTextColor) private var themeText
   let text: String
   var size: CGFloat = 20
   var scale: Double = 1
@@ -118,7 +133,7 @@ struct MongolianCalendarPreview: View {
       let fontSize = size * scale * dynamicScale
       let fitted = fit(width: geometry.size.width, height: geometry.size.height, size: fontSize)
       ZStack(alignment: .bottomTrailing) {
-        MongolianDrawing(text: fitted.text, size: fontSize, color: color)
+        MongolianDrawing(text: fitted.text, size: fontSize, color: themedText(color, themeText))
         if fitted.shortened {
           Image(systemName: "ellipsis").font(.system(size: 10)).foregroundStyle(color)
         }

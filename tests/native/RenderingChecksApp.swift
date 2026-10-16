@@ -14,7 +14,9 @@ private struct RenderingChecksView: View {
   @StateObject private var run = RenderingChecksRun()
   var body: some View {
     ZStack {
-      if run.screen == "editor" {
+      if run.screen == "theme-editor", let theme = run.app.themes.items.first {
+        ThemeEditor(theme: theme) { _ in }
+      } else if run.screen == "editor" {
         AppointmentEditor(draft: run.fixture, store: run.calendar.appointments)
       } else if run.screen == "history" {
         NativeHistory(store: run.history, scale: 1)
@@ -75,6 +77,35 @@ private final class RenderingChecksRun: ObservableObject {
     var screenshots: [[String: Any]] = []
     do {
       try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+      let importedTheme = try app.themes.importData(
+        Data(
+          contentsOf: directory.deletingLastPathComponent().appendingPathComponent(
+            "theme-fixture.json")))
+      try require(importedTheme.colors.background == "#F3EAD8", "Import web theme")
+      try require(CustomThemeStore().items.contains(importedTheme), "Theme survives reload")
+      try importedTheme.encoded().write(to: directory.appendingPathComponent("theme-export.json"))
+      let count = app.themes.items.count
+      var rejectedTheme = false
+      do { _ = try app.themes.importData(Data("{}".utf8)) } catch { rejectedTheme = true }
+      try require(rejectedTheme, "Reject invalid theme")
+      try require(app.themes.items.count == count, "Invalid import preserves themes")
+      var changedTheme = importedTheme
+      changedTheme.name = "ᠬᠥᠬᠡ"
+      changedTheme.colors = CustomTheme.Colors(
+        background: "#18222F", text: "#E3EDFA", accent: "#91B7EE")
+      try app.themes.save(changedTheme)
+      try require(
+        app.themes.items.count == count && CustomThemeStore().items.contains(changedTheme),
+        "Edit and persist theme")
+      try require(
+        CalendarSkin(theme: changedTheme).scheme == .dark, "Dark palette selects dark controls")
+      try app.themes.save(importedTheme)
+      let duplicateTheme = try app.themes.importData(importedTheme.encoded())
+      try require(
+        duplicateTheme.id != importedTheme.id && app.themes.items.count == count + 1,
+        "Import preserves existing theme")
+      try app.themes.remove(duplicateTheme.id)
+      try require(CustomThemeStore().items.count == count, "Delete persists")
       let store = calendar.appointments
       try require(
         Copy.weekdays.count == 7 && Copy.weekdays[6] == "ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ",
@@ -154,6 +185,20 @@ private final class RenderingChecksRun: ObservableObject {
         palette = skin
         screenshots.append(try await capture("month-" + skin.rawValue))
       }
+      app.skin = "custom:" + importedTheme.id
+      palette = CalendarSkin(theme: importedTheme)
+      screenshots.append(try await capture("custom-theme"))
+      try app.themes.save(changedTheme)
+      palette = CalendarSkin(theme: changedTheme)
+      screenshots.append(try await capture("custom-theme-dark"))
+      try app.themes.save(importedTheme)
+      palette = CalendarSkin(theme: importedTheme)
+      app.settingsPresented = true
+      screenshots.append(try await capture("custom-theme-settings"))
+      app.settingsPresented = false
+      screen = "theme-editor"
+      screenshots.append(try await capture("theme-editor"))
+      screen = "calendar"
       app.skin = "light"
       palette = .light
       for view in ["year", "week", "day"] {
@@ -200,7 +245,7 @@ private final class RenderingChecksRun: ObservableObject {
           "delete-undo", "ics-roundtrip", "vertical-input",
           "gregorian-display", "gregorian-date-jump", "gregorian-validation",
           "timeline-all-day", "timeline-overlap", "timeline-slot", "modern-weekdays",
-          "sunday-start",
+          "sunday-start", "custom-theme-roundtrip",
         ],
         "screenshots": screenshots,
       ])
@@ -222,7 +267,8 @@ private final class RenderingChecksRun: ObservableObject {
         userInfo: [NSLocalizedDescriptionKey: "No application render window"])
     }
     window.layoutIfNeeded()
-    if name.hasPrefix("editor") {
+    if name.hasPrefix("editor") || name == "theme-editor" {
+      let expected = name == "theme-editor" ? app.themes.items.first!.name : fixture.title
       func inputs(_ view: UIView) -> [WKWebView] {
         (view as? WKWebView).map { [$0] } ?? view.subviews.flatMap(inputs)
       }
@@ -235,10 +281,10 @@ private final class RenderingChecksRun: ObservableObject {
         value =
           (try? await input.evaluateJavaScript("document.getElementById('input')?.value"))
           as? String ?? ""
-        if value == fixture.title { break }
+        if value == expected { break }
         try await Task.sleep(for: .milliseconds(500))
       }
-      try require(value == fixture.title, "Native Mongolian editor restores its field value")
+      try require(value == expected, "Native Mongolian editor restores its field value")
       if let snapshot = try? await input.takeSnapshot(configuration: nil),
         let bytes = snapshot.pngData()
       {

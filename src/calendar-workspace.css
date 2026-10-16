@@ -143,7 +143,7 @@
 }
 .calendar-app-tools [data-action='new-event'] {
   background: var(--accent);
-  color: var(--canvas);
+  color: var(--on-accent, var(--canvas));
   border-radius: 50%;
 }
 .view-menu-trigger {
@@ -196,7 +196,7 @@
   background: transparent;
 }
 .calendar-app .day-cell[data-selected] .day-number {
-  color: var(--canvas);
+  color: var(--on-accent, var(--canvas));
   background: var(--accent);
 }
 .calendar-app .day-cell[data-selected] .lunar-number {
@@ -435,7 +435,7 @@
 .mini-month [data-current] {
   border-radius: 50%;
   background: var(--accent);
-  color: var(--canvas);
+  color: var(--on-accent, var(--canvas));
 }
 .mini-month .muted {
   opacity: 0.4;
@@ -1028,7 +1028,7 @@
 }
 .timeline-week-strip [aria-pressed='true'] .numeric {
   background: var(--accent);
-  color: var(--canvas);
+  color: var(--on-accent, var(--canvas));
 }
 .timeline-scroll {
   --hour-height: calc(96px * var(--reading-scale));
@@ -1561,7 +1561,7 @@
   justify-content: center;
 }
 .appointment-editor .sheet-bar .appointment-save {
-  color: var(--canvas);
+  color: var(--on-accent, var(--canvas));
   background: var(--accent);
   border-radius: 50%;
 }
@@ -1749,4 +1749,88 @@
   .calendar-app[data-calendar-view='day'] .calendar-period-bar .month-title {
     font-size: 20px;
   }
+}
+.theme-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block: 14px;
+}
+.theme-actions button {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 8px;
+  min-width: 44px;
+  border-radius: 10px;
+  background: var(--tertiary-fill);
+}
+.theme-actions .mn {
+  --control-column-height: 76px;
+  --control-font-size: 20px;
+}
+.theme-editor {
+  border-top: 1px solid var(--separator);
+  padding-top: 16px;
+}
+.theme-editor label {
+  display: grid;
+  grid-template-columns: 36px 48px minmax(0, 1fr);
+  align-items: start;
+  gap: 8px;
+  margin-block: 12px;
+}
+.theme-editor label > .mn {
+  --control-column-height: 96px;
+  --control-font-size: 20px;
+}
+.theme-editor textarea {
+  height: 108px;
+  min-width: 0;
+  width: 100%;
+  background: var(--canvas);
+  color: var(--label);
+  border: 1px solid var(--separator);
+  font-size: 24px;
+}
+.theme-editor input[type='color'] {
+  width: 48px;
+  height: 44px;
+  padding: 3px;
+  border: 1px solid var(--separator);
+  border-radius: 8px;
+}
+.theme-preview {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border: 2px solid;
+  border-radius: 12px;
+}
+.theme-preview .mn {
+  height: 108px;
+}
+.theme-preview > span {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+}
+
+.theme-manager {
+  flex: 1;
+  min-width: 0;
+}
+.theme-hex {
+  min-width: 0;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--separator);
+  border-radius: 8px;
+  background: var(--canvas);
+  color: var(--label);
+}
+.theme-editor label:has(textarea) {
+  grid-template-columns: 36px minmax(0, 1fr);
 }
