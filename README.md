@@ -95,44 +95,18 @@ open apple/Nutug.xcodeproj
 
 历史资料通过独立 JSON 接口更新，界面与内容分别发布。自托管内容源、版本更新和缓存方式见[内容接口文档](docs/content-api.md)。
 
-<details>
-<summary><strong>技术栈与目录</strong></summary>
-
-- **网页：** React、React Aria Components、Motion、Lucide、D3。
-- **Apple：** SwiftUI、CoreText、JavaScriptCore、WebKit。
-- **共享：** 日期与日程规则、传统蒙古文词表、字体和内容格式。
-- **验证：** Node.js 回归测试、Apple 构建及原生渲染检查。
-
-```text
-src/              网页组件与样式
-shared/           日期、日程与内容规则
-apple/            SwiftUI 应用与 Xcode 工程
-content-source/   历史资料、人物关系与引用
-public/           网页静态资源与本地字体
-tests/            网页、数据与原生检查
-scripts/          构建、预览与内容发布
-docs/             开发、设计与来源文档
-```
-
-源码直接在上述目录开发。上游交接快照见 [v124 整合记录](docs/upstream-v124.md)与 [v127 原始交接文档](docs/upstream/v127/README.md)。
-
-</details>
-
 ## 开发文档
 
-| 想了解什么           | 从这里开始                                                                       |
-| -------------------- | -------------------------------------------------------------------------------- |
-| 当前功能与后续范围   | [产品说明](docs/product-scope.md)                                                |
-| 模块关系与技术架构   | [架构说明](docs/architecture.md)                                                 |
-| 竖排阅读、输入与字形 | [蒙古文交互](docs/mongolian-interaction.md) · [字体说明](FONT-NOTES.md)          |
-| 界面与组件约定       | [界面设计](docs/interface.md)                                                    |
-| 原生构建与签名       | [Apple 应用](docs/apple-app.md)                                                  |
-| 内容发布与设备接入   | [内容接口](docs/content-api.md)                                                  |
-| 历史收录范围与引用   | [历史编排](docs/history-coverage.md) · [来源记录](docs/history-source-review.md) |
-| 提交改动与参与开发   | [贡献指南](CONTRIBUTING.md)                                                      |
+| 想了解什么           | 从这里开始                                                              |
+| -------------------- | ----------------------------------------------------------------------- |
+| 当前功能与后续范围   | [产品说明](docs/product-scope.md)                                       |
+| 模块关系与技术架构   | [架构说明](docs/architecture.md)                                        |
+| 竖排阅读、输入与字形 | [蒙古文交互](docs/mongolian-interaction.md) · [字体说明](FONT-NOTES.md) |
+| 原生构建与签名       | [Apple 应用](docs/apple-app.md)                                         |
+| 内容发布与设备接入   | [内容接口](docs/content-api.md)                                         |
+| 历史收录范围与引用   | [资料与来源](docs/history-source-review.md)                             |
+| 提交改动与参与开发   | [贡献指南](CONTRIBUTING.md)                                             |
 
-## 内容与许可
-
-历史内容持续扩充，来源记录保留英文与西里尔蒙古语 Wikipedia 的页面及修订信息。蒙古文审校进度见[界面词形记录](docs/calendar-language-review.json)和[翻译核对记录](docs/menksoft-review.json)。
+## 许可
 
 原创代码与编辑内容的授权标识为 **UNLICENSED**，使用授权由权利人确定。第三方组件和字体保留各自许可，详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

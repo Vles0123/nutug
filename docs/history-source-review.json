@@ -2,7 +2,7 @@
   "reviewedOn": "2026-10-09",
   "scope": "44 people, 55 relationships and 81 chronicle events spanning 209 BCE to 2024. All original 32 people, 53 relationships and 18 initial events are retained. Twelve cross-period biographies add directly sourced person entry points to 17 events.",
   "method": "Read English and Cyrillic-Mongolian Wikipedia biographies/sections; compare only the facts named in each row. Interlanguage agreement is not independent historical proof. Preserve stronger existing sources when coverage differs.",
-  "languageReview": "Event, navigation and new-person drafts are enumerated in history-copy-draft.json. Targeted dictionary corrections are separate from complete sentence proofreading; no Menksoft or native-language completion is claimed.",
+  "languageReview": "Event, navigation and new-person drafts are enumerated in history-copy-draft.json. Dictionary corrections are recorded; sentence proofreading and Menksoft checks are pending.",
   "sources": {
     "wiki-mongol-empire": {
       "title": "Mongol Empire",
@@ -1563,7 +1563,7 @@
     {
       "id": "modu",
       "status": "paired-core-facts",
-      "facts": "Xiongnu chanyu; reign 209–174 BCE and consolidation of steppe groups. Birth is approximate, c.234 BCE. No identification of Xiongnu with a modern ethnic group is asserted.",
+      "facts": "Xiongnu chanyu; reign 209–174 BCE and consolidation of steppe groups. Birth is approximate, c.234 BCE.",
       "sources": ["wiki-history-modu-en", "wiki-history-modu-mn"],
       "differences": [],
       "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed"
@@ -1652,7 +1652,7 @@
       "facts": "Eighth Jebtsundamba; khan in 1911–1919 and 1921–1924; authority limited after the 1921 revolution.",
       "sources": ["wiki-bogd-en", "wiki-bogd-mn"],
       "differences": [
-        "English and the Mongolian infobox give birth in 1869; Mongolian lead says 1870. Profile displays explicitly labelled reign intervals, not a claimed lifespan."
+        "English and the Mongolian infobox give birth in 1869; Mongolian lead says 1870. Profile displays explicitly labelled reign intervals."
       ],
       "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed"
     },
@@ -1792,7 +1792,7 @@
       "id": "ayushiridara-accession-1370",
       "sources": ["wiki-ayushiridara-en", "wiki-ayushiridara-mn"],
       "status": "paired-core-facts",
-      "note": "Accession after his father’s death in 1370 agrees; do not add an exact day."
+      "note": "Both sources place accession after his father’s death in 1370; precision is the year."
     },
     {
       "id": "maidarbal-capture-1370",
@@ -1814,7 +1814,7 @@
       "id": "hongwu-ayushiridara-letter-1370",
       "sources": [],
       "status": "primary-source-retained",
-      "note": "The precise letter and its contents are not located in the two biographies. Keep the existing Ming Taizu shilu volume 57 citation; do not mark Wikipedia verification complete.",
+      "note": "The dated letter and its contents rely on Ming Taizu shilu volume 57; the biographies provide general background.",
       "supportingSources": [
         {
           "id": "mingTaizu57",
@@ -1832,7 +1832,7 @@
       "id": "xiongnu-modu-209-bce",
       "status": "paired-core-facts",
       "sources": ["wiki-history-modu-en", "wiki-history-modu-mn"],
-      "note": "Modu became Xiongnu chanyu in 209 BCE and consolidated steppe groups. This is regional background, not a modern ethnic identity claim.",
+      "note": "Modu became Xiongnu chanyu in 209 BCE and consolidated steppe groups.",
       "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
       "peopleLinks": ["modu"],
       "peopleLinkSources": ["wiki-history-modu-en", "wiki-history-modu-mn"]
@@ -1862,7 +1862,7 @@
       "id": "shiwei-records",
       "status": "paired-with-differences",
       "sources": ["wiki-history-shiwei-en", "wiki-history-shiwei-mn"],
-      "note": "Shiwei was a historical umbrella name for northeastern Asian groups; records include Menggu Shiwei. Do not equate every Shiwei group with later Mongols. Broad attestation period; the composition and identification of individual groups are debated.",
+      "note": "Shiwei was a historical umbrella name for northeastern Asian groups; records include Menggu Shiwei. Broad attestation period; the composition and identification of individual groups are debated.",
       "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
     },
     {
@@ -1997,7 +1997,7 @@
       "id": "golden-horde-development",
       "status": "paired-core-facts",
       "sources": ["wiki-history-golden-horde-en", "wiki-history-golden-horde-mn"],
-      "note": "The Jochid ulus developed around the lower Volga under Batu; later known as the Golden Horde. Broad development period, not a single foundation day.",
+      "note": "The Jochid ulus developed around the lower Volga under Batu; later known as the Golden Horde. Dates describe a development period.",
       "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
     },
     {
@@ -2032,7 +2032,7 @@
       "id": "ilkhanate-fragmentation-1335",
       "status": "paired-core-facts",
       "sources": ["wiki-history-ilkhanate-en", "wiki-history-ilkhanate-mn"],
-      "note": "The Ilkhanate fragmented after Abu Sa’id died in 1335; no unsupported cause of death is asserted.",
+      "note": "The Ilkhanate fragmented after Abu Sa’id died in 1335.",
       "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
     },
     {
@@ -2062,7 +2062,7 @@
       "id": "esen-khagan-1453",
       "status": "paired-core-facts",
       "sources": ["wiki-history-esen-en", "wiki-history-esen-mn"],
-      "note": "Esen assumed the khagan title in 1453; his tenure was brief. Exact end/death years differ across article fields; no precise death date is included.",
+      "note": "Esen assumed the khagan title in 1453; his tenure was brief. Exact end/death years differ across article fields; the profile uses period precision.",
       "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
       "peopleLinks": ["esen"],
       "peopleLinkSources": ["wiki-history-esen-en", "wiki-history-esen-mn"]
@@ -2071,7 +2071,7 @@
       "id": "dayan-reunification",
       "status": "paired-with-differences",
       "sources": ["wiki-history-dayan-en", "wiki-history-dayan-mn"],
-      "note": "Dayan Khan and Mandukhai worked to reunify the Mongol tumens; the six-tumen order developed during his reign. Birth/accession chronology varies. Display a broad fifteenth–sixteenth-century period; 1480–1517 is an ordering interval, not a claim that unification happened in one year.",
+      "note": "Dayan Khan and Mandukhai worked to reunify the Mongol tumens; the six-tumen order developed during his reign. Birth/accession chronology varies. Display a broad fifteenth–sixteenth-century period; 1480–1517 is an ordering interval for this process.",
       "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
       "peopleLinks": ["dayan", "mandukhai"],
       "peopleLinkSources": [
@@ -2092,7 +2092,7 @@
       "id": "altan-beijing-1550",
       "status": "paired-with-differences",
       "sources": ["wiki-history-altan-en", "wiki-history-altan-mn"],
-      "note": "Altan’s forces reached Beijing’s outskirts in 1550 amid conflict over trade with Ming. Mongolian wording sometimes says Beijing was taken; English specifies the suburbs/siege. Use outskirts, not capture of the imperial city.",
+      "note": "Altan’s forces reached Beijing’s outskirts in 1550 amid conflict over trade with Ming. Mongolian wording sometimes says Beijing was taken; English specifies the suburbs/siege. The event uses the outskirts wording.",
       "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
       "peopleLinks": ["altan"],
       "peopleLinkSources": ["wiki-history-altan-en", "wiki-history-altan-mn"]
@@ -2141,7 +2141,7 @@
       "id": "qing-inner-mongolia-1636",
       "status": "paired-core-facts",
       "sources": ["wiki-history-qing-en", "wiki-history-qing-mn"],
-      "note": "Hong Taiji proclaimed Qing in 1636; many Inner Mongol princes recognized his authority. This is distinct from Khalkha’s later incorporation. Do not copy the Mongolian overview’s erroneous statement dating Ligdan’s death to 1636.",
+      "note": "Hong Taiji proclaimed Qing in 1636; many Inner Mongol princes recognized his authority. This is distinct from Khalkha’s later incorporation. The source overview’s Ligdan chronology differs from the reviewed biography.",
       "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
     },
     {
@@ -2176,14 +2176,14 @@
       "id": "dzungar-conquest-1755",
       "status": "paired-with-differences",
       "sources": ["wiki-history-dzungar-en", "wiki-history-dzungar-mn"],
-      "note": "The Qing conquest ended the Dzungar state in 1755–1758; Qing military mass killing, war and disease devastated the population. The core sequence and mass killing are supported in both versions. Population estimates differ; no numerical death toll is adopted.",
+      "note": "The Qing conquest ended the Dzungar state in 1755–1758; Qing military mass killing, war and disease devastated the population. The core sequence and mass killing are supported in both versions. Population estimates differ; the entry describes the documented sequence.",
       "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
     },
     {
       "id": "bogd-khanate-1911",
       "status": "paired-core-facts",
       "sources": ["wiki-history-revolution-1911-en", "wiki-history-revolution-1911-mn"],
-      "note": "Outer Mongolian leaders declared independence from Qing and enthroned the Bogd Jebtsundamba in 1911; this describes the declaration, not universal recognition.",
+      "note": "Outer Mongolian leaders declared independence from Qing and enthroned the Bogd Jebtsundamba in 1911; the event records the declaration.",
       "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
       "peopleLinks": ["bogd"],
       "peopleLinkSources": ["wiki-bogd-en", "wiki-bogd-mn"]
@@ -2196,7 +2196,7 @@
       "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
       "peopleLinks": ["bogd"],
       "peopleLinkSources": ["wiki-bogd-en", "wiki-bogd-mn"],
-      "peopleLinkNote": "Bogd is linked as ruler of the state whose autonomy the treaty recognized, not as a claim that he personally signed it."
+      "peopleLinkNote": "Bogd is linked as ruler of the state whose autonomy the treaty recognized."
     },
     {
       "id": "autonomy-revoked-1919",
@@ -2231,13 +2231,13 @@
       "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
       "peopleLinks": ["bogd"],
       "peopleLinkSources": ["wiki-bogd-en", "wiki-bogd-mn"],
-      "peopleLinkNote": "The event explicitly refers to Bogd’s death before proclamation of the republic; the link does not make him a participant in the later proclamation."
+      "peopleLinkNote": "The link identifies Bogd, whose death preceded the proclamation described in the event."
     },
     {
       "id": "political-repressions-1937",
       "status": "paired-with-differences",
       "sources": ["wiki-history-repressions-en", "wiki-history-repressions-mn"],
-      "note": "Political repression intensified in the Mongolian People’s Republic in 1937–1939; monks, intellectuals and other citizens were executed or imprisoned. Both versions describe the 1937–1939 peak; overall period and death estimates differ, so no death total is used.",
+      "note": "Political repression intensified in the Mongolian People’s Republic in 1937–1939; monks, intellectuals and other citizens were executed or imprisoned. Both versions describe the 1937–1939 peak; overall period and death estimates differ.",
       "languageReview": "traditional-mongolian-draft-awaiting-menksoft",
       "peopleLinks": ["choibalsan"],
       "peopleLinkSources": ["wiki-choibalsan-en", "wiki-choibalsan-mn"]
@@ -2262,7 +2262,7 @@
       "id": "independence-referendum-1945",
       "status": "paired-core-facts",
       "sources": ["wiki-history-referendum-en", "wiki-history-referendum-mn"],
-      "note": "An independence referendum was held in 1945; the Republic of China government recognized Outer Mongolian independence in early 1946. No electoral percentage is asserted.",
+      "note": "An independence referendum was held in 1945; the Republic of China government recognized Outer Mongolian independence in early 1946.",
       "languageReview": "traditional-mongolian-draft-awaiting-menksoft"
     },
     {
@@ -2766,7 +2766,7 @@
       "type": "contact",
       "status": "primary-source-retained",
       "sources": [],
-      "note": "The precise 1370 correspondence/reception is not established by the two Wikipedia biographies. Existing Ming primary-source locators retained.",
+      "note": "The precise 1370 correspondence/reception relies on the retained Ming primary-source locators.",
       "supportingSources": [
         {
           "id": "mingTaizu57",
@@ -2780,7 +2780,7 @@
       "type": "contact",
       "status": "primary-source-retained",
       "sources": [],
-      "note": "The precise 1370 correspondence/reception is not established by the two Wikipedia biographies. Existing Ming primary-source locators retained.",
+      "note": "The precise 1370 correspondence/reception relies on the retained Ming primary-source locators.",
       "supportingSources": [
         {
           "id": "mingTaizu53",
@@ -2797,7 +2797,7 @@
       "to": "mandukhai",
       "type": "spouse",
       "status": "paired-core-facts",
-      "facts": "Marriage is explicit in English and Cyrillic-Mongolian biographies of both people. No marriage year or disputed child count is asserted.",
+      "facts": "Marriage is explicit in English and Cyrillic-Mongolian biographies of both people.",
       "sources": [
         "wiki-history-dayan-en",
         "wiki-history-dayan-mn",
@@ -2810,7 +2810,7 @@
       "to": "sonam-gyatso",
       "type": "contact",
       "status": "paired-core-facts",
-      "facts": "The 1578 meeting is directly recorded in English and Mongolian material. Store only documented contact, without inventing an alliance or family link.",
+      "facts": "The 1578 meeting is directly recorded in English and Mongolian material. The relationship is recorded as contact.",
       "sources": [
         "wiki-history-altan-en",
         "wiki-sonam-gyatso-en",

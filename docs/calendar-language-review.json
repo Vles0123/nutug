@@ -78,7 +78,7 @@
       "id": "wikimedia-vector-mvf",
       "url": "https://raw.githubusercontent.com/wikimedia/mediawiki-skins-Vector/master/i18n/mvf.json",
       "use": "实际读取的传统蒙古文软件界面用例；显示/外观、阅读、历史、目录、详细内容",
-      "region": "社区维护的传统蒙古文软件语言文件；不是国家规范词典",
+      "region": "社区维护的传统蒙古文软件语言文件",
       "accessedOn": "2026-10-08"
     },
     {
@@ -143,7 +143,7 @@
         "accessedOn": "2026-10-11"
       },
       "regionalBasis": "中国境内词典词形",
-      "reason": "采用用户确认的现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
+      "reason": "采用现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
       "reviewLevel": "dictionary-phrase",
       "previousReview": {
         "before": "ᠳᠠᠪᠠᠭ᠎ᠠ",
@@ -175,7 +175,7 @@
         "accessedOn": "2026-10-11"
       },
       "regionalBasis": "中国境内词典词形",
-      "reason": "采用用户确认的现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
+      "reason": "采用现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
       "reviewLevel": "dictionary-pattern",
       "previousReview": {
         "before": "ᠮᠢᠭᠮᠠᠷ",
@@ -207,7 +207,7 @@
         "accessedOn": "2026-10-11"
       },
       "regionalBasis": "中国境内词典词形",
-      "reason": "采用用户确认的现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
+      "reason": "采用现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
       "reviewLevel": "dictionary-pattern",
       "previousReview": {
         "before": "ᠯᠬᠠᠭᠪᠠ",
@@ -239,7 +239,7 @@
         "accessedOn": "2026-10-11"
       },
       "regionalBasis": "中国境内词典词形",
-      "reason": "采用用户确认的现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
+      "reason": "采用现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
       "reviewLevel": "dictionary-pattern",
       "previousReview": {
         "before": "ᠫᠦᠷᠪᠦ",
@@ -271,7 +271,7 @@
         "accessedOn": "2026-10-11"
       },
       "regionalBasis": "中国境内词典词形",
-      "reason": "采用用户确认的现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
+      "reason": "采用现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
       "reviewLevel": "dictionary-pattern",
       "previousReview": {
         "before": "ᠪᠠᠰᠠᠩ",
@@ -303,7 +303,7 @@
         "accessedOn": "2026-10-11"
       },
       "regionalBasis": "中国境内词典词形",
-      "reason": "采用用户确认的现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
+      "reason": "采用现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
       "reviewLevel": "dictionary-pattern",
       "previousReview": {
         "before": "ᠪᠢᠮᠪᠠ",
@@ -335,7 +335,7 @@
         "accessedOn": "2026-10-11"
       },
       "regionalBasis": "中国境内词典词形",
-      "reason": "采用用户确认的现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
+      "reason": "采用现代通行星期称谓。星期日、星期一采用词典短语，其余按同一星期构词与已核对数词组合。",
       "reviewLevel": "dictionary-phrase",
       "previousReview": {
         "before": "ᠨᠶᠠᠮ",
@@ -467,7 +467,7 @@
         "transliteration": "tOlOblege(n)"
       },
       "regionalBasis": "中国境内词典词形及当前控件语境",
-      "reason": "采用中国词典明确给出的无/没有词义。此前只核查了计划名词；本轮补上空状态的否定部分。",
+      "reason": "采用词典中的“无、没有”词义，组成日程空状态提示。",
       "additionalEvidence": [
         {
           "referenceId": "imu-menghan-1999",
@@ -1008,7 +1008,7 @@
         "transliteration": "bOkO"
       },
       "regionalBasis": "中国境内词典词形及当前控件语境",
-      "reason": "补充重复对象，避免孤立的全部被理解为所有日程；这是场景组合，不是词典原句。",
+      "reason": "按重复日程场景组合词语，明确操作对象为整个重复系列。",
       "additionalEvidence": [
         {
           "referenceId": "imu-menghan-1999",
@@ -1086,7 +1086,7 @@
         "transliteration": "ungsiqu"
       },
       "regionalBasis": "中国境内词典词形及当前控件语境",
-      "reason": "中国词典实际例句支持“动词连接式 + 未能”的结构；当前具体动词组合仍不是词典原句，保留相同失败语义。",
+      "reason": "词典例句支持“动词连接式 + 未能”的结构；当前提示按此结构组合。",
       "additionalEvidence": [
         {
           "referenceId": "imu-menghan-1999",
@@ -1128,7 +1128,7 @@
         "transliteration": "qadaGalaqu"
       },
       "regionalBasis": "中国境内词典词形及当前控件语境",
-      "reason": "中国词典实际例句支持“动词连接式 + 未能”的结构；当前具体动词组合仍不是词典原句，保留相同失败语义。",
+      "reason": "词典例句支持“动词连接式 + 未能”的结构；当前提示按此结构组合。",
       "additionalEvidence": [
         {
           "referenceId": "imu-menghan-1999",
@@ -1170,7 +1170,7 @@
         "transliteration": "oroGulqu"
       },
       "regionalBasis": "中国境内词典词形及当前控件语境",
-      "reason": "已核查词干和预期意思；完整请求句的格尾、屈折和礼貌语气没有被词典逐句证实。现有校验把标题/日期/时间/重复规则错误归为同一提示，后续宜定位字段而不是再加泛化提示。",
+      "reason": "词干和含义已有记录，完整提示句的格尾、屈折与语气待审校；校验时定位到具体字段。",
       "additionalEvidence": [
         {
           "referenceId": "imu-menghan-1999",
@@ -1690,7 +1690,7 @@
         "transliteration": "caG"
       },
       "regionalBasis": "中国境内词典词形及当前控件语境",
-      "reason": "现有简称未直接命中。词典给出的日历全称更长；本轮不在来源不足时更换应用标题，保留待专门术语核对。",
+      "reason": "应用标题沿用现有简称，专门术语核对待完成。",
       "additionalEvidence": [
         {
           "referenceId": "imu-menghan-1999",
@@ -1759,7 +1759,7 @@
       "alsoAppliesTo": ["calendar-app.empty"],
       "suggested": "ᠲᠥᠯᠦᠪᠯᠡᠭᠡ",
       "final": "ᠲᠥᠯᠥᠪᠯᠡᠭᠡ",
-      "reason": "最初仅凭蒙古国词典提出的元音替换已撤回；实际查询中国境内词典后，保留符合用户所选地域基准的现有词形。"
+      "reason": "现有词形依据中国境内词典。"
     }
   ],
   "contextProposals": [
@@ -1796,8 +1796,8 @@
   ],
   "scopeLimits": [
     "calendar-copy 的 49 个标量文字键已逐项记录；dictionary-headword/phrase 表示明确词条，composition/pattern 表示词或结构依据，software-usage 表示实际软件用例，partial 保留具体未完成项。",
-    "补充核查的共享界面键覆盖日历、编年浏览、阅读器和人物关系图的 24 个实际使用项；未把未使用旧入口混入这个计数。",
-    "完整短句、操作中的语气与细节表达未被词典匹配冒充为母语审校。Menksoft 状态沿用原报告，本轮没有新增机器译文。"
+    "补充核查的共享界面键覆盖日历、编年浏览、阅读器和人物关系图的 24 个实际使用项。",
+    "完整短句、语气和细节表达待逐句审校；机器翻译进度见 menksoft-review.json。"
   ],
   "pendingPhraseOrTermIds": [
     "calendar-app.imported",

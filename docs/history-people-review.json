@@ -20,7 +20,7 @@
     {
       "id": "modu",
       "status": "paired-core-facts",
-      "facts": "Xiongnu chanyu; reign 209–174 BCE and consolidation of steppe groups. Birth is approximate, c.234 BCE. No identification of Xiongnu with a modern ethnic group is asserted.",
+      "facts": "Xiongnu chanyu; reign 209–174 BCE and consolidation of steppe groups. Birth is approximate, c.234 BCE.",
       "sources": ["wiki-history-modu-en", "wiki-history-modu-mn"],
       "differences": [],
       "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed",
@@ -343,7 +343,7 @@
       "facts": "Eighth Jebtsundamba; khan in 1911–1919 and 1921–1924; authority limited after the 1921 revolution.",
       "sources": ["wiki-bogd-en", "wiki-bogd-mn"],
       "differences": [
-        "English and the Mongolian infobox give birth in 1869; Mongolian lead says 1870. Profile displays explicitly labelled reign intervals, not a claimed lifespan."
+        "English and the Mongolian infobox give birth in 1869; Mongolian lead says 1870. Profile displays explicitly labelled reign intervals."
       ],
       "languageReview": "traditional-mongolian-draft; reused names and targeted dictionary evidence; not native-reviewed",
       "sourceLinks": [
@@ -448,7 +448,7 @@
       "to": "mandukhai",
       "type": "spouse",
       "status": "paired-core-facts",
-      "facts": "Marriage is explicit in English and Cyrillic-Mongolian biographies of both people. No marriage year or disputed child count is asserted.",
+      "facts": "Marriage is explicit in English and Cyrillic-Mongolian biographies of both people.",
       "sources": [
         "wiki-history-dayan-en",
         "wiki-history-dayan-mn",
@@ -461,7 +461,7 @@
       "to": "sonam-gyatso",
       "type": "contact",
       "status": "paired-core-facts",
-      "facts": "The 1578 meeting is directly recorded in English and Mongolian material. Store only documented contact, without inventing an alliance or family link.",
+      "facts": "The 1578 meeting is directly recorded in English and Mongolian material. The relationship is recorded as contact.",
       "sources": [
         "wiki-history-altan-en",
         "wiki-sonam-gyatso-en",

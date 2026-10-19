@@ -105,7 +105,7 @@ const report = {
       fields: ['summary', 'body[0]'],
       before: 'ᠳᠣᠣᠭᠰᠢ',
       after: 'ᠳᠣᠷᠤᠭᠰᠢ',
-      basis: '用户指出原词错误，替换形式有书写方向用例；完整句子仍列入语言审校。',
+      basis: '词形依据书写方向用例；完整句子待审校。',
     },
     {
       id: 'app.explore',
