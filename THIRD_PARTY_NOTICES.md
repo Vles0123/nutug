@@ -1,8 +1,58 @@
-# 第三方材料与使用边界
+# Third-party notices
 
-- Noto Sans Mongolian：SIL Open Font License 1.1，许可文件保留于 dist/fonts/OFL.txt。
-- lunar-javascript 1.7.7：MIT，许可文件保留于 dist/vendor/lunar-1.7.7-LICENSE.txt。
-- Natural Earth 地理底图：公有领域地图数据，来源 https://www.naturalearthdata.com/ ，具体数据集信息保留于 dist/map/physical-geography.json。
-- jsdom 26.1.0 及其依赖：仅用于开发测试，通过 npm 安装，依赖许可由各包保留。
-- 知识库包含编辑摘要和公开引用，各来源作品使用权分别适用。提供链接不代表有权复制整部作品。未打包第三方原始语料压缩包。
-- 原创网站代码和编辑内容尚未指定统一开源许可证；公开仓库不等于另行授予使用和再分发许可。
+## Onon Sonin Sans
+
+- Project typeface: `public/fonts/OnonSoninSans.ttf`
+- Web format: `public/fonts/OnonSoninSans.woff2`
+- Copyright: Typeface (C) iMit&Onon. 2017-2018. All Rights Reserved
+- Preserved notice: `public/fonts/OnonSoninSans-NOTICE.txt`
+
+## Noto Sans Mongolian
+
+- Bundled file: `public/fonts/NotoSansMongolian-Regular.ttf`
+- Version recorded in this source snapshot: 3.002
+- Copyright 2022 The Noto Project Authors
+- License: SIL Open Font License 1.1
+- Complete required notice: `public/fonts/OFL.txt`
+- Upstream release: https://github.com/notofonts/mongolian/releases/tag/NotoSansMongolian-v3.002
+
+Distribute the font together with its bundled OFL notice.
+
+## lunar-javascript
+
+- Bundled file: `public/vendor/lunar-1.7.7.js`
+- Version: 1.7.7
+- Copyright (c) 2018 6tail
+- License: MIT
+- Complete required notice: `public/vendor/lunar-1.7.7-LICENSE.txt`
+- Upstream project: https://github.com/6tail/lunar-javascript
+- SHA-256: `9750324bfe1aa63c146f8c72b1143df924466c11c8a5277d7d9225c541a18aaa`
+
+The included almanac-core regression test verifies the pinned file hash and presence of the MIT notice.
+
+## Referenced texts and historical sources
+
+Article and graph data retain source URLs and attribution fields for evidence and further reading. Reuse of external works follows the rights specified by their respective providers.
+
+## Project code and editorial material
+
+Original website code and editorial content carry the `UNLICENSED` package identifier. Permissions for that material are determined by the rights holder. The component licenses above apply to their respective bundled files.
+
+## React web interface
+
+The interface bundles these pinned npm packages and their dependencies during `npm run build`:
+
+- React and React DOM 19.3.0 — MIT.
+- React Aria Components 1.21.1 — Apache-2.0.
+- Motion 14.0.0 — MIT.
+- Lucide React 1.51.0 — ISC.
+- D3 Force 3.0.0 — ISC; the D3 dependency notices are also retained in `tests/fixtures/legacy/vendor/d3-LICENSE.txt`.
+- ICAL.js 2.2.1 — MPL-2.0; used for calendar file parsing and serialization, with its original license included in the generated notices.
+
+The generated `public/assets/THIRD_PARTY_LICENSES.txt` collects the license files for packages included in the browser bundle. esbuild also preserves bundled legal comments in `nutug.js.LEGAL.txt`.
+
+Apple's iOS/iPadOS 27 Figma resource is used as a component and design-token reference. The source component nodes are recorded in `src/apple-reference.json`. Web icons come from Lucide and the Mongolian typeface remains Onon Sonin Sans.
+
+## Archived v124 snapshot
+
+The original v124 notices are preserved in `docs/upstream/v124/THIRD_PARTY_NOTICES.md`. That archive includes public-domain Natural Earth map data with dataset attribution inside its source ZIP.

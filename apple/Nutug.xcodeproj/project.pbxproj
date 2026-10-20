@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+  "classes" = {
+  };
+  "objectVersion" = "56";
+  "archiveVersion" = "1";
+  "objects" = {
+    "566931A69C0C4E52930CA2C6" = {
+      "isa" = "PBXSourcesBuildPhase";
+      "buildActionMask" = "2147483647";
+      "files" = ("ADEDF6DA48DD498FA3632991","F945BEB2E9744491990B64CE","3D5F9CB744D74BA8B0B2CB66","890F5065A92B425C8B95F239","635469693A394B3DA23F3847","DB1EDD59DB6147408E6DB2D6","40F5CC16ABD54D50B133915D","14E4351DC87D40E2ACEA8CB3","887478A2B7B846558B8B7717","A0B045B3FE894C7787570EBF","5B6CBA5D97A44E0EBA6889DD");
+      "runOnlyForDeploymentPostprocessing" = "0";
+    };
+    "002000000000000000000004" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "001000000000000000000004";
+    };
+    "59E1BEE911F66DA37FEBACDC" = {
+      "isa" = "XCBuildConfiguration";
+      "buildSettings" = {
+        "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad" = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+        "MARKETING_VERSION" = "1.0.0";
+        "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone" = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+        "SUPPORTED_PLATFORMS" = "macosx iphoneos iphonesimulator";
+        "CLANG_ENABLE_MODULES" = "YES";
+        "INFOPLIST_KEY_LSApplicationCategoryType" = "public.app-category.productivity";
+        "PRODUCT_BUNDLE_IDENTIFIER" = "cn.nutug.calendar";
+        "CURRENT_PROJECT_VERSION" = "1";
+        "ENABLE_USER_SCRIPT_SANDBOXING" = "YES";
+        "INFOPLIST_KEY_CFBundleDisplayName" = "ᠴᠠᠭ ᠲᠣᠭ᠎ᠠ";
+        "MACOSX_DEPLOYMENT_TARGET" = "14.0";
+        "INFOPLIST_KEY_UILaunchScreen_Generation" = "YES";
+        "SUPPORTS_MACCATALYST" = "NO";
+        "DEBUG_INFORMATION_FORMAT" = "dwarf";
+        "TARGETED_DEVICE_FAMILY" = "1,2";
+        "CODE_SIGN_STYLE" = "Automatic";
+        "SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
+        "SDKROOT" = "auto";
+        "SWIFT_VERSION" = "5.0";
+        "PRODUCT_NAME" = "NutugCalendar";
+        "IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+        "INFOPLIST_KEY_UIApplicationSceneManifest_Generation" = "YES";
+        "SWIFT_EMIT_LOC_STRINGS" = "NO";
+        "GENERATE_INFOPLIST_FILE" = "YES";
+      };
+      "name" = "Debug";
+    };
+    "862894B703A6DEDF96A9DD6C" = {
+      "isa" = "XCConfigurationList";
+      "defaultConfigurationIsVisible" = "0";
+      "defaultConfigurationName" = "Release";
+      "buildConfigurations" = ("AB52CB08E0FDF02BF6C67C33","5283471FF90C511CFE244FFF");
+    };
+    "F05BB46DC7874FCBA3CADB61" = {
+      "path" = "NutugHistory.app";
+      "isa" = "PBXFileReference";
+      "includeInIndex" = "0";
+      "explicitFileType" = "wrapper.application";
+      "sourceTree" = "BUILT_PRODUCTS_DIR";
+    };
+    "4C260E8D5F03951901BB5AF4" = {
+      "path" = "Resources/public";
+      "isa" = "PBXFileReference";
+      "name" = "public";
+      "lastKnownFileType" = "folder";
+      "sourceTree" = "SOURCE_ROOT";
+    };
+    "887478A2B7B846558B8B7717" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "B895B322832CBEB5C579BC73";
+    };
+    "CCDA781FD5CF4BD6B7BEE0A7" = {
+      "isa" = "XCBuildConfiguration";
+      "buildSettings" = {
+        "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad" = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+        "MARKETING_VERSION" = "1.0.0";
+        "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone" = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+        "SUPPORTED_PLATFORMS" = "macosx iphoneos iphonesimulator";
+        "CLANG_ENABLE_MODULES" = "YES";
+        "INFOPLIST_KEY_LSApplicationCategoryType" = "public.app-category.education";
+        "PRODUCT_BUNDLE_IDENTIFIER" = "cn.nutug.history";
+        "CURRENT_PROJECT_VERSION" = "1";
+        "ENABLE_USER_SCRIPT_SANDBOXING" = "YES";
+        "INFOPLIST_KEY_CFBundleDisplayName" = "ᠲᠡᠦᠬᠡ";
+        "MACOSX_DEPLOYMENT_TARGET" = "14.0";
+        "INFOPLIST_KEY_UILaunchScreen_Generation" = "YES";
+        "SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "$(inherited) NUTUG_HISTORY";
+        "SUPPORTS_MACCATALYST" = "NO";
+        "DEBUG_INFORMATION_FORMAT" = "dwarf";
+        "TARGETED_DEVICE_FAMILY" = "1,2";
+        "CODE_SIGN_STYLE" = "Automatic";
+        "SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
+        "SDKROOT" = "auto";
+        "SWIFT_VERSION" = "5.0";
+        "PRODUCT_NAME" = "NutugHistory";
+        "IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+        "INFOPLIST_KEY_UIApplicationSceneManifest_Generation" = "YES";
+        "SWIFT_EMIT_LOC_STRINGS" = "NO";
+        "GENERATE_INFOPLIST_FILE" = "YES";
+      };
+      "name" = "Debug";
+    };
+    "3509DED53341474D85BF9919" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "357D5C60D3094317A119BEF9";
+    };
+    "A0B045B3FE894C7787570EBF" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "357D5C60D3094317A119BEF9";
+    };
+    "6A3195A71A274786BDC507ED" = {
+      "isa" = "XCBuildConfiguration";
+      "buildSettings" = {
+        "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad" = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+        "MARKETING_VERSION" = "1.0.0";
+        "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone" = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+        "SUPPORTED_PLATFORMS" = "macosx iphoneos iphonesimulator";
+        "CLANG_ENABLE_MODULES" = "YES";
+        "INFOPLIST_KEY_LSApplicationCategoryType" = "public.app-category.education";
+        "PRODUCT_BUNDLE_IDENTIFIER" = "cn.nutug.history";
+        "CURRENT_PROJECT_VERSION" = "1";
+        "ENABLE_USER_SCRIPT_SANDBOXING" = "YES";
+        "INFOPLIST_KEY_CFBundleDisplayName" = "ᠲᠡᠦᠬᠡ";
+        "MACOSX_DEPLOYMENT_TARGET" = "14.0";
+        "INFOPLIST_KEY_UILaunchScreen_Generation" = "YES";
+        "SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "$(inherited) NUTUG_HISTORY";
+        "SUPPORTS_MACCATALYST" = "NO";
+        "DEBUG_INFORMATION_FORMAT" = "dwarf-with-dsym";
+        "TARGETED_DEVICE_FAMILY" = "1,2";
+        "CODE_SIGN_STYLE" = "Automatic";
+        "SWIFT_OPTIMIZATION_LEVEL" = "-O";
+        "SDKROOT" = "auto";
+        "SWIFT_VERSION" = "5.0";
+        "PRODUCT_NAME" = "NutugHistory";
+        "IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+        "INFOPLIST_KEY_UIApplicationSceneManifest_Generation" = "YES";
+        "SWIFT_EMIT_LOC_STRINGS" = "NO";
+        "GENERATE_INFOPLIST_FILE" = "YES";
+      };
+      "name" = "Release";
+    };
+    "F6B5F45FFF55524ACEAAED39" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "6FC0A0AA26B095D01079FAE2";
+    };
+    "6C1E2ECA5B811B817AAE3952" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "4C260E8D5F03951901BB5AF4";
+    };
+    "3C040653A9584092BB5F9568" = {
+      "isa" = "PBXResourcesBuildPhase";
+      "buildActionMask" = "2147483647";
+      "files" = ("72891581B86E4EA29CE85692");
+      "runOnlyForDeploymentPostprocessing" = "0";
+    };
+    "F4C425279CD5DDD18FD6DC6D" = {
+      "isa" = "XCBuildConfiguration";
+      "buildSettings" = {
+        "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad" = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+        "MARKETING_VERSION" = "1.0.0";
+        "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone" = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+        "SUPPORTED_PLATFORMS" = "macosx iphoneos iphonesimulator";
+        "CLANG_ENABLE_MODULES" = "YES";
+        "INFOPLIST_KEY_LSApplicationCategoryType" = "public.app-category.productivity";
+        "PRODUCT_BUNDLE_IDENTIFIER" = "cn.nutug.calendar";
+        "CURRENT_PROJECT_VERSION" = "1";
+        "ENABLE_USER_SCRIPT_SANDBOXING" = "YES";
+        "INFOPLIST_KEY_CFBundleDisplayName" = "ᠴᠠᠭ ᠲᠣᠭ᠎ᠠ";
+        "MACOSX_DEPLOYMENT_TARGET" = "14.0";
+        "INFOPLIST_KEY_UILaunchScreen_Generation" = "YES";
+        "SUPPORTS_MACCATALYST" = "NO";
+        "DEBUG_INFORMATION_FORMAT" = "dwarf-with-dsym";
+        "TARGETED_DEVICE_FAMILY" = "1,2";
+        "CODE_SIGN_STYLE" = "Automatic";
+        "SWIFT_OPTIMIZATION_LEVEL" = "-O";
+        "SDKROOT" = "auto";
+        "SWIFT_VERSION" = "5.0";
+        "PRODUCT_NAME" = "NutugCalendar";
+        "IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+        "INFOPLIST_KEY_UIApplicationSceneManifest_Generation" = "YES";
+        "SWIFT_EMIT_LOC_STRINGS" = "NO";
+        "GENERATE_INFOPLIST_FILE" = "YES";
+      };
+      "name" = "Release";
+    };
+    "0E8A3AD980EC179856012B7E" = {
+      "productType" = "com.apple.product-type.application";
+      "productReference" = "C5BA2F1BDDF9000888BF07C4";
+      "buildConfigurationList" = "C57128001CE614BF8549D6BB";
+      "productName" = "NutugCalendar";
+      "isa" = "PBXNativeTarget";
+      "buildPhases" = ("BCE16DD0260827ECF338C787","7561BFB015D8F536760CB671","0189424A5A60FED329FA868E");
+      "dependencies" = ();
+      "name" = "NutugCalendar";
+      "buildRules" = ();
+    };
+    "0189424A5A60FED329FA868E" = {
+      "isa" = "PBXResourcesBuildPhase";
+      "buildActionMask" = "2147483647";
+      "files" = ("6C1E2ECA5B811B817AAE3952");
+      "runOnlyForDeploymentPostprocessing" = "0";
+    };
+    "C97A0D8B20C14FD69679A2F3" = {
+      "path" = "MongolianTextInput.swift";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "sourceTree" = "<group>";
+    };
+    "14E4351DC87D40E2ACEA8CB3" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "4A08B6DD861601EF9DAE5668";
+    };
+    "115A9B040A2E64A464D8C75F" = {
+      "path" = "RootView.swift";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "sourceTree" = "<group>";
+    };
+    "C5BA2F1BDDF9000888BF07C4" = {
+      "path" = "NutugCalendar.app";
+      "isa" = "PBXFileReference";
+      "includeInIndex" = "0";
+      "explicitFileType" = "wrapper.application";
+      "sourceTree" = "BUILT_PRODUCTS_DIR";
+    };
+    "001000000000000000000001" = {
+      "path" = "CalendarEngine.swift";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "sourceTree" = "<group>";
+    };
+    "E50290A24C49A459B43487C5" = {
+      "isa" = "PBXGroup";
+      "sourceTree" = "<group>";
+      "children" = ("4D820FADAFBC7A1FCACC4F07","4C260E8D5F03951901BB5AF4","BFE00B156DCFC34C4751A6E5","053F575EB4BE45EB8B82152A");
+    };
+    "C57128001CE614BF8549D6BB" = {
+      "isa" = "XCConfigurationList";
+      "defaultConfigurationIsVisible" = "0";
+      "defaultConfigurationName" = "Release";
+      "buildConfigurations" = ("59E1BEE911F66DA37FEBACDC","F4C425279CD5DDD18FD6DC6D");
+    };
+    "3D5F9CB744D74BA8B0B2CB66" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "001000000000000000000002";
+    };
+    "001000000000000000000002" = {
+      "path" = "NativeCalendar.swift";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "sourceTree" = "<group>";
+    };
+    "AB52CB08E0FDF02BF6C67C33" = {
+      "isa" = "XCBuildConfiguration";
+      "buildSettings" = {
+        "CLANG_ENABLE_MODULES" = "YES";
+      };
+      "name" = "Debug";
+    };
+    "BCE16DD0260827ECF338C787" = {
+      "isa" = "PBXSourcesBuildPhase";
+      "buildActionMask" = "2147483647";
+      "files" = ("002000000000000000000004","002000000000000000000001","002000000000000000000002","002000000000000000000003","A0814F832B7879DEEF319DAF","D07D33E6EB9F55B36B8D3605","F6B5F45FFF55524ACEAAED39","EDFF2A2BEA628F30B6F7677E","F9FC84F6F896616240E1C78C","3509DED53341474D85BF9919","44E25F97DC7F4FFCB714D4EF");
+      "runOnlyForDeploymentPostprocessing" = "0";
+    };
+    "44E25F97DC7F4FFCB714D4EF" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "C97A0D8B20C14FD69679A2F3";
+    };
+    "40F5CC16ABD54D50B133915D" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "6FC0A0AA26B095D01079FAE2";
+    };
+    "001000000000000000000003" = {
+      "path" = "NativeHistory.swift";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "sourceTree" = "<group>";
+    };
+    "7561BFB015D8F536760CB671" = {
+      "isa" = "PBXFrameworksBuildPhase";
+      "buildActionMask" = "2147483647";
+      "files" = ();
+      "runOnlyForDeploymentPostprocessing" = "0";
+    };
+    "B895B322832CBEB5C579BC73" = {
+      "path" = "WebContentView.swift";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "sourceTree" = "<group>";
+    };
+    "FB20237C70FA4FED9B7A78E9" = {
+      "productType" = "com.apple.product-type.application";
+      "productReference" = "F05BB46DC7874FCBA3CADB61";
+      "buildConfigurationList" = "808C7F896CC54CDFAA96A607";
+      "productName" = "NutugHistory";
+      "isa" = "PBXNativeTarget";
+      "buildPhases" = ("566931A69C0C4E52930CA2C6","415371EB74C943ECBD5E8768","3C040653A9584092BB5F9568");
+      "dependencies" = ();
+      "name" = "NutugHistory";
+      "buildRules" = ();
+    };
+    "BFE00B156DCFC34C4751A6E5" = {
+      "isa" = "PBXGroup";
+      "name" = "Products";
+      "children" = ("C5BA2F1BDDF9000888BF07C4","F05BB46DC7874FCBA3CADB61","2FFE63904E0D4FDD931FA7F0");
+      "sourceTree" = "<group>";
+    };
+    "5283471FF90C511CFE244FFF" = {
+      "isa" = "XCBuildConfiguration";
+      "buildSettings" = {
+        "CLANG_ENABLE_MODULES" = "YES";
+      };
+      "name" = "Release";
+    };
+    "DB1EDD59DB6147408E6DB2D6" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "115A9B040A2E64A464D8C75F";
+    };
+    "001000000000000000000004" = {
+      "path" = "Orthography.swift";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "sourceTree" = "<group>";
+    };
+    "635469693A394B3DA23F3847" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "D561B15278C7896DEABF7DEC";
+    };
+    "6FC0A0AA26B095D01079FAE2" = {
+      "path" = "AppModel.swift";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "sourceTree" = "<group>";
+    };
+    "357D5C60D3094317A119BEF9" = {
+      "path" = "CalendarAppointments.swift";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "sourceTree" = "<group>";
+    };
+    "808C7F896CC54CDFAA96A607" = {
+      "isa" = "XCConfigurationList";
+      "defaultConfigurationIsVisible" = "0";
+      "defaultConfigurationName" = "Release";
+      "buildConfigurations" = ("CCDA781FD5CF4BD6B7BEE0A7","6A3195A71A274786BDC507ED");
+    };
+    "D07D33E6EB9F55B36B8D3605" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "115A9B040A2E64A464D8C75F";
+    };
+    "890F5065A92B425C8B95F239" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "001000000000000000000003";
+    };
+    "415371EB74C943ECBD5E8768" = {
+      "isa" = "PBXFrameworksBuildPhase";
+      "buildActionMask" = "2147483647";
+      "files" = ();
+      "runOnlyForDeploymentPostprocessing" = "0";
+    };
+    "98F54143AB4E86B28C3AFEE0" = {
+      "buildConfigurationList" = "862894B703A6DEDF96A9DD6C";
+      "targets" = ("0E8A3AD980EC179856012B7E","FB20237C70FA4FED9B7A78E9","A50931AD7E4C47199FE0E47B");
+      "developmentRegion" = "mn-Mong-CN";
+      "knownRegions" = ("mn-Mong-CN","Base");
+      "isa" = "PBXProject";
+      "compatibilityVersion" = "Xcode 14.0";
+      "productRefGroup" = "BFE00B156DCFC34C4751A6E5";
+      "projectDirPath" = "";
+      "attributes" = {
+        "LastUpgradeCheck" = "2700";
+        "BuildIndependentTargetsInParallel" = "YES";
+      };
+      "hasScannedForEncodings" = "0";
+      "projectRoot" = "";
+      "mainGroup" = "E50290A24C49A459B43487C5";
+    };
+    "002000000000000000000001" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "001000000000000000000001";
+    };
+    "F945BEB2E9744491990B64CE" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "001000000000000000000001";
+    };
+    "D561B15278C7896DEABF7DEC" = {
+      "path" = "NutugApp.swift";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "sourceTree" = "<group>";
+    };
+    "72891581B86E4EA29CE85692" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "4C260E8D5F03951901BB5AF4";
+    };
+    "002000000000000000000002" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "001000000000000000000002";
+    };
+    "5B6CBA5D97A44E0EBA6889DD" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "C97A0D8B20C14FD69679A2F3";
+    };
+    "F9FC84F6F896616240E1C78C" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "B895B322832CBEB5C579BC73";
+    };
+    "EDFF2A2BEA628F30B6F7677E" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "4A08B6DD861601EF9DAE5668";
+    };
+    "4D820FADAFBC7A1FCACC4F07" = {
+      "path" = "Nutug";
+      "isa" = "PBXGroup";
+      "children" = ("001000000000000000000004","001000000000000000000001","001000000000000000000002","001000000000000000000003","D561B15278C7896DEABF7DEC","115A9B040A2E64A464D8C75F","6FC0A0AA26B095D01079FAE2","4A08B6DD861601EF9DAE5668","B895B322832CBEB5C579BC73","357D5C60D3094317A119BEF9","C97A0D8B20C14FD69679A2F3");
+      "sourceTree" = "<group>";
+    };
+    "002000000000000000000003" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "001000000000000000000003";
+    };
+    "ADEDF6DA48DD498FA3632991" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "001000000000000000000004";
+    };
+    "A0814F832B7879DEEF319DAF" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "D561B15278C7896DEABF7DEC";
+    };
+    "4A08B6DD861601EF9DAE5668" = {
+      "path" = "MongolianText.swift";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "sourceTree" = "<group>";
+    };
+    "053F575EB4BE45EB8B82152A" = {
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "path" = "../tests/native/RenderingChecksApp.swift";
+      "sourceTree" = "SOURCE_ROOT";
+    };
+    "5B23281B4E424A8681AC22F0" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "053F575EB4BE45EB8B82152A";
+    };
+    "314F24AD2E9F4385BB0DFD1B" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "001000000000000000000004";
+    };
+    "57AD53BB7F8543FFB61F0BCA" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "001000000000000000000001";
+    };
+    "E4C4B0F6898C4A50A74A8272" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "001000000000000000000002";
+    };
+    "926AC762C40E46CEBF021408" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "001000000000000000000003";
+    };
+    "55DEDFF6082E4E27A9F06B6D" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "115A9B040A2E64A464D8C75F";
+    };
+    "7F429242AAC142B6B940DD3F" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "6FC0A0AA26B095D01079FAE2";
+    };
+    "7D33692D208F4973A2284E1F" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "4A08B6DD861601EF9DAE5668";
+    };
+    "5A09E8AD3ADF488E8ED4EB13" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "B895B322832CBEB5C579BC73";
+    };
+    "C036B02847FF4C9C81A4E512" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "357D5C60D3094317A119BEF9";
+    };
+    "9E80C512656C4D5291BD8971" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "C97A0D8B20C14FD69679A2F3";
+    };
+    "A06B0AF79DF84B0A918E7F0B" = {
+      "isa" = "PBXSourcesBuildPhase";
+      "buildActionMask" = "2147483647";
+      "files" = ("314F24AD2E9F4385BB0DFD1B","57AD53BB7F8543FFB61F0BCA","E4C4B0F6898C4A50A74A8272","926AC762C40E46CEBF021408","55DEDFF6082E4E27A9F06B6D","7F429242AAC142B6B940DD3F","7D33692D208F4973A2284E1F","5A09E8AD3ADF488E8ED4EB13","C036B02847FF4C9C81A4E512","9E80C512656C4D5291BD8971","5B23281B4E424A8681AC22F0");
+      "runOnlyForDeploymentPostprocessing" = "0";
+    };
+    "61FC361611164B949718D456" = {
+      "isa" = "PBXFrameworksBuildPhase";
+      "buildActionMask" = "2147483647";
+      "files" = ();
+      "runOnlyForDeploymentPostprocessing" = "0";
+    };
+    "3A63695F2F4C4A59B31B4343" = {
+      "isa" = "PBXResourcesBuildPhase";
+      "buildActionMask" = "2147483647";
+      "files" = ("6C1E2ECA5B811B817AAE3952");
+      "runOnlyForDeploymentPostprocessing" = "0";
+    };
+    "114480E3554B4273B88B4E8D" = {
+      "isa" = "XCBuildConfiguration";
+      "buildSettings" = {
+        "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad" = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+        "MARKETING_VERSION" = "1.0.0";
+        "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone" = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+        "SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
+        "CLANG_ENABLE_MODULES" = "YES";
+        "INFOPLIST_KEY_LSApplicationCategoryType" = "public.app-category.productivity";
+        "PRODUCT_BUNDLE_IDENTIFIER" = "cn.nutug.renderchecks";
+        "CURRENT_PROJECT_VERSION" = "1";
+        "ENABLE_USER_SCRIPT_SANDBOXING" = "YES";
+        "INFOPLIST_KEY_CFBundleDisplayName" = "NutugRenderChecks";
+        "MACOSX_DEPLOYMENT_TARGET" = "14.0";
+        "INFOPLIST_KEY_UILaunchScreen_Generation" = "YES";
+        "SUPPORTS_MACCATALYST" = "NO";
+        "DEBUG_INFORMATION_FORMAT" = "dwarf";
+        "TARGETED_DEVICE_FAMILY" = "1,2";
+        "CODE_SIGN_STYLE" = "Automatic";
+        "SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
+        "SDKROOT" = "auto";
+        "SWIFT_VERSION" = "5.0";
+        "PRODUCT_NAME" = "NutugRenderChecks";
+        "IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+        "INFOPLIST_KEY_UIApplicationSceneManifest_Generation" = "YES";
+        "SWIFT_EMIT_LOC_STRINGS" = "NO";
+        "GENERATE_INFOPLIST_FILE" = "YES";
+        "SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "$(inherited) DEBUG";
+      };
+      "name" = "Debug";
+    };
+    "2926F39C99D04987B48B1961" = {
+      "isa" = "XCBuildConfiguration";
+      "buildSettings" = {
+        "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad" = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+        "MARKETING_VERSION" = "1.0.0";
+        "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone" = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+        "SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
+        "CLANG_ENABLE_MODULES" = "YES";
+        "INFOPLIST_KEY_LSApplicationCategoryType" = "public.app-category.productivity";
+        "PRODUCT_BUNDLE_IDENTIFIER" = "cn.nutug.renderchecks";
+        "CURRENT_PROJECT_VERSION" = "1";
+        "ENABLE_USER_SCRIPT_SANDBOXING" = "YES";
+        "INFOPLIST_KEY_CFBundleDisplayName" = "NutugRenderChecks";
+        "MACOSX_DEPLOYMENT_TARGET" = "14.0";
+        "INFOPLIST_KEY_UILaunchScreen_Generation" = "YES";
+        "SUPPORTS_MACCATALYST" = "NO";
+        "DEBUG_INFORMATION_FORMAT" = "dwarf-with-dsym";
+        "TARGETED_DEVICE_FAMILY" = "1,2";
+        "CODE_SIGN_STYLE" = "Automatic";
+        "SWIFT_OPTIMIZATION_LEVEL" = "-O";
+        "SDKROOT" = "auto";
+        "SWIFT_VERSION" = "5.0";
+        "PRODUCT_NAME" = "NutugRenderChecks";
+        "IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+        "INFOPLIST_KEY_UIApplicationSceneManifest_Generation" = "YES";
+        "SWIFT_EMIT_LOC_STRINGS" = "NO";
+        "GENERATE_INFOPLIST_FILE" = "YES";
+        "SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "$(inherited) DEBUG";
+      };
+      "name" = "Release";
+    };
+    "EB7203CB0BAA4213ADB202FA" = {
+      "isa" = "XCConfigurationList";
+      "defaultConfigurationIsVisible" = "0";
+      "defaultConfigurationName" = "Release";
+      "buildConfigurations" = ("114480E3554B4273B88B4E8D","2926F39C99D04987B48B1961");
+    };
+    "2FFE63904E0D4FDD931FA7F0" = {
+      "isa" = "PBXFileReference";
+      "explicitFileType" = "wrapper.application";
+      "includeInIndex" = "0";
+      "path" = "NutugRenderChecks.app";
+      "sourceTree" = "BUILT_PRODUCTS_DIR";
+    };
+    "A50931AD7E4C47199FE0E47B" = {
+      "productType" = "com.apple.product-type.application";
+      "productReference" = "2FFE63904E0D4FDD931FA7F0";
+      "buildConfigurationList" = "EB7203CB0BAA4213ADB202FA";
+      "productName" = "NutugRenderChecks";
+      "isa" = "PBXNativeTarget";
+      "buildPhases" = ("A06B0AF79DF84B0A918E7F0B","61FC361611164B949718D456","3A63695F2F4C4A59B31B4343");
+      "dependencies" = ();
+      "name" = "NutugRenderChecks";
+      "buildRules" = ();
+    };
+  };
+  "rootObject" = "98F54143AB4E86B28C3AFEE0";
+}

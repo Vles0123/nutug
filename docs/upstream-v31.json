@@ -1,0 +1,59 @@
+{
+  "upstreamCommit": "ff267c0bf6db6ff20383a32bcd4d9d346bf2250c",
+  "sourceCommit": "62ef22f676466cb6d6697543d54023fa5c73a34d",
+  "archive": {
+    "url": "https://github.com/Vles0123/nutug/blob/ff267c0bf6db6ff20383a32bcd4d9d346bf2250c/nutug-v31-source.zip",
+    "sha256": "d828de0afcd5697ef0f5ff9ce05d12e07b69749bbc4f655ac959f66399548ce6",
+    "files": 49
+  },
+  "imported": {
+    "previousArticles": 30,
+    "addedArticles": 444,
+    "totalArticles": 474,
+    "citationUrls": 514
+  },
+  "retainedLocalEdits": {
+    "articleIds": [
+      "tribal-alliances",
+      "orkhon-peoples",
+      "yuan-dadu",
+      "paiza-object",
+      "vertical-script",
+      "tsogtu-inscriptions",
+      "seasonal-pastoralism",
+      "ger-craft",
+      "naadam",
+      "long-song",
+      "reading-histories",
+      "question-sources",
+      "todo-clear-script",
+      "soyombo-script",
+      "phags-pa-script",
+      "morin-khuur",
+      "deel-clothing",
+      "relay-posts",
+      "sacred-site-practices",
+      "burkhan-khaldun",
+      "sorghaghtani-beki",
+      "toregene-qatun",
+      "northern-yuan-continuity",
+      "oirat-kalmyk-histories",
+      "tsagaan-sar-visits",
+      "biyelgee-small-space",
+      "shagai-shooting-songs",
+      "camel-coaxing-song",
+      "airag-hide-vessel",
+      "altai-uriankhai-tsuur"
+    ],
+    "upstreamConflict": "tribal-alliances.body",
+    "reason": "Retain reviewed direct wording, display labels and original-reading metadata."
+  },
+  "unchangedUpstreamData": [
+    "data.js",
+    "tribes-data.js",
+    "tribal-knowledge-data.js",
+    "calendar-data.js",
+    "almanac-data.js",
+    "chinese-almanac-core.js"
+  ]
+}

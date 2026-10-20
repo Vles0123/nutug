@@ -1,0 +1,114 @@
+const readLegacy = require('./legacy-assets.cjs');
+const assert = require('node:assert'),
+  fs = require('node:fs'),
+  vm = require('node:vm'),
+  { JSDOM } = require('jsdom');
+const d = vm.runInNewContext(
+  fs.readFileSync('content-source/tribes-data.js', 'utf8') + ';TRIBAL_GRAPH',
+);
+const ids = Object.keys(d.nodes);
+assert(ids.length >= 6);
+assert(d.edges.length >= 6);
+assert.equal(new Set(d.edges.map((e) => e.id)).size, d.edges.length);
+for (const [id, n] of Object.entries(d.nodes)) {
+  assert(n.name && n.kind && n.summary);
+  assert(n.sources.length);
+  for (const key of n.sources) assert(d.sources[key], id + ' missing source ' + key);
+}
+for (const e of d.edges) {
+  assert(d.nodes[e.from] && d.nodes[e.to]);
+  assert(['alliance', 'conflict', 'submission'].includes(e.type));
+  assert(['early', 'middle', 'late'].includes(e.period));
+  assert(e.date && e.label && e.summary);
+  assert(e.sources.length);
+  for (const key of e.sources) assert(d.sources[key]);
+}
+for (const s of Object.values(d.sources)) assert(/^https:\/\//.test(s.url));
+for (const [width, height] of [
+  [390, 510],
+  [430, 570],
+  [840, 600],
+]) {
+  const w = new JSDOM(fs.readFileSync('tests/fixtures/legacy/tribes.html', 'utf8'), {
+    runScripts: 'outside-only',
+    url: 'https://nutug.cn/tribes.html',
+  }).window;
+  w.SVGElement.prototype.getBoundingClientRect = () => ({ width, height });
+  w.ResizeObserver = class {
+    observe() {}
+  };
+  w.eval(
+    ['vendor/d3-force-3.0.0.js', 'network-layout.js', 'data.js', 'tribes-data.js', 'tribes.js']
+      .map((f) => readLegacy(f))
+      .join('\n'),
+  );
+  const doc = w.document;
+  assert.equal(doc.querySelectorAll('.tribe-node').length, ids.length);
+  assert.equal(doc.querySelectorAll('.tribe-edge').length, d.edges.length);
+  assert.equal(doc.querySelectorAll('#tribePicker button').length, ids.length);
+  for (const per of ['early', 'middle', 'late', 'all']) {
+    doc.querySelector(`[data-period="${per}"]`).click();
+    const edges = d.edges.filter((e) => per === 'all' || e.period === per);
+    assert.equal(doc.querySelectorAll('.tribe-edge').length, edges.length);
+    for (const e of edges) {
+      doc
+        .querySelector(`[data-edge-id="${e.id}"]`)
+        .dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
+      assert.equal(doc.querySelectorAll('.tribe-edge.chosen').length, 1);
+      assert.equal(doc.querySelector('.event-description').textContent, e.summary);
+      assert(
+        doc.querySelector('#tribeDetail a.source') ||
+          doc.querySelector('#tribeDetail .source-links a'),
+      );
+    }
+    for (const id of ids) {
+      doc.querySelector(`[data-tribe-picker="${id}"]`).click();
+      assert.equal(doc.querySelector('.tribe-node.selected').dataset.tribe, id);
+      const related = edges.filter((e) => e.from === id || e.to === id);
+      assert.equal(doc.querySelectorAll('.event-card').length, related.length);
+      if (!related.length) assert(doc.querySelector('.empty'));
+    }
+  }
+  doc.getElementById('fitTribes').click();
+  const vb = doc.getElementById('tribeGraph').getAttribute('viewBox').split(' ').map(Number);
+  assert(vb.every(Number.isFinite));
+  for (const node of doc.querySelectorAll('.tribe-node')) {
+    const xy = node
+      .getAttribute('transform')
+      .match(/-?[\d.]+/g)
+      .map(Number);
+    assert(xy[0] >= vb[0] && xy[0] + 220 <= vb[0] + vb[2]);
+    assert(xy[1] >= vb[1] && xy[1] + 280 <= vb[1] + vb[3]);
+  }
+  doc.getElementById('plus').click();
+  assert(+doc.getElementById('tribeGraph').getAttribute('viewBox').split(' ')[2] < vb[2]);
+  doc.getElementById('minus').click();
+  assert(
+    Math.abs(+doc.getElementById('tribeGraph').getAttribute('viewBox').split(' ')[2] - vb[2]) <
+      0.01,
+  );
+  assert(
+    !/[\u3400-\u9fff\u0400-\u04ff]/.test(doc.body.textContent),
+    'Traditional Mongolian displayed prose',
+  );
+  assert(!doc.querySelector('a[download]'));
+}
+const index = fs.readFileSync('tests/fixtures/legacy/index.html', 'utf8');
+assert(index.includes('href="tribes.html"'));
+console.log(
+  JSON.stringify({
+    nodes: ids.length,
+    edges: d.edges.length,
+    passed: [
+      'source integrity',
+      'three dated periods and all-period view',
+      'every tribe and edge selection',
+      'empty states',
+      'all-node fit at three mocked aspect ratios',
+      'zoom',
+      'traditional Mongolian rendered text',
+      'existing atlas entry',
+    ],
+    environment: 'jsdom with mocked SVG geometry',
+  }),
+);

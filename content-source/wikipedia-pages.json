@@ -1,0 +1,1262 @@
+[
+  {
+    "id": "wiki-mongol-empire",
+    "language": "en",
+    "page": "Mongol Empire",
+    "title": "ᠶᠡᠬᠡ ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ",
+    "revisionId": 1378170057
+  },
+  {
+    "id": "wiki-genghis-khan",
+    "language": "en",
+    "page": "Genghis Khan",
+    "title": "ᠲᠡᠮᠦᠵᠢᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1379007070
+  },
+  {
+    "id": "wiki-yuan",
+    "language": "en",
+    "page": "Yuan dynasty",
+    "title": "ᠶᠤᠸᠠᠨ ᠤᠯᠤᠰ",
+    "revisionId": 1377782070
+  },
+  {
+    "id": "wiki-toregene",
+    "language": "en",
+    "page": "Töregene Khatun",
+    "title": "ᠳᠥᠷᠡᠭᠡᠨᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1377001136
+  },
+  {
+    "id": "wiki-jochi-en",
+    "language": "en",
+    "page": "Jochi",
+    "title": "ᠵᠦᠴᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1372163395
+  },
+  {
+    "id": "wiki-yesugei-en",
+    "language": "en",
+    "page": "Yesugei",
+    "title": "ᠶᠢᠰᠦᠭᠡᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1373053559
+  },
+  {
+    "id": "wiki-yesugei-mn",
+    "language": "mn",
+    "page": "Есүхэй баатар",
+    "title": "ᠶᠢᠰᠦᠭᠡᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 840713
+  },
+  {
+    "id": "wiki-hoelun-en",
+    "language": "en",
+    "page": "Hö'elün",
+    "title": "ᠥᠭᠡᠯᠦᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1369928359
+  },
+  {
+    "id": "wiki-hoelun-mn",
+    "language": "mn",
+    "page": "Өэлүн",
+    "title": "ᠥᠭᠡᠯᠦᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 850086
+  },
+  {
+    "id": "wiki-temujin-mn",
+    "language": "mn",
+    "page": "Чингис хаан",
+    "title": "ᠲᠡᠮᠦᠵᠢᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 872728
+  },
+  {
+    "id": "wiki-borte-en",
+    "language": "en",
+    "page": "Börte",
+    "title": "ᠪᠥᠷᠲᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1371041540
+  },
+  {
+    "id": "wiki-borte-mn",
+    "language": "mn",
+    "page": "Бөртэ үжин",
+    "title": "ᠪᠥᠷᠲᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 848319
+  },
+  {
+    "id": "wiki-jochi-mn",
+    "language": "mn",
+    "page": "Зүчи",
+    "title": "ᠵᠦᠴᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 857321
+  },
+  {
+    "id": "wiki-chagatai-en",
+    "language": "en",
+    "page": "Chagatai Khan",
+    "title": "ᠴᠠᠭᠠᠳᠠᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1369183605
+  },
+  {
+    "id": "wiki-chagatai-mn",
+    "language": "mn",
+    "page": "Цагадай",
+    "title": "ᠴᠠᠭᠠᠳᠠᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 841483
+  },
+  {
+    "id": "wiki-ogedei-en",
+    "language": "en",
+    "page": "Ögedei Khan",
+    "title": "ᠥᠭᠡᠳᠡᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1377651581
+  },
+  {
+    "id": "wiki-ogedei-mn",
+    "language": "mn",
+    "page": "Өгэдэй хаан",
+    "title": "ᠥᠭᠡᠳᠡᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 870229
+  },
+  {
+    "id": "wiki-toregene-mn",
+    "language": "mn",
+    "page": "Дөргөнэ",
+    "title": "ᠳᠥᠷᠡᠭᠡᠨᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 865641
+  },
+  {
+    "id": "wiki-tolui-en",
+    "language": "en",
+    "page": "Tolui",
+    "title": "ᠲᠣᠯᠤᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1378112943
+  },
+  {
+    "id": "wiki-tolui-mn",
+    "language": "mn",
+    "page": "Тулуй",
+    "title": "ᠲᠣᠯᠤᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 841755
+  },
+  {
+    "id": "wiki-sorghaghtani-en",
+    "language": "en",
+    "page": "Sorghaghtani Beki",
+    "title": "ᠰᠣᠷᠬᠤᠭᠲᠠᠨᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1368287362
+  },
+  {
+    "id": "wiki-sorghaghtani-mn",
+    "language": "mn",
+    "page": "Сорхагтани Бэхи",
+    "title": "ᠰᠣᠷᠬᠤᠭᠲᠠᠨᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 869703
+  },
+  {
+    "id": "wiki-guyuk-en",
+    "language": "en",
+    "page": "Güyük Khan",
+    "title": "ᠭᠦᠶᠦᠭ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1376532753
+  },
+  {
+    "id": "wiki-guyuk-mn",
+    "language": "mn",
+    "page": "Гүюг хаан",
+    "title": "ᠭᠦᠶᠦᠭ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 859035
+  },
+  {
+    "id": "wiki-mongke-en",
+    "language": "en",
+    "page": "Möngke Khan",
+    "title": "ᠮᠥᠩᠬᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1375554835
+  },
+  {
+    "id": "wiki-mongke-mn",
+    "language": "mn",
+    "page": "Мөнх хаан",
+    "title": "ᠮᠥᠩᠬᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 840324
+  },
+  {
+    "id": "wiki-kublai-en",
+    "language": "en",
+    "page": "Kublai Khan",
+    "title": "ᠬᠤᠪᠢᠯᠠᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1376691119
+  },
+  {
+    "id": "wiki-kublai-mn",
+    "language": "mn",
+    "page": "Хубилай хаан",
+    "title": "ᠬᠤᠪᠢᠯᠠᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 871885
+  },
+  {
+    "id": "wiki-chabi-en",
+    "language": "en",
+    "page": "Chabi",
+    "title": "ᠴᠠᠪᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1367465775
+  },
+  {
+    "id": "wiki-chabi-mn",
+    "language": "mn",
+    "page": "Чаби хатан",
+    "title": "ᠴᠠᠪᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 855753
+  },
+  {
+    "id": "wiki-ariq-en",
+    "language": "en",
+    "page": "Ariq Böke",
+    "title": "ᠠᠷᠢᠭᠪᠥᠬᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1367480551
+  },
+  {
+    "id": "wiki-ariq-mn",
+    "language": "mn",
+    "page": "Аригбуха хаан",
+    "title": "ᠠᠷᠢᠭᠪᠥᠬᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 858714
+  },
+  {
+    "id": "wiki-zhenjin-en",
+    "language": "en",
+    "page": "Zhenjin",
+    "title": "ᠴᠢᠩᠭᠢᠮ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1365294840
+  },
+  {
+    "id": "wiki-zhenjin-mn",
+    "language": "mn",
+    "page": "Чингим",
+    "title": "ᠴᠢᠩᠭᠢᠮ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 859178
+  },
+  {
+    "id": "wiki-temur-en",
+    "language": "en",
+    "page": "Temür Khan",
+    "title": "ᠲᠡᠮᠦᠷ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1367748674
+  },
+  {
+    "id": "wiki-temur-mn",
+    "language": "mn",
+    "page": "Төмөр Өлзийт хаан",
+    "title": "ᠲᠡᠮᠦᠷ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 840363
+  },
+  {
+    "id": "wiki-darmabala-en",
+    "language": "en",
+    "page": "Darmabala",
+    "title": "ᠳᠠᠷᠮᠠᠪᠠᠯᠠ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1365294850
+  },
+  {
+    "id": "wiki-darmabala-mn",
+    "language": "mn",
+    "page": "Дармабала",
+    "title": "ᠳᠠᠷᠮᠠᠪᠠᠯᠠ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 849295
+  },
+  {
+    "id": "wiki-qaishan-en",
+    "language": "en",
+    "page": "Külüg Khan",
+    "title": "ᠬᠠᠢᠰᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1367863120
+  },
+  {
+    "id": "wiki-qaishan-mn",
+    "language": "mn",
+    "page": "Хайсан хүлэг хаан",
+    "title": "ᠬᠠᠢᠰᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 840483
+  },
+  {
+    "id": "wiki-kusala-en",
+    "language": "en",
+    "page": "Khutughtu Khan Kusala",
+    "title": "ᠬᠦᠰᠡᠯᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1366202242
+  },
+  {
+    "id": "wiki-kusala-mn",
+    "language": "mn",
+    "page": "Хүслэн хаан",
+    "title": "ᠬᠦᠰᠡᠯᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 869835
+  },
+  {
+    "id": "wiki-toghon-en",
+    "language": "en",
+    "page": "Toghon Temür",
+    "title": "ᠲᠣᠭᠣᠨᠲᠡᠮᠦᠷ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1373355982
+  },
+  {
+    "id": "wiki-toghon-mn",
+    "language": "mn",
+    "page": "Тогоонтөмөр хаан",
+    "title": "ᠲᠣᠭᠣᠨᠲᠡᠮᠦᠷ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 869849
+  },
+  {
+    "id": "wiki-toghrul-en",
+    "language": "en",
+    "page": "Toghrul",
+    "title": "ᠲᠣᠭᠣᠷᠢᠯ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1376378630
+  },
+  {
+    "id": "wiki-toghrul-mn",
+    "language": "mn",
+    "page": "Тоорил хан",
+    "title": "ᠲᠣᠭᠣᠷᠢᠯ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 840681
+  },
+  {
+    "id": "wiki-jamukha-en",
+    "language": "en",
+    "page": "Jamukha",
+    "title": "ᠵᠠᠮᠤᠬ᠎ᠠ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1368294424
+  },
+  {
+    "id": "wiki-jamukha-mn",
+    "language": "mn",
+    "page": "Жамуха",
+    "title": "ᠵᠠᠮᠤᠬ᠎ᠠ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 832521
+  },
+  {
+    "id": "wiki-batu-en",
+    "language": "en",
+    "page": "Batu Khan",
+    "title": "ᠪᠠᠲᠤ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1370297553
+  },
+  {
+    "id": "wiki-batu-mn",
+    "language": "mn",
+    "page": "Бат хаан",
+    "title": "ᠪᠠᠲᠤ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 865006
+  },
+  {
+    "id": "wiki-hulegu-en",
+    "language": "en",
+    "page": "Hulegu Khan",
+    "title": "ᠬᠦᠯᠡᠭᠦ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1368839446
+  },
+  {
+    "id": "wiki-hulegu-mn",
+    "language": "mn",
+    "page": "Хүлэгү",
+    "title": "ᠬᠦᠯᠡᠭᠦ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 860168
+  },
+  {
+    "id": "wiki-berke-en",
+    "language": "en",
+    "page": "Berke",
+    "title": "ᠪᠡᠷᠬᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1369785575
+  },
+  {
+    "id": "wiki-berke-mn",
+    "language": "mn",
+    "page": "Бэрх",
+    "title": "ᠪᠡᠷᠬᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 834566
+  },
+  {
+    "id": "wiki-tumbinai-en",
+    "language": "en",
+    "page": "Tumbinai Khan",
+    "title": "ᠲᠤᠮᠪᠢᠨᠠᠢ ᠰᠡᠴᠡᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1358737261
+  },
+  {
+    "id": "wiki-tumbinai-mn",
+    "language": "mn",
+    "page": "Тумбинай сэцэн",
+    "title": "ᠲᠤᠮᠪᠢᠨᠠᠢ ᠰᠡᠴᠡᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 811879
+  },
+  {
+    "id": "wiki-khabul-en",
+    "language": "en",
+    "page": "Khabul Khan",
+    "title": "ᠬᠠᠪᠤᠯ ᠬᠠᠭᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1375704495
+  },
+  {
+    "id": "wiki-khabul-mn",
+    "language": "mn",
+    "page": "Хабул хан",
+    "title": "ᠬᠠᠪᠤᠯ ᠬᠠᠭᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 830680
+  },
+  {
+    "id": "wiki-bartan-mn",
+    "language": "mn",
+    "page": "Бартан баатар",
+    "title": "ᠪᠠᠷᠲᠠᠨ ᠪᠠᠭᠠᠲᠤᠷ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 872171
+  },
+  {
+    "id": "wiki-ayushiridara-en",
+    "language": "en",
+    "page": "Biligtü Khan Ayushiridara",
+    "title": "ᠠᠶᠤᠱᠢᠷᠢᠳᠠᠷ᠎ᠠ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1365692672
+  },
+  {
+    "id": "wiki-ayushiridara-mn",
+    "language": "mn",
+    "page": "Аюушридар хаан",
+    "title": "ᠠᠶᠤᠱᠢᠷᠢᠳᠠᠷ᠎ᠠ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 840604
+  },
+  {
+    "id": "wiki-maidarbal-en",
+    "language": "en",
+    "page": "Maidilibala",
+    "title": "ᠮᠠᠶᠢᠳᠠᠷᠪᠠᠯ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1358812690
+  },
+  {
+    "id": "wiki-hongwu-en",
+    "language": "en",
+    "page": "Hongwu Emperor",
+    "title": "ᠮᠢᠩ ᠦᠨ ᠲᠠᠢᠵᠦ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1377364608
+  },
+  {
+    "id": "wiki-hongwu-mn",
+    "language": "mn",
+    "page": "Хунъү",
+    "title": "ᠮᠢᠩ ᠦᠨ ᠲᠠᠢᠵᠦ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 854823
+  },
+  {
+    "id": "wiki-history-modu-en",
+    "language": "en",
+    "page": "Modu Chanyu",
+    "title": "ᠮᠣᠳᠤᠨ ᠱᠠᠨᠶᠦᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1378883373
+  },
+  {
+    "id": "wiki-history-modu-mn",
+    "language": "mn",
+    "page": "Модун шаньюй",
+    "title": "ᠮᠣᠳᠤᠨ ᠱᠠᠨᠶᠦᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 847278
+  },
+  {
+    "id": "wiki-history-xianbei-en",
+    "language": "en",
+    "page": "Xianbei",
+    "title": "ᠰᠢᠶᠠᠨᠪᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1378948076
+  },
+  {
+    "id": "wiki-history-xianbei-mn",
+    "language": "mn",
+    "page": "Сяньби",
+    "title": "ᠰᠢᠶᠠᠨᠪᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 842523
+  },
+  {
+    "id": "wiki-history-rouran-en",
+    "language": "en",
+    "page": "Yujiulü Shelun",
+    "title": "ᠵᠠᠷᠤᠨ ᠬᠠᠭᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1373162866
+  },
+  {
+    "id": "wiki-history-rouran-mn",
+    "language": "mn",
+    "page": "Жарун хаан",
+    "title": "ᠵᠠᠷᠤᠨ ᠬᠠᠭᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 747436
+  },
+  {
+    "id": "wiki-history-turkic-en",
+    "language": "en",
+    "page": "First Turkic Khaganate",
+    "title": "ᠲᠦᠷᠦᠭ ᠦᠨ ᠤᠯᠤᠰ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1379022883
+  },
+  {
+    "id": "wiki-history-turkic-mn",
+    "language": "mn",
+    "page": "Хөх Түрэгийн хаант улс",
+    "title": "ᠲᠦᠷᠦᠭ ᠦᠨ ᠤᠯᠤᠰ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 868399
+  },
+  {
+    "id": "wiki-history-shiwei-en",
+    "language": "en",
+    "page": "Shiwei people",
+    "title": "ᠱᠢᠸᠡᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1323127134
+  },
+  {
+    "id": "wiki-history-shiwei-mn",
+    "language": "mn",
+    "page": "Шивэй",
+    "title": "ᠱᠢᠸᠡᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 710861
+  },
+  {
+    "id": "wiki-history-uyghur-en",
+    "language": "en",
+    "page": "Uyghur Khaganate",
+    "title": "ᠤᠶᠢᠭᠤᠷ ᠤᠨ ᠤᠯᠤᠰ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1374695350
+  },
+  {
+    "id": "wiki-history-uyghur-mn",
+    "language": "mn",
+    "page": "Уйгур улс",
+    "title": "ᠤᠶᠢᠭᠤᠷ ᠤᠨ ᠤᠯᠤᠰ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 842842
+  },
+  {
+    "id": "wiki-history-liao-en",
+    "language": "en",
+    "page": "Liao dynasty",
+    "title": "ᠬᠢᠳᠠᠨ ᠤᠨ ᠤᠯᠤᠰ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1378418430
+  },
+  {
+    "id": "wiki-history-liao-mn",
+    "language": "mn",
+    "page": "Хидан Улс",
+    "title": "ᠬᠢᠳᠠᠨ ᠤᠨ ᠤᠯᠤᠰ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 837225
+  },
+  {
+    "id": "wiki-history-khamag-en",
+    "language": "en",
+    "page": "Khamag Mongol",
+    "title": "ᠬᠠᠮᠤᠭ ᠮᠣᠩᠭᠣᠯ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1375857061
+  },
+  {
+    "id": "wiki-history-khamag-mn",
+    "language": "mn",
+    "page": "Хамаг Монгол",
+    "title": "ᠬᠠᠮᠤᠭ ᠮᠣᠩᠭᠣᠯ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 849757
+  },
+  {
+    "id": "wiki-history-script-en",
+    "language": "en",
+    "page": "Mongolian script",
+    "title": "ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1369934665
+  },
+  {
+    "id": "wiki-history-script-mn",
+    "language": "mn",
+    "page": "Монгол бичиг",
+    "title": "ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 871762
+  },
+  {
+    "id": "wiki-history-xia-en",
+    "language": "en",
+    "page": "Mongol conquest of Western Xia",
+    "title": "ᠲᠠᠩᠭᠤᠳ ᠤᠨ ᠠᠶᠠᠨ ᠳᠠᠶᠢᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1370628488
+  },
+  {
+    "id": "wiki-history-xia-mn",
+    "language": "mn",
+    "page": "Монголчууд Тангудыг дайлсан нь",
+    "title": "ᠲᠠᠩᠭᠤᠳ ᠤᠨ ᠠᠶᠠᠨ ᠳᠠᠶᠢᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 820877
+  },
+  {
+    "id": "wiki-history-jin-en",
+    "language": "en",
+    "page": "Mongol conquest of the Jin dynasty",
+    "title": "ᠠᠯᠲᠠᠨ ᠤᠯᠤᠰ ᠤᠨ ᠠᠶᠠᠨ ᠳᠠᠶᠢᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1370628492
+  },
+  {
+    "id": "wiki-history-jin-mn",
+    "language": "mn",
+    "page": "Монголчууд Алтан улсыг дайлсан нь",
+    "title": "ᠠᠯᠲᠠᠨ ᠤᠯᠤᠰ ᠤᠨ ᠠᠶᠠᠨ ᠳᠠᠶᠢᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 820735
+  },
+  {
+    "id": "wiki-history-khwarazm-en",
+    "language": "en",
+    "page": "Mongol invasion of the Khwarazmian Empire",
+    "title": "ᠬᠣᠷᠠᠽᠮ ᠤᠨ ᠠᠶᠠᠨ ᠳᠠᠶᠢᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1374047957
+  },
+  {
+    "id": "wiki-history-khwarazm-mn",
+    "language": "mn",
+    "page": "Монголчуудын Хорезм рүү хийсэн дайралт",
+    "title": "ᠬᠣᠷᠠᠽᠮ ᠤᠨ ᠠᠶᠠᠨ ᠳᠠᠶᠢᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 845761
+  },
+  {
+    "id": "wiki-history-kalka-en",
+    "language": "en",
+    "page": "Battle of the Kalka River",
+    "title": "ᠺᠠᠯᠺᠠ ᠭᠣᠣᠯ ᠤᠨ ᠲᠤᠯᠤᠯᠳᠤᠭᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1377835066
+  },
+  {
+    "id": "wiki-history-kalka-mn",
+    "language": "mn",
+    "page": "Калка голын тулалдаан",
+    "title": "ᠺᠠᠯᠺᠠ ᠭᠣᠣᠯ ᠤᠨ ᠲᠤᠯᠤᠯᠳᠤᠭᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 857608
+  },
+  {
+    "id": "wiki-history-karakorum-en",
+    "language": "en",
+    "page": "Karakorum",
+    "title": "ᠬᠠᠷ᠎ᠠ ᠬᠣᠷᠤᠮ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1378588956
+  },
+  {
+    "id": "wiki-history-karakorum-mn",
+    "language": "mn",
+    "page": "Хархорум",
+    "title": "ᠬᠠᠷ᠎ᠠ ᠬᠣᠷᠤᠮ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 857779
+  },
+  {
+    "id": "wiki-history-europe-en",
+    "language": "en",
+    "page": "Mongol invasion of Europe",
+    "title": "ᠡᠦ᠋ᠷᠣᠫᠠ ᠶᠢᠨ ᠠᠶᠠᠨ ᠳᠠᠶᠢᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1379043900
+  },
+  {
+    "id": "wiki-history-europe-mn",
+    "language": "mn",
+    "page": "Монголчуудын Европ дахь байлдан дагуулалт",
+    "title": "ᠡᠦ᠋ᠷᠣᠫᠠ ᠶᠢᠨ ᠠᠶᠠᠨ ᠳᠠᠶᠢᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 865092
+  },
+  {
+    "id": "wiki-history-secret-history-en",
+    "language": "en",
+    "page": "Secret History of the Mongols",
+    "title": "ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠨᠢᠭᠤᠴᠠ ᠲᠣᠪᠴᠢᠶᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1372015757
+  },
+  {
+    "id": "wiki-history-secret-history-mn",
+    "language": "mn",
+    "page": "Монголын Нууц Товчоо",
+    "title": "ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠨᠢᠭᠤᠴᠠ ᠲᠣᠪᠴᠢᠶᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 853798
+  },
+  {
+    "id": "wiki-history-golden-horde-en",
+    "language": "en",
+    "page": "Golden Horde",
+    "title": "ᠠᠯᠲᠠᠨ ᠣᠷᠳᠤ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1375905749
+  },
+  {
+    "id": "wiki-history-golden-horde-mn",
+    "language": "mn",
+    "page": "Алтан Орд",
+    "title": "ᠠᠯᠲᠠᠨ ᠣᠷᠳᠤ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 866299
+  },
+  {
+    "id": "wiki-history-ilkhanate-en",
+    "language": "en",
+    "page": "Ilkhanate",
+    "title": "ᠡᠯ ᠬᠠᠨ ᠤ ᠤᠯᠤᠰ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1375525200
+  },
+  {
+    "id": "wiki-history-ilkhanate-mn",
+    "language": "mn",
+    "page": "Ил Хаант Улс",
+    "title": "ᠡᠯ ᠬᠠᠨ ᠤ ᠤᠯᠤᠰ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 862444
+  },
+  {
+    "id": "wiki-history-baghdad-en",
+    "language": "en",
+    "page": "Siege of Baghdad",
+    "title": "ᠪᠠᠭᠳᠠᠳ ᠤᠨ ᠪᠦᠰᠡᠯᠡᠯᠲᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1378473365
+  },
+  {
+    "id": "wiki-history-baghdad-mn",
+    "language": "mn",
+    "page": "Монголчууд Багдадыг эзэлсэн нь",
+    "title": "ᠪᠠᠭᠳᠠᠳ ᠤᠨ ᠪᠦᠰᠡᠯᠡᠯᠲᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 821657
+  },
+  {
+    "id": "wiki-history-ain-jalut-en",
+    "language": "en",
+    "page": "Battle of Ain Jalut",
+    "title": "ᠠᠶᠢᠨ ᠵᠠᠯᠤᠲ ᠤᠨ ᠲᠤᠯᠤᠯᠳᠤᠭᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1375442659
+  },
+  {
+    "id": "wiki-history-ain-jalut-mn",
+    "language": "mn",
+    "page": "Айн Жалутын тулалдаан",
+    "title": "ᠠᠶᠢᠨ ᠵᠠᠯᠤᠲ ᠤᠨ ᠲᠤᠯᠤᠯᠳᠤᠭᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 865596
+  },
+  {
+    "id": "wiki-history-japan-en",
+    "language": "en",
+    "page": "Mongol invasions of Japan",
+    "title": "ᠶᠠᠫᠣᠨ ᠤ ᠠᠶᠠᠨ ᠳᠠᠶᠢᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1375332661
+  },
+  {
+    "id": "wiki-history-japan-mn",
+    "language": "mn",
+    "page": "Монголчуудын Япон руу хийсэн довтолгоо",
+    "title": "ᠶᠠᠫᠣᠨ ᠤ ᠠᠶᠠᠨ ᠳᠠᠶᠢᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 856487
+  },
+  {
+    "id": "wiki-history-chagatai-khanate-en",
+    "language": "en",
+    "page": "Chagatai Khanate",
+    "title": "ᠴᠠᠭᠠᠳᠠᠢ ᠶᠢᠨ ᠤᠯᠤᠰ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1377015617
+  },
+  {
+    "id": "wiki-history-chagatai-khanate-mn",
+    "language": "mn",
+    "page": "Цагаадайн Улс",
+    "title": "ᠴᠠᠭᠠᠳᠠᠢ ᠶᠢᠨ ᠤᠯᠤᠰ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 861294
+  },
+  {
+    "id": "wiki-history-buir-en",
+    "language": "en",
+    "page": "Battle of Buir Lake",
+    "title": "ᠪᠤᠶᠢᠷ ᠨᠠᠭᠤᠷ ᠤᠨ ᠲᠤᠯᠤᠯᠳᠤᠭᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1376558522
+  },
+  {
+    "id": "wiki-history-buir-evidence-mn",
+    "language": "mn",
+    "page": "Төгстөмөр хаан",
+    "title": "ᠲᠥᠭᠦᠰᠲᠡᠮᠦᠷ ᠬᠠᠭᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 856061
+  },
+  {
+    "id": "wiki-history-tumu-en",
+    "language": "en",
+    "page": "Tumu Crisis",
+    "title": "ᠲᠦᠮᠦ ᠶᠢᠨ ᠲᠤᠯᠤᠯᠳᠤᠭᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1374653708
+  },
+  {
+    "id": "wiki-history-tumu-mn",
+    "language": "mn",
+    "page": "Тумугийн тулалдаан",
+    "title": "ᠲᠦᠮᠦ ᠶᠢᠨ ᠲᠤᠯᠤᠯᠳᠤᠭᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 778279
+  },
+  {
+    "id": "wiki-history-esen-en",
+    "language": "en",
+    "page": "Esen Taishi",
+    "title": "ᠡᠰᠡᠨ ᠲᠠᠶᠢᠱᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1377990273
+  },
+  {
+    "id": "wiki-history-esen-mn",
+    "language": "mn",
+    "page": "Эсэн тайш",
+    "title": "ᠡᠰᠡᠨ ᠲᠠᠶᠢᠱᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 865496
+  },
+  {
+    "id": "wiki-history-dayan-en",
+    "language": "en",
+    "page": "Dayan Khan",
+    "title": "ᠪᠠᠲᠤᠮᠥᠩᠬᠡ ᠳᠠᠶᠠᠨ ᠬᠠᠭᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1378132456
+  },
+  {
+    "id": "wiki-history-dayan-mn",
+    "language": "mn",
+    "page": "Батмөнх Даян хаан",
+    "title": "ᠪᠠᠲᠤᠮᠥᠩᠬᠡ ᠳᠠᠶᠠᠨ ᠬᠠᠭᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 868565
+  },
+  {
+    "id": "wiki-history-altan-en",
+    "language": "en",
+    "page": "Altan Khan",
+    "title": "ᠠᠯᠲᠠᠨ ᠬᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1378198536
+  },
+  {
+    "id": "wiki-history-altan-mn",
+    "language": "mn",
+    "page": "Алтан хан",
+    "title": "ᠠᠯᠲᠠᠨ ᠬᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 841576
+  },
+  {
+    "id": "wiki-history-dalai-lama-mn",
+    "language": "mn",
+    "page": "Далай лам",
+    "title": "ᠳᠠᠯᠠᠢ ᠯᠠᠮ᠎ᠠ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 855660
+  },
+  {
+    "id": "wiki-history-erdene-zuu-en",
+    "language": "en",
+    "page": "Erdene Zuu Monastery",
+    "title": "ᠡᠷᠳᠡᠨᠢ ᠵᠤᠤ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1370541715
+  },
+  {
+    "id": "wiki-history-erdene-zuu-mn",
+    "language": "mn",
+    "page": "Эрдэнэ Зуу хийд",
+    "title": "ᠡᠷᠳᠡᠨᠢ ᠵᠤᠤ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 830763
+  },
+  {
+    "id": "wiki-history-ligdan-en",
+    "language": "en",
+    "page": "Ligdan Khan",
+    "title": "ᠯᠢᠭᠳᠡᠨ ᠬᠠᠭᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1375869765
+  },
+  {
+    "id": "wiki-history-ligdan-mn",
+    "language": "mn",
+    "page": "Лигдэн хаан",
+    "title": "ᠯᠢᠭᠳᠡᠨ ᠬᠠᠭᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 868612
+  },
+  {
+    "id": "wiki-history-qing-en",
+    "language": "en",
+    "page": "Mongolia under Qing rule",
+    "title": "ᠴᠢᠩ ᠤᠯᠤᠰ ᠤᠨ ᠦᠶ᠎ᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1368506232
+  },
+  {
+    "id": "wiki-history-qing-mn",
+    "language": "mn",
+    "page": "Чин Улсын эрхшээл дэх Монгол орон",
+    "title": "ᠴᠢᠩ ᠤᠯᠤᠰ ᠤᠨ ᠦᠶ᠎ᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 867053
+  },
+  {
+    "id": "wiki-history-oirat-code-en",
+    "language": "en",
+    "page": "Oirat Confederation",
+    "title": "ᠳᠥᠷᠪᠡᠨ ᠣᠶᠢᠷᠠᠳ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1366970557
+  },
+  {
+    "id": "wiki-history-oirat-code-evidence-mn",
+    "language": "mn",
+    "page": "Эрдэнэбаатар хунтайж",
+    "title": "ᠡᠷᠳᠡᠨᠢᠪᠠᠲᠤᠷ ᠬᠤᠩᠲᠠᠶᠢᠵᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 861397
+  },
+  {
+    "id": "wiki-history-jao-modo-en",
+    "language": "en",
+    "page": "Battle of Jao Modo",
+    "title": "ᠵᠠᠭᠤᠨ ᠮᠣᠳᠣᠨ ᠤ ᠲᠤᠯᠤᠯᠳᠤᠭᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1370444089
+  },
+  {
+    "id": "wiki-history-jao-modo-mn",
+    "language": "mn",
+    "page": "Зуунмод–Тэрэлжийн тулалдаан",
+    "title": "ᠵᠠᠭᠤᠨ ᠮᠣᠳᠣᠨ ᠤ ᠲᠤᠯᠤᠯᠳᠤᠭᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 858350
+  },
+  {
+    "id": "wiki-history-dzungar-en",
+    "language": "en",
+    "page": "Dzungar genocide",
+    "title": "ᠵᠡᠭᠦᠨ ᠭᠠᠷ ᠤᠨ ᠬᠢᠳᠤᠯᠭ᠎ᠠ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1376748168
+  },
+  {
+    "id": "wiki-history-dzungar-mn",
+    "language": "mn",
+    "page": "Зүүнгарын геноцид",
+    "title": "ᠵᠡᠭᠦᠨ ᠭᠠᠷ ᠤᠨ ᠬᠢᠳᠤᠯᠭ᠎ᠠ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 865038
+  },
+  {
+    "id": "wiki-history-revolution-1911-en",
+    "language": "en",
+    "page": "Mongolian Revolution of 1911",
+    "title": "1911 ᠣᠨ ᠤ ᠬᠤᠪᠢᠰᠬᠠᠯ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1366270452
+  },
+  {
+    "id": "wiki-history-revolution-1911-mn",
+    "language": "mn",
+    "page": "Үндэсний эрх чөлөөний хувьсгал",
+    "title": "1911 ᠣᠨ ᠤ ᠬᠤᠪᠢᠰᠬᠠᠯ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 866463
+  },
+  {
+    "id": "wiki-history-kyakhta-en",
+    "language": "en",
+    "page": "Treaty of Kyakhta (1915)",
+    "title": "ᠬᠢᠶᠠᠭᠲᠤ ᠶᠢᠨ ᠭᠡᠷ᠎ᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1371202728
+  },
+  {
+    "id": "wiki-history-kyakhta-mn",
+    "language": "mn",
+    "page": "Хиагтын гэрээ",
+    "title": "ᠬᠢᠶᠠᠭᠲᠤ ᠶᠢᠨ ᠭᠡᠷ᠎ᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 849587
+  },
+  {
+    "id": "wiki-history-occupation-en",
+    "language": "en",
+    "page": "Occupation of Mongolia",
+    "title": "ᠭᠠᠳᠠᠭᠠᠳᠤ ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠡᠵᠡᠯᠡᠯᠲᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1376433697
+  },
+  {
+    "id": "wiki-history-occupation-mn",
+    "language": "mn",
+    "page": "Хятадын Монгол дахь эзлэн түрэмгийлэл",
+    "title": "ᠭᠠᠳᠠᠭᠠᠳᠤ ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠡᠵᠡᠯᠡᠯᠲᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 867394
+  },
+  {
+    "id": "wiki-history-revolution-1921-en",
+    "language": "en",
+    "page": "Mongolian Revolution of 1921",
+    "title": "1921 ᠣᠨ ᠤ ᠬᠤᠪᠢᠰᠬᠠᠯ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1377128013
+  },
+  {
+    "id": "wiki-history-revolution-1921-mn",
+    "language": "mn",
+    "page": "Ардын хувьсгал",
+    "title": "1921 ᠣᠨ ᠤ ᠬᠤᠪᠢᠰᠬᠠᠯ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 859143
+  },
+  {
+    "id": "wiki-history-mpr-en",
+    "language": "en",
+    "page": "Mongolian People's Republic",
+    "title": "ᠪᠦᠭᠦᠳᠡ ᠨᠠᠶᠢᠷᠠᠮᠳᠠᠬᠤ ᠮᠣᠩᠭᠣᠯ ᠠᠷᠠᠳ ᠤᠯᠤᠰ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1376551971
+  },
+  {
+    "id": "wiki-history-mpr-mn",
+    "language": "mn",
+    "page": "Бүгд Найрамдах Монгол Ард Улс",
+    "title": "ᠪᠦᠭᠦᠳᠡ ᠨᠠᠶᠢᠷᠠᠮᠳᠠᠬᠤ ᠮᠣᠩᠭᠣᠯ ᠠᠷᠠᠳ ᠤᠯᠤᠰ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 872051
+  },
+  {
+    "id": "wiki-history-repressions-en",
+    "language": "en",
+    "page": "Stalinist repressions in Mongolia",
+    "title": "ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠬᠡᠯᠮᠡᠭᠳᠡᠭᠦᠯᠦᠯᠲᠡ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1374463650
+  },
+  {
+    "id": "wiki-history-repressions-mn",
+    "language": "mn",
+    "page": "Монгол дахь Их Хэлмэгдүүлэлт",
+    "title": "ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠬᠡᠯᠮᠡᠭᠳᠡᠭᠦᠯᠦᠯᠲᠡ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 869240
+  },
+  {
+    "id": "wiki-history-khalkhin-gol-en",
+    "language": "en",
+    "page": "Battles of Khalkhin Gol",
+    "title": "ᠬᠠᠯᠬ᠎ᠠ ᠭᠣᠣᠯ ᠤᠨ ᠪᠠᠶᠢᠯᠳᠤᠭᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1378643900
+  },
+  {
+    "id": "wiki-history-khalkhin-gol-mn",
+    "language": "mn",
+    "page": "Халхын голын дайн",
+    "title": "ᠬᠠᠯᠬ᠎ᠠ ᠭᠣᠣᠯ ᠤᠨ ᠪᠠᠶᠢᠯᠳᠤᠭᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 871495
+  },
+  {
+    "id": "wiki-history-cyrillic-en",
+    "language": "en",
+    "page": "Mongolian Cyrillic alphabet",
+    "title": "ᠺᠢᠷᠢᠯ ᠦᠰᠦᠭ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1369037271
+  },
+  {
+    "id": "wiki-history-un-mn",
+    "language": "mn",
+    "page": "Монгол",
+    "title": "ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 869535
+  },
+  {
+    "id": "wiki-history-referendum-en",
+    "language": "en",
+    "page": "1945 Mongolian independence referendum",
+    "title": "1945 ᠣᠨ ᠤ ᠰᠠᠨᠠᠯ ᠠᠰᠠᠭᠤᠯᠭ᠎ᠠ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1353982995
+  },
+  {
+    "id": "wiki-history-referendum-mn",
+    "language": "mn",
+    "page": "1945 оны Монголын тусгаар тогтнолын бүх нийтийн санал асуулга",
+    "title": "1945 ᠣᠨ ᠤ ᠰᠠᠨᠠᠯ ᠠᠰᠠᠭᠤᠯᠭ᠎ᠠ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 866471
+  },
+  {
+    "id": "wiki-history-inner-mongolia-en",
+    "language": "en",
+    "page": "Inner Mongolia",
+    "title": "ᠥᠪᠥᠷ ᠮᠣᠩᠭᠣᠯ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1376258301
+  },
+  {
+    "id": "wiki-history-inner-mongolia-mn",
+    "language": "mn",
+    "page": "Өвөр Монгол",
+    "title": "ᠥᠪᠥᠷ ᠮᠣᠩᠭᠣᠯ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 872042
+  },
+  {
+    "id": "wiki-history-china-relations-en",
+    "language": "en",
+    "page": "China–Mongolia relations",
+    "title": "ᠵᠤᠩᠭᠣ ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠬᠠᠷᠢᠯᠴᠠᠭ᠎ᠠ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1373717032
+  },
+  {
+    "id": "wiki-history-china-relations-mn",
+    "language": "mn",
+    "page": "Монгол-Хятадын харилцаа",
+    "title": "ᠵᠤᠩᠭᠣ ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠬᠠᠷᠢᠯᠴᠠᠭ᠎ᠠ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 865507
+  },
+  {
+    "id": "wiki-history-un-en",
+    "language": "en",
+    "page": "Mongolia",
+    "title": "ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1378451710
+  },
+  {
+    "id": "wiki-history-democracy-en",
+    "language": "en",
+    "page": "Mongolian Revolution of 1990",
+    "title": "1990 ᠣᠨ ᠤ ᠬᠤᠪᠢᠰᠬᠠᠯ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1378011760
+  },
+  {
+    "id": "wiki-history-democracy-mn",
+    "language": "mn",
+    "page": "1990 оны Монголын ардчилсан хувьсгал",
+    "title": "1990 ᠣᠨ ᠤ ᠬᠤᠪᠢᠰᠬᠠᠯ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 866466
+  },
+  {
+    "id": "wiki-history-constitution-en",
+    "language": "en",
+    "page": "Constitution of Mongolia",
+    "title": "ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ ᠤᠨ ᠦᠨᠳᠦᠰᠦᠨ ᠬᠠᠭᠤᠯᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1321576943
+  },
+  {
+    "id": "wiki-history-constitution-mn",
+    "language": "mn",
+    "page": "Монгол Улсын Үндсэн Хууль",
+    "title": "ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ ᠤᠨ ᠦᠨᠳᠦᠰᠦᠨ ᠬᠠᠭᠤᠯᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 847498
+  },
+  {
+    "id": "wiki-history-election-1996-en",
+    "language": "en",
+    "page": "1996 Mongolian parliamentary election",
+    "title": "1996 ᠣᠨ ᠤ ᠰᠣᠩᠭᠤᠭᠤᠯᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1362590475
+  },
+  {
+    "id": "wiki-history-election-1996-mn",
+    "language": "mn",
+    "page": "1996 оны Улсын Их Хурлын сонгууль",
+    "title": "1996 ᠣᠨ ᠤ ᠰᠣᠩᠭᠤᠭᠤᠯᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 855889
+  },
+  {
+    "id": "wiki-history-oyu-agreement-en",
+    "language": "en",
+    "page": "Sanjiin Bayar",
+    "title": "ᠰᠠᠨᠵᠠ ᠶᠢᠨ ᠪᠠᠶᠠᠷ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1373152215
+  },
+  {
+    "id": "wiki-history-oyu-tolgoi-mn",
+    "language": "mn",
+    "page": "Оюутолгой",
+    "title": "ᠣᠶᠤ ᠲᠣᠯᠣᠭᠠᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 791630
+  },
+  {
+    "id": "wiki-history-election-2024-en",
+    "language": "en",
+    "page": "2024 Mongolian parliamentary election",
+    "title": "2024 ᠣᠨ ᠤ ᠰᠣᠩᠭᠤᠭᠤᠯᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1377809436
+  },
+  {
+    "id": "wiki-history-election-2024-mn",
+    "language": "mn",
+    "page": "2024 оны Улсын Их Хурлын сонгууль",
+    "title": "2024 ᠣᠨ ᠤ ᠰᠣᠩᠭᠤᠭᠤᠯᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 868614
+  },
+  {
+    "id": "wiki-history-zanabazar-en",
+    "language": "en",
+    "page": "Zanabazar",
+    "title": "ᠵᠠᠨᠠᠪᠠᠵᠠᠷ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1379000956
+  },
+  {
+    "id": "wiki-history-zanabazar-mn",
+    "language": "mn",
+    "page": "Занабазар",
+    "title": "ᠵᠠᠨᠠᠪᠠᠵᠠᠷ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 849106
+  },
+  {
+    "id": "wiki-abaoji-en",
+    "language": "en",
+    "page": "Abaoji",
+    "title": "ᠠᠪᠤᠵᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1378828921
+  },
+  {
+    "id": "wiki-abaoji-mn",
+    "language": "mn",
+    "page": "Амбагян",
+    "title": "ᠠᠪᠤᠵᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 850611
+  },
+  {
+    "id": "wiki-mandukhai-en",
+    "language": "en",
+    "page": "Mandukhai",
+    "title": "ᠮᠠᠨᠳᠤᠬᠠᠢ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1358916665
+  },
+  {
+    "id": "wiki-mandukhai-mn",
+    "language": "mn",
+    "page": "Мандухай сэцэн хатан",
+    "title": "ᠮᠠᠨᠳᠤᠬᠠᠢ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 840449
+  },
+  {
+    "id": "wiki-sonam-gyatso-en",
+    "language": "en",
+    "page": "3rd Dalai Lama",
+    "title": "ᠰᠣᠳᠨᠠᠮᠵᠠᠮᠰᠤ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1362899372
+  },
+  {
+    "id": "wiki-sonam-gyatso-mn",
+    "language": "mn",
+    "page": "3-р Далай лам",
+    "title": "ᠰᠣᠳᠨᠠᠮᠵᠠᠮᠰᠤ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 717616
+  },
+  {
+    "id": "wiki-galdan-en",
+    "language": "en",
+    "page": "Galdan Boshugtu Khan",
+    "title": "ᠭᠠᠯᠳᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1370054316
+  },
+  {
+    "id": "wiki-galdan-mn",
+    "language": "mn",
+    "page": "Галдан бошигт хаан",
+    "title": "ᠭᠠᠯᠳᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 871670
+  },
+  {
+    "id": "wiki-bogd-en",
+    "language": "en",
+    "page": "Bogd Khan",
+    "title": "ᠪᠣᠭᠳᠠ ᠬᠠᠭᠠᠨ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1369786391
+  },
+  {
+    "id": "wiki-bogd-mn",
+    "language": "mn",
+    "page": "Богд хаан",
+    "title": "ᠪᠣᠭᠳᠠ ᠬᠠᠭᠠᠨ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 866998
+  },
+  {
+    "id": "wiki-sukhbaatar-en",
+    "language": "en",
+    "page": "Damdin Sükhbaatar",
+    "title": "ᠰᠦᠬᠡᠪᠠᠭᠠᠲᠤᠷ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1350938949
+  },
+  {
+    "id": "wiki-sukhbaatar-mn",
+    "language": "mn",
+    "page": "Дамдины Сүхбаатар",
+    "title": "ᠰᠦᠬᠡᠪᠠᠭᠠᠲᠤᠷ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 872796
+  },
+  {
+    "id": "wiki-choibalsan-en",
+    "language": "en",
+    "page": "Khorloogiin Choibalsan",
+    "title": "ᠴᠣᠶᠢᠪᠠᠯᠰᠠᠩ · ᠠᠩᠭᠯᠢ",
+    "revisionId": 1376385313
+  },
+  {
+    "id": "wiki-choibalsan-mn",
+    "language": "mn",
+    "page": "Хорлоогийн Чойбалсан",
+    "title": "ᠴᠣᠶᠢᠪᠠᠯᠰᠠᠩ · ᠮᠣᠩᠭᠣᠯ",
+    "revisionId": 854804
+  }
+]

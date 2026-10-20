@@ -1,0 +1,7 @@
+{
+  "format": "nutug-theme",
+  "version": 1,
+  "id": "fixture-theme",
+  "name": "ᠴᠠᠭᠠᠰᠤ",
+  "colors": { "background": "#F3EAD8", "text": "#243746", "accent": "#8C3D26" }
+}
