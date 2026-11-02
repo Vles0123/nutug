@@ -1805,6 +1805,9 @@
     "calendar-app.storageError",
     "calendar-app.invalid",
     "app.search",
-    "app.calendar"
+    "app.calendar",
+    "calendar-app.onThisDay",
+    "calendar-app.yearsAgo",
+    "calendar-app.julianCalendar"
   ]
 }

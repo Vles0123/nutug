@@ -17,6 +17,9 @@ import { Agenda } from './CalendarAgenda';
 import { CalendarTitle } from './CalendarTitle';
 import { dayTimeline } from '../shared/calendar-layout.mjs';
 import { CalendarDatePicker } from './CalendarDatePicker';
+import { AlmanacSummary } from './CalendarAlmanac';
+import { FestivalList } from './CalendarFestivals';
+import { HistoryList, historyOn } from './CalendarHistory';
 import { occurrencesBetween, weekday } from '../shared/calendar-events.mjs';
 
 export function MonthCalendar({
@@ -28,6 +31,10 @@ export function MonthCalendar({
   onAdd,
   onOpenEvent,
   onOpenDay,
+  onOpenAlmanac,
+  festivals = () => [],
+  onOpenFestival,
+  onOpenHistory,
 }) {
   const today = useToday(calendarConfig.timeZone);
   const civil = useMemo(() => gregorianProvider(calendarConfig), []);
@@ -173,9 +180,14 @@ export function MonthCalendar({
                   className={`day-cell ${day.inMonth ? '' : 'outside-month'}`}
                   data-date={day.iso}
                   data-selected={date === day.iso || undefined}
+                  data-festival-day={festivals(day.iso).length > 0 || undefined}
                   aria-pressed={date === day.iso}
                   aria-current={today === day.iso ? 'date' : undefined}
-                  aria-label={`${copy.gregorian} ${day.iso} · ${copy.weekdays[weekday(day.iso)]}${day.lunar ? ` · ${copy.lunar} ${day.lunar.lunarMonth} / ${day.lunar.lunarDay}` : ''}`}
+                  aria-label={`${copy.gregorian} ${day.iso} · ${copy.weekdays[weekday(day.iso)]}${day.lunar ? ` · ${copy.lunar} ${day.lunar.lunarMonth} / ${day.lunar.lunarDay}` : ''}${festivals(
+                    day.iso,
+                  )
+                    .map((item) => ` · ${item.title}`)
+                    .join('')}`}
                   isDisabled={!civil.validDate(day.iso)}
                   tabIndex={day.iso === (date.startsWith(month) ? date : month + '-01') ? 0 : -1}
                   onKeyDown={(e) => key(e, day.iso)}
@@ -205,8 +217,21 @@ export function MonthCalendar({
                   )}
                 </Button>
                 <div className="month-event-previews">
+                  {festivals(day.iso)
+                    .slice(0, 1)
+                    .map((item) => (
+                      <Button
+                        key={item.id}
+                        className="month-festival-preview"
+                        data-festival={item.id}
+                        aria-label={item.title}
+                        onPress={() => onOpenFestival?.(item)}
+                      >
+                        <CalendarTitle text={item.title} />
+                      </Button>
+                    ))}
                   {forDate(day.iso)
-                    .slice(0, 2)
+                    .slice(0, festivals(day.iso).length ? 1 : 2)
                     .map((event) => (
                       <Button
                         key={event.id}
@@ -218,7 +243,7 @@ export function MonthCalendar({
                         <CalendarTitle text={event.title} />
                       </Button>
                     ))}
-                  {forDate(day.iso).length > 2 && (
+                  {forDate(day.iso).length > (festivals(day.iso).length ? 1 : 2) && (
                     <Button
                       className="month-event-more numeric"
                       aria-label={`${copy.agenda} · ${day.iso} · ${forDate(day.iso).length}`}
@@ -227,7 +252,7 @@ export function MonthCalendar({
                         onOpenDay?.();
                       }}
                     >
-                      +{forDate(day.iso).length - 2}
+                      +{forDate(day.iso).length - (festivals(day.iso).length ? 1 : 2)}
                     </Button>
                   )}
                 </div>
@@ -253,6 +278,9 @@ export function MonthCalendar({
             )}
             <ChevronRight size={17} />
           </Button>
+          {onOpenFestival && <FestivalList items={festivals(date)} onOpen={onOpenFestival} />}
+          {showLunar && onOpenAlmanac && <AlmanacSummary day={lunar} onOpen={onOpenAlmanac} />}
+          {onOpenHistory && <HistoryList items={historyOn(date)} onOpen={onOpenHistory} />}
           {onAdd && (
             <section className="month-day-agenda">
               <Agenda

@@ -5,10 +5,208 @@
   "objectVersion" = "56";
   "archiveVersion" = "1";
   "objects" = {
+    "EF5D514DF57B4B85A1CB6648" = {
+      "path" = "NutugWidgetViews.swift";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "sourceTree" = "<group>";
+    };
+    "4C38358E22BF49DD8DDEEAEC" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "EF5D514DF57B4B85A1CB6648";
+    };
+    "9BE99B260D8649F786AC327B" = {
+      "path" = "NutugWidget.swift";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "sourceTree" = "<group>";
+    };
+    "24BCA8AD761E482983E6193F" = {
+      "path" = "Info.plist";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "text.plist.xml";
+      "sourceTree" = "<group>";
+    };
+    "56B6C3CFC7FB4CA1A4C8CBD3" = {
+      "path" = "NutugWidget.entitlements";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "text.plist.entitlements";
+      "sourceTree" = "<group>";
+    };
+    "31461D6490C94383835987D0" = {
+      "path" = "NutugWidget";
+      "isa" = "PBXGroup";
+      "children" = ("9BE99B260D8649F786AC327B","EF5D514DF57B4B85A1CB6648","24BCA8AD761E482983E6193F","56B6C3CFC7FB4CA1A4C8CBD3");
+      "sourceTree" = "<group>";
+    };
+    "7DFF447CC31D46D2B3DE3D13" = {
+      "path" = "NutugCalendarWidget.appex";
+      "isa" = "PBXFileReference";
+      "includeInIndex" = "0";
+      "explicitFileType" = "wrapper.app-extension";
+      "sourceTree" = "BUILT_PRODUCTS_DIR";
+    };
+    "929187C534A44151B8388427" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "9BE99B260D8649F786AC327B";
+    };
+    "92594A4B4EA14AB88EC077F8" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "001000000000000000000001";
+    };
+    "E213EFEEBFE144A883E9B5AA" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "001000000000000000000004";
+    };
+    "710B5091B20F45178C1501B5" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "4C260E8D5F03951901BB5AF4";
+    };
+    "93B109CD22BB4AF6A9EC8CA9" = {
+      "isa" = "PBXSourcesBuildPhase";
+      "buildActionMask" = "2147483647";
+      "files" = ("929187C534A44151B8388427","4C38358E22BF49DD8DDEEAEC","92594A4B4EA14AB88EC077F8","E213EFEEBFE144A883E9B5AA");
+      "runOnlyForDeploymentPostprocessing" = "0";
+    };
+    "8C8772F8335E4041958157E1" = {
+      "isa" = "PBXFrameworksBuildPhase";
+      "buildActionMask" = "2147483647";
+      "files" = ();
+      "runOnlyForDeploymentPostprocessing" = "0";
+    };
+    "47B3DA7CBEF149EF81130B4C" = {
+      "isa" = "PBXResourcesBuildPhase";
+      "buildActionMask" = "2147483647";
+      "files" = ("710B5091B20F45178C1501B5");
+      "runOnlyForDeploymentPostprocessing" = "0";
+    };
+    "89C032E7554D4CDDA222BF2C" = {
+      "isa" = "XCBuildConfiguration";
+      "buildSettings" = {
+        "PRODUCT_BUNDLE_IDENTIFIER" = "cn.nutug.calendar.widget";
+        "PRODUCT_NAME" = "NutugCalendarWidget";
+        "INFOPLIST_FILE" = "NutugWidget/Info.plist";
+        "GENERATE_INFOPLIST_FILE" = "YES";
+        "INFOPLIST_KEY_CFBundleDisplayName" = "ᠴᠠᠭ ᠲᠣᠭ᠎ᠠ";
+        "MARKETING_VERSION" = "1.0.0";
+        "CURRENT_PROJECT_VERSION" = "1";
+        "SUPPORTED_PLATFORMS" = "macosx iphoneos iphonesimulator";
+        "SDKROOT" = "auto";
+        "SUPPORTS_MACCATALYST" = "NO";
+        "TARGETED_DEVICE_FAMILY" = "1,2";
+        "IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+        "MACOSX_DEPLOYMENT_TARGET" = "14.0";
+        "SWIFT_VERSION" = "5.0";
+        "SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
+        "SWIFT_EMIT_LOC_STRINGS" = "NO";
+        "CLANG_ENABLE_MODULES" = "YES";
+        "CODE_SIGN_STYLE" = "Automatic";
+        "CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = "NutugWidget/NutugWidget.entitlements";
+        "ENABLE_USER_SCRIPT_SANDBOXING" = "YES";
+        "APPLICATION_EXTENSION_API_ONLY" = "YES";
+        "SKIP_INSTALL" = "YES";
+        "LD_RUNPATH_SEARCH_PATHS[sdk=iphone*]" = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+        "LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+      };
+      "name" = "Debug";
+    };
+    "0EACF58B940F4624A04E765A" = {
+      "isa" = "XCBuildConfiguration";
+      "buildSettings" = {
+        "PRODUCT_BUNDLE_IDENTIFIER" = "cn.nutug.calendar.widget";
+        "PRODUCT_NAME" = "NutugCalendarWidget";
+        "INFOPLIST_FILE" = "NutugWidget/Info.plist";
+        "GENERATE_INFOPLIST_FILE" = "YES";
+        "INFOPLIST_KEY_CFBundleDisplayName" = "ᠴᠠᠭ ᠲᠣᠭ᠎ᠠ";
+        "MARKETING_VERSION" = "1.0.0";
+        "CURRENT_PROJECT_VERSION" = "1";
+        "SUPPORTED_PLATFORMS" = "macosx iphoneos iphonesimulator";
+        "SDKROOT" = "auto";
+        "SUPPORTS_MACCATALYST" = "NO";
+        "TARGETED_DEVICE_FAMILY" = "1,2";
+        "IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+        "MACOSX_DEPLOYMENT_TARGET" = "14.0";
+        "SWIFT_VERSION" = "5.0";
+        "SWIFT_OPTIMIZATION_LEVEL" = "-O";
+        "SWIFT_EMIT_LOC_STRINGS" = "NO";
+        "CLANG_ENABLE_MODULES" = "YES";
+        "CODE_SIGN_STYLE" = "Automatic";
+        "CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = "NutugWidget/NutugWidget.entitlements";
+        "ENABLE_USER_SCRIPT_SANDBOXING" = "YES";
+        "APPLICATION_EXTENSION_API_ONLY" = "YES";
+        "SKIP_INSTALL" = "YES";
+        "LD_RUNPATH_SEARCH_PATHS[sdk=iphone*]" = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+        "LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+      };
+      "name" = "Release";
+    };
+    "0905E8F1CA7E445998047CFD" = {
+      "isa" = "XCConfigurationList";
+      "defaultConfigurationIsVisible" = "0";
+      "defaultConfigurationName" = "Release";
+      "buildConfigurations" = ("89C032E7554D4CDDA222BF2C","0EACF58B940F4624A04E765A");
+    };
+    "26B7E901BCFB4D4491CE8DDC" = {
+      "productType" = "com.apple.product-type.app-extension";
+      "productReference" = "7DFF447CC31D46D2B3DE3D13";
+      "buildConfigurationList" = "0905E8F1CA7E445998047CFD";
+      "productName" = "NutugCalendarWidget";
+      "isa" = "PBXNativeTarget";
+      "buildPhases" = ("93B109CD22BB4AF6A9EC8CA9","8C8772F8335E4041958157E1","47B3DA7CBEF149EF81130B4C");
+      "dependencies" = ();
+      "name" = "NutugCalendarWidget";
+      "buildRules" = ();
+    };
+    "31F881E7877045DE953C3153" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "7DFF447CC31D46D2B3DE3D13";
+      "settings" = {
+        "ATTRIBUTES" = ("RemoveHeadersOnCopy");
+      };
+    };
+    "04EA949EE9074DD29EBB4131" = {
+      "isa" = "PBXCopyFilesBuildPhase";
+      "buildActionMask" = "2147483647";
+      "dstPath" = "";
+      "dstSubfolderSpec" = "13";
+      "name" = "Embed Foundation Extensions";
+      "files" = ("31F881E7877045DE953C3153");
+      "runOnlyForDeploymentPostprocessing" = "0";
+    };
+    "C7D4580B23064823AE93C37F" = {
+      "isa" = "PBXContainerItemProxy";
+      "containerPortal" = "98F54143AB4E86B28C3AFEE0";
+      "proxyType" = "1";
+      "remoteGlobalIDString" = "26B7E901BCFB4D4491CE8DDC";
+      "remoteInfo" = "NutugCalendarWidget";
+    };
+    "51A15B7D3AEE491DB2BDF26E" = {
+      "isa" = "PBXTargetDependency";
+      "target" = "26B7E901BCFB4D4491CE8DDC";
+      "targetProxy" = "C7D4580B23064823AE93C37F";
+    };
+    "9AE85420F5234864B7588CE8" = {
+      "path" = "CalendarAlmanac.swift";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "sourceTree" = "<group>";
+    };
+    "42CEF0FFB0BF4D168B473BC5" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "9AE85420F5234864B7588CE8";
+    };
+    "19DD300B4B1C4C22BBFB8F2E" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "9AE85420F5234864B7588CE8";
+    };
+    "FE3E895B268C4199B2E45C58" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "9AE85420F5234864B7588CE8";
+    };
     "566931A69C0C4E52930CA2C6" = {
       "isa" = "PBXSourcesBuildPhase";
       "buildActionMask" = "2147483647";
-      "files" = ("ADEDF6DA48DD498FA3632991","F945BEB2E9744491990B64CE","3D5F9CB744D74BA8B0B2CB66","890F5065A92B425C8B95F239","635469693A394B3DA23F3847","DB1EDD59DB6147408E6DB2D6","40F5CC16ABD54D50B133915D","14E4351DC87D40E2ACEA8CB3","887478A2B7B846558B8B7717","A0B045B3FE894C7787570EBF","5B6CBA5D97A44E0EBA6889DD");
+      "files" = ("42CEF0FFB0BF4D168B473BC5","ADEDF6DA48DD498FA3632991","F945BEB2E9744491990B64CE","3D5F9CB744D74BA8B0B2CB66","890F5065A92B425C8B95F239","635469693A394B3DA23F3847","DB1EDD59DB6147408E6DB2D6","40F5CC16ABD54D50B133915D","14E4351DC87D40E2ACEA8CB3","887478A2B7B846558B8B7717","A0B045B3FE894C7787570EBF","5B6CBA5D97A44E0EBA6889DD");
       "runOnlyForDeploymentPostprocessing" = "0";
     };
     "002000000000000000000004" = {
@@ -189,8 +387,8 @@
       "buildConfigurationList" = "C57128001CE614BF8549D6BB";
       "productName" = "NutugCalendar";
       "isa" = "PBXNativeTarget";
-      "buildPhases" = ("BCE16DD0260827ECF338C787","7561BFB015D8F536760CB671","0189424A5A60FED329FA868E");
-      "dependencies" = ();
+      "buildPhases" = ("BCE16DD0260827ECF338C787","7561BFB015D8F536760CB671","0189424A5A60FED329FA868E","04EA949EE9074DD29EBB4131");
+      "dependencies" = ("51A15B7D3AEE491DB2BDF26E");
       "name" = "NutugCalendar";
       "buildRules" = ();
     };
@@ -232,7 +430,7 @@
     "E50290A24C49A459B43487C5" = {
       "isa" = "PBXGroup";
       "sourceTree" = "<group>";
-      "children" = ("4D820FADAFBC7A1FCACC4F07","4C260E8D5F03951901BB5AF4","BFE00B156DCFC34C4751A6E5","053F575EB4BE45EB8B82152A");
+      "children" = ("4D820FADAFBC7A1FCACC4F07","31461D6490C94383835987D0","4C260E8D5F03951901BB5AF4","BFE00B156DCFC34C4751A6E5","053F575EB4BE45EB8B82152A");
     };
     "C57128001CE614BF8549D6BB" = {
       "isa" = "XCConfigurationList";
@@ -260,7 +458,7 @@
     "BCE16DD0260827ECF338C787" = {
       "isa" = "PBXSourcesBuildPhase";
       "buildActionMask" = "2147483647";
-      "files" = ("002000000000000000000004","002000000000000000000001","002000000000000000000002","002000000000000000000003","A0814F832B7879DEEF319DAF","D07D33E6EB9F55B36B8D3605","F6B5F45FFF55524ACEAAED39","EDFF2A2BEA628F30B6F7677E","F9FC84F6F896616240E1C78C","3509DED53341474D85BF9919","44E25F97DC7F4FFCB714D4EF");
+      "files" = ("19DD300B4B1C4C22BBFB8F2E","002000000000000000000004","002000000000000000000001","002000000000000000000002","002000000000000000000003","A0814F832B7879DEEF319DAF","D07D33E6EB9F55B36B8D3605","F6B5F45FFF55524ACEAAED39","EDFF2A2BEA628F30B6F7677E","F9FC84F6F896616240E1C78C","3509DED53341474D85BF9919","44E25F97DC7F4FFCB714D4EF");
       "runOnlyForDeploymentPostprocessing" = "0";
     };
     "44E25F97DC7F4FFCB714D4EF" = {
@@ -303,7 +501,7 @@
     "BFE00B156DCFC34C4751A6E5" = {
       "isa" = "PBXGroup";
       "name" = "Products";
-      "children" = ("C5BA2F1BDDF9000888BF07C4","F05BB46DC7874FCBA3CADB61","2FFE63904E0D4FDD931FA7F0");
+      "children" = ("C5BA2F1BDDF9000888BF07C4","F05BB46DC7874FCBA3CADB61","2FFE63904E0D4FDD931FA7F0","7DFF447CC31D46D2B3DE3D13");
       "sourceTree" = "<group>";
     };
     "5283471FF90C511CFE244FFF" = {
@@ -361,7 +559,7 @@
     };
     "98F54143AB4E86B28C3AFEE0" = {
       "buildConfigurationList" = "862894B703A6DEDF96A9DD6C";
-      "targets" = ("0E8A3AD980EC179856012B7E","FB20237C70FA4FED9B7A78E9","A50931AD7E4C47199FE0E47B");
+      "targets" = ("0E8A3AD980EC179856012B7E","FB20237C70FA4FED9B7A78E9","A50931AD7E4C47199FE0E47B","26B7E901BCFB4D4491CE8DDC");
       "developmentRegion" = "mn-Mong-CN";
       "knownRegions" = ("mn-Mong-CN","Base");
       "isa" = "PBXProject";
@@ -413,7 +611,7 @@
     "4D820FADAFBC7A1FCACC4F07" = {
       "path" = "Nutug";
       "isa" = "PBXGroup";
-      "children" = ("001000000000000000000004","001000000000000000000001","001000000000000000000002","001000000000000000000003","D561B15278C7896DEABF7DEC","115A9B040A2E64A464D8C75F","6FC0A0AA26B095D01079FAE2","4A08B6DD861601EF9DAE5668","B895B322832CBEB5C579BC73","357D5C60D3094317A119BEF9","C97A0D8B20C14FD69679A2F3");
+      "children" = ("9AE85420F5234864B7588CE8","001000000000000000000004","001000000000000000000001","001000000000000000000002","001000000000000000000003","D561B15278C7896DEABF7DEC","115A9B040A2E64A464D8C75F","6FC0A0AA26B095D01079FAE2","4A08B6DD861601EF9DAE5668","B895B322832CBEB5C579BC73","357D5C60D3094317A119BEF9","C97A0D8B20C14FD69679A2F3");
       "sourceTree" = "<group>";
     };
     "002000000000000000000003" = {
@@ -487,7 +685,7 @@
     "A06B0AF79DF84B0A918E7F0B" = {
       "isa" = "PBXSourcesBuildPhase";
       "buildActionMask" = "2147483647";
-      "files" = ("314F24AD2E9F4385BB0DFD1B","57AD53BB7F8543FFB61F0BCA","E4C4B0F6898C4A50A74A8272","926AC762C40E46CEBF021408","55DEDFF6082E4E27A9F06B6D","7F429242AAC142B6B940DD3F","7D33692D208F4973A2284E1F","5A09E8AD3ADF488E8ED4EB13","C036B02847FF4C9C81A4E512","9E80C512656C4D5291BD8971","5B23281B4E424A8681AC22F0");
+      "files" = ("FE3E895B268C4199B2E45C58","314F24AD2E9F4385BB0DFD1B","57AD53BB7F8543FFB61F0BCA","E4C4B0F6898C4A50A74A8272","926AC762C40E46CEBF021408","55DEDFF6082E4E27A9F06B6D","7F429242AAC142B6B940DD3F","7D33692D208F4973A2284E1F","5A09E8AD3ADF488E8ED4EB13","C036B02847FF4C9C81A4E512","9E80C512656C4D5291BD8971","5B23281B4E424A8681AC22F0");
       "runOnlyForDeploymentPostprocessing" = "0";
     };
     "61FC361611164B949718D456" = {

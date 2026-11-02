@@ -1,7 +1,13 @@
 import { normalizeTheme } from '../shared/calendar-themes.mjs';
 export const calendarSkins = ['light', 'dark', 'paper', 'ink'];
 export const preferenceKey = 'nutug.calendar.preferences.v1';
-export const defaultPreferences = { skin: 'light', firstWeekday: 6, lunar: true, view: 'month' };
+export const defaultPreferences = {
+  skin: 'light',
+  firstWeekday: 6,
+  lunar: true,
+  festivals: 'all',
+  view: 'month',
+};
 export function calendarPreferences(value = {}) {
   const themes = [];
   for (const item of Array.isArray(value.themes) ? value.themes : []) {
@@ -19,6 +25,9 @@ export function calendarPreferences(value = {}) {
         : 'light',
     firstWeekday: value.firstWeekday === 0 ? 0 : 6,
     lunar: value.lunar !== false,
+    festivals: ['all', 'inner-mongolia', 'mongolia', 'off'].includes(value.festivals)
+      ? value.festivals
+      : 'all',
     view: ['year', 'month', 'week', 'day'].includes(value.view) ? value.view : 'month',
   };
 }

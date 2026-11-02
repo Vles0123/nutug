@@ -131,12 +131,60 @@ const options = {
   metafile: true,
   define: {
     'process.env.NODE_ENV': '"production"',
+    __NUTUG_HISTORY_URL__: JSON.stringify(process.env.NUTUG_HISTORY_URL || 'chronicle.html'),
     __NUTUG_CONTENT_MANIFEST__: JSON.stringify(
       process.env.NUTUG_CONTENT_MANIFEST ||
         'https://raw.githubusercontent.com/Vles0123/nutug/refs/heads/chore/content-feed/manifest.json',
     ),
   },
   plugins: [
+    {
+      // The calendar works offline without the content feed, so it bundles its own copy of
+      // the almanac and festival data from the content sources.
+      name: 'calendar-content',
+      setup(build) {
+        const globals = { almanac: 'CHINESE_ALMANAC_CONFIG', calendar: 'MONGOL_CALENDAR' };
+        build.onLoad(
+          { filter: /content-source[\\/](almanac|calendar)-data\.js$/ },
+          async (args) => ({
+            contents:
+              (await readFile(args.path, 'utf8')) +
+              `\nexport default ${globals[args.path.match(/(almanac|calendar)-data\.js$/)[1]]};\n`,
+            loader: 'js',
+          }),
+        );
+      },
+    },
+    {
+      // Day-dated history events, so the calendar can show "on this day" without the content feed.
+      name: 'history-days',
+      setup(build) {
+        build.onResolve({ filter: /^nutug:history-days$/ }, (args) => ({
+          path: args.path,
+          namespace: 'nutug',
+        }));
+        build.onLoad({ filter: /.*/, namespace: 'nutug' }, async () => {
+          const events = new Function(
+            (await readFile('content-source/data.js', 'utf8')) + '\nreturn EVENTS;',
+          )();
+          const days = events
+            .filter((event) => event.day)
+            .map(({ id, title, text, startYear, day }) => ({
+              id,
+              title,
+              text,
+              year: startYear,
+              date: day.date,
+              calendar: day.calendar,
+            }));
+          return {
+            contents: 'export default ' + JSON.stringify(days),
+            loader: 'js',
+            watchFiles: ['content-source/data.js'],
+          };
+        });
+      },
+    },
     {
       name: 'application-shell',
       setup(build) {

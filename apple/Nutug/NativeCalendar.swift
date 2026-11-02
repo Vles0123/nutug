@@ -66,7 +66,7 @@ struct NativeCalendar: View {
   @Environment(\.scenePhase) private var phase
   @Environment(\.dynamicTypeSize) private var typeSize
   private enum Panel {
-    case month, views, search
+    case month, views, search, almanac
     case edit(CalendarAppointment)
     case editOccurrence(CalendarAppointment)
     case detail(CalendarAppointment)
@@ -110,6 +110,7 @@ struct NativeCalendar: View {
                 yearGrid
               } else if typeSize.isAccessibilitySize {
                 selectedDaySummary
+                almanacSummary
                 agenda(model.date)
                 accessibleMonth
               } else if geometry.size.width > 900 {
@@ -117,6 +118,7 @@ struct NativeCalendar: View {
                   monthGrid(compact: compact, availableHeight: geometry.size.height - 96)
                   VStack(alignment: .leading, spacing: 20) {
                     selectedDaySummary
+                    almanacSummary
                     agenda(model.date)
                   }.frame(width: 320)
                 }
@@ -124,6 +126,7 @@ struct NativeCalendar: View {
                 monthGrid(compact: true)
                 Divider()
                 selectedDaySummary
+                almanacSummary
                 agenda(model.date)
               }
             }.padding(.horizontal).padding(.vertical, 8).frame(maxWidth: 1400)
@@ -202,6 +205,14 @@ struct NativeCalendar: View {
       }.buttonStyle(.plain).accessibilityLabel(
         Copy.calendar("gregorian") + " · " + Copy.calendar("choose") + " · " + model.date)
       Spacer()
+      if model.showLunar, model.view == "day" || model.view == "week" {
+        Button {
+          panel = .almanac
+        } label: {
+          Image(systemName: "scroll")
+        }.accessibilityLabel(AlmanacText.copy?.text("title") ?? "")
+          .accessibilityIdentifier("open-almanac")
+      }
       Button {
         model.select(model.today)
       } label: {
@@ -258,6 +269,7 @@ struct NativeCalendar: View {
     case .month: monthPicker
     case .views: viewPicker
     case .search: searchView
+    case .almanac: AlmanacSheet(model: model, scale: scale) { panel = nil }
     case .edit(let event):
       AppointmentEditor(draft: event, store: store, onSaved: didSave).id(event.id)
     case .editOccurrence(let event):
@@ -287,6 +299,11 @@ struct NativeCalendar: View {
         Image(systemName: "chevron.right")
       }.padding(.vertical, 10)
     }.buttonStyle(.plain).accessibilityLabel(model.date + " · " + Copy.calendar("agenda"))
+  }
+  @ViewBuilder private var almanacSummary: some View {
+    if model.showLunar, let day = model.engine?.almanac(model.date) {
+      AlmanacSummary(day: day) { panel = .almanac }
+    }
   }
   private func didSave(_ event: CalendarAppointment) {
     model.select(event.startDate)
