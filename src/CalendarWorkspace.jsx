@@ -30,6 +30,7 @@ import { CalendarDatePicker } from './CalendarDatePicker';
 import { SkinPicker } from './SkinPicker';
 import { AlmanacSheet, almanacTitle } from './CalendarAlmanac';
 import { FestivalSheet, FestivalSettings, festivalsOn, festivalSearch } from './CalendarFestivals';
+import { HistorySheet } from './CalendarHistory';
 import { themeVariables, themeIsDark } from '../shared/calendar-themes.mjs';
 import {
   chineseLunisolarProvider,
@@ -106,7 +107,8 @@ export function CalendarWorkspace() {
     [search, setSearch] = useState(false),
     [query, setQuery] = useState(''),
     [almanacOpen, setAlmanacOpen] = useState(false),
-    [festival, setFestival] = useState(null);
+    [festival, setFestival] = useState(null),
+    [historyItem, setHistoryItem] = useState(null);
   const festivals = (day) => festivalsOn(day, prefs.festivals);
   const [editor, setEditor] = useState(null),
     [selected, setSelected] = useState(null),
@@ -338,6 +340,7 @@ export function CalendarWorkspace() {
             onOpenAlmanac={() => setAlmanacOpen(true)}
             festivals={festivals}
             onOpenFestival={setFestival}
+            onOpenHistory={setHistoryItem}
           />
         ) : (
           <>
@@ -748,6 +751,12 @@ export function CalendarWorkspace() {
           </div>
         )}
       </Sheet>
+      <HistorySheet
+        item={historyItem}
+        onOpenChange={(open) => {
+          if (!open) setHistoryItem(null);
+        }}
+      />
       <FestivalSheet
         festival={festival}
         date={date}

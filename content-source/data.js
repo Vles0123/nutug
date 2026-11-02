@@ -797,6 +797,7 @@ const EVENTS = [
     people: ['ogedei', 'tolui'],
     text: '1229 ᠣᠨ ᠳᠤ ᠥᠭᠡᠳᠡᠢ ᠬᠠᠭᠠᠨ ᠰᠢᠷᠡᠭᠡ ᠳᠦ ᠰᠠᠭᠤᠪᠠ᠃',
     id: 'ogedei-accession-1229',
+    day: { date: '1229-09-13', calendar: 'julian', source: 'wiki-ogedei-en' },
     periodId: 'mongol-empire',
     regionId: 'mongolian-plateau',
     startYear: 1229,
@@ -823,6 +824,7 @@ const EVENTS = [
     people: ['guyuk', 'toregene'],
     text: 'ᠥᠭᠡᠳᠡᠢ ᠶᠢᠨ ᠤᠳᠤᠮ ᠬᠠᠭᠠᠨ ᠤ ᠡᠷᠬᠡ ᠶᠢ ᠦᠷᠭᠦᠯᠵᠢᠯᠡᠨ ᠪᠠᠷᠢᠪᠠ᠃',
     id: 'guyuk-accession-1246',
+    day: { date: '1246-08-24', calendar: 'julian', source: 'wiki-guyuk-en' },
     periodId: 'mongol-empire',
     regionId: 'mongolian-plateau',
     startYear: 1246,
@@ -838,6 +840,7 @@ const EVENTS = [
     sources: ['yuan3', 'dunnell2023', 'wiki-mongke-en', 'wiki-mongke-mn'],
     graphMode: 'power',
     id: 'mongke-accession-1251',
+    day: { date: '1251-07-01', calendar: 'julian', source: 'wiki-mongke-en' },
     periodId: 'mongol-empire',
     regionId: 'mongolian-plateau',
     startYear: 1251,
@@ -892,6 +895,7 @@ const EVENTS = [
     people: ['kublai'],
     text: 'ᠬᠤᠪᠢᠯᠠᠢ ᠶᠡᠬᠡ ᠶᠤᠸᠠᠨ ᠤᠯᠤᠰ ᠬᠡᠮᠡᠬᠦ ᠨᠡᠷ᠎ᠡ ᠶᠢ ᠲᠣᠭᠲᠠᠭᠠᠪᠠ᠃',
     id: 'yuan-name-1271',
+    day: { date: '1271-12-18', calendar: 'julian', source: 'wiki-kublai-en' },
     periodId: 'yuan',
     regionId: 'east-asia',
     startYear: 1271,
@@ -905,6 +909,7 @@ const EVENTS = [
     people: ['kublai'],
     text: '1279 ᠣᠨ ᠳᠤ ᠶᠤᠸᠠᠨ ᠤ ᠴᠡᠷᠢᠭ ᠡᠮᠦᠨᠡᠲᠦ ᠰᠦᠩ ᠤᠯᠤᠰ ᠢ ᠮᠥᠬᠦᠭᠡᠪᠡ᠃',
     id: 'song-defeat-1279',
+    day: { date: '1279-03-19', calendar: 'julian', source: 'wiki-yuan' },
     periodId: 'yuan',
     regionId: 'east-asia',
     startYear: 1279,
@@ -918,6 +923,7 @@ const EVENTS = [
     people: ['temur', 'kublai', 'zhenjin'],
     text: 'ᠴᠢᠩᠭᠢᠮ ᠨᠢ ᠬᠤᠪᠢᠯᠠᠢ ᠠᠴᠠ ᠤᠷᠢᠳ᠎ᠠ ᠨᠠᠰᠤ ᠪᠠᠷᠠᠭᠰᠠᠨ᠃ ᠲᠡᠮᠦᠷ ᠡᠪᠦᠭᠡ ᠶᠢᠨ ᠢᠶᠡᠨ ᠰᠢᠷᠡᠭᠡ ᠶᠢ ᠵᠠᠯᠭᠠᠮᠵᠢᠯᠠᠪᠠ᠃',
     id: 'temur-accession-1294',
+    day: { date: '1294-05-10', calendar: 'julian', source: 'wiki-temur-en' },
     periodId: 'yuan',
     regionId: 'east-asia',
     startYear: 1294,
@@ -1183,6 +1189,7 @@ EVENTS.push(
   ...[
     {
       id: 'ayushiridara-accession-1370',
+      day: { date: '1370-06-06', calendar: 'julian', source: 'wiki-ayushiridara-en' },
       periodId: 'northern-yuan',
       regionId: 'mongolian-plateau',
       startYear: 1370,
@@ -4513,6 +4520,7 @@ EVENTS.push(
     },
     {
       id: 'rouran-khagan-402',
+      day: { date: '0402-03-11', calendar: 'julian', source: 'wiki-history-rouran-en' },
       date: '402',
       startYear: 402,
       endYear: 402,
@@ -4683,6 +4691,7 @@ EVENTS.push(
     },
     {
       id: 'zhongdu-capture-1215',
+      day: { date: '1215-06-01', calendar: 'julian', source: 'wiki-history-jin-en' },
       date: '1215',
       startYear: 1215,
       endYear: 1215,
@@ -4709,6 +4718,7 @@ EVENTS.push(
     },
     {
       id: 'kalka-battle-1223',
+      day: { date: '1223-05-31', calendar: 'julian', source: 'wiki-history-kalka-en' },
       date: '1223',
       startYear: 1223,
       endYear: 1223,
@@ -4735,6 +4745,7 @@ EVENTS.push(
     },
     {
       id: 'jin-fall-1234',
+      day: { date: '1234-02-09', calendar: 'julian', source: 'wiki-history-jin-en' },
       date: '1234',
       startYear: 1234,
       endYear: 1234,
@@ -4813,6 +4824,7 @@ EVENTS.push(
     },
     {
       id: 'baghdad-capture-1258',
+      day: { date: '1258-02-10', calendar: 'julian', source: 'wiki-history-baghdad-en' },
       date: '1258',
       startYear: 1258,
       endYear: 1258,
@@ -4826,6 +4838,7 @@ EVENTS.push(
     },
     {
       id: 'ain-jalut-1260',
+      day: { date: '1260-09-03', calendar: 'julian', source: 'wiki-history-ain-jalut-en' },
       date: '1260',
       startYear: 1260,
       endYear: 1260,
@@ -4891,6 +4904,7 @@ EVENTS.push(
     },
     {
       id: 'tumu-crisis-1449',
+      day: { date: '1449-09-01', calendar: 'julian', source: 'wiki-history-tumu-en' },
       date: '1449',
       startYear: 1449,
       endYear: 1449,
@@ -5052,6 +5066,7 @@ EVENTS.push(
     },
     {
       id: 'jao-modo-1696',
+      day: { date: '1696-06-12', calendar: 'gregorian', source: 'wiki-history-jao-modo-en' },
       date: '1696',
       startYear: 1696,
       endYear: 1696,
@@ -5078,6 +5093,7 @@ EVENTS.push(
     },
     {
       id: 'bogd-khanate-1911',
+      day: { date: '1911-12-29', calendar: 'gregorian', source: 'wiki-history-revolution-1911-en' },
       date: '1911',
       startYear: 1911,
       endYear: 1911,
@@ -5117,6 +5133,7 @@ EVENTS.push(
     },
     {
       id: 'peoples-revolution-1921',
+      day: { date: '1921-07-11', calendar: 'gregorian', source: 'wiki-history-revolution-1921-en' },
       date: '1921',
       startYear: 1921,
       endYear: 1921,
@@ -5130,6 +5147,7 @@ EVENTS.push(
     },
     {
       id: 'mongolian-peoples-republic-1924',
+      day: { date: '1924-11-26', calendar: 'gregorian', source: 'wiki-history-mpr-en' },
       date: '1924',
       startYear: 1924,
       endYear: 1924,
@@ -5208,6 +5226,7 @@ EVENTS.push(
     },
     {
       id: 'china-mongolia-relations-1949',
+      day: { date: '1949-10-16', calendar: 'gregorian', source: 'wiki-history-china-relations-en' },
       date: '1949',
       startYear: 1949,
       endYear: 1949,
@@ -5221,6 +5240,7 @@ EVENTS.push(
     },
     {
       id: 'un-membership-1961',
+      day: { date: '1961-10-27', calendar: 'gregorian', source: 'wiki-history-un-en' },
       date: '1961',
       startYear: 1961,
       endYear: 1961,
@@ -5247,6 +5267,7 @@ EVENTS.push(
     },
     {
       id: 'mongolia-constitution-1992',
+      day: { date: '1992-01-13', calendar: 'gregorian', source: 'wiki-history-constitution-en' },
       date: '1992',
       startYear: 1992,
       endYear: 1992,
@@ -5260,6 +5281,7 @@ EVENTS.push(
     },
     {
       id: 'parliament-election-1996',
+      day: { date: '1996-06-30', calendar: 'gregorian', source: 'wiki-history-election-1996-en' },
       date: '1996',
       startYear: 1996,
       endYear: 1996,
@@ -5303,6 +5325,7 @@ EVENTS.push(
     },
     {
       id: 'parliament-election-2024',
+      day: { date: '2024-06-28', calendar: 'gregorian', source: 'wiki-history-election-2024-en' },
       date: '2024',
       startYear: 2024,
       endYear: 2024,

@@ -50,6 +50,9 @@ export const calendarCopy = {
   ink: 'ᠬᠠᠷ᠎ᠠ ᠴᠠᠭᠠᠨ',
   firstWeekday: 'ᠡᠬᠢᠯᠡᠬᠦ ᠭᠠᠷᠠᠭ',
   display: 'ᠬᠠᠷᠠᠭᠳᠠᠴᠠ',
+  onThisDay: 'ᠲᠡᠦᠬᠡᠨ ᠳᠦ ᠡᠨᠡ ᠡᠳᠦᠷ',
+  yearsAgo: 'ᠵᠢᠯ ᠦᠨ ᠡᠮᠦᠨ᠎ᠡ',
+  julianCalendar: 'ᠶᠦᠯᠢ ᠶᠢᠨ ᠲᠣᠭᠠᠯᠠᠯ',
   weekdays: [
     'ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ',
     'ᠭᠠᠷᠠᠭ ᠤᠨ ᠬᠣᠶᠠᠷ',

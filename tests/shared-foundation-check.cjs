@@ -55,6 +55,17 @@ const fs = require('node:fs');
   bad((s) => {
     s.core.calendar.events[0].dates = ['2026-02-30'];
   });
+  const dated = (s) => s.core.events.find((event) => event.day);
+  assert(snapshot.core.events.filter((event) => event.day).length >= 20);
+  bad((s) => {
+    dated(s).day.date = '1900-01-01';
+  });
+  bad((s) => {
+    dated(s).day.calendar = 'lunar';
+  });
+  bad((s) => {
+    dated(s).day.source = 'wiki-not-cited-here';
+  });
   assert.throws(() => assertManifest({ ...manifest, counts: { ...manifest.counts, entries: 1 } }));
   const source = {
     title: 'ᠨᠤᠲᠤᠭ',

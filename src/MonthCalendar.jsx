@@ -19,6 +19,7 @@ import { dayTimeline } from '../shared/calendar-layout.mjs';
 import { CalendarDatePicker } from './CalendarDatePicker';
 import { AlmanacSummary } from './CalendarAlmanac';
 import { FestivalList } from './CalendarFestivals';
+import { HistoryList, historyOn } from './CalendarHistory';
 import { occurrencesBetween, weekday } from '../shared/calendar-events.mjs';
 
 export function MonthCalendar({
@@ -33,6 +34,7 @@ export function MonthCalendar({
   onOpenAlmanac,
   festivals = () => [],
   onOpenFestival,
+  onOpenHistory,
 }) {
   const today = useToday(calendarConfig.timeZone);
   const civil = useMemo(() => gregorianProvider(calendarConfig), []);
@@ -278,6 +280,7 @@ export function MonthCalendar({
           </Button>
           {onOpenFestival && <FestivalList items={festivals(date)} onOpen={onOpenFestival} />}
           {showLunar && onOpenAlmanac && <AlmanacSummary day={lunar} onOpen={onOpenAlmanac} />}
+          {onOpenHistory && <HistoryList items={historyOn(date)} onOpen={onOpenHistory} />}
           {onAdd && (
             <section className="month-day-agenda">
               <Agenda

@@ -159,6 +159,25 @@ export function assertCore(core) {
     for (const field of ['date', 'title', 'text']) text(event[field], `events.${i}.${field}`);
     refs(event.people, core.people, `events.${i}.people`);
     if (event.sources) refs(event.sources, core.sources, `events.${i}.sources`);
+    if (event.day !== undefined) {
+      const day = object(event.day, `events.${i}.day`);
+      const date = civilDate(day.date);
+      requireValue(
+        date && (event.startYear === undefined || date.year === event.startYear),
+        `events.${i}.day.date`,
+        'a valid date in the event start year',
+      );
+      requireValue(
+        ['julian', 'gregorian'].includes(day.calendar),
+        `events.${i}.day.calendar`,
+        'julian or gregorian',
+      );
+      requireValue(
+        (event.sources || []).includes(day.source),
+        `events.${i}.day.source`,
+        'one of the event sources',
+      );
+    }
   });
   const tribes = object(core.tribes, 'tribes');
   object(tribes.nodes, 'tribes.nodes');

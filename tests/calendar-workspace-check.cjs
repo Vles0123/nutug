@@ -266,12 +266,34 @@ async function close(w, d) {
   );
   assert.equal(inner.d.querySelectorAll('.day-festival').length, 0);
   assert.equal(inner.d.querySelectorAll('[data-festival-day]').length, 1);
+  const historic = await boot({}, { date: '2026-11-26' });
+  const h = historic.d;
+  assert.deepEqual(
+    [...h.querySelectorAll('.day-history-item')].map((node) => node.dataset.historyEvent),
+    ['mongolian-peoples-republic-1924'],
+  );
+  await click(h.querySelector('.day-history-item'));
+  assert.equal(
+    h.querySelector('[data-history-detail]').dataset.historyDetail,
+    'mongolian-peoples-republic-1924',
+  );
+  assert.equal(
+    h.querySelector('[data-action=read-history]').getAttribute('href'),
+    'chronicle.html#event=mongolian-peoples-republic-1924',
+  );
+  assert(!h.querySelector('.history-day-facts').textContent.includes(copy.julianCalendar));
+  assert.deepEqual(historic.errors, []);
+  const medieval = await boot({}, { date: '2026-06-01' });
+  await click(medieval.d.querySelector('[data-history-event=zhongdu-capture-1215]'));
+  assert(medieval.d.querySelector('.history-day-facts').textContent.includes(copy.julianCalendar));
+  const quiet = await boot({}, { date: '2026-11-25' });
+  assert.equal(quiet.d.querySelectorAll('.day-history').length, 0);
   const corrupt = await boot({ [eventStorageKey]: 'broken' });
   assert(corrupt.d.querySelector('[role=alert]'));
   assert.equal(corrupt.w.localStorage.getItem(eventStorageKey), 'broken');
   windows.forEach((w) => w.close());
   console.log(
-    'PASS: independent Gregorian calendar, dual display, daily almanac, Mongolian festivals with region filter, leap-day jumps with Mongolian digits, event CRUD, recurring exception/undo, four views, saved skins and offline persistence.',
+    'PASS: independent Gregorian calendar, dual display, daily almanac, Mongolian festivals with region filter, on-this-day history, leap-day jumps with Mongolian digits, event CRUD, recurring exception/undo, four views, saved skins and offline persistence.',
   );
 })().catch((error) => {
   windows.forEach((w) => w.close());

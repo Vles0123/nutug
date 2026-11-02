@@ -2150,3 +2150,114 @@
   padding: 8px 0;
   border-top: 1px solid var(--separator);
 }
+
+/* On this day in history */
+.day-history {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 4px;
+}
+.day-history-heading {
+  color: var(--secondary);
+  --control-column-height: 160px;
+  --control-font-size: 16px;
+}
+.calendar-app .day-history-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 2px;
+  border: 0;
+  border-bottom: 1px solid var(--separator);
+  border-radius: 0;
+  background: transparent;
+  color: var(--label);
+  text-align: start;
+  --control-column-height: 150px;
+  --control-font-size: 19px;
+}
+.day-history-years {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 52px;
+  font-size: 17px;
+  font-weight: 600;
+}
+.day-history-years small {
+  display: flex;
+  align-items: flex-start;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--secondary);
+  --control-column-height: 72px;
+  --control-font-size: 13px;
+}
+.day-history-item > svg {
+  flex: none;
+  margin-left: auto;
+  align-self: center;
+  color: var(--secondary);
+}
+.history-day-sheet .mn:not(textarea) {
+  min-inline-size: min-content;
+}
+.history-day-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 0;
+  overflow-y: auto;
+}
+.history-day-detail > * {
+  flex: none;
+}
+.history-day-facts {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  color: var(--secondary);
+  font-size: 17px;
+  --control-column-height: 120px;
+  --control-font-size: 17px;
+}
+.history-day-facts > span {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+.history-day-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  overflow-x: auto;
+}
+.history-day-text > * {
+  flex: none;
+  margin: 0;
+}
+.history-day-text h2 {
+  font-size: 28px;
+  max-height: 320px;
+}
+.history-day-text p {
+  font-size: 22px;
+  max-height: 320px;
+}
+.history-day-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--tertiary-fill);
+  color: var(--accent);
+  text-decoration: none;
+  --control-column-height: 70px;
+  --control-font-size: 18px;
+}
