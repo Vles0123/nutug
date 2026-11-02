@@ -37,6 +37,84 @@ final class CalendarEngine {
     values[date] = value
     return value
   }
+  func almanac(_ date: String) -> AlmanacDay? {
+    guard let lunar = lunar(date),
+      let result = context.objectForKeyedSubscript("ChineseAlmanac")?.invokeMethod(
+        "compute", withArguments: [date]),
+      !result.isUndefined, context.exception == nil
+    else {
+      context.exception = nil
+      return nil
+    }
+    func text(_ key: String) -> String { result.forProperty(key)?.toString() ?? "" }
+    func list(_ key: String) -> [String] {
+      (result.forProperty(key)?.toArray() as? [Any])?.compactMap { $0 as? String } ?? []
+    }
+    let directions = (result.forProperty("directions")?.toArray() as? [[String: Any]] ?? [])
+      .compactMap { item -> AlmanacDirection? in
+        guard let key = item["key"] as? String, let value = item["value"] as? String else {
+          return nil
+        }
+        return AlmanacDirection(key: key, value: value)
+      }
+    let term = text("solarTerm")
+    return AlmanacDay(
+      date: date, lunar: lunar, yearGanZhi: text("yearGanZhi"), monthGanZhi: text("monthGanZhi"),
+      dayGanZhi: text("dayGanZhi"), zodiac: text("yearZodiac"),
+      solarTerm: ["", "null", "undefined"].contains(term) ? nil : term,
+      yi: list("yi"), ji: list("ji"), directions: directions)
+  }
+}
+struct AlmanacDirection: Equatable {
+  let key: String
+  let value: String
+}
+struct AlmanacDay: Equatable {
+  let date: String
+  let lunar: LunarDay
+  let yearGanZhi: String
+  let monthGanZhi: String
+  let dayGanZhi: String
+  let zodiac: String
+  let solarTerm: String?
+  let yi: [String]
+  let ji: [String]
+  let directions: [AlmanacDirection]
+}
+/// Mongolian names for almanac terms, generated from content-source/almanac-data.js.
+struct AlmanacCopy: Decodable {
+  struct Source: Decodable {
+    let label: String
+    let url: String
+  }
+  let ui: [String: String]
+  let activities: [String: String]
+  let directions: [String: String]
+  let animals: [String: String]
+  let solarTerms: [String: String]
+  let stems: [String: String]
+  let branches: [String: String]
+  let sources: [Source]
+  init(root: URL) throws {
+    self = try JSONDecoder().decode(
+      AlmanacCopy.self, from: Data(contentsOf: root.appendingPathComponent("almanac.json")))
+  }
+  func text(_ key: String) -> String { ui[key] ?? "" }
+  private func translate(_ table: [String: String], _ key: String) -> String {
+    table[key] ?? text("translationPending")
+  }
+  func ganZhi(_ value: String) -> String {
+    let characters = value.map(String.init)
+    guard characters.count == 2 else { return value }
+    return (stems[characters[0]] ?? characters[0]) + " " + (branches[characters[1]] ?? characters[1])
+  }
+  func activity(_ key: String) -> String { translate(activities, key) }
+  func direction(_ key: String) -> String { translate(directions, key) }
+  func animal(_ key: String) -> String { translate(animals, key) }
+  func solarTerm(_ key: String?) -> String {
+    guard let key, !key.isEmpty else { return text("noSolarTerm") }
+    return translate(solarTerms, key)
+  }
 }
 enum CivilCalendar {
   static func normalizedInput(_ value: String) -> String {

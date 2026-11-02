@@ -48,7 +48,22 @@ struct CalendarChecks {
     precondition(CivilCalendar.days("2028-02").filter { $0.hasPrefix("2028-02") }.count == 29)
     precondition(engine.lunar("2026-02-30") == nil)
     precondition(engine.lunar("2101-01-01") == nil)
+    let almanacCopy = try AlmanacCopy(
+      root: root.appendingPathComponent("apple/Resources/public"))
+    for date in ["1901-01-01", "2026-11-02", "2026-12-22", "2100-12-31"] {
+      guard let day = engine.almanac(date) else { fatalError("Missing almanac: " + date) }
+      precondition(day.lunar == engine.lunar(date))
+      precondition(!day.yi.isEmpty && !day.ji.isEmpty && day.directions.count == 5)
+      precondition(day.dayGanZhi.count == 2 && !almanacCopy.ganZhi(day.dayGanZhi).contains(day.dayGanZhi))
+      for term in day.yi + day.ji { precondition(almanacCopy.activities[term] != nil, term) }
+      for item in day.directions {
+        precondition(!almanacCopy.text(item.key).isEmpty && almanacCopy.directions[item.value] != nil)
+      }
+    }
+    precondition(engine.almanac("2026-12-22")?.solarTerm == "冬至")
+    precondition(engine.almanac("2026-11-02")?.solarTerm == nil)
+    precondition(engine.almanac("2101-01-01") == nil)
     print(
-      "PASS: native calendar matches all shared reference dates, leap months and date boundaries")
+      "PASS: native calendar matches all shared reference dates, leap months, date boundaries and almanac copy")
   }
 }

@@ -32,6 +32,23 @@ await build({
   outfile: root + '/calendar-events.js',
 });
 await cp('src/native-text-input.html', root + '/text-input.html');
+// Mongolian names for almanac terms, shared with the web calendar's bundled copy.
+const almanac = new Function(
+  (await readFile('content-source/almanac-data.js', 'utf8')) + '\nreturn CHINESE_ALMANAC_CONFIG;',
+)();
+await writeFile(
+  root + '/almanac.json',
+  JSON.stringify({
+    ui: almanac.ui,
+    activities: almanac.activities,
+    directions: almanac.directions,
+    animals: almanac.animals,
+    solarTerms: almanac.solarTerms,
+    stems: almanac.stems,
+    branches: almanac.branches,
+    sources: almanac.sources,
+  }) + '\n',
+);
 await writeFile(
   root + '/content-config.json',
   JSON.stringify({
@@ -40,4 +57,4 @@ await writeFile(
       'https://raw.githubusercontent.com/Vles0123/nutug/refs/heads/chore/content-feed/manifest.json',
   }) + '\n',
 );
-console.log(`Prepared ${files.size + 3} UI, font and calendar resources for native targets`);
+console.log(`Prepared ${files.size + 4} UI, font and calendar resources for native targets`);
