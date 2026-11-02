@@ -112,6 +112,8 @@ enum NutugWidgetSize { case small, medium, large }
 struct NutugDayContent: View {
   let entry: NutugDayEntry
   let family: NutugWidgetSize
+  /// The large widget stacks three rows of columns, so each row is shorter to fit its height.
+  private var columnHeight: CGFloat { family == .large ? 96 : 120 }
   var body: some View {
     let copy = WidgetResources.almanac
     if family == .large, let day = entry.almanac, let copy {
@@ -153,21 +155,23 @@ struct NutugDayContent: View {
         }
       }
       .fixedSize()
-      WidgetMongolian(text: entry.weekday, size: 15, height: 120)
+      WidgetMongolian(text: entry.weekday, size: 15, height: columnHeight)
       if let day, let copy {
         WidgetMongolian(
-          text: copy.ganZhi(day.dayGanZhi), size: 14, height: 120, color: .secondary)
+          text: copy.ganZhi(day.dayGanZhi), size: 14, height: columnHeight, color: .secondary)
         if let term = day.solarTerm {
-          WidgetMongolian(text: copy.solarTerm(term), size: 14, height: 120, color: .accentColor)
+          WidgetMongolian(
+            text: copy.solarTerm(term), size: 14, height: columnHeight, color: .accentColor)
         }
       }
     }
   }
   private func terms(_ title: String, _ values: [String], accent: Bool, limit: Int) -> some View {
     HStack(alignment: .top, spacing: 4) {
-      WidgetMongolian(text: title, size: 13, height: 120, color: accent ? .accentColor : .secondary)
+      WidgetMongolian(
+        text: title, size: 13, height: columnHeight, color: accent ? .accentColor : .secondary)
       ForEach(Array(values.prefix(limit).enumerated()), id: \.offset) { _, value in
-        WidgetMongolian(text: value, size: 14, height: 120)
+        WidgetMongolian(text: value, size: 14, height: columnHeight)
       }
     }
   }
