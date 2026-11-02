@@ -114,40 +114,60 @@ struct NutugDayContent: View {
   let family: NutugWidgetSize
   var body: some View {
     let copy = WidgetResources.almanac
+    if family == .large, let day = entry.almanac, let copy {
+      VStack(alignment: .leading, spacing: 10) {
+        header(day: day, copy: copy)
+        Divider()
+        terms(copy.text("yi"), day.yi.map(copy.activity), accent: true, limit: 8)
+        Divider()
+        terms(copy.text("ji"), day.ji.map(copy.activity), accent: false, limit: 8)
+        Spacer(minLength: 0)
+      }
+    } else {
+      HStack(alignment: .top, spacing: family == .small ? 8 : 12) {
+        header(day: entry.almanac, copy: copy)
+        if family == .medium, let day = entry.almanac, let copy {
+          Divider()
+          terms(copy.text("yi"), day.yi.map(copy.activity), accent: true, limit: 2)
+          Divider()
+          terms(copy.text("ji"), day.ji.map(copy.activity), accent: false, limit: 2)
+        }
+        Spacer(minLength: 0)
+      }
+    }
+  }
+  /// Gregorian and lunar dates, the Mongolian weekday, day GanZhi and any solar term.
+  private func header(day: AlmanacDay?, copy: AlmanacCopy?) -> some View {
     HStack(alignment: .top, spacing: family == .small ? 8 : 12) {
       VStack(alignment: .leading, spacing: 2) {
         Text(String(Int(entry.civil.suffix(2)) ?? 0))
           .font(.system(size: family == .small ? 40 : 46, weight: .semibold, design: .rounded))
-          .monospacedDigit().foregroundStyle(.tint)
+          .monospacedDigit().foregroundStyle(.tint).lineLimit(1)
         Text(entry.civil.prefix(7).replacingOccurrences(of: "-", with: " / "))
-          .font(.caption.monospacedDigit()).foregroundStyle(.secondary)
-        if let lunar = entry.almanac?.lunar {
+          .font(.caption.monospacedDigit()).foregroundStyle(.secondary).lineLimit(1)
+        if let lunar = day?.lunar {
           Label(
             "\(lunar.leap ? "* " : "")\(lunar.month) / \(lunar.day)", systemImage: "moon"
           )
-          .font(.caption2.monospacedDigit()).foregroundStyle(.secondary)
+          .font(.caption2.monospacedDigit()).foregroundStyle(.secondary).lineLimit(1)
         }
-        Spacer(minLength: 0)
       }
-      WidgetMongolian(text: entry.weekday, size: 15, height: family == .small ? 120 : 130)
-      if let day = entry.almanac, let copy {
+      .fixedSize()
+      WidgetMongolian(text: entry.weekday, size: 15, height: 120)
+      if let day, let copy {
         WidgetMongolian(
           text: copy.ganZhi(day.dayGanZhi), size: 14, height: 120, color: .secondary)
-        if family != .small {
-          terms(copy.text("yi"), day.yi.map(copy.activity), accent: true)
-          terms(copy.text("ji"), day.ji.map(copy.activity), accent: false)
+        if let term = day.solarTerm {
+          WidgetMongolian(text: copy.solarTerm(term), size: 14, height: 120, color: .accentColor)
         }
       }
-      Spacer(minLength: 0)
     }
   }
-  private func terms(_ title: String, _ values: [String], accent: Bool) -> some View {
-    let limit = family == .large ? 6 : 2
-    return HStack(alignment: .top, spacing: 4) {
-      Divider()
+  private func terms(_ title: String, _ values: [String], accent: Bool, limit: Int) -> some View {
+    HStack(alignment: .top, spacing: 4) {
       WidgetMongolian(text: title, size: 13, height: 120, color: accent ? .accentColor : .secondary)
       ForEach(Array(values.prefix(limit).enumerated()), id: \.offset) { _, value in
-        WidgetMongolian(text: value, size: 14, height: family == .large ? 260 : 120)
+        WidgetMongolian(text: value, size: 14, height: 120)
       }
     }
   }
