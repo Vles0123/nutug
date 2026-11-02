@@ -78,6 +78,21 @@ async function close(w, d) {
   const { w, d } = app;
   assert(d.querySelector('.calendar-app'), JSON.stringify(app.errors));
   assert(!d.querySelector('.product-tabs'));
+  const almanacCard = d.querySelector('.day-detail .day-almanac');
+  assert(almanacCard, 'Selected day shows its almanac summary');
+  assert(almanacCard.querySelector('[data-almanac-group=yi]'));
+  assert(almanacCard.querySelector('[data-almanac-group=ji]'));
+  await click(almanacCard);
+  assert.equal(d.querySelector('.almanac-detail').dataset.almanacDate, '2026-10-08');
+  assert.equal(d.querySelectorAll('.almanac-detail-field').length, 11);
+  assert(d.querySelectorAll('.almanac-detail-terms .mn').length > 0);
+  await click(d.querySelector('[data-action=almanac-next]'));
+  assert.equal(d.querySelector('.almanac-detail').dataset.almanacDate, '2026-10-09');
+  assert.equal(new URL(w.location.href).searchParams.get('date'), '2026-10-09');
+  await click(d.querySelector('[data-action=almanac-previous]'));
+  await close(w, d);
+  assert(!d.querySelector('.almanac-detail'));
+  assert.equal(new URL(w.location.href).searchParams.get('date'), '2026-10-08');
   await click(d.querySelector('[data-action=new-event]'));
   await click(d.querySelector('[data-action=save-event]'));
   assert(d.querySelector('[role=alert]'), 'Invalid forms explain the issue in Mongolian');
@@ -214,11 +229,13 @@ async function close(w, d) {
   );
   await click(civilOnly.d.querySelector('[data-view=day]'));
   assert.equal(civilOnly.d.querySelectorAll('.timeline-lunar').length, 0);
+  assert.equal(civilOnly.d.querySelectorAll('[data-action=open-almanac]').length, 0);
   assert.deepEqual(civilOnly.errors, []);
   const noLunar = await boot({}, { withoutLunar: true });
   assert(noLunar.d.querySelector('[data-date="2026-10-08"]'));
   await click(noLunar.d.querySelector('[data-view=day]'));
   assert.equal(noLunar.d.querySelector('time').dateTime, '2026-10-08');
+  assert.equal(noLunar.d.querySelectorAll('[data-action=open-almanac]').length, 0);
   assert.deepEqual(noLunar.errors, []);
   assert.deepEqual(app.errors, []);
   const corrupt = await boot({ [eventStorageKey]: 'broken' });
@@ -226,7 +243,7 @@ async function close(w, d) {
   assert.equal(corrupt.w.localStorage.getItem(eventStorageKey), 'broken');
   windows.forEach((w) => w.close());
   console.log(
-    'PASS: independent Gregorian calendar, dual display, leap-day jumps with Mongolian digits, event CRUD, recurring exception/undo, four views, saved skins and offline persistence.',
+    'PASS: independent Gregorian calendar, dual display, daily almanac, leap-day jumps with Mongolian digits, event CRUD, recurring exception/undo, four views, saved skins and offline persistence.',
   );
 })().catch((error) => {
   windows.forEach((w) => w.close());

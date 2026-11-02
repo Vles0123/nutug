@@ -1834,3 +1834,145 @@
 .theme-editor label:has(textarea) {
   grid-template-columns: 36px minmax(0, 1fr);
 }
+
+/* Chinese almanac (黄历) for the selected day */
+.calendar-app .day-almanac {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  width: 100%;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: var(--calendar-radius);
+  background: var(--tertiary-fill);
+  color: var(--label);
+  text-align: start;
+  flex-wrap: wrap;
+  row-gap: 14px;
+  --control-column-height: 132px;
+  --control-font-size: 18px;
+}
+.day-almanac-fact,
+.day-almanac-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  flex: none;
+}
+.day-almanac-group {
+  padding-inline-start: 14px;
+  border-inline-start: 1px solid var(--separator);
+}
+.day-almanac .day-almanac-label {
+  color: var(--secondary);
+}
+.day-almanac [data-almanac-group='yi'] .day-almanac-label,
+.almanac-detail [data-almanac-group='yi'] h2 .mn {
+  color: var(--accent);
+}
+.day-almanac-more {
+  font-size: 13px;
+  color: var(--secondary);
+}
+.day-almanac > svg {
+  flex: none;
+  margin-left: auto;
+  align-self: center;
+  color: var(--secondary);
+}
+.almanac-sheet .mn:not(textarea) {
+  min-inline-size: min-content;
+}
+.almanac-sheet .sheet-bar {
+  align-items: center;
+}
+.almanac-sheet-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-inline-start: auto;
+  font-size: 17px;
+}
+.almanac-sheet .sheet-dialog {
+  max-height: 90dvh;
+}
+.almanac-detail {
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-bottom: 8px;
+}
+.almanac-detail > * {
+  flex: none;
+}
+.almanac-detail-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--separator);
+}
+.almanac-detail-section > h2 {
+  flex: none;
+  margin: 0;
+  --control-column-height: 160px;
+  --control-font-size: 20px;
+}
+.almanac-detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.almanac-detail-section > .almanac-detail-row {
+  flex: 1;
+}
+.almanac-detail-field {
+  display: flex;
+  gap: 8px;
+  flex: none;
+  padding: 12px;
+  border-radius: var(--calendar-radius, 16px);
+  background: var(--tertiary-fill);
+}
+.almanac-detail-field .mn {
+  font-size: 20px;
+  max-height: 220px;
+}
+.almanac-detail-field .mn:last-child {
+  color: var(--label);
+}
+.almanac-detail-terms .mn {
+  font-size: 21px;
+  max-height: 200px;
+  flex: none;
+}
+.almanac-detail-notes .mn {
+  font-size: 18px;
+  color: var(--prose-secondary);
+  max-height: 260px;
+  margin: 0;
+  flex: none;
+}
+.almanac-detail-section .source-links {
+  flex: none;
+  flex-wrap: nowrap;
+}
+@media (max-width: 700px) {
+  .calendar-app .day-almanac {
+    --control-column-height: 112px;
+    --control-font-size: 17px;
+  }
+  .almanac-sheet-nav time {
+    display: none;
+  }
+  .almanac-detail-section {
+    flex-wrap: wrap;
+  }
+}

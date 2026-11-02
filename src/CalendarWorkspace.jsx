@@ -17,6 +17,7 @@ import {
   Trash2,
   MapPin,
   Moon,
+  ScrollText,
 } from 'lucide-react';
 import { Mn, IconButton, Sheet, Segments, SearchBox, ColumnScroller } from './ui';
 import { labels } from './ui-copy.mjs';
@@ -27,6 +28,7 @@ import { CalendarTimeline } from './CalendarTimeline';
 import { slotTimes } from '../shared/calendar-layout.mjs';
 import { CalendarDatePicker } from './CalendarDatePicker';
 import { SkinPicker } from './SkinPicker';
+import { AlmanacSheet, almanacTitle } from './CalendarAlmanac';
 import { themeVariables, themeIsDark } from '../shared/calendar-themes.mjs';
 import {
   chineseLunisolarProvider,
@@ -101,7 +103,8 @@ export function CalendarWorkspace() {
   const [viewMenu, setViewMenu] = useState(false),
     [settings, setSettings] = useState(false),
     [search, setSearch] = useState(false),
-    [query, setQuery] = useState('');
+    [query, setQuery] = useState(''),
+    [almanacOpen, setAlmanacOpen] = useState(false);
   const [editor, setEditor] = useState(null),
     [selected, setSelected] = useState(null),
     [importResult, setImportResult] = useState(null);
@@ -325,6 +328,7 @@ export function CalendarWorkspace() {
             onAdd={create}
             onOpenEvent={setSelected}
             onOpenDay={() => setPrefs({ ...prefs, view: 'day' })}
+            onOpenAlmanac={() => setAlmanacOpen(true)}
           />
         ) : (
           <>
@@ -354,6 +358,14 @@ export function CalendarWorkspace() {
                 )}
               </CalendarDatePicker>
               <div>
+                {lunarProvider && prefs.view !== 'year' && (
+                  <IconButton
+                    icon={ScrollText}
+                    label={almanacTitle}
+                    data-action="open-almanac"
+                    onPress={() => setAlmanacOpen(true)}
+                  />
+                )}
                 <Button className="calendar-today" onPress={() => select(today)}>
                   <Mn compact>{copy.today}</Mn>
                 </Button>
@@ -704,6 +716,13 @@ export function CalendarWorkspace() {
           </div>
         )}
       </Sheet>
+      <AlmanacSheet
+        open={almanacOpen && !!lunarProvider}
+        onOpenChange={setAlmanacOpen}
+        provider={lunarProvider}
+        date={date}
+        onSelectDate={select}
+      />
       {editor && (
         <AppointmentEditor
           key={editor.draft.id}

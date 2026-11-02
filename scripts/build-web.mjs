@@ -138,6 +138,17 @@ const options = {
   },
   plugins: [
     {
+      // The calendar works offline without the content feed, so it bundles the almanac copy.
+      name: 'almanac-copy',
+      setup(build) {
+        build.onLoad({ filter: /content-source[\\/]almanac-data\.js$/ }, async (args) => ({
+          contents:
+            (await readFile(args.path, 'utf8')) + '\nexport default CHINESE_ALMANAC_CONFIG;\n',
+          loader: 'js',
+        }));
+      },
+    },
+    {
       name: 'application-shell',
       setup(build) {
         build.onEnd(finish);
