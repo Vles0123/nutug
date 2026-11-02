@@ -52,6 +52,18 @@ jobs:
         run: |
           xcrun swiftc apple/Nutug/CalendarEngine.swift tests/native/ScheduleChecks.swift -o "$RUNNER_TEMP/schedule-check"
           "$RUNNER_TEMP/schedule-check" "$PWD"
+      - name: Widget snapshots
+        if: matrix.scheme == 'NutugCalendar'
+        run: |
+          xcrun swiftc apple/Nutug/CalendarEngine.swift apple/Nutug/Orthography.swift apple/NutugWidget/NutugWidgetViews.swift tests/native/WidgetSnapshots.swift -o "$RUNNER_TEMP/widget-snapshots"
+          NUTUG_WIDGET_ROOT="$PWD/apple/Resources/public" "$RUNNER_TEMP/widget-snapshots" "$RUNNER_TEMP/widget-snapshots-out"
+      - name: Upload widget snapshots
+        if: matrix.scheme == 'NutugCalendar'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: widget-snapshots
+          path: ${{ runner.temp }}/widget-snapshots-out
+          retention-days: 14
       - name: macOS build
         run: xcodebuild -project apple/Nutug.xcodeproj -scheme "${{ matrix.scheme }}" -destination 'generic/platform=macOS' -derivedDataPath "$RUNNER_TEMP/nutug-mac" CODE_SIGNING_ALLOWED=NO build
       - name: iPhone and iPad build

@@ -5,6 +5,16 @@
   "objectVersion" = "56";
   "archiveVersion" = "1";
   "objects" = {
+    "EF5D514DF57B4B85A1CB6648" = {
+      "path" = "NutugWidgetViews.swift";
+      "isa" = "PBXFileReference";
+      "lastKnownFileType" = "sourcecode.swift";
+      "sourceTree" = "<group>";
+    };
+    "4C38358E22BF49DD8DDEEAEC" = {
+      "isa" = "PBXBuildFile";
+      "fileRef" = "EF5D514DF57B4B85A1CB6648";
+    };
     "9BE99B260D8649F786AC327B" = {
       "path" = "NutugWidget.swift";
       "isa" = "PBXFileReference";
@@ -26,7 +36,7 @@
     "31461D6490C94383835987D0" = {
       "path" = "NutugWidget";
       "isa" = "PBXGroup";
-      "children" = ("9BE99B260D8649F786AC327B","24BCA8AD761E482983E6193F","56B6C3CFC7FB4CA1A4C8CBD3");
+      "children" = ("9BE99B260D8649F786AC327B","EF5D514DF57B4B85A1CB6648","24BCA8AD761E482983E6193F","56B6C3CFC7FB4CA1A4C8CBD3");
       "sourceTree" = "<group>";
     };
     "7DFF447CC31D46D2B3DE3D13" = {
@@ -55,7 +65,7 @@
     "93B109CD22BB4AF6A9EC8CA9" = {
       "isa" = "PBXSourcesBuildPhase";
       "buildActionMask" = "2147483647";
-      "files" = ("929187C534A44151B8388427","92594A4B4EA14AB88EC077F8","E213EFEEBFE144A883E9B5AA");
+      "files" = ("929187C534A44151B8388427","4C38358E22BF49DD8DDEEAEC","92594A4B4EA14AB88EC077F8","E213EFEEBFE144A883E9B5AA");
       "runOnlyForDeploymentPostprocessing" = "0";
     };
     "8C8772F8335E4041958157E1" = {
