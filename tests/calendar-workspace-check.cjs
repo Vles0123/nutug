@@ -3,14 +3,17 @@ const fs = require('node:fs');
 const { JSDOM, VirtualConsole } = require('jsdom');
 const { setTimeout: pause } = require('node:timers/promises');
 const windows = [];
-async function boot(saved = {}, { withoutLunar = false, rejectLunar = false } = {}) {
+async function boot(
+  saved = {},
+  { withoutLunar = false, rejectLunar = false, date = '2026-10-08' } = {},
+) {
   const errors = [],
     requests = [];
   const console = new VirtualConsole();
   console.on('jsdomError', (error) => errors.push(error.message));
   console.on('error', (error) => errors.push(String(error)));
   const w = new JSDOM(fs.readFileSync('public/calendar.html', 'utf8'), {
-    url: 'https://nutug.test/calendar.html?date=2026-10-08',
+    url: `https://nutug.test/calendar.html?date=${date}`,
     runScripts: 'outside-only',
     pretendToBeVisual: true,
     virtualConsole: console,
@@ -238,12 +241,37 @@ async function close(w, d) {
   assert.equal(noLunar.d.querySelectorAll('[data-action=open-almanac]').length, 0);
   assert.deepEqual(noLunar.errors, []);
   assert.deepEqual(app.errors, []);
+  const festive = await boot({}, { date: '2026-07-11' });
+  const f = festive.d;
+  assert.equal(f.querySelectorAll('.day-detail .day-festival').length, 1);
+  assert.equal(f.querySelectorAll('[data-festival-day]').length, 7);
+  assert(f.querySelector('[data-date="2026-07-12"]').getAttribute('aria-label').includes(' · '));
+  await click(f.querySelector('.day-detail .day-festival'));
+  assert.equal(f.querySelector('[data-festival-detail]').dataset.festivalDetail, 'mn-naadam');
+  assert(f.querySelectorAll('.festival-sheet .source-links a').length > 0);
+  await click(f.querySelector('[data-festival-date="2027-07-15"]'));
+  assert(!f.querySelector('[data-festival-detail]'));
+  assert.equal(new URL(festive.w.location.href).searchParams.get('date'), '2027-07-15');
+  await click(f.querySelector('[data-view=week]'));
+  assert(f.querySelector('.timeline-festival[data-festival=mn-naadam]'));
+  await click(f.querySelector('[data-action=product-settings]'));
+  await click(f.querySelector('[data-setting=festivals] input'));
+  assert.equal(JSON.parse(festive.w.localStorage.getItem(preferenceKey)).festivals, 'off');
+  await close(festive.w, f);
+  assert.equal(f.querySelectorAll('.timeline-festival').length, 0);
+  assert.deepEqual(festive.errors, []);
+  const inner = await boot(
+    { [preferenceKey]: JSON.stringify({ festivals: 'inner-mongolia' }) },
+    { date: '2026-07-11' },
+  );
+  assert.equal(inner.d.querySelectorAll('.day-festival').length, 0);
+  assert.equal(inner.d.querySelectorAll('[data-festival-day]').length, 1);
   const corrupt = await boot({ [eventStorageKey]: 'broken' });
   assert(corrupt.d.querySelector('[role=alert]'));
   assert.equal(corrupt.w.localStorage.getItem(eventStorageKey), 'broken');
   windows.forEach((w) => w.close());
   console.log(
-    'PASS: independent Gregorian calendar, dual display, daily almanac, leap-day jumps with Mongolian digits, event CRUD, recurring exception/undo, four views, saved skins and offline persistence.',
+    'PASS: independent Gregorian calendar, dual display, daily almanac, Mongolian festivals with region filter, leap-day jumps with Mongolian digits, event CRUD, recurring exception/undo, four views, saved skins and offline persistence.',
   );
 })().catch((error) => {
   windows.forEach((w) => w.close());

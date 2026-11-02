@@ -29,6 +29,7 @@ import { slotTimes } from '../shared/calendar-layout.mjs';
 import { CalendarDatePicker } from './CalendarDatePicker';
 import { SkinPicker } from './SkinPicker';
 import { AlmanacSheet, almanacTitle } from './CalendarAlmanac';
+import { FestivalSheet, FestivalSettings, festivalsOn, festivalSearch } from './CalendarFestivals';
 import { themeVariables, themeIsDark } from '../shared/calendar-themes.mjs';
 import {
   chineseLunisolarProvider,
@@ -104,7 +105,9 @@ export function CalendarWorkspace() {
     [settings, setSettings] = useState(false),
     [search, setSearch] = useState(false),
     [query, setQuery] = useState(''),
-    [almanacOpen, setAlmanacOpen] = useState(false);
+    [almanacOpen, setAlmanacOpen] = useState(false),
+    [festival, setFestival] = useState(null);
+  const festivals = (day) => festivalsOn(day, prefs.festivals);
   const [editor, setEditor] = useState(null),
     [selected, setSelected] = useState(null),
     [importResult, setImportResult] = useState(null);
@@ -254,6 +257,10 @@ export function CalendarWorkspace() {
       ),
     [events, query],
   );
+  const foundFestivals = useMemo(
+    () => festivalSearch(query, prefs.festivals),
+    [query, prefs.festivals],
+  );
   const viewItems = [
     ['year', LayoutGrid],
     ['month', CalendarDays],
@@ -329,6 +336,8 @@ export function CalendarWorkspace() {
             onOpenEvent={setSelected}
             onOpenDay={() => setPrefs({ ...prefs, view: 'day' })}
             onOpenAlmanac={() => setAlmanacOpen(true)}
+            festivals={festivals}
+            onOpenFestival={setFestival}
           />
         ) : (
           <>
@@ -443,6 +452,8 @@ export function CalendarWorkspace() {
                 onSelectDate={select}
                 onOpen={setSelected}
                 onAdd={create}
+                festivals={festivals}
+                onOpenFestival={setFestival}
               />
             )}
           </>
@@ -550,6 +561,10 @@ export function CalendarWorkspace() {
             />
             <output className="numeric">{Math.round(prefs.fontScale * 100)}%</output>
           </label>
+          <FestivalSettings
+            value={prefs.festivals}
+            onChange={(value) => setPrefs({ ...prefs, festivals: value })}
+          />
           <div className="calendar-setting-row">
             <Mn compact>{copy.firstWeekday}</Mn>
             <Segments
@@ -625,7 +640,24 @@ export function CalendarWorkspace() {
               <Mn>{event.title}</Mn>
             </Button>
           ))}
-          {!found.length && <Mn>{copy.empty}</Mn>}
+          {foundFestivals.map((item) => (
+            <Button
+              key={item.id}
+              data-festival={item.id}
+              onPress={() => {
+                setSearch(false);
+                const next = item.dates.find((value) => value >= today) || item.dates.at(-1);
+                select(next);
+                setFestival(item);
+              }}
+            >
+              <span className="numeric">
+                {item.dates.find((value) => value >= today) || item.dates.at(-1)}
+              </span>
+              <Mn>{item.title}</Mn>
+            </Button>
+          ))}
+          {!found.length && !foundFestivals.length && <Mn>{copy.empty}</Mn>}
         </ColumnScroller>
       </Sheet>
       <Sheet
@@ -716,6 +748,17 @@ export function CalendarWorkspace() {
           </div>
         )}
       </Sheet>
+      <FestivalSheet
+        festival={festival}
+        date={date}
+        onOpenChange={(open) => {
+          if (!open) setFestival(null);
+        }}
+        onSelectDate={(value) => {
+          select(value);
+          if (prefs.view === 'year') setPrefs({ ...prefs, view: 'month' });
+        }}
+      />
       <AlmanacSheet
         open={almanacOpen && !!lunarProvider}
         onOpenChange={setAlmanacOpen}

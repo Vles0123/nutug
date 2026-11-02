@@ -19,6 +19,8 @@ export function CalendarTimeline({
   onSelectDate,
   onOpen,
   onAdd,
+  festivals = () => [],
+  onOpenFestival,
 }) {
   const scroll = useRef(null);
   const [now, setNow] = useState(() => new Date());
@@ -30,7 +32,9 @@ export function CalendarTimeline({
     1,
     ...layouts.flatMap((layout) => layout.timed.map((item) => item.columns)),
   );
-  const allDay = layouts.some((layout) => layout.allDay.length);
+  const allDay = layouts.some(
+    (layout, index) => layout.allDay.length || festivals(days[index]).length,
+  );
   const single = days.length === 1;
   const weekStart = moveDate(date, -((weekday(date) - firstWeekday + 7) % 7));
   const today = currentDate(calendarConfig.timeZone, now);
@@ -162,6 +166,17 @@ export function CalendarTimeline({
               </div>
               {layouts.map((layout, index) => (
                 <div key={days[index]} className="timeline-all-day-cell">
+                  {festivals(days[index]).map((item) => (
+                    <Button
+                      key={item.id}
+                      className="timeline-festival"
+                      data-festival={item.id}
+                      aria-label={item.title}
+                      onPress={() => onOpenFestival?.(item)}
+                    >
+                      <CalendarTitle text={item.title} />
+                    </Button>
+                  ))}
                   {layout.allDay.map((event) => (
                     <Button
                       key={event.id}

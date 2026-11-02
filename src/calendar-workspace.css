@@ -1976,3 +1976,177 @@
     flex-wrap: wrap;
   }
 }
+
+/* Mongolian festivals and commemorations */
+:root {
+  --festival-color: #b4471f;
+  --festival-tint: #fdeee7;
+}
+:root[data-skin='dark'] {
+  --festival-color: #ffad8a;
+  --festival-tint: #3a2a25;
+}
+:root[data-skin='paper'] {
+  --festival-color: #9b3d1b;
+  --festival-tint: #f3dfcc;
+}
+:root[data-skin='ink'] {
+  --festival-color: #000;
+  --festival-tint: #fff;
+}
+.calendar-app .day-cell[data-festival-day] .day-number {
+  text-decoration: underline 2px var(--festival-color);
+  text-underline-offset: 5px;
+}
+.calendar-app .day-cell[data-festival-day][data-selected] .day-number {
+  text-decoration-color: currentColor;
+}
+.month-festival-preview,
+.timeline-festival {
+  background: var(--festival-tint);
+  color: var(--festival-color);
+  border: 0;
+  border-left: 2px solid var(--festival-color);
+  border-radius: 4px;
+  padding: 5px;
+  min-width: 0;
+  overflow: hidden;
+}
+:root[data-skin='ink'] .month-festival-preview,
+:root[data-skin='ink'] .timeline-festival {
+  border: 1px solid #000;
+  border-left-width: 3px;
+}
+.timeline-festival {
+  height: calc(94px * var(--reading-scale));
+  flex: none;
+}
+.day-festivals {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.calendar-app .day-festival {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: var(--calendar-radius);
+  background: var(--festival-tint);
+  color: var(--label);
+  text-align: start;
+  --control-column-height: 150px;
+  --control-font-size: 19px;
+}
+:root[data-skin='ink'] .calendar-app .day-festival {
+  border: 1px solid #000;
+}
+.day-festival > svg:first-child {
+  flex: none;
+  color: var(--festival-color);
+  margin-top: 2px;
+}
+.day-festival .day-festival-region {
+  color: var(--secondary);
+  --control-font-size: 16px;
+}
+.day-festival > svg:last-child {
+  flex: none;
+  margin-left: auto;
+  align-self: center;
+  color: var(--secondary);
+}
+.festival-sheet .mn:not(textarea) {
+  min-inline-size: min-content;
+}
+.festival-detail {
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-bottom: 8px;
+}
+.festival-detail > * {
+  flex: none;
+}
+.festival-detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.festival-detail-row > * {
+  flex: none;
+}
+.festival-detail-title {
+  margin: 0;
+  font-size: 30px;
+  max-height: 300px;
+  color: var(--festival-color);
+}
+.festival-detail-tags {
+  display: flex;
+  gap: 8px;
+  --control-column-height: 220px;
+  --control-font-size: 17px;
+  color: var(--secondary);
+}
+.festival-detail-row p {
+  margin: 0;
+  font-size: 21px;
+  max-height: 300px;
+}
+.festival-detail-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--separator);
+}
+.festival-detail-section > h3 {
+  margin: 0;
+  flex: none;
+  --control-column-height: 140px;
+  --control-font-size: 19px;
+}
+.festival-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-start;
+}
+.festival-dates button {
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: var(--tertiary-fill);
+  color: var(--label);
+  font-size: 15px;
+}
+.festival-dates button[aria-current='date'] {
+  background: var(--accent);
+  color: var(--canvas);
+}
+.festival-pending {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 8px 12px;
+  border: 1px dashed var(--separator);
+  border-radius: 12px;
+  color: var(--secondary);
+  --control-column-height: 110px;
+  --control-font-size: 16px;
+}
+.calendar-festival-setting {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 8px 0;
+  border-top: 1px solid var(--separator);
+}

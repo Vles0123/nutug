@@ -138,14 +138,20 @@ const options = {
   },
   plugins: [
     {
-      // The calendar works offline without the content feed, so it bundles the almanac copy.
-      name: 'almanac-copy',
+      // The calendar works offline without the content feed, so it bundles its own copy of
+      // the almanac and festival data from the content sources.
+      name: 'calendar-content',
       setup(build) {
-        build.onLoad({ filter: /content-source[\\/]almanac-data\.js$/ }, async (args) => ({
-          contents:
-            (await readFile(args.path, 'utf8')) + '\nexport default CHINESE_ALMANAC_CONFIG;\n',
-          loader: 'js',
-        }));
+        const globals = { almanac: 'CHINESE_ALMANAC_CONFIG', calendar: 'MONGOL_CALENDAR' };
+        build.onLoad(
+          { filter: /content-source[\\/](almanac|calendar)-data\.js$/ },
+          async (args) => ({
+            contents:
+              (await readFile(args.path, 'utf8')) +
+              `\nexport default ${globals[args.path.match(/(almanac|calendar)-data\.js$/)[1]]};\n`,
+            loader: 'js',
+          }),
+        );
       },
     },
     {
