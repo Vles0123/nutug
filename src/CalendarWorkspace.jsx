@@ -17,6 +17,7 @@ import {
   Trash2,
   MapPin,
   Moon,
+  X,
 } from 'lucide-react';
 import { Mn, IconButton, Sheet, Segments, SearchBox, ColumnScroller } from './ui';
 import { labels } from './ui-copy.mjs';
@@ -47,6 +48,14 @@ import {
   importCalendar,
   eventColors,
 } from '../shared/calendar-events.mjs';
+import {
+  readBackup,
+  markChanged,
+  markExported,
+  snoozeBackup,
+  backupDue,
+  requestPersistence,
+} from './calendar-backup.mjs';
 import { useToday } from './useToday';
 import './calendar-workspace.css';
 
@@ -98,6 +107,13 @@ export function CalendarWorkspace() {
   });
   const [storageLocked, setStorageLocked] = useState(storageError);
   const [undo, setUndo] = useState(null);
+  const [backup, setBackup] = useState(() =>
+    events.length ? markChanged(localStorage) : readBackup(localStorage),
+  );
+  const exportEvents = () => {
+    download(exportCalendar(events), 'Nutug.ics', 'text/calendar;charset=utf-8');
+    setBackup(markExported(localStorage));
+  };
   const [viewMenu, setViewMenu] = useState(false),
     [settings, setSettings] = useState(false),
     [search, setSearch] = useState(false),
@@ -171,6 +187,8 @@ export function CalendarWorkspace() {
       setEvents(normalized);
       setStorageError(false);
       setUndo(null);
+      setBackup(markChanged(localStorage));
+      if (normalized.length) requestPersistence();
       return true;
     } catch {
       setStorageError(true);
@@ -443,6 +461,17 @@ export function CalendarWorkspace() {
           </Button>
         </div>
       )}
+      {!undo && !storageError && backupDue(backup, events.length) && (
+        <div className="calendar-message" role="status" data-backup-reminder>
+          <Mn>{copy.agenda}</Mn>
+          <IconButton icon={Download} label={copy.export} onPress={exportEvents} />
+          <IconButton
+            icon={X}
+            label={labels.close}
+            onPress={() => setBackup(snoozeBackup(localStorage))}
+          />
+        </div>
+      )}
       {storageError && (
         <div className="calendar-message" role="alert">
           <Mn>{copy.storageError}</Mn>
@@ -456,7 +485,7 @@ export function CalendarWorkspace() {
                     'Nutug-recovery.json',
                     'application/json',
                   )
-                : download(exportCalendar(events), 'Nutug.ics', 'text/calendar;charset=utf-8')
+                : exportEvents()
             }
           />
         </div>
@@ -555,11 +584,7 @@ export function CalendarWorkspace() {
               <Upload size={19} />
               <Mn compact>{copy.import}</Mn>
             </Button>
-            <Button
-              onPress={() =>
-                download(exportCalendar(events), 'Nutug.ics', 'text/calendar;charset=utf-8')
-              }
-            >
+            <Button data-action="export-events" onPress={exportEvents}>
               <Download size={19} />
               <Mn compact>{copy.export}</Mn>
             </Button>

@@ -7,7 +7,7 @@
 | 全天、定时、跨天和重复日程；单次修改、删除与撤销 | 内容按版本下载，缓存供离线阅读 |
 | 四种预设和可导入导出的自定义皮肤                 | 竖排正文与按字列翻页           |
 
-日程保存在本机，跨设备交换使用 ICS 文件。支持 DAILY、WEEKLY、MONTHLY、YEARLY、INTERVAL、UNTIL、EXDATE、VTIMEZONE 与 UTC 时间转换；其他规则的文件会提示导入失败并保留原数据。通知提醒与账号同步待实现。
+日程保存在本机，跨设备交换使用 ICS 文件。网页日历在保存日程后向浏览器申请持久存储，减少站点数据被自动清理的风险；日程有改动且超过 30 天未导出时，页面提示导出备份，关闭提示后 30 天内不再出现。支持 DAILY、WEEKLY、MONTHLY、YEARLY、INTERVAL、UNTIL、EXDATE、VTIMEZONE 与 UTC 时间转换；其他规则的文件会提示导入失败并保留原数据。通知提醒与账号同步待实现。
 
 日期按 Asia/Shanghai 处理，双历计算使用 `lunar-javascript`。历史收录范围与审校状态见[来源说明](history-source-review.md)，皮肤使用方法见[自定义皮肤](custom-themes.md)。
 

@@ -74,6 +74,7 @@ async function close(w, d) {
   const { calendarCopy: copy } = await import('../src/calendar-copy.mjs');
   const { eventStorageKey } = await import('../shared/calendar-events.mjs');
   const { preferenceKey } = await import('../src/calendar-skins.mjs');
+  const { labels } = await import('../src/ui-copy.mjs');
   const app = await boot();
   const { w, d } = app;
   assert(d.querySelector('.calendar-app'), JSON.stringify(app.errors));
@@ -224,6 +225,59 @@ async function close(w, d) {
   const corrupt = await boot({ [eventStorageKey]: 'broken' });
   assert(corrupt.d.querySelector('[role=alert]'));
   assert.equal(corrupt.w.localStorage.getItem(eventStorageKey), 'broken');
+  const {
+    backupStorageKey,
+    backupInterval,
+    backupDue,
+    readBackup,
+    markChanged,
+    requestPersistence,
+  } = await import('../src/calendar-backup.mjs');
+  assert(!d.querySelector('[data-backup-reminder]'), 'Recent changes do not prompt for a backup');
+  assert(readBackup(w.localStorage).changedAt, 'Saving an appointment records a pending backup');
+  const old = Date.now() - backupInterval - 1000;
+  const stale = await boot({
+    [eventStorageKey]: w.localStorage.getItem(eventStorageKey),
+    [backupStorageKey]: JSON.stringify({ changedAt: old }),
+  });
+  const reminder = stale.d.querySelector('[data-backup-reminder]');
+  assert(reminder, 'Appointments unexported for a month prompt for a backup');
+  await click(reminder.querySelector('[aria-label="' + labels.close + '"]'));
+  assert(!stale.d.querySelector('[data-backup-reminder]'), 'Dismissing hides the reminder');
+  assert.equal(readBackup(stale.w.localStorage).changedAt, old, 'Dismissing keeps the backup due');
+  const exported = await boot({
+    [eventStorageKey]: w.localStorage.getItem(eventStorageKey),
+    [backupStorageKey]: JSON.stringify({ changedAt: old }),
+  });
+  exported.w.URL.createObjectURL = () => 'blob:nutug';
+  exported.w.URL.revokeObjectURL = () => {};
+  exported.w.HTMLAnchorElement.prototype.click = function () {};
+  await click(
+    exported.d.querySelector('[data-backup-reminder] [aria-label="' + copy.export + '"]'),
+  );
+  assert(!exported.d.querySelector('[data-backup-reminder]'), 'Exporting clears the reminder');
+  assert.equal(readBackup(exported.w.localStorage).changedAt, null);
+  assert.deepEqual([stale.errors, exported.errors], [[], []]);
+  assert(!backupDue({ changedAt: old, snoozedAt: null }, 0), 'An empty calendar needs no backup');
+  assert(!backupDue({ changedAt: old, snoozedAt: Date.now() }, 3), 'A dismissal waits a month');
+  const memory = new Map();
+  const store = { getItem: (k) => memory.get(k) ?? null, setItem: (k, v) => memory.set(k, v) };
+  markChanged(store, 5);
+  assert.equal(markChanged(store, 9).changedAt, 5, 'The oldest unexported change is kept');
+  let asked = 0;
+  assert.equal(
+    await requestPersistence({
+      persisted: async () => false,
+      persist: async () => (++asked, true),
+    }),
+    true,
+  );
+  assert.equal(
+    await requestPersistence({ persisted: async () => true, persist: () => ++asked }),
+    true,
+  );
+  assert.equal(asked, 1, 'Persistent storage is requested only when not yet granted');
+  assert.equal(await requestPersistence(undefined), false);
   windows.forEach((w) => w.close());
   console.log(
     'PASS: independent Gregorian calendar, dual display, leap-day jumps with Mongolian digits, event CRUD, recurring exception/undo, four views, saved skins and offline persistence.',
