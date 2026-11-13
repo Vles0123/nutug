@@ -55,4 +55,4 @@ Apple's iOS/iPadOS 27 Figma resource is used as a component and design-token ref
 
 ## Archived v124 snapshot
 
-The original v124 notices are preserved in `docs/upstream/v124/THIRD_PARTY_NOTICES.md`. That archive includes public-domain Natural Earth map data with dataset attribution inside its source ZIP.
+The original v124 notices are preserved in `docs/upstream/v124/THIRD_PARTY_NOTICES.md`. That archive includes public-domain Natural Earth map data with dataset attribution inside its source ZIP, which is no longer committed; see `docs/upstream/README.md` for how to retrieve it.

@@ -21,3 +21,6 @@ apple/Resources/
 build/
 xcuserdata/
 *.xcuserstate
+
+# 源码快照压缩包通过 GitHub Releases 分发，不提交到仓库
+nutug-*-source.zip
